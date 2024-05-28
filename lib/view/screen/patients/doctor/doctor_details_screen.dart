@@ -1,3 +1,6 @@
+import 'package:dime/utils/app_icons.dart';
+import 'package:dime/view/common_widgets/image/custom_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -11,7 +14,9 @@ import 'widget/details_item.dart';
 import 'widget/review_item.dart';
 
 class DoctorDetailsScreen extends StatelessWidget {
-  const DoctorDetailsScreen({super.key});
+  DoctorDetailsScreen({super.key});
+
+  List list = ["Finance", "Marketing", "Banking"];
 
   @override
   Widget build(BuildContext context) {
@@ -78,45 +83,55 @@ class DoctorDetailsScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              CustomText(
-                                text: 'Dr. Rodger Struck',
-                                color: AppColors.black,
-                                fontSize: 18.sp,
-                                fontWeight: FontWeight.w700,
-                              ),
-                              const Icon(Icons.mail_outline)
-                            ],
-                          ),
-                          const SizedBox(height: 8),
                           CustomText(
-                            text: 'Cardiologist',
-                            color: AppColors.greyLightActive,
+                            text: 'Dr. Rodger Struck',
+                            color: AppColors.black,
+                            fontSize: 18.sp,
+                            fontWeight: FontWeight.w700,
+                          ),
+                          CustomText(
+                            text: 'Beauty Specialist | Mercy Hospital',
+                            color: AppColors.base,
                             fontSize: 14.sp,
                             maxLines: 1,
+                            top: 8.h,
                             textAlign: TextAlign.start,
                             fontWeight: FontWeight.w600,
                           ),
-                          const SizedBox(height: 8),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              const Icon(Icons.location_on_outlined),
-                              const SizedBox(width: 4),
-                              Flexible(
-                                child: SizedBox(
-                                  child: CustomText(
-                                    text: 'Golden Cardiology Center',
-                                    color: AppColors.greyLightActive,
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                              ),
-                            ],
+                          CustomText(
+                            text: 'Life is beautiful',
+                            color: AppColors.base,
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.w400,
+                            top: 8.h,
                           ),
+                          Container(
+                            height: 25.h,
+                            width: 70.w,
+                            decoration: BoxDecoration(
+                                color: AppColors.black,
+                                borderRadius:
+                                    BorderRadiusDirectional.circular(4.r)),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                CustomImage(
+                                  imageSrc: AppIcons.clarify,
+                                  height: 16.sp,
+                                  width: 16.sp,
+                                  imageColor: AppColors.white,
+                                ),
+                                CustomText(
+                                  text: 'Blog',
+                                  left: 4.w,
+                                  color: AppColors.white,
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w400,
+                                )
+                              ],
+                            ),
+                          )
                         ],
                       ),
                     ),
@@ -133,22 +148,17 @@ class DoctorDetailsScreen extends StatelessWidget {
                 DetailsItem(
                   icon: Icons.group,
                   number: "2000+",
-                  title: "patients",
-                ),
-                DetailsItem(
-                  icon: Icons.workspace_premium_sharp,
-                  number: "10+",
-                  title: "experience",
+                  title: "Consultations".tr,
                 ),
                 DetailsItem(
                   icon: Icons.star,
-                  number: "5",
-                  title: "rating",
+                  number: "5(348)",
+                  title: "rating".tr,
                 ),
                 DetailsItem(
-                  icon: Icons.sms,
-                  number: "1872",
-                  title: "reviews",
+                  icon: Icons.access_time_filled_sharp,
+                  number: "Average 1 day".tr,
+                  title: "Response".tr,
                 ),
               ],
             ),
@@ -168,18 +178,51 @@ class DoctorDetailsScreen extends StatelessWidget {
               textAlign: TextAlign.start,
             ),
             CustomText(
-              text: "Working Time".tr,
+              text: "Where I can help".tr,
               fontWeight: FontWeight.w700,
               fontSize: 20.sp,
               top: 20.h,
               bottom: 8.h,
             ),
-            CustomText(
-              text: "Monday-Friday, 08.00 AM-18.00 pM",
-              fontWeight: FontWeight.w400,
-              fontSize: 14.sp,
-              textAlign: TextAlign.start,
-              bottom: 20.h,
+            SizedBox(
+              height: 50.h,
+              child: GridView.builder(
+                itemCount: list.length,
+                padding: EdgeInsets.zero,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3, mainAxisExtent: 50.h),
+                itemBuilder: (context, index) {
+                  return Center(
+                    child: Container(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 8.h, horizontal: 18.h),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4.r),
+                          border: Border.all(color: AppColors.black)),
+                      child: CustomText(text: list[index]),
+                    ),
+                  );
+                },
+              ),
+            ),
+            SizedBox(
+              height: 20.h,
+            ),
+            SizedBox(
+              height: 140.h,
+              child: ListView.builder(
+                itemCount: 6,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return ReviewItem(
+                    image: AppImages.emily,
+                    rating: "5.0",
+                    name: "Emily Anderson",
+                    message:
+                        "Dr. Patel is a true professional who genuinely cares about his patients. I highly recommend Dr. Patel to anyone seeking exceptional cardiac care.",
+                  );
+                },
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -199,29 +242,66 @@ class DoctorDetailsScreen extends StatelessWidget {
             SizedBox(
               height: 16.h,
             ),
-            SizedBox(
-              height: 140.h,
-              child: ListView.builder(
-                itemCount: 6,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return ReviewItem(
-                    image: AppImages.emily,
-                    rating: "5.0",
-                    name: "Emily Anderson",
-                    message:
-                        "Dr. Patel is a true professional who genuinely cares about his patients. I highly recommend Dr. Patel to anyone seeking exceptional cardiac care.",
-                  );
-                },
-              ),
+            Row(
+              children: [
+                Expanded(
+                    child: Container(
+                  height: 60.sp,
+                  padding: EdgeInsets.only(left: 20.w),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8.r),
+                      border: Border.all(color: AppColors.black)),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Icon(Icons.phone_in_talk_outlined),
+                      SizedBox(
+                        width: 4.w,
+                      ),
+                      CustomText(
+                        text: "${"Video Reply".tr} \n \$30/15 sec",
+                        maxLines: 2,
+                      )
+                    ],
+                  ),
+                )),
+                SizedBox(
+                  width: 16.w,
+                ),
+                Expanded(
+                    child: GestureDetector(
+                  onTap: () => Get.toNamed(AppRoutes.selectDataTime),
+                  child: Container(
+                    height: 60.sp,
+                    padding: EdgeInsets.only(left: 20.w),
+                    decoration: BoxDecoration(
+                      color: AppColors.secondPrimary,
+                      borderRadius: BorderRadius.circular(8.r),
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.videocam_outlined,
+                          color: AppColors.white,
+                        ),
+                        SizedBox(
+                          width: 4.w,
+                        ),
+                        CustomText(
+                          text: "${"Book a call".tr} \n \$4500/15 min",
+                          maxLines: 2,
+                          color: AppColors.white,
+                        )
+                      ],
+                    ),
+                  ),
+                )),
+              ],
             ),
             SizedBox(
-              height: 16.h,
+              height: 30.h,
             ),
-            CustomButton(
-              titleText: "Book Appointment".tr,
-              onTap: () => Get.toNamed(AppRoutes.bookAppointment),
-            )
           ],
         ),
       ),

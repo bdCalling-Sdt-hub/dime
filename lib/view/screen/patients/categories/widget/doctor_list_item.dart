@@ -1,43 +1,32 @@
+import 'package:dime/utils/app_icons.dart';
+import 'package:dime/view/common_widgets/button/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 import '../../../../../utils/app_colors.dart';
 import '../../../../common_widgets/image/custom_image.dart';
 import '../../../../common_widgets/text/custom_text.dart';
 
-
 class DoctorListItem extends StatelessWidget {
-  DoctorListItem({
-    super.key,
-    required this.image,
-    required this.name,
-    required this.rating,
-    required this.address,
-  });
+  DoctorListItem({super.key, required this.item});
 
-  final String image;
-
-  final String name;
-
-  final String rating;
-
-  final String address;
+  var item;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(bottom: 12.h),
-      padding: EdgeInsets.all(12.sp),
+      padding: EdgeInsets.all(8.sp),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8.r),
-          border: Border.all(color: AppColors.blueLightHover)),
+          border: Border.all(color: AppColors.whiteDarkHover),
+          borderRadius: BorderRadius.circular(10.r)),
       child: Row(
         children: [
           CustomImage(
-            imageSrc: image,
+            imageSrc: item["image"],
             imageType: ImageType.png,
             height: 96.sp,
-            width: 96.sp,
           ),
           SizedBox(
             width: 16.w,
@@ -47,78 +36,54 @@ class DoctorListItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Expanded(
-                      child: CustomText(
-                        text: name,
-                        fontSize: 20.sp,
-                        fontWeight: FontWeight.w700,
-                        textAlign: TextAlign.start,
-                        maxLines: 1,
-                      ),
-                    ),
-                    const Icon(
-                      Icons.star,
-                      color: Colors.amber,
+                    CustomText(
+                      text: item["name"],
+                      fontWeight: FontWeight.w700,
+                      fontSize: 20.sp,
                     ),
                     CustomText(
-                      text: rating,
-                      fontSize: 20.sp,
-                      fontWeight: FontWeight.w700,
+                      text: "\$ ${item["price"].toString()}",
                     ),
                   ],
                 ),
                 CustomText(
-                  text: address,
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w700,
-                  maxLines: 1,
-                  textAlign: TextAlign.start,
-                  bottom: 10.h,
-                  top: 10.h,
+                  text: item["categories"],
+                  fontWeight: FontWeight.w400,
+                  fontSize: 18.sp,
                 ),
                 Row(
                   children: [
-                    Expanded(
-                      child: Container(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 10.w, vertical: 6.h),
+                    CustomText(text: item["rating"].toString()),
+                    const Icon(
+                      Icons.star,
+                      color: AppColors.orange,
+                    ),
+                    SizedBox(
+                      width: 16.w,
+                    ),
+                    const CustomImage(imageSrc: AppIcons.chat),
+                    CustomText(
+                      text: item["chat"].toString(),
+                      left: 6.w,
+                    ),
+                    const Spacer(),
+                    Container(
                         decoration: BoxDecoration(
-                            color: AppColors.blueLight,
-                            borderRadius: BorderRadius.circular(8.r)),
-                        child: CustomText(
-                          text: "Appointment",
-                          fontSize: 14.sp,
-                          color: AppColors.blueNormal,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.h),
-                      margin: EdgeInsets.symmetric(horizontal: 12.w),
-                      decoration: BoxDecoration(
-                          color: AppColors.blueLight,
-                          borderRadius: BorderRadius.circular(8.r)),
-                      child: Icon(
-                        Icons.mail_outline_outlined,
-                        size: 20.sp,
-                      ),
-                    ),
-                    Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.h),
-                      decoration: BoxDecoration(
-                          color: AppColors.blueLight,
-                          borderRadius: BorderRadius.circular(8.r)),
-                      child: Icon(
-                        Icons.favorite_border,
-                        size: 20.sp,
-                      ),
-                    ),
+                            color: AppColors.secondPrimary,
+                            borderRadius: BorderRadius.circular(6.r)),
+                        width: 80.w,
+                        height: 24.h,
+                        child: Center(
+                          child: CustomText(
+                            text: "Book".tr,
+                            color: AppColors.white,
+                            fontSize: 12.sp,
+                          ),
+                        ))
                   ],
-                ),
+                )
               ],
             ),
           )

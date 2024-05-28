@@ -8,7 +8,6 @@ import '../../../../utils/app_images.dart';
 import '../../../common_widgets/doctor/doctor_book_item.dart';
 import '../../../common_widgets/text/custom_text.dart';
 
-
 class MyBookingScreen extends StatefulWidget {
   const MyBookingScreen({super.key});
 
@@ -64,12 +63,11 @@ class _MyBookingScreenState extends State<MyBookingScreen>
                           itemCount: 10,
                           itemBuilder: (context, index) {
                             return DoctorBookItem(
-                                dataTime: "March 12, 2023 - 11.00 AM",
+                                date: "Monday,March 12",
+                                time: "11:00 - 12:00 AM",
                                 image: AppImages.doctorSarah,
                                 name: "Dr. Sarah Johnson",
-                                title: "Gynecologist",
-                                address: "Women's Health Clinic",
-                                rightButtonText: "Reschedule".tr,
+                                rightButtonText: "View Details".tr,
                                 leftButtonText: "Cancel".tr,
                                 rightOnTap: () => print("kjfsd"),
                                 leftOnTap: () => print("kjfsd"));
@@ -81,16 +79,15 @@ class _MyBookingScreenState extends State<MyBookingScreen>
                           itemCount: 10,
                           itemBuilder: (context, index) {
                             return DoctorBookItem(
-                                dataTime: "March 12, 2023 - 11.00 AM",
-                                image: AppImages.doctorSarah,
-                                name: "Dr. Sarah Johnson",
-                                title: "Gynecologist",
-                                address: "Women's Health Clinic",
-                                leftButtonText: "Re-Book".tr,
-                                rightButtonText: "Add Review".tr,
-                                rightOnTap: () =>
-                                    Get.toNamed(AppRoutes.sendReview),
-                                leftOnTap: () => print("kjfsd"));
+                              date: "March 12",
+                              time: "11:00 - 12:00 AM",
+                              image: AppImages.doctorSarah,
+                              name: "Dr. Sarah Johnson",
+                              rightButtonText: "Re-Schedule".tr,
+                              noButton: true,
+                              rightOnTap: () =>
+                                  Get.toNamed(AppRoutes.sendReview),
+                            );
                           },
                         ),
                       ),
@@ -99,11 +96,12 @@ class _MyBookingScreenState extends State<MyBookingScreen>
                           itemCount: 10,
                           itemBuilder: (context, index) {
                             return DoctorBookItem(
-                              dataTime: "March 12, 2023 - 11.00 AM",
+                              date: "March 12",
+                              time: "11:00 - 12:00 AM",
                               image: AppImages.doctorSarah,
+                              rightButtonText: "View Details".tr,
+                              rightOnTap: () => print("jkfkjhdf"),
                               name: "Dr. Sarah Johnson",
-                              title: "Gynecologist",
-                              address: "Women's Health Clinic",
                               noButton: true,
                             );
                           },

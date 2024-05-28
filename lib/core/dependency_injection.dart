@@ -1,5 +1,7 @@
+import 'package:dime/controllers/patients/payment/payment_controller.dart';
 import 'package:get/get.dart';
 import '../controllers/auth/forget_password_controller.dart';
+import '../controllers/auth/signIn_controller.dart';
 import '../controllers/auth/sign_up_controller.dart';
 import '../controllers/doctor/appointment_history_controller.dart';
 import '../controllers/doctor/info/Personal_information_controller.dart';
@@ -15,12 +17,14 @@ import '../controllers/doctor/profile/doctor_profile.dart';
 import '../controllers/patients/Booking/Book_appointment_controller.dart';
 import '../controllers/patients/Booking/ambulance_booking_controller.dart';
 import '../controllers/patients/Booking/home_care_controller.dart';
+import '../controllers/patients/category_list_controller.dart';
 import '../controllers/patients/health_rocords_controller.dart';
 import '../controllers/patients/home_controller.dart';
 import '../controllers/patients/Booking/lab_booking_controller.dart';
 import '../controllers/patients/message_controller.dart';
 import '../controllers/patients/Booking/my_booking_controller.dart';
 import '../controllers/patients/notifications_controller.dart';
+import '../controllers/patients/payment/select_payment_method_controller.dart';
 import '../controllers/patients/profile_controller.dart';
 import '../controllers/patients/send_review_controller.dart';
 import '../controllers/patients/setting_controller.dart';
@@ -53,5 +57,9 @@ class DependencyInjection extends Bindings {
     Get.lazyPut(() => DoctorProfileController(), fenix: true);
     Get.lazyPut(() => AppointmentHistoryController(), fenix: true);
     Get.lazyPut(() => ForgetPasswordController(), fenix: true);
+    Get.lazyPut(() => SignInController(), fenix: true);
+    Get.lazyPut(() => CategoryListController(), fenix: true);
+    Get.lazyPut(() => SelectPaymentMethodController(), fenix: true);
+    Get.lazyPut(() => PaymentController(), fenix: true);
   }
 }

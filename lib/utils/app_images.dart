@@ -28,6 +28,8 @@ class AppImages {
   static const String review = "$baseurl/review.png" ;
   static const String annette = "$baseurl/annette.png" ;
   static const String records = "$baseurl/records.png" ;
+  static const String jennifar = "$baseurl/jennifar.png" ;
+  static const String backgroundPopup = "$baseurl/background_popup.png" ;
 
 
 

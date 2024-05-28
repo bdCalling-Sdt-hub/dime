@@ -1,3 +1,7 @@
+import 'package:dime/helpers/other_helper.dart';
+import 'package:dime/utils/app_utils.dart';
+import 'package:dime/view/common_widgets/pop%20up/custom_pop_up_menu_button.dart';
+import 'package:dime/view/common_widgets/text_field/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -9,7 +13,9 @@ import '../../../common_widgets/pop up/success_pop_up.dart';
 import '../../../common_widgets/text/custom_text.dart';
 
 class SelectDataTime extends StatelessWidget {
-  const SelectDataTime({super.key});
+  SelectDataTime({super.key});
+
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +23,7 @@ class SelectDataTime extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: CustomText(
-          text: "Book Appointment".tr,
+          text: "Schedule a call".tr,
           fontSize: 20.sp,
           fontWeight: FontWeight.w600,
         ),
@@ -26,98 +32,156 @@ class SelectDataTime extends StatelessWidget {
         builder: (controller) {
           return SingleChildScrollView(
             padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 24.h),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CustomText(
-                  text: "Select Date".tr,
-                  fontSize: 20.sp,
-                  fontWeight: FontWeight.w700,
-                  bottom: 8.h,
-                ),
-                Container(
-                  height: 300.h,
-                  decoration: ShapeDecoration(
-                    color: AppColors.blueLight,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.r),
-                    ),
-                    shadows: const [
-                      BoxShadow(
-                        color: Color(0x0C000000),
-                        blurRadius: 6,
-                        offset: Offset(0, 4),
-                        spreadRadius: 0,
+            child: Form(
+              key: formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CustomTextField(
+                    controller: controller.subjectController,
+                    hindText: 'Subject',
+                    validator: OtherHelper.validator,
+                    fillColor: AppColors.transparent,
+                    fieldBorderColor: AppColors.black,
+                  ),
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  CustomTextField(
+                    controller: controller.descriptionController,
+                    hindText: 'Description',
+                    validator: OtherHelper.validator,
+                    fillColor: AppColors.transparent,
+                    fieldBorderColor: AppColors.black,
+                    maxLines: 5,
+                  ),
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CustomText(
+                        text: "Call Duration".tr,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 18.sp,
                       ),
-                      BoxShadow(
-                        color: Color(0x19000000),
-                        blurRadius: 15,
-                        offset: Offset(0, 10),
-                        spreadRadius: -3,
+                      SizedBox(
+                        width: 150.w,
+                        child: CustomTextField(
+                          controller: controller.callDurationController,
+                          fillColor: AppColors.black,
+                          hindText: 'Call Duration'.tr,
+                          textStyle: const TextStyle(color: AppColors.white),
+                          suffixIcon: PopUpMenu(
+                              items: controller.callDurations,
+                              iconColor: AppColors.white,
+                              selectedItem:
+                                  controller.callDurationController.text,
+                              onTap: controller.selectCallDuration),
+                        ),
                       )
                     ],
                   ),
-                  child: CalendarDatePicker(
+                  CustomText(
+                    text: "Select Date".tr,
+                    fontSize: 20.sp,
+                    fontWeight: FontWeight.w700,
+                    bottom: 8.h,
+                  ),
+                  Container(
+                    height: 300.h,
+                    decoration: ShapeDecoration(
+                      color: AppColors.blueLightActive,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.r),
+                      ),
+                      shadows: const [
+                        BoxShadow(
+                          color: Color(0x0C000000),
+                          blurRadius: 6,
+                          offset: Offset(0, 4),
+                          spreadRadius: 0,
+                        ),
+                        BoxShadow(
+                          color: Color(0x19000000),
+                          blurRadius: 15,
+                          offset: Offset(0, 10),
+                          spreadRadius: -3,
+                        )
+                      ],
+                    ),
+                    child: CalendarDatePicker(
                       initialDate: controller.getInitialDate(),
                       firstDate: DateTime(1900),
                       lastDate: DateTime(2100),
                       onDateChanged: controller.selectData,
-                      selectableDayPredicate: controller.disableDay
+                      selectableDayPredicate: controller.disableDay,
+                    ),
                   ),
-                ),
-                CustomText(
-                  text: "Select Hour".tr,
-                  fontSize: 20.sp,
-                  fontWeight: FontWeight.w700,
-                  bottom: 8.h,
-                  top: 20.sp,
-                ),
-                SizedBox(
-                  child: GridView.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3, mainAxisExtent: 60.h),
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: controller.selectHourOption.length,
-                    itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () => controller.selectTime(index),
-                        child: Container(
-                          margin: EdgeInsets.all(8.sp),
-                          decoration: BoxDecoration(
-                              color: controller.selectedTime ==
-                                      controller.selectHourOption[index]
-                                  ? AppColors.black
-                                  : AppColors.blueLight,
-                              borderRadius: BorderRadius.circular(10.r)),
-                          child: Center(
-                            child: CustomText(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 18.sp,
+                  CustomText(
+                    text: "Select Hour".tr,
+                    fontSize: 20.sp,
+                    fontWeight: FontWeight.w700,
+                    bottom: 8.h,
+                    top: 20.sp,
+                  ),
+                  SizedBox(
+                    child: GridView.builder(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3, mainAxisExtent: 60.h),
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: controller.selectHourOption.length,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () => controller.selectTime(index),
+                          child: Container(
+                            margin: EdgeInsets.all(8.sp),
+                            decoration: BoxDecoration(
                                 color: controller.selectedTime ==
                                         controller.selectHourOption[index]
-                                    ? AppColors.white
-                                    : AppColors.blueNormal,
-                                text: controller.selectHourOption[index]
-                                    .toString()),
+                                    ? AppColors.black
+                                    : AppColors.blueLightActive,
+                                borderRadius: BorderRadius.circular(10.r)),
+                            child: Center(
+                              child: CustomText(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 18.sp,
+                                  color: controller.selectedTime ==
+                                          controller.selectHourOption[index]
+                                      ? AppColors.white
+                                      : AppColors.white,
+                                  text: controller.selectHourOption[index]
+                                      .toString()),
+                            ),
                           ),
-                        ),
-                      );
-                    },
+                        );
+                      },
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 20.h,
-                ),
-                CustomButton(
-                  titleText: "Book Appointment".tr,
-                  onTap: () => PopUp.successPopUp(
-                      title: "Booking Successfully".tr,
-                      onTap: () => Get.toNamed(AppRoutes.myBooking),
-                      message:
-                          "Your appointment with Dr. David Patel is confirmed for ${controller.selectedData}, at ${controller.selectedTime}"),
-                )
-              ],
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  CustomButton(
+                    titleText: "Pay".tr,
+                    onTap: () {
+                      if (formKey.currentState!.validate()) {
+                        if (controller.selectedData != "") {
+                          if (controller.selectedTime != '') {
+                            Get.toNamed(AppRoutes.myBooking);
+                          } else {
+                            Utils.snackBarMessage(
+                                'time', "please, select time");
+                          }
+                        } else {
+                          Utils.snackBarMessage('date', "please, select date");
+                        }
+                      }
+                    },
+                  )
+                ],
+              ),
             ),
           );
         },

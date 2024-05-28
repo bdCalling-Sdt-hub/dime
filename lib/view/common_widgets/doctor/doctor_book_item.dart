@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 import '../../../utils/app_colors.dart';
 import '../button/custom_button.dart';
 import '../image/custom_image.dart';
 import '../text/custom_text.dart';
 
-
 class DoctorBookItem extends StatelessWidget {
   DoctorBookItem({
     super.key,
-    required this.dataTime,
+    required this.date,
+    required this.time,
     required this.image,
     required this.name,
-    required this.title,
-    required this.address,
     this.rightButtonText = "",
     this.leftButtonText = "",
     this.rightOnTap,
@@ -24,11 +23,10 @@ class DoctorBookItem extends StatelessWidget {
     this.noButton = false,
   });
 
-  final String dataTime;
+  final String date, time;
   final String image;
   final String name;
-  final String title;
-  final String address;
+
   final String rightButtonText;
   final String leftButtonText;
   final VoidCallback? rightOnTap;
@@ -64,102 +62,119 @@ class DoctorBookItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CustomText(
-            text: dataTime,
-            fontSize: 16.sp,
-            fontWeight: FontWeight.w700,
-            bottom: 4.h,
-          ),
-          const Divider(),
-          SizedBox(
-            height: 8.h,
-          ),
           Row(
             children: [
-              CustomImage(
-                imageSrc: image,
-                height: 120.sp,
-                width: 120.sp,
-                imageType: ImageType.png,
+              CircleAvatar(
+                radius: 36.sp,
+                child: ClipOval(
+                  child: CustomImage(
+                    imageSrc: image,
+                    height: 72.sp,
+                    width: 72.sp,
+                    imageType: ImageType.png,
+                  ),
+                ),
               ),
               SizedBox(
                 width: 12.w,
               ),
               Expanded(
-                  child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CustomText(
-                    text: name,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 18.sp,
-                  ),
-                  CustomText(
-                    text: title,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 16.sp,
-                    top: 8.h,
-                    bottom: 8.h,
-                    color: AppColors.blueNormal,
-                  ),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.place_outlined,
-                        color: AppColors.secondPrimary,
-                        size: 20.sp,
-                      ),
-                      CustomText(
-                        text: address,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 14.sp,
-                        left: 4.w,
-                        color: AppColors.blueNormal,
-                      ),
-                    ],
-                  ),
-                ],
-              ))
-            ],
-          ),
-          noButton
-              ? const SizedBox()
-              : Column(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(
-                      height: 16.h,
-                    ),
-                    const Divider(),
-                    SizedBox(
-                      height: 10.h,
+                    CustomText(
+                      text: name,
+                      bottom: 6.h,
                     ),
                     Row(
                       children: [
                         Expanded(
-                            child: CustomButton(
-                          titleText: leftButtonText,
-                          onTap: leftOnTap,
-                          buttonHeight: 40.h,
-                          buttonColor: AppColors.transparent,
-                          titleColor: AppColors.greyDarker,
-                          borderColor: AppColors.greyDarker,
-                          titleWeight: FontWeight.w600,
-                          isLoading: leftIsLoading,
-                        )),
-                        SizedBox(
-                          width: 18.w,
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.date_range,
+                                size: 20.sp,
+                                color: AppColors.secondPrimary,
+                              ),
+                              Flexible(
+                                child: CustomText(
+                                  text: date,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 12.sp,
+                                  left: 4.w,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                         Expanded(
-                            child: CustomButton(
-                          titleText: rightButtonText,
-                          onTap: rightOnTap,
-                          buttonHeight: 40.h,
-                          isLoading: rightIsLoading,
-                        )),
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.access_time_outlined,
+                                color: AppColors.secondPrimary,
+                                size: 20.sp,
+                              ),
+                              Flexible(
+                                child: CustomText(
+                                  text: time,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 12.sp,
+                                  left: 4.w,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   ],
-                )
+                ),
+              )
+            ],
+          ),
+          Column(
+            children: [
+              SizedBox(
+                height: 16.h,
+              ),
+              Row(
+                children: [
+                  noButton
+                      ? const SizedBox()
+                      : Expanded(
+                          child: CustomButton(
+                          titleText: leftButtonText,
+                          onTap: leftOnTap,
+                          buttonHeight: 40.h,
+                          buttonRadius: 8.r,
+                          borderColor: AppColors.transparent,
+                          isLoading: leftIsLoading,
+                          buttonColor: AppColors.button,
+                          titleColor: AppColors.red,
+                          titleSize: 14.sp,
+                          titleWeight: FontWeight.w400,
+                        )),
+                  SizedBox(
+                    width: 18.w,
+                  ),
+                  Expanded(
+                      child: CustomButton(
+                    titleText: rightButtonText,
+                    onTap: rightOnTap,
+                    buttonHeight: 40.h,
+                    buttonColor: AppColors.transparent,
+                    titleColor: AppColors.greyDarker,
+                    borderColor: AppColors.greyDarker,
+                    titleWeight: FontWeight.w400,
+                    buttonRadius: 8.r,
+                    titleSize: 14.sp,
+                    isLoading: rightIsLoading,
+                  )),
+                ],
+              ),
+            ],
+          )
         ],
       ),
     );

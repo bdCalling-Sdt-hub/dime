@@ -125,7 +125,8 @@ class PatientsHomeScreen extends StatelessWidget {
                             fontSize: 20.sp,
                           ),
                           GestureDetector(
-                            onTap: () => Get.toNamed(AppRoutes.cotegoriseList),
+                            onTap: () => Get.toNamed(AppRoutes.cotegoriseList,
+                                parameters: {'category': 'All'}),
                             child: CustomText(
                               text: "See All".tr,
                               fontWeight: FontWeight.w600,
@@ -150,7 +151,9 @@ class PatientsHomeScreen extends StatelessWidget {
                             itemBuilder: (context, index) {
                               var item = controller.services[index];
                               return GestureDetector(
-                                onTap: () => Get.toNamed(item["screen"]),
+                                onTap: () => Get.toNamed(
+                                    AppRoutes.cotegoriseList,
+                                    parameters: {'category': item['name']}),
                                 child: Container(
                                   height: 70.sp,
                                   width: 70.sp,

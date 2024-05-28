@@ -6,7 +6,6 @@ import '../../../../core/app_routes.dart';
 import '../../../common_widgets/bottom nav bar/navbar.dart';
 import '../../../common_widgets/button/custom_button.dart';
 import '../../../common_widgets/text/custom_text.dart';
-import 'widget/booking_all_filed.dart';
 
 class BookingAppointmentScreen extends StatelessWidget {
   BookingAppointmentScreen({super.key});
@@ -21,7 +20,7 @@ class BookingAppointmentScreen extends StatelessWidget {
           appBar: AppBar(
             centerTitle: true,
             title: CustomText(
-              text: "Book Appointment".tr,
+              text: "Schedule a call".tr,
               fontSize: 20.sp,
               fontWeight: FontWeight.w600,
             ),
@@ -38,7 +37,6 @@ class BookingAppointmentScreen extends StatelessWidget {
                     fontSize: 20.sp,
                     bottom: 12.h,
                   ),
-                  const BookingAllFiled(),
                   SizedBox(
                     height: 20.h,
                   ),

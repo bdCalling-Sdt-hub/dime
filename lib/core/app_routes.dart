@@ -1,3 +1,5 @@
+import 'package:dime/view/screen/patients/payment/payment_screen.dart';
+import 'package:dime/view/screen/patients/payment/select_payment_method_screen.dart';
 import 'package:get/get.dart';
 
 import '../view/screen/doctor/history/appointment_history_screen.dart';
@@ -91,6 +93,8 @@ class AppRoutes {
   static const String additionalDetails = "/additional_details_screen.dart";
   static const String doctorProfile = "/doctor_profile.dart";
   static const String appointmentHistory = "/appointment_history_screen.dart";
+  static const String paymentMethod = "/select_payment_method_screen.dart";
+  static const String payment = "/payment_screen.dart";
 
   static List<GetPage> routes = [
     GetPage(name: test, page: () => TestScreen()),
@@ -139,5 +143,7 @@ class AppRoutes {
     GetPage(name: additionalDetails, page: () => AdditionalDetailsScreen()),
     GetPage(name: doctorProfile, page: () => DoctorProfile()),
     GetPage(name: appointmentHistory, page: () => AppointmentHistoryScreen()),
+    GetPage(name: paymentMethod, page: () => SelectPaymentMethodScreen()),
+    GetPage(name: payment, page: () => PaymentScreen()),
   ];
 }

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -27,19 +28,38 @@ class BookAppointmentController extends GetxController {
 
   String? image;
 
-  TextEditingController patientsRelationController = TextEditingController();
-  TextEditingController nameController = TextEditingController();
-  TextEditingController dateOfBirthController = TextEditingController();
-  TextEditingController ageController = TextEditingController();
-  TextEditingController genderController = TextEditingController();
-  TextEditingController bloodGroupController = TextEditingController();
-  TextEditingController heightController = TextEditingController();
-  TextEditingController weightController = TextEditingController();
+  List callDurations = [
+    '5 min',
+    '10 min',
+    '15 min',
+    '20 min',
+    '25 min',
+    '30 min',
+    '35 min',
+    '40 min',
+    '45 min',
+    '50 min',
+    '55 min',
+    '60 min',
+    '65 min',
+    '70 min'
+  ];
+
+  TextEditingController subjectController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
+  TextEditingController bookingDateController = TextEditingController();
+  TextEditingController bookingTimeController = TextEditingController();
+  TextEditingController callDurationController = TextEditingController();
 
   Duration duration = const Duration(
     hours: 9,
   );
+
+  selectCallDuration(int index) {
+    callDurationController.text = callDurations[index].toString();
+    update();
+    Get.back();
+  }
 
   DateTime getInitialDate() {
     DateTime initialDate = DateTime.now();
@@ -48,18 +68,6 @@ class BookAppointmentController extends GetxController {
       initialDate = initialDate.add(const Duration(days: 1));
     }
     return initialDate;
-  }
-
-  selectedRelative(int index) {
-    patientsRelationController.text = relatives[index].toString();
-    update();
-    Get.back();
-  }
-
-  selectedGender(int index) {
-    genderController.text = gender[index].toString();
-    update();
-    Get.back();
   }
 
   openImage() async {
