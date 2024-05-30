@@ -1,5 +1,4 @@
-import 'package:dime/view/screen/doctor/info/widget/personal_Info_all_Filed.dart';
-import 'package:dime/view/screen/doctor/info/widget/registation_step.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -8,6 +7,8 @@ import '../../../../core/app_routes.dart';
 import '../../../common_widgets/bottom nav bar/doctor_nav_bar.dart';
 import '../../../common_widgets/button/custom_button.dart';
 import '../../../common_widgets/text/custom_text.dart';
+import 'widget/personal_Info_all_Filed.dart';
+import 'widget/registation_step.dart';
 
 class PersonalInformationScreen extends StatelessWidget {
   PersonalInformationScreen({super.key});

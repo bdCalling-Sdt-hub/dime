@@ -1,20 +1,20 @@
+import 'package:dime/view/screen/consultant/transaction/transaction_screen.dart';
 import 'package:dime/view/screen/user/Booking/booking_details.dart';
 import 'package:dime/view/screen/user/blog/blog_screen.dart';
 import 'package:dime/view/screen/user/blog/read_blog_screen.dart';
 import 'package:get/get.dart';
 
-import '../view/screen/doctor/history/appointment_history_screen.dart';
-import '../view/screen/doctor/info/added_experience_screen.dart';
-import '../view/screen/doctor/info/availability_screen.dart';
-import '../view/screen/doctor/info/identification_screen.dart';
-import '../view/screen/doctor/info/personal_information_screen.dart';
-import '../view/screen/doctor/info/review_screen.dart';
-import '../view/screen/doctor/patients_details/additional_details_screen.dart';
-import '../view/screen/doctor/patients_details/patients_details_screen.dart';
-import '../view/screen/doctor/patients_info/appointment_list_screen.dart';
-import '../view/screen/doctor/patients_info/doctor_home_screen.dart';
-import '../view/screen/doctor/patients_info/patients_list_screen.dart';
-import '../view/screen/doctor/profile/doctor_profile.dart';
+import '../view/screen/consultant/history/appointment_history_screen.dart';
+import '../view/screen/consultant/info/added_experience_screen.dart';
+import '../view/screen/consultant/info/availability_screen.dart';
+import '../view/screen/consultant/info/identification_screen.dart';
+import '../view/screen/consultant/info/personal_information_screen.dart';
+import '../view/screen/consultant/info/review_screen.dart';
+import '../view/screen/consultant/patients_details/patients_details_screen.dart';
+import '../view/screen/consultant/patients_info/appointment_list_screen.dart';
+import '../view/screen/consultant/patients_info/doctor_home_screen.dart';
+import '../view/screen/consultant/patients_info/patients_list_screen.dart';
+import '../view/screen/consultant/profile/doctor_profile.dart';
 import '../view/screen/no_role/auth/change_password/change_password_screen.dart';
 import '../view/screen/no_role/auth/forgot password/create_password.dart';
 import '../view/screen/no_role/auth/forgot password/forgot_password.dart';
@@ -91,7 +91,6 @@ class AppRoutes {
   static const String patientsList = "/patients_list_screen.dart";
   static const String appointmentList = "/appointment_list_screen.dart";
   static const String patientsDetails = "/patients_details_screen.dart";
-  static const String additionalDetails = "/additional_details_screen.dart";
   static const String doctorProfile = "/doctor_profile.dart";
   static const String appointmentHistory = "/appointment_history_screen.dart";
   static const String paymentMethod = "/select_payment_method_screen.dart";
@@ -99,6 +98,7 @@ class AppRoutes {
   static const String bookingDetails = "/booking_details.dart";
   static const String blog = "/blog_screen.dart";
   static const String readBlog = "/read_blog_screen.dart";
+  static const String transactions = "/transaction_screen.dart";
 
   static List<GetPage> routes = [
     GetPage(name: test, page: () => TestScreen()),
@@ -141,7 +141,6 @@ class AppRoutes {
     GetPage(name: patientsList, page: () => PatientsListScreen()),
     GetPage(name: appointmentList, page: () => AppointmentListScreen()),
     GetPage(name: patientsDetails, page: () => PatientsDetailsScreen()),
-    GetPage(name: additionalDetails, page: () => AdditionalDetailsScreen()),
     GetPage(name: doctorProfile, page: () => DoctorProfile()),
     GetPage(name: appointmentHistory, page: () => AppointmentHistoryScreen()),
     GetPage(name: paymentMethod, page: () => SelectPaymentMethodScreen()),
@@ -149,5 +148,6 @@ class AppRoutes {
     GetPage(name: bookingDetails, page: () => BookingDetails()),
     GetPage(name: blog, page: () => BlogScreen()),
     GetPage(name: readBlog, page: () => ReadBlogScreen()),
+    GetPage(name: transactions, page: () => TransactionScreen()),
   ];
 }

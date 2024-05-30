@@ -1,4 +1,3 @@
-import 'package:dime/view/screen/doctor/patients_info/widget/patients_list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -10,6 +9,7 @@ import '../../../common_widgets/bottom nav bar/doctor_nav_bar.dart';
 import '../../../common_widgets/text/custom_text.dart';
 import '../../../common_widgets/text_field/custom_text_field.dart';
 import 'widget/appointment_request_item.dart';
+import 'widget/patients_list_item.dart';
 
 class DoctorHomeScreen extends StatelessWidget {
   const DoctorHomeScreen({super.key});
@@ -35,19 +35,23 @@ class DoctorHomeScreen extends StatelessWidget {
                     SizedBox(
                       width: 170.w,
                       child: CustomTextField(
-                        controller: controller.dateController,
-                        onTap: controller.openDatePicker,
+                        controller: controller.listDateController,
+                        onTap: controller.openListDatePicker,
                         fillColor: AppColors.blueLight,
+                        fieldBorderColor: AppColors.black,
+
                         horizontal: 6.w,
                         vertical: 2.h,
                         keyboardType: TextInputType.none,
                         fieldBorderRadius: 5.r,
                         hindText: "Select Date".tr,
+                        textStyle:
+                            const TextStyle(color: AppColors.secondPrimary),
                         suffixIcon: GestureDetector(
-                            onTap: controller.openDatePicker,
+                            onTap: controller.openListDatePicker,
                             child: Icon(
                               Icons.date_range,
-                              color: AppColors.blueNormal,
+                              color: AppColors.secondPrimary,
                               size: 24.sp,
                             )),
                       ),
@@ -64,7 +68,7 @@ class DoctorHomeScreen extends StatelessWidget {
                       fontSize: 16.sp,
                       top: 26.h,
                       bottom: 12.h,
-                      color: AppColors.blueNormal,
+                      color: AppColors.secondPrimary,
                     ),
                   ),
                 ),
@@ -105,19 +109,22 @@ class DoctorHomeScreen extends StatelessWidget {
                     SizedBox(
                       width: 170.w,
                       child: CustomTextField(
-                        controller: controller.dateController,
-                        onTap: controller.openDatePicker,
-                        fillColor: AppColors.blueLight,
+                        controller: controller.requestDateController,
+                        onTap: controller.openRequestDatePicker,
+                        fillColor: AppColors.greyLight,
                         horizontal: 6.w,
                         vertical: 2.h,
+                        textStyle:
+                            const TextStyle(color: AppColors.secondPrimary),
                         keyboardType: TextInputType.none,
                         fieldBorderRadius: 5.r,
                         hindText: "Select Date".tr,
+                        fieldBorderColor: AppColors.black,
                         suffixIcon: GestureDetector(
-                            onTap: controller.openDatePicker,
+                            onTap: controller.openRequestDatePicker,
                             child: Icon(
                               Icons.date_range,
-                              color: AppColors.blueNormal,
+                              color: AppColors.secondPrimary,
                               size: 24.sp,
                             )),
                       ),
@@ -134,19 +141,22 @@ class DoctorHomeScreen extends StatelessWidget {
                       fontSize: 16.sp,
                       top: 26.h,
                       bottom: 12.h,
-                      color: AppColors.blueNormal,
+                      color: AppColors.secondPrimary,
                     ),
                   ),
                 ),
                 SizedBox(
                   child: ListView.builder(
                     itemCount: 10,
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
-                      return const AppointmentRequestItem(
-                        time: "Today, 11:30 AM",
-                        text: "Appointment with Mr. Black",
+                      return GestureDetector(
+                        onTap: () => Get.toNamed(AppRoutes.patientsDetails),
+                        child: const AppointmentRequestItem(
+                          time: "Today, 11:30 AM",
+                          text: "Appointment with Mr. Black",
+                        ),
                       );
                     },
                   ),

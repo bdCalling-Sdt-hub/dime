@@ -2,16 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class PatientsDetailsController extends GetxController {
-
-
-  TextEditingController bookingDateController = TextEditingController();
-  TextEditingController bookingTimeController = TextEditingController();
-  TextEditingController nameController = TextEditingController();
-  TextEditingController dateOfBirthController = TextEditingController();
-  TextEditingController ageController = TextEditingController();
-  TextEditingController genderController = TextEditingController();
-  TextEditingController bloodGroupController = TextEditingController();
-  TextEditingController heightController = TextEditingController();
-  TextEditingController weightController = TextEditingController();
-  TextEditingController descriptionController = TextEditingController();
+  TextEditingController callDurationController =
+      TextEditingController(text: '45 min');
+  TextEditingController bookingDateController =
+      TextEditingController(text: '12-04-2024');
+  TextEditingController bookingTimeController =
+      TextEditingController(text: '12:30 PM');
 }

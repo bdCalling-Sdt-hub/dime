@@ -19,23 +19,23 @@ class CustomDoctorBottomNavBar extends StatefulWidget {
 class _CustomDoctorBottomNavBarState extends State<CustomDoctorBottomNavBar> {
   var bottomNavIndex = 0;
   List<Widget> unselectedIcons = [
-    const Icon(Icons.home_outlined, color: AppColors.secondary),
-    const Icon(Icons.notifications_outlined, color: AppColors.secondary),
+    const Icon(Icons.home_outlined, color: AppColors.black),
+    const Icon(Icons.notifications_outlined, color: AppColors.black),
     const CustomImage(
       imageSrc: AppIcons.chat,
-      imageColor: AppColors.secondary,
+      imageColor: AppColors.black,
     ),
-    const Icon(Icons.person_2_outlined, color: AppColors.secondary),
+    const Icon(Icons.person_2_outlined, color: AppColors.black),
   ];
 
   List<Widget> selectedIcons = [
-    const Icon(Icons.home, color: AppColors.primary),
-    const Icon(Icons.notifications, color: AppColors.primary),
+    const Icon(Icons.home, color: AppColors.secondPrimary),
+    const Icon(Icons.notifications, color: AppColors.secondPrimary),
     const CustomImage(
       imageSrc: AppIcons.chat,
-      imageColor: AppColors.primary,
+      imageColor: AppColors.secondPrimary,
     ),
-    const Icon(Icons.person, color: AppColors.primary),
+    const Icon(Icons.person, color: AppColors.secondPrimary),
   ];
 
   @override
@@ -53,7 +53,7 @@ class _CustomDoctorBottomNavBarState extends State<CustomDoctorBottomNavBar> {
         alignment: Alignment.center,
         padding: EdgeInsets.all(12.sp),
         decoration: BoxDecoration(
-            color: AppColors.secondPrimary,
+            color: AppColors.blueLight,
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(20.r),
                 topRight: Radius.circular(20.r))),

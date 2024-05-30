@@ -32,7 +32,7 @@ class NotificationItem extends StatelessWidget {
       child: Row(
         children: [
           CircleAvatar(
-            backgroundColor: AppColors.secondPrimary,
+            backgroundColor: AppColors.blueLightHover,
             radius: 35.r,
             child: ClipOval(
               child: Icon(

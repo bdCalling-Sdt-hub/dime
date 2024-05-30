@@ -52,6 +52,18 @@ class LocalConstants extends Translations {
           "Consultant Type": "Consultant Type",
           "Text here": "Text here",
           "NID/Passport Number": "NID/Passport Number",
+          "Availability": "Availability",
+          "Booking Records": "Booking Records",
+          "Transactions": "Transactions",
+          "Upload Blogs": "Upload Blogs",
+          "Your Balance": "Your Balance",
+          "Withdraw": "Withdraw",
+          "Recent Transactions": "Recent Transactions",
+          "Full Name": "Full Name",
+          "Acc Number": "Acc Number",
+          "Date": "Date",
+          "Amount": "Amount ",
+
 
 
           ///new string =================================/=/=/=/=/==/=/=/==/

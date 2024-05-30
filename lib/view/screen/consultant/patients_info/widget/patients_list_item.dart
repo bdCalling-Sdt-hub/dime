@@ -1,3 +1,4 @@
+import 'package:dime/utils/app_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -24,7 +25,7 @@ class PatientsListItem extends StatelessWidget {
       width: 120.w,
       padding: EdgeInsets.all(8.sp),
       decoration: BoxDecoration(
-          color: AppColors.blueLight, borderRadius: BorderRadius.circular(8.r)),
+          color: AppColors.greyLight, borderRadius: BorderRadius.circular(8.r)),
       child: Column(
         children: [
           CustomImage(
@@ -44,10 +45,7 @@ class PatientsListItem extends StatelessWidget {
           ),
           Row(
             children: [
-              const Icon(
-                Icons.list_alt_sharp,
-                color: AppColors.blueNormal,
-              ),
+              const CustomImage(imageSrc: AppIcons.list),
               Flexible(
                 child: CustomText(
                   text: time,

@@ -5,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../utils/app_colors.dart';
 import 'image/custom_image.dart';
 
-
 class Item extends StatelessWidget {
   const Item(
       {super.key,
@@ -15,12 +14,14 @@ class Item extends StatelessWidget {
       this.disableDivider = false,
       this.onTap,
       this.color = AppColors.greyNormalActive,
-      this.vertical});
+      this.vertical,
+      this.disableIcon = false});
 
   final IconData? icon;
   final String title;
   final String image;
   final bool disableDivider;
+  final bool disableIcon;
   final VoidCallback? onTap;
   final Color color;
   final double? vertical;
@@ -50,10 +51,12 @@ class Item extends StatelessWidget {
                   left: 16.w,
                 ),
                 const Spacer(),
-                Icon(
-                  Icons.arrow_forward_ios_outlined,
-                  size: 20.sp,
-                )
+                disableIcon
+                    ? const SizedBox()
+                    : Icon(
+                        Icons.arrow_forward_ios_outlined,
+                        size: 20.sp,
+                      )
               ],
             ),
             disableDivider ? const SizedBox() : const Divider()

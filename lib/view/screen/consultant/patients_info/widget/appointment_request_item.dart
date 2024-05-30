@@ -17,12 +17,12 @@ class AppointmentRequestItem extends StatelessWidget {
       margin: EdgeInsets.only(bottom: 22.h),
       padding: EdgeInsets.all(16.sp),
       decoration: BoxDecoration(
-          color: AppColors.blueLight, borderRadius: BorderRadius.circular(4.r)),
+          color: AppColors.greyLight, borderRadius: BorderRadius.circular(4.r)),
       child: Row(
         children: [
           const Icon(
             Icons.date_range,
-            color: AppColors.blueNormal,
+            color: AppColors.secondPrimary,
           ),
           SizedBox(
             width: 12.w,
@@ -34,7 +34,7 @@ class AppointmentRequestItem extends StatelessWidget {
               CustomText(
                 text: time,
                 fontSize: 18.sp,
-                color: AppColors.blueNormal,
+                color: AppColors.secondPrimary,
               ),
               CustomText(
                 text: text,

@@ -6,9 +6,13 @@ import '../../../helpers/other_helper.dart';
 class DoctorHomeController extends GetxController {
   List patients = [];
 
-  TextEditingController dateController = TextEditingController();
+  TextEditingController listDateController = TextEditingController();
+  TextEditingController requestDateController = TextEditingController();
 
-  openDatePicker() {
-    OtherHelper.datePicker(dateController);
+  openListDatePicker() {
+    OtherHelper.datePicker(listDateController);
+  }
+  openRequestDatePicker() {
+    OtherHelper.datePicker(requestDateController);
   }
 }

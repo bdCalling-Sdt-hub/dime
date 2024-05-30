@@ -16,4 +16,5 @@ class AppIcons {
   static const String clarify = "$baseurl/clarify.svg";
   static const String right = "$baseurl/right.svg";
   static const String wallet = "$baseurl/wallet.svg";
+  static const String list = "$baseurl/list.svg";
 }
