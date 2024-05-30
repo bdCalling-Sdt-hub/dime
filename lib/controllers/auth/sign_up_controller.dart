@@ -5,9 +5,9 @@ import 'package:get/get.dart';
 class SignUpController extends GetxController {
   bool isPopUpOpen = false;
 
-  List selectedOption = ["Patient", "Health Professional"];
+  List selectedOption = ["User", "Consultant"];
 
-  String selectRole = "Patient";
+  String selectRole = "User";
   String? image;
 
   TextEditingController nameController = TextEditingController();

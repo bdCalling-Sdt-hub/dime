@@ -47,7 +47,7 @@ class PersonalInformationScreen extends StatelessWidget {
                         if (type == "back") {
                           Get.back();
                         } else {
-                          Get.toNamed(AppRoutes.professionalQualifications);
+                          Get.toNamed(AppRoutes.availability);
                         }
                       }
                     },

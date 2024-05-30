@@ -112,4 +112,16 @@ class OtherHelper {
 
     return getImages.path;
   }
+
+  static Future openTimePicker(TextEditingController controller) async {
+    final TimeOfDay? picked = await showTimePicker(
+      context: Get.context!,
+      initialTime: TimeOfDay.now(),
+    );
+
+    if (picked != null) {
+      controller.text =
+          "${picked.hour} : ${picked.minute < 10 ? "0${picked.minute}" : picked.minute}";
+    }
+  }
 }

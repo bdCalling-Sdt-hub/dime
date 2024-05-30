@@ -72,6 +72,9 @@ class SignUpScreen extends StatelessWidget {
                       ),
                     ],
                   ),
+                  SizedBox(
+                    height: 16.h,
+                  ),
                   CustomButton(
                     titleText: "Sign up".tr,
                     onTap: () {
@@ -81,7 +84,7 @@ class SignUpScreen extends StatelessWidget {
                     },
                   ),
                   SizedBox(
-                    height: 10.h,
+                    height: 24.h,
                   ),
                   AlreadyAccountRichText()
                 ]),

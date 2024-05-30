@@ -13,6 +13,7 @@ import '../../../common_widgets/image/custom_image.dart';
 import '../../../common_widgets/pop up/custom_pop_up_menu_button.dart';
 import '../../../common_widgets/text/custom_text.dart';
 import '../../../common_widgets/text_field/custom_text_field.dart';
+import 'widget/category_item.dart';
 import 'widget/list_item.dart';
 
 class PatientsHomeScreen extends StatelessWidget {
@@ -154,29 +155,8 @@ class PatientsHomeScreen extends StatelessWidget {
                                 onTap: () => Get.toNamed(
                                     AppRoutes.cotegoriseList,
                                     parameters: {'category': item['name']}),
-                                child: Container(
-                                  height: 70.sp,
-                                  width: 70.sp,
-                                  decoration: BoxDecoration(
-                                      color: AppColors.secondPrimary,
-                                      border: Border.all(
-                                        color: AppColors.blueLightActive,
-                                      ),
-                                      borderRadius:
-                                          BorderRadius.circular(10.r)),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        item["image"],
-                                        color: AppColors.white,
-                                      ),
-                                      CustomText(
-                                        text: item["name"],
-                                        color: AppColors.white,
-                                      )
-                                    ],
-                                  ),
+                                child: CategoryItem(
+                                  item: item,
                                 ),
                               );
                             },
@@ -211,7 +191,9 @@ class PatientsHomeScreen extends StatelessWidget {
                         itemCount: controller.doctors.length,
                         itemBuilder: (context, index) {
                           var item = controller.doctors[index];
-                          return ListItem(item: item);
+                          return GestureDetector(
+                              onTap: () => Get.toNamed(AppRoutes.doctorDetails),
+                              child: ListItem(item: item));
                         },
                       )),
                     ],

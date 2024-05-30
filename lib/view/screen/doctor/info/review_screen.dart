@@ -40,7 +40,7 @@ class ReviewScreen extends StatelessWidget {
                 text: "Your application is under review".tr,
                 fontSize: 20.sp,
                 fontWeight: FontWeight.w700,
-                color: AppColors.blueNormal,
+                color: AppColors.secondPrimary,
               ),
               CustomText(
                 text:

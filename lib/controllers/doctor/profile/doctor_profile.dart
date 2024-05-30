@@ -12,7 +12,6 @@ class DoctorProfileController extends GetxController {
 
   List routeScreen = [
     AppRoutes.personalInformation,
-    AppRoutes.professionalQualifications,
     AppRoutes.addedExperience,
     AppRoutes.availability
   ];

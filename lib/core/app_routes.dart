@@ -8,7 +8,6 @@ import '../view/screen/doctor/info/added_experience_screen.dart';
 import '../view/screen/doctor/info/availability_screen.dart';
 import '../view/screen/doctor/info/identification_screen.dart';
 import '../view/screen/doctor/info/personal_information_screen.dart';
-import '../view/screen/doctor/info/professional_qualifications_screen.dart';
 import '../view/screen/doctor/info/review_screen.dart';
 import '../view/screen/doctor/patients_details/additional_details_screen.dart';
 import '../view/screen/doctor/patients_details/patients_details_screen.dart';
@@ -83,8 +82,7 @@ class AppRoutes {
   static const String setting = "/setting_screen.dart";
   static const String changePassword = "/change_password_screen.dart";
   static const String personalInformation = "/personal_information_screen.dart";
-  static const String professionalQualifications =
-      "/professional_qualifications_screen.dart";
+
   static const String addedExperience = "/added_experience_screen.dart";
   static const String availability = "/availability_screen.dart";
   static const String identificationScreen = "/identification_screen.dart";
@@ -135,9 +133,6 @@ class AppRoutes {
     GetPage(name: setting, page: () => SettingScreen()),
     GetPage(name: changePassword, page: () => ChangePasswordScreen()),
     GetPage(name: personalInformation, page: () => PersonalInformationScreen()),
-    GetPage(
-        name: professionalQualifications,
-        page: () => ProfessionalQualificationsScreen()),
     GetPage(name: addedExperience, page: () => AddedExperienceScreen()),
     GetPage(name: availability, page: () => AvailabilityScreen()),
     GetPage(name: identificationScreen, page: () => IdentificationScreen()),

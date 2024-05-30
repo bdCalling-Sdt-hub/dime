@@ -1,3 +1,6 @@
+import 'package:dime/helpers/other_helper.dart';
+import 'package:dime/utils/app_colors.dart';
+import 'package:dime/view/common_widgets/text_field/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -75,28 +78,38 @@ class AvailabilityScreen extends StatelessWidget {
                   bottom: 16.h,
                   top: 25.h,
                 ),
-                SizedBox(
-                  child: GridView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: controller.hours.length,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
-                        mainAxisExtent: 50.h,
-                        crossAxisSpacing: 18.sp,
-                        mainAxisSpacing: 18.sp),
-                    itemBuilder: (context, index) {
-                      var item = controller.hours[index];
-                      return GestureDetector(
-                        onTap: () => controller.selectHour(index),
-                        child: HourItem(
-                          title: item,
-                          isSelected:
-                              controller.selectedHourList.contains(item),
-                        ),
-                      );
-                    },
-                  ),
+                Row(
+                  children: [
+                    Expanded(
+                        child: CustomTextField(
+                      controller: controller.startController,
+                      fieldBorderColor: AppColors.secondPrimary,
+                      fillColor: AppColors.transparent,
+                      hindText: 'Start'.tr,
+                      validator: OtherHelper.validator,
+                      fieldBorderRadius: 6.r,
+                      keyboardType: TextInputType.none,
+                      suffixIcon: const Icon(Icons.access_time),
+                          onTap: () =>
+                              OtherHelper.openTimePicker(controller.startController),
+                    )),
+                    SizedBox(
+                      width: 20.w,
+                    ),
+                    Expanded(
+                        child: CustomTextField(
+                      controller: controller.endController,
+                      fieldBorderColor: AppColors.secondPrimary,
+                      fillColor: AppColors.transparent,
+                      keyboardType: TextInputType.none,
+                      hindText: 'End'.tr,
+                      onTap: () =>
+                          OtherHelper.openTimePicker(controller.endController),
+                      validator: OtherHelper.validator,
+                      fieldBorderRadius: 6.r,
+                      suffixIcon: const Icon(Icons.access_time),
+                    )),
+                  ],
                 ),
                 SizedBox(
                   height: 30.h,
@@ -116,7 +129,6 @@ class AvailabilityScreen extends StatelessWidget {
           );
         },
       ),
-
       bottomNavigationBar: type == "back"
           ? const CustomDoctorBottomNavBar(currentIndex: 3)
           : const SizedBox(),

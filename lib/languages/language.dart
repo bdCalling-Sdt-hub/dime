@@ -49,6 +49,9 @@ class LocalConstants extends Translations {
           "About Me": "About Me",
           "Terms of Services": "Terms of Services",
           "Read": "Read",
+          "Consultant Type": "Consultant Type",
+          "Text here": "Text here",
+          "NID/Passport Number": "NID/Passport Number",
 
 
           ///new string =================================/=/=/=/=/==/=/=/==/

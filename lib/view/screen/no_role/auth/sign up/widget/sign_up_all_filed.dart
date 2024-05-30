@@ -89,54 +89,60 @@ class _SignUpAllFieldState extends State<SignUpAllField> {
               initialCountryCode: "BD",
               disableLengthCheck: false,
             ),
-            CustomTextField(
-              prefixIcon: Padding(
-                padding: EdgeInsets.all(12.sp),
-                child: const CustomImage(
-                  imageSrc: AppIcons.clarify,
-                  imageColor: AppColors.greyLightActive,
-                ),
-              ),
-              controller: controller.governmentIdController,
-              labelText: "Input your government ID details".tr,
-              validator: OtherHelper.validator,
-              keyboardType: TextInputType.number,
-            ),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: CustomText(
-                text: "Upload your Passport documents".tr,
-                fontWeight: FontWeight.w700,
-                fontSize: 20.sp,
-                top: 20.h,
-                bottom: 16.h,
-              ),
-            ),
-            Container(
-                height: 140.h,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.r),
-                    border: Border.all(color: AppColors.greyLight)),
-                child: controller.image != null
-                    ? Image.file(File(controller.image!))
-                    : GestureDetector(
-                        onTap: controller.openGallery,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.add,
-                              size: 40.sp,
-                            ),
-                            CustomText(
-                              text: "Upload".tr,
-                              fontSize: 24.sp,
-                              fontWeight: FontWeight.w700,
-                            )
-                          ],
+            controller.selectRole == 'User'
+                ? Column(
+                    children: [
+                      CustomTextField(
+                        prefixIcon: Padding(
+                          padding: EdgeInsets.all(12.sp),
+                          child: const CustomImage(
+                            imageSrc: AppIcons.clarify,
+                            imageColor: AppColors.greyLightActive,
+                          ),
                         ),
-                      )),
+                        controller: controller.governmentIdController,
+                        labelText: "Input your government ID details".tr,
+                        validator: OtherHelper.validator,
+                        keyboardType: TextInputType.number,
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: CustomText(
+                          text: "Upload your Passport documents".tr,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 20.sp,
+                          top: 20.h,
+                          bottom: 16.h,
+                        ),
+                      ),
+                      Container(
+                          height: 140.h,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8.r),
+                              border: Border.all(color: AppColors.greyLight)),
+                          child: controller.image != null
+                              ? Image.file(File(controller.image!))
+                              : GestureDetector(
+                                  onTap: controller.openGallery,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.add,
+                                        size: 40.sp,
+                                      ),
+                                      CustomText(
+                                        text: "Upload".tr,
+                                        fontSize: 24.sp,
+                                        fontWeight: FontWeight.w700,
+                                      )
+                                    ],
+                                  ),
+                                )),
+                    ],
+                  )
+                : const SizedBox(),
           ],
         );
       },
