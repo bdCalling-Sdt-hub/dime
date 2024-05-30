@@ -1,4 +1,3 @@
-import 'package:dime/controllers/patients/payment/payment_controller.dart';
 import 'package:get/get.dart';
 import '../controllers/auth/forget_password_controller.dart';
 import '../controllers/auth/signIn_controller.dart';
@@ -14,20 +13,23 @@ import '../controllers/doctor/patients_info/appointment_list_controller.dart';
 import '../controllers/doctor/patients_info/doctor_home_controller.dart';
 import '../controllers/doctor/patients_info/patients_list_controller.dart';
 import '../controllers/doctor/profile/doctor_profile.dart';
-import '../controllers/patients/Booking/Book_appointment_controller.dart';
-import '../controllers/patients/Booking/ambulance_booking_controller.dart';
-import '../controllers/patients/Booking/home_care_controller.dart';
-import '../controllers/patients/category_list_controller.dart';
-import '../controllers/patients/health_rocords_controller.dart';
-import '../controllers/patients/home_controller.dart';
-import '../controllers/patients/Booking/lab_booking_controller.dart';
-import '../controllers/patients/message_controller.dart';
-import '../controllers/patients/Booking/my_booking_controller.dart';
-import '../controllers/patients/notifications_controller.dart';
-import '../controllers/patients/payment/select_payment_method_controller.dart';
-import '../controllers/patients/profile_controller.dart';
-import '../controllers/patients/send_review_controller.dart';
-import '../controllers/patients/setting_controller.dart';
+import '../controllers/user/Booking/Book_appointment_controller.dart';
+import '../controllers/user/Booking/Booking_details_controller.dart';
+import '../controllers/user/Booking/ambulance_booking_controller.dart';
+import '../controllers/user/Booking/home_care_controller.dart';
+import '../controllers/user/Booking/lab_booking_controller.dart';
+import '../controllers/user/Booking/my_booking_controller.dart';
+import '../controllers/user/category_list_controller.dart';
+import '../controllers/user/health_rocords_controller.dart';
+import '../controllers/user/home_controller.dart';
+import '../controllers/user/message_controller.dart';
+import '../controllers/user/notifications_controller.dart';
+import '../controllers/user/payment/payment_controller.dart';
+import '../controllers/user/payment/select_payment_method_controller.dart';
+import '../controllers/user/profile_controller.dart';
+import '../controllers/user/send_review_controller.dart';
+import '../controllers/user/setting_controller.dart';
+
 
 class DependencyInjection extends Bindings {
   @override
@@ -61,5 +63,6 @@ class DependencyInjection extends Bindings {
     Get.lazyPut(() => CategoryListController(), fenix: true);
     Get.lazyPut(() => SelectPaymentMethodController(), fenix: true);
     Get.lazyPut(() => PaymentController(), fenix: true);
+    Get.lazyPut(() => BookingDetailsController(), fenix: true);
   }
 }

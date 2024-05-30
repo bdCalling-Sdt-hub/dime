@@ -90,6 +90,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       textInputAction: widget.textInputAction,
       cursorColor: widget.cursorColor,
       style: widget.textStyle,
+      textAlign: widget.textAlign,
       onChanged: widget.onChanged,
       maxLines: widget.maxLines,
       obscureText: widget.isPassword ? obscureText : false,

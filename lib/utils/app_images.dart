@@ -30,6 +30,7 @@ class AppImages {
   static const String records = "$baseurl/records.png" ;
   static const String jennifar = "$baseurl/jennifar.png" ;
   static const String backgroundPopup = "$baseurl/background_popup.png" ;
+  static const String blog = "$baseurl/blog.png" ;
 
 
 

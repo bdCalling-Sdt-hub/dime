@@ -41,6 +41,15 @@ class LocalConstants extends Translations {
           "please, select date": "please, select date",
           "View Details": "View Details",
           "Re-Schedule": "Re-Schedule",
+          "User Booking Details": "User Booking Details",
+          "Details": "Details",
+          "search a doctor": "search a doctor",
+          "Upload your video document": "Upload your video document",
+          "Blogs": "Blogs",
+          "About Me": "About Me",
+          "Terms of Services": "Terms of Services",
+          "Read": "Read",
+
 
           ///new string =================================/=/=/=/=/==/=/=/==/
 

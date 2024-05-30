@@ -1,5 +1,6 @@
-import 'package:dime/view/screen/patients/payment/payment_screen.dart';
-import 'package:dime/view/screen/patients/payment/select_payment_method_screen.dart';
+import 'package:dime/view/screen/user/Booking/booking_details.dart';
+import 'package:dime/view/screen/user/blog/blog_screen.dart';
+import 'package:dime/view/screen/user/blog/read_blog_screen.dart';
 import 'package:get/get.dart';
 
 import '../view/screen/doctor/history/appointment_history_screen.dart';
@@ -24,28 +25,30 @@ import '../view/screen/no_role/auth/sign up/sign_up_screen.dart';
 import '../view/screen/no_role/auth/sign up/verify_user.dart';
 import '../view/screen/no_role/onboarding_screen/onboarding_screen.dart';
 import '../view/screen/no_role/splash/splash_screen.dart';
-import '../view/screen/patients/Booking/ambulance_booking_screen.dart';
-import '../view/screen/patients/Booking/book_appointment.dart';
-import '../view/screen/patients/Booking/booking_list.dart';
-import '../view/screen/patients/Booking/home_care_screen.dart';
-import '../view/screen/patients/Booking/lab_book.dart';
-import '../view/screen/patients/Booking/my_booking_screen.dart';
-import '../view/screen/patients/Booking/select_data_time.dart';
-import '../view/screen/patients/Booking/select_date.dart';
-import '../view/screen/patients/Booking/select_home_care_data_time.dart';
-import '../view/screen/patients/categories/cotegorise_list.dart';
-import '../view/screen/patients/doctor/doctor_details_screen.dart';
-import '../view/screen/patients/favorite/favorite_screen.dart';
-import '../view/screen/patients/health/health_records.dart';
-import '../view/screen/patients/home/patients_home.dart';
-import '../view/screen/patients/message/chat_screen.dart';
-import '../view/screen/patients/message/message_screen.dart';
-import '../view/screen/patients/notifications/notifications_screen.dart';
-import '../view/screen/patients/profile/edit_profile.dart';
-import '../view/screen/patients/profile/profile_screen.dart';
-import '../view/screen/patients/review/send_review.dart';
-import '../view/screen/patients/setting/setting_screen.dart';
 import '../view/screen/test_screen.dart';
+import '../view/screen/user/Booking/ambulance_booking_screen.dart';
+import '../view/screen/user/Booking/book_appointment.dart';
+import '../view/screen/user/Booking/booking_list.dart';
+import '../view/screen/user/Booking/home_care_screen.dart';
+import '../view/screen/user/Booking/lab_book.dart';
+import '../view/screen/user/Booking/my_booking_screen.dart';
+import '../view/screen/user/Booking/schedule_call.dart';
+import '../view/screen/user/Booking/select_date.dart';
+import '../view/screen/user/Booking/select_home_care_data_time.dart';
+import '../view/screen/user/categories/cotegorise_list.dart';
+import '../view/screen/user/doctor/doctor_details_screen.dart';
+import '../view/screen/user/favorite/favorite_screen.dart';
+import '../view/screen/user/health/health_records.dart';
+import '../view/screen/user/home/patients_home.dart';
+import '../view/screen/user/message/chat_screen.dart';
+import '../view/screen/user/message/message_screen.dart';
+import '../view/screen/user/notifications/notifications_screen.dart';
+import '../view/screen/user/payment/payment_screen.dart';
+import '../view/screen/user/payment/select_payment_method_screen.dart';
+import '../view/screen/user/profile/edit_profile.dart';
+import '../view/screen/user/profile/profile_screen.dart';
+import '../view/screen/user/review/send_review.dart';
+import '../view/screen/user/setting/setting_screen.dart';
 
 class AppRoutes {
   static const String test = "/test_screen.dart";
@@ -61,7 +64,7 @@ class AppRoutes {
   static const String cotegoriseList = "/cotegorise_list.dart";
   static const String doctorDetails = "/doctor_details_screen.dart";
   static const String bookAppointment = "/book_appointment.dart";
-  static const String selectDataTime = "/select_data_time.dart";
+  static const String selectDataTime = "/schedule_call.dart";
   static const String myBooking = "/my_booking_screen.dart";
   static const String chat = "/chat_screen.dart";
   static const String message = "/message_screen.dart";
@@ -95,6 +98,9 @@ class AppRoutes {
   static const String appointmentHistory = "/appointment_history_screen.dart";
   static const String paymentMethod = "/select_payment_method_screen.dart";
   static const String payment = "/payment_screen.dart";
+  static const String bookingDetails = "/booking_details.dart";
+  static const String blog = "/blog_screen.dart";
+  static const String readBlog = "/read_blog_screen.dart";
 
   static List<GetPage> routes = [
     GetPage(name: test, page: () => TestScreen()),
@@ -145,5 +151,8 @@ class AppRoutes {
     GetPage(name: appointmentHistory, page: () => AppointmentHistoryScreen()),
     GetPage(name: paymentMethod, page: () => SelectPaymentMethodScreen()),
     GetPage(name: payment, page: () => PaymentScreen()),
+    GetPage(name: bookingDetails, page: () => BookingDetails()),
+    GetPage(name: blog, page: () => BlogScreen()),
+    GetPage(name: readBlog, page: () => ReadBlogScreen()),
   ];
 }
