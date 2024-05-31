@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../../../controllers/doctor/info/added_experience_controller.dart';
+import '../../../../../controllers/consultant/info/added_experience_controller.dart';
 import '../../../../../helpers/other_helper.dart';
 import '../../../../../utils/app_colors.dart';
 import '../../../../common_widgets/text/custom_text.dart';

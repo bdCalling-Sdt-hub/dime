@@ -18,7 +18,7 @@ class HomeControllerPatients extends GetxController {
       "screen": AppRoutes.ambulanceBooking
     },
     {
-      "name": "Spots".tr,
+      "name": "Business".tr,
       "image": Icons.agriculture,
       "screen": AppRoutes.homeCare
     },

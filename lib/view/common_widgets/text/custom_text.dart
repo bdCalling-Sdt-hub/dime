@@ -18,8 +18,7 @@ class CustomText extends StatelessWidget {
       this.color = AppColors.black,
       required this.text,
       this.style = false,
-      this.overflow = TextOverflow.ellipsis
-      });
+      this.overflow = TextOverflow.ellipsis});
 
   final double left;
   final double right;
@@ -44,11 +43,11 @@ class CustomText extends StatelessWidget {
         text,
         maxLines: maxLines,
         overflow: overflow,
-        style:  GoogleFonts.urbanist(
-                fontSize: fontSize,
-                fontWeight: fontWeight,
-                color: color,
-              ),
+        style: GoogleFonts.urbanist(
+          fontSize: fontSize,
+          fontWeight: fontWeight,
+          color: color,
+        ),
       ),
     );
   }

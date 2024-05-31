@@ -4,7 +4,7 @@ import 'package:dime/view/common_widgets/text_field/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../../../../controllers/doctor/info/availability_controller.dart';
+import '../../../../controllers/consultant/info/availability_controller.dart';
 import '../../../../core/app_routes.dart';
 import '../../../common_widgets/bottom nav bar/doctor_nav_bar.dart';
 import '../../../common_widgets/button/custom_button.dart';

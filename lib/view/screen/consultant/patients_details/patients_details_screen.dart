@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../../../../controllers/doctor/patients_details/patients_details_controller.dart';
+import '../../../../controllers/consultant/patients_details/patients_details_controller.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../common_widgets/bottom nav bar/doctor_nav_bar.dart';
 import '../../../common_widgets/button/custom_button.dart';

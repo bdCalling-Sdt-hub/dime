@@ -63,6 +63,21 @@ class LocalConstants extends Translations {
           "Acc Number": "Acc Number",
           "Date": "Date",
           "Amount": "Amount ",
+          "Full Name:": "Full Name: ",
+          "Phone number:": "Phone number: ",
+          "Email:": "Email: ",
+          "Transaction details:": "Transaction details :",
+          "Transaction ID:": "Transaction ID: ",
+          "A/C holder name:": "A/C holder name: ",
+          "A/C number:": "A/C number: ",
+          "Received amount:": "Received amount: ",
+          "Upload Blog": "Upload Blog",
+          "Upload Cover Image": "Upload Cover Image",
+          "Blog Title": "Blog Title",
+          "Blog Category": "Blog Category",
+          "Upload": "Upload",
+          "My Blog": "My Blog",
+          "Edit": "Edit",
 
 
 
@@ -76,7 +91,7 @@ class LocalConstants extends Translations {
           "Sign in with password": "Sign in with password",
           "Sign up": "Sign up",
           "Create Your Account": "Create Your Account",
-          "Full Name": "Full Name",
+
           "Email": "Email",
           "Password": "Password",
           "Phone Number": "Phone Number",
@@ -150,7 +165,6 @@ class LocalConstants extends Translations {
               "Please share your opinion about the product",
           "Your review": "Your review",
           "Send Review": "Send Review",
-          "Book": "Book",
           "Booking Date": "Booking Date",
           "Start date": "Start date",
           "End date": "End date",

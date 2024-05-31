@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../../../../controllers/doctor/patients_info/patients_list_controller.dart';
+import '../../../../controllers/consultant/patients_info/patients_list_controller.dart';
 import '../../../../core/app_routes.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_images.dart';

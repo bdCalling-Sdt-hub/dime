@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
-import '../../../../../controllers/doctor/info/Personal_information_controller.dart';
+import '../../../../../controllers/consultant/info/Personal_information_controller.dart';
 import '../../../../../helpers/other_helper.dart';
 import '../../../../../utils/app_colors.dart';
 import '../../../../common_widgets/pop up/custom_pop_up_menu_button.dart';

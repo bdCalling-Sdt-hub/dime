@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../../controllers/doctor/appointment_history_controller.dart';
+import '../../../../controllers/consultant/appointment_history_controller.dart';
 import '../../../common_widgets/text/custom_text.dart';
 import 'appointment_history_item.dart';
 

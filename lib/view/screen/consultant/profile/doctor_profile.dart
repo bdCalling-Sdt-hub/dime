@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../../../../controllers/doctor/profile/doctor_profile.dart';
+import '../../../../controllers/consultant/profile/doctor_profile.dart';
 import '../../../../core/app_routes.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_images.dart';
@@ -69,7 +69,7 @@ class DoctorProfile extends StatelessWidget {
                 Item(
                   icon: Icons.settings_outlined,
                   title: "Booking Records".tr,
-                  onTap: () => Get.toNamed(AppRoutes.transactions),
+                  onTap: () => Get.toNamed(AppRoutes.myBooking),
                 ),
                 Item(
                   icon: Icons.payments_outlined,
@@ -79,7 +79,12 @@ class DoctorProfile extends StatelessWidget {
                 Item(
                   icon: Icons.broken_image_outlined,
                   title: "Upload Blogs".tr,
-                  onTap: () => Get.toNamed(AppRoutes.blog),
+                  onTap: () => Get.toNamed(AppRoutes.uploadBlog),
+                ),
+                Item(
+                  icon: Icons.broken_image_outlined,
+                  title: "My Blog".tr,
+                  onTap: () => Get.toNamed(AppRoutes.myBlog),
                 ),
                 Item(
                   icon: Icons.settings_outlined,

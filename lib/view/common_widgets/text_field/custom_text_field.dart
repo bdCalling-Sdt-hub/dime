@@ -87,7 +87,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
       focusNode: widget.focusNode,
       maxLength: widget.maxLength,
       keyboardType: widget.keyboardType,
-      textInputAction: widget.textInputAction,
+      textInputAction: widget.keyboardType == TextInputType.none
+          ? TextInputAction.none
+          : widget.textInputAction,
       cursorColor: widget.cursorColor,
       style: widget.textStyle,
       textAlign: widget.textAlign,
@@ -107,6 +109,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         hintStyle: widget.textStyle,
         fillColor: widget.fillColor,
         filled: true,
+
         prefixIcon: widget.prefixIcon,
         suffixIcon: widget.isPassword
             ? GestureDetector(
@@ -137,7 +140,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
         focusedBorder: OutlineInputBorder(
             borderRadius:
                 BorderRadius.circular(widget.fieldBorderRadius ?? 16.r),
-            borderSide: const BorderSide(color: AppColors.blueNormal, width: 1),
+            borderSide:
+                const BorderSide(color: AppColors.secondPrimary, width: 1),
             gapPadding: 0),
         enabledBorder: OutlineInputBorder(
             borderRadius:

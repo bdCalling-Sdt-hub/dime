@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import '../../../../controllers/user/Booking/Booking_details_controller.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../common_widgets/bottom nav bar/navbar.dart';
-import '../../../common_widgets/pop up/custom_pop_up_menu_button.dart';
 import '../../../common_widgets/text/custom_text.dart';
 import '../../../common_widgets/text_field/custom_text_field.dart';
 

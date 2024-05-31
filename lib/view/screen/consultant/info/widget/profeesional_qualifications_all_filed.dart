@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../../../../../controllers/doctor/info/professional_qualifications_controller.dart';
+import '../../../../../controllers/consultant/info/professional_qualifications_controller.dart';
 import '../../../../../helpers/other_helper.dart';
 import '../../../../../utils/app_colors.dart';
 import '../../../../common_widgets/pop up/custom_pop_up_menu_button.dart';
