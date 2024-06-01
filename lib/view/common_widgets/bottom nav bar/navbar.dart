@@ -79,6 +79,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
   }
 
   void onTap(int index) async {
+    print(widget.currentIndex);
     if (index == 0) {
       if (!(widget.currentIndex == 0)) {
         Get.toNamed(AppRoutes.patientsHome);
@@ -88,7 +89,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
         Get.toNamed(AppRoutes.notifications);
       }
     } else if (index == 2) {
-      if (!(widget.currentIndex == 3)) {
+      if (!(widget.currentIndex == 2)) {
         Get.toNamed(AppRoutes.chat);
       }
     } else if (index == 3) {

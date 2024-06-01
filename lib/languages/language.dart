@@ -32,7 +32,8 @@ class LocalConstants extends Translations {
           "Account holder Name": "Account holder Name",
           "Card Number": "Card Number",
           "Transaction Successful": "Transaction Successful",
-          "Your top up has been successful done": "Your top up has been successful done",
+          "Your top up has been successful done":
+              "Your top up has been successful done",
           "Total Pay": "Total Pay",
           "Total Top Up": "Total Top Up",
           "Standard Charted Card": "Standard Charted Card",
@@ -78,7 +79,8 @@ class LocalConstants extends Translations {
           "Upload": "Upload",
           "My Blog": "My Blog",
           "Edit": "Edit",
-
+          "Find an expert": "Find an expert",
+          "Inbox": "Inbox",
 
 
           ///new string =================================/=/=/=/=/==/=/=/==/

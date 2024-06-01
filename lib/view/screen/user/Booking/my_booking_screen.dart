@@ -64,15 +64,14 @@ class _MyBookingScreenState extends State<MyBookingScreen>
                           itemCount: 10,
                           itemBuilder: (context, index) {
                             return DoctorBookItem(
-                                date: "Monday,March 12",
-                                time: "11:00 - 12:00 AM",
-                                image: AppImages.doctorSarah,
-                                name: "Dr. Sarah Johnson",
-                                rightButtonText: "View Details".tr,
-                                leftButtonText: "Cancel".tr,
-                                rightOnTap: () =>
-                                    Get.toNamed(AppRoutes.bookingDetails),
-                                leftOnTap: () => print("kjfsd"));
+                              date: "Monday,March 12",
+                              time: "11:00 - 12:00 AM",
+                              image: AppImages.doctorSarah,
+                              name: "Dr. Sarah Johnson",
+                              rightButtonText: "View Details".tr,
+                              rightOnTap: () =>
+                                  Get.toNamed(AppRoutes.bookingDetails),
+                            );
                           },
                         ),
                       ),
@@ -86,7 +85,6 @@ class _MyBookingScreenState extends State<MyBookingScreen>
                               image: AppImages.doctorSarah,
                               name: "Dr. Sarah Johnson",
                               rightButtonText: "Re-Schedule".tr,
-                              noButton: true,
                               rightOnTap: () =>
                                   Get.toNamed(AppRoutes.sendReview),
                             );
@@ -102,9 +100,9 @@ class _MyBookingScreenState extends State<MyBookingScreen>
                               time: "11:00 - 12:00 AM",
                               image: AppImages.doctorSarah,
                               rightButtonText: "View Details".tr,
-                              rightOnTap: () => print("jkfkjhdf"),
+                              rightOnTap: () =>
+                                  Get.toNamed(AppRoutes.bookingDetails),
                               name: "Dr. Sarah Johnson",
-                              noButton: true,
                             );
                           },
                         ),
@@ -118,7 +116,6 @@ class _MyBookingScreenState extends State<MyBookingScreen>
           },
         ),
       ),
-
       bottomNavigationBar: const CustomBottomNavBar(
         currentIndex: 9,
       ),

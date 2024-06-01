@@ -9,9 +9,10 @@ import '../../../../common_widgets/image/custom_image.dart';
 import '../../../../common_widgets/text/custom_text.dart';
 
 class DoctorListItem extends StatelessWidget {
-  DoctorListItem({super.key, required this.item});
+  DoctorListItem({super.key, required this.item, required this.onTap});
 
-  var item;
+  final Map item;
+  final VoidCallback onTap ;
 
   @override
   Widget build(BuildContext context) {
@@ -69,19 +70,22 @@ class DoctorListItem extends StatelessWidget {
                       left: 6.w,
                     ),
                     const Spacer(),
-                    Container(
-                        decoration: BoxDecoration(
-                            color: AppColors.secondPrimary,
-                            borderRadius: BorderRadius.circular(6.r)),
-                        width: 80.w,
-                        height: 24.h,
-                        child: Center(
-                          child: CustomText(
-                            text: "Book".tr,
-                            color: AppColors.white,
-                            fontSize: 12.sp,
-                          ),
-                        ))
+                    GestureDetector(
+                      onTap: onTap,
+                      child: Container(
+                          decoration: BoxDecoration(
+                              color: AppColors.secondPrimary,
+                              borderRadius: BorderRadius.circular(6.r)),
+                          width: 80.w,
+                          height: 24.h,
+                          child: Center(
+                            child: CustomText(
+                              text: "Book".tr,
+                              color: AppColors.white,
+                              fontSize: 12.sp,
+                            ),
+                          )),
+                    )
                   ],
                 )
               ],

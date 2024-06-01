@@ -245,24 +245,27 @@ class DoctorDetailsScreen extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                    child: Container(
-                  height: 60.sp,
-                  padding: EdgeInsets.only(left: 20.w),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.r),
-                      border: Border.all(color: AppColors.black)),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Icon(Icons.phone_in_talk_outlined),
-                      SizedBox(
-                        width: 4.w,
-                      ),
-                      CustomText(
-                        text: "${"Video Reply".tr} \n \$30/15 sec",
-                        maxLines: 2,
-                      )
-                    ],
+                    child: GestureDetector(
+                  onTap: () => Get.toNamed(AppRoutes.selectDataTime),
+                  child: Container(
+                    height: 60.sp,
+                    padding: EdgeInsets.only(left: 20.w),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8.r),
+                        border: Border.all(color: AppColors.black)),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Icon(Icons.phone_in_talk_outlined),
+                        SizedBox(
+                          width: 4.w,
+                        ),
+                        CustomText(
+                          text: "${"Video Reply".tr} \n \$30/15 sec",
+                          maxLines: 2,
+                        )
+                      ],
+                    ),
                   ),
                 )),
                 SizedBox(

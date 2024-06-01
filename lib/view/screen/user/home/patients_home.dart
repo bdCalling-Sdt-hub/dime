@@ -79,12 +79,12 @@ class PatientsHomeScreen extends StatelessWidget {
                           children: [
                             Expanded(
                               child: CustomTextField(
-                                hindText: "Ping Your Location".tr,
+                                hindText: "Find an expert".tr,
                                 textStyle:
                                     const TextStyle(color: AppColors.greyLight),
                                 cursorColor: AppColors.greyLight,
                                 prefixIcon: const Icon(
-                                  Icons.location_on_outlined,
+                                  Icons.search,
                                   color: AppColors.white,
                                 ),
                                 fillColor: AppColors.transparent,
@@ -191,9 +191,10 @@ class PatientsHomeScreen extends StatelessWidget {
                         itemCount: controller.doctors.length,
                         itemBuilder: (context, index) {
                           var item = controller.doctors[index];
-                          return GestureDetector(
-                              onTap: () => Get.toNamed(AppRoutes.doctorDetails),
-                              child: ListItem(item: item));
+                          return ListItem(
+                            item: item,
+                            onTap: () => Get.toNamed(AppRoutes.doctorDetails),
+                          );
                         },
                       )),
                     ],

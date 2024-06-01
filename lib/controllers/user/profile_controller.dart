@@ -1,3 +1,4 @@
+import 'package:dime/helpers/other_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -6,6 +7,7 @@ class ProfileController extends GetxController {
   List gender = const ["Male", "Female", "Other"];
 
   String selectedLanguage = "English";
+  String? image;
 
   TextEditingController nameController = TextEditingController();
   TextEditingController numberController = TextEditingController();
@@ -22,6 +24,11 @@ class ProfileController extends GetxController {
     genderController.text = gender[index].toString();
     update();
     Get.back();
+  }
+
+  getProfileImage() async {
+    image = await OtherHelper.openGallery();
+    update();
   }
 
   selectLanguage(int index) {

@@ -15,12 +15,9 @@ class DoctorBookItem extends StatelessWidget {
     required this.image,
     required this.name,
     this.rightButtonText = "",
-    this.leftButtonText = "",
     this.rightOnTap,
-    this.leftOnTap,
     this.leftIsLoading = false,
     this.rightIsLoading = false,
-    this.noButton = false,
   });
 
   final String date, time;
@@ -28,10 +25,8 @@ class DoctorBookItem extends StatelessWidget {
   final String name;
 
   final String rightButtonText;
-  final String leftButtonText;
   final VoidCallback? rightOnTap;
-  final VoidCallback? leftOnTap;
-  final bool leftIsLoading, rightIsLoading, noButton;
+  final bool leftIsLoading, rightIsLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -140,24 +135,6 @@ class DoctorBookItem extends StatelessWidget {
               ),
               Row(
                 children: [
-                  noButton
-                      ? const SizedBox()
-                      : Expanded(
-                          child: CustomButton(
-                          titleText: leftButtonText,
-                          onTap: leftOnTap,
-                          buttonHeight: 40.h,
-                          buttonRadius: 8.r,
-                          borderColor: AppColors.transparent,
-                          isLoading: leftIsLoading,
-                          buttonColor: AppColors.button,
-                          titleColor: AppColors.red,
-                          titleSize: 14.sp,
-                          titleWeight: FontWeight.w400,
-                        )),
-                  SizedBox(
-                    width: 18.w,
-                  ),
                   Expanded(
                       child: CustomButton(
                     titleText: rightButtonText,

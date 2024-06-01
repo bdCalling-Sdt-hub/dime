@@ -54,7 +54,7 @@ class _CategoriseListScreenState extends State<CategoriseListScreen> {
                       children: [
                         Expanded(
                           child: CustomTextField(
-                            hindText: "Search".tr,
+                            hindText: "Find an expert".tr,
                             cursorColor: AppColors.blueNormal,
                             prefixIcon: const Icon(
                               Icons.search,
@@ -137,11 +137,11 @@ class _CategoriseListScreenState extends State<CategoriseListScreen> {
                             physics: const NeverScrollableScrollPhysics(),
                             itemBuilder: (context, index) {
                               return GestureDetector(
-                                  onTap: () =>
-                                      Get.toNamed(AppRoutes.doctorDetails),
                                   child: DoctorListItem(
-                                    item: controller.doctors[index],
-                                  ));
+                                item: controller.doctors[index],
+                                onTap: () =>
+                                    Get.toNamed(AppRoutes.doctorDetails),
+                              ));
                             },
                           ),
                   )

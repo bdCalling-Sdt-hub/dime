@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dime/controllers/consultant/blog/upload_blog_controller.dart';
+import 'package:dime/core/app_routes.dart';
 import 'package:dime/helpers/other_helper.dart';
 import 'package:dime/utils/app_colors.dart';
 import 'package:dime/view/common_widgets/bottom%20nav%20bar/doctor_nav_bar.dart';
@@ -126,7 +127,10 @@ class UploadBlog extends StatelessWidget {
               SizedBox(
                 height: 24.h,
               ),
-              CustomButton(titleText: 'Upload'.tr),
+              CustomButton(
+                titleText: 'Upload'.tr,
+                onTap: () => Get.offAllNamed(AppRoutes.doctorProfile),
+              ),
               SizedBox(
                 height: 24.h,
               ),

@@ -18,7 +18,7 @@ class RegistrationStep extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           CustomText(
-            text: "Step $indexNumber of 6",
+            text: "Step $indexNumber of 3",
             fontWeight: FontWeight.w700,
             fontSize: 16.sp,
           ),
@@ -27,9 +27,9 @@ class RegistrationStep extends StatelessWidget {
           ),
           Expanded(
             child: SizedBox(
-              width: Get.width * 0.53,
+              width: Get.width * 0.25,
               child: ListView.builder(
-                itemCount: 6,
+                itemCount: 3,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   return Container(
@@ -38,7 +38,7 @@ class RegistrationStep extends StatelessWidget {
                     margin: EdgeInsets.only(right: 8.w),
                     decoration: BoxDecoration(
                         color: index == indexNumber - 1
-                            ? AppColors.blueNormal
+                            ? AppColors.secondPrimary
                             : AppColors.greyLightActive,
                         borderRadius: BorderRadius.circular(30.r)),
                   );

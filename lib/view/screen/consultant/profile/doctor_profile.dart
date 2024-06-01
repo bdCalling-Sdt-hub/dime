@@ -59,12 +59,14 @@ class DoctorProfile extends StatelessWidget {
                 Item(
                   icon: Icons.person_outlined,
                   title: "Edit Profile".tr,
-                  onTap: () => Get.toNamed(AppRoutes.personalInformation),
+                  onTap: () => Get.toNamed(AppRoutes.personalInformation,
+                      parameters: {'type': 'back'}),
                 ),
                 Item(
                   icon: Icons.access_time,
                   title: "Availability".tr,
-                  onTap: () => Get.toNamed(AppRoutes.availability),
+                  onTap: () => Get.toNamed(AppRoutes.availability,
+                      parameters: {'type': 'back'}),
                 ),
                 Item(
                   icon: Icons.settings_outlined,

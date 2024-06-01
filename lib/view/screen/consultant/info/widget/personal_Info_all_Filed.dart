@@ -122,8 +122,6 @@ class PersonalInfoAllFiled extends StatelessWidget {
               fieldBorderColor: AppColors.secondPrimary,
               keyboardType: TextInputType.text,
             ),
-
-
             CustomText(
               text: "NID/Passport Number".tr,
               fontWeight: FontWeight.w700,
@@ -138,7 +136,7 @@ class PersonalInfoAllFiled extends StatelessWidget {
               fieldBorderRadius: 10.r,
               fillColor: AppColors.transparent,
               fieldBorderColor: AppColors.secondPrimary,
-              keyboardType: TextInputType.text,
+              keyboardType: TextInputType.number,
             ),
             SizedBox(
               height: 20.h,

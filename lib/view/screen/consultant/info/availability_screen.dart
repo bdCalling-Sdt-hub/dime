@@ -24,7 +24,7 @@ class AvailabilityScreen extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: CustomText(
-          text: "Added Experience".tr,
+          text: "Availability".tr,
           fontSize: 24.sp,
           fontWeight: FontWeight.w600,
         ),
@@ -38,7 +38,7 @@ class AvailabilityScreen extends StatelessWidget {
               children: [
                 type == "back"
                     ? const SizedBox()
-                    : const Center(child: RegistrationStep(indexNumber: 4)),
+                    : const Center(child: RegistrationStep(indexNumber: 2)),
                 SizedBox(
                   height: 20.h,
                 ),

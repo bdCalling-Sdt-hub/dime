@@ -11,6 +11,7 @@ import 'package:intl_phone_field/intl_phone_field.dart';
 import '../../../../../../controllers/auth/sign_up_controller.dart';
 import '../../../../../../utils/app_colors.dart';
 import '../../../../../common_widgets/text/custom_text.dart';
+import '../../../../../common_widgets/text_field/custom_number_text_filed.dart';
 import '../../../../../common_widgets/text_field/custom_text_field.dart';
 
 class SignUpAllField extends StatefulWidget {
@@ -72,23 +73,7 @@ class _SignUpAllFieldState extends State<SignUpAllField> {
             SizedBox(
               height: 30.h,
             ),
-            IntlPhoneField(
-              controller: controller.numberController,
-              onChanged: (value) {
-                print(value);
-              },
-              decoration: InputDecoration(
-                hintText: "Phone Number".tr,
-                fillColor: AppColors.blueLight,
-                filled: true,
-                contentPadding:
-                    EdgeInsets.symmetric(horizontal: 4.w, vertical: 14.h),
-                border: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(8))),
-              ),
-              initialCountryCode: "BD",
-              disableLengthCheck: false,
-            ),
+            CustomNumberTextFiled(controller: controller.numberController),
             controller.selectRole == 'User'
                 ? Column(
                     children: [

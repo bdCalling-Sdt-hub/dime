@@ -5,10 +5,13 @@ import '../../../../controllers/consultant/info/identification_controller.dart';
 import '../../../../core/app_routes.dart';
 import '../../../common_widgets/button/custom_button.dart';
 import '../../../common_widgets/text/custom_text.dart';
+import 'widget/registation_step.dart';
 import 'widget/upload.dart';
 
 class IdentificationScreen extends StatelessWidget {
-  const IdentificationScreen({super.key});
+  IdentificationScreen({super.key});
+
+  String type = Get.parameters["type"] ?? "";
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +31,9 @@ class IdentificationScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                type == "back"
+                    ? const SizedBox()
+                    : const Center(child: RegistrationStep(indexNumber: 2)),
                 CustomText(
                   text: "Upload your certificate documents".tr,
                   fontSize: 20.sp,

@@ -170,7 +170,7 @@ class SelectDataTime extends StatelessWidget {
                       if (formKey.currentState!.validate()) {
                         if (controller.selectedData != "") {
                           if (controller.selectedTime != '') {
-                            Get.toNamed(AppRoutes.myBooking);
+                            Get.toNamed(AppRoutes.paymentMethod);
                           } else {
                             Utils.snackBarMessage(
                                 'time', "please, select time");

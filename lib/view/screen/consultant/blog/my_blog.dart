@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import '../../../../core/app_routes.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_images.dart';
+import '../../../common_widgets/bottom nav bar/doctor_nav_bar.dart';
 import '../../../common_widgets/custom_loader.dart';
 import '../../../common_widgets/text/custom_text.dart';
 import '../../../common_widgets/text_field/custom_text_field.dart';
@@ -98,6 +99,8 @@ class MyBlog extends StatelessWidget {
               ],
             )),
       ),
+      bottomNavigationBar: const CustomDoctorBottomNavBar(currentIndex: 9),
+
     );
   }
 }

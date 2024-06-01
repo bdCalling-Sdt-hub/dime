@@ -24,39 +24,11 @@ class DoctorHomeScreen extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 28.w),
             child: Column(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    CustomText(
-                      text: "Patients List".tr,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 20.sp,
-                    ),
-                    SizedBox(
-                      width: 170.w,
-                      child: CustomTextField(
-                        controller: controller.listDateController,
-                        onTap: controller.openListDatePicker,
-                        fillColor: AppColors.blueLight,
-                        fieldBorderColor: AppColors.black,
-
-                        horizontal: 6.w,
-                        vertical: 2.h,
-                        keyboardType: TextInputType.none,
-                        fieldBorderRadius: 5.r,
-                        hindText: "Select Date".tr,
-                        textStyle:
-                            const TextStyle(color: AppColors.secondPrimary),
-                        suffixIcon: GestureDetector(
-                            onTap: controller.openListDatePicker,
-                            child: Icon(
-                              Icons.date_range,
-                              color: AppColors.secondPrimary,
-                              size: 24.sp,
-                            )),
-                      ),
-                    )
-                  ],
+                CustomText(
+                  text: "Appointment List".tr,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 20.sp,
+                  maxLines: 1,
                 ),
                 Align(
                   alignment: Alignment.centerRight,
@@ -66,7 +38,6 @@ class DoctorHomeScreen extends StatelessWidget {
                       text: "See all".tr,
                       fontWeight: FontWeight.w600,
                       fontSize: 16.sp,
-                      top: 26.h,
                       bottom: 12.h,
                       color: AppColors.secondPrimary,
                     ),
@@ -96,40 +67,11 @@ class DoctorHomeScreen extends StatelessWidget {
                 SizedBox(
                   height: 26.h,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Flexible(
-                      child: CustomText(
-                        text: "Appointment Request".tr,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 20.sp,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 170.w,
-                      child: CustomTextField(
-                        controller: controller.requestDateController,
-                        onTap: controller.openRequestDatePicker,
-                        fillColor: AppColors.greyLight,
-                        horizontal: 6.w,
-                        vertical: 2.h,
-                        textStyle:
-                            const TextStyle(color: AppColors.secondPrimary),
-                        keyboardType: TextInputType.none,
-                        fieldBorderRadius: 5.r,
-                        hindText: "Select Date".tr,
-                        fieldBorderColor: AppColors.black,
-                        suffixIcon: GestureDetector(
-                            onTap: controller.openRequestDatePicker,
-                            child: Icon(
-                              Icons.date_range,
-                              color: AppColors.secondPrimary,
-                              size: 24.sp,
-                            )),
-                      ),
-                    )
-                  ],
+                CustomText(
+                  text: "Appointment Request".tr,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 20.sp,
+                  maxLines: 1,
                 ),
                 Align(
                   alignment: Alignment.centerRight,
@@ -139,7 +81,7 @@ class DoctorHomeScreen extends StatelessWidget {
                       text: "See all".tr,
                       fontWeight: FontWeight.w600,
                       fontSize: 16.sp,
-                      top: 26.h,
+                      top: 16.h,
                       bottom: 12.h,
                       color: AppColors.secondPrimary,
                     ),

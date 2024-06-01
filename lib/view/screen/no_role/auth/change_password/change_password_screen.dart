@@ -84,7 +84,7 @@ class ChangePasswordScreen extends StatelessWidget {
                       onTap: () => Get.toNamed(AppRoutes.forgotPassword),
                       child: CustomText(
                         text: "Forgot Password".tr,
-                        color: AppColors.blueNormal,
+                        color: AppColors.secondPrimary,
                         fontWeight: FontWeight.w600,
                         fontSize: 18.sp,
                         top: 16.h,

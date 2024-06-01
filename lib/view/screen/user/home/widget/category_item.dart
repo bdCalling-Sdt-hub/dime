@@ -1,3 +1,4 @@
+import 'package:dime/view/common_widgets/image/custom_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -19,15 +20,18 @@ class CategoryItem extends StatelessWidget {
           border: Border.all(
             color: AppColors.blueLightActive,
           ),
-          borderRadius:
-          BorderRadius.circular(10.r)),
+          borderRadius: BorderRadius.circular(10.r)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
-            item["image"],
-            color: AppColors.white,
-          ),
+          item['type'] == 'svg'
+              ? CustomImage(
+                  imageSrc: item["image"],
+                )
+              : Icon(
+                  item["image"],
+                  color: AppColors.white,
+                ),
           CustomText(
             text: item["name"],
             color: AppColors.white,

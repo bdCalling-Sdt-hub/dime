@@ -1,3 +1,4 @@
+import 'package:dime/utils/app_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,21 +11,25 @@ class HomeControllerPatients extends GetxController {
     {
       "name": "Economics".tr,
       "image": Icons.payments_rounded,
-      "screen": AppRoutes.labBooking
+      "screen": AppRoutes.labBooking,
+      "type": '',
     },
     {
       "name": "Business".tr,
       "image": Icons.medication,
-      "screen": AppRoutes.ambulanceBooking
+      "screen": AppRoutes.ambulanceBooking,
+      "type": '',
     },
     {
-      "name": "Business".tr,
+      "name": "Spots".tr,
       "image": Icons.agriculture,
-      "screen": AppRoutes.homeCare
+      "screen": AppRoutes.homeCare,
+      "type": '',
     },
     {
       "name": "Beauty".tr,
-      "image": Icons.health_and_safety,
+      "image": AppIcons.beauty,
+      "type": 'svg',
       "screen": AppRoutes.homeCare
     },
   ];

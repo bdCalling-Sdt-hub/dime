@@ -19,7 +19,7 @@ class ChatListScreen extends StatelessWidget {
       appBar: AppBar(
           centerTitle: true,
           title: CustomText(
-            text: "Messages".tr,
+            text: "Inbox".tr,
             fontWeight: FontWeight.w600,
             fontSize: 24.sp,
           )),

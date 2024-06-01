@@ -1,4 +1,6 @@
+import 'package:dime/core/app_routes.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -31,6 +33,10 @@ class AlreadyAccountRichText extends StatelessWidget {
                 ),
                 TextSpan(
                   text: "Sign in".tr,
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      Get.toNamed(AppRoutes.signIn);
+                    },
                   style: GoogleFonts.plusJakartaSans(
                     color: AppColors.secondPrimary,
                     fontSize: 16.sp,

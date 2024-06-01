@@ -82,7 +82,7 @@ class VerifyUser extends StatelessWidget {
                       titleText: "Verify".tr,
                       onTap: () {
                         if (formKey.currentState!.validate()) {
-                          Get.toNamed(controller.selectRole == "Patient"
+                          Get.toNamed(controller.selectRole == "User"
                               ? AppRoutes.signIn
                               : AppRoutes.personalInformation);
                         }

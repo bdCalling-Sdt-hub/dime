@@ -1,3 +1,4 @@
+import 'package:dime/controllers/auth/forget_password_controller.dart';
 import 'package:dime/helpers/other_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,6 +9,7 @@ import '../../../../../core/app_routes.dart';
 import '../../../../../utils/app_colors.dart';
 import '../../../../common_widgets/button/custom_button.dart';
 import '../../../../common_widgets/text/custom_text.dart';
+import '../../../../common_widgets/text_field/custom_number_text_filed.dart';
 import '../../../../common_widgets/text_field/custom_text_field.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
@@ -23,53 +25,36 @@ class ForgotPasswordScreen extends StatelessWidget {
           fontSize: 24.sp,
         ),
       ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
-        child: Column(
-          children: [
-            SizedBox(
-              height: 105.h,
-            ),
-            CustomTextField(
-              prefixIcon: const Icon(Icons.mail),
-              labelText: "Email".tr,
-              validator: OtherHelper.validator,
-            ),
-            SizedBox(
-              height: 20.h,
-            ),
-            IntlPhoneField(
-              // controller: controller.numberController,
-              // validator: (value) {
-              //   if (value!.number.isEmpty) {
-              //     return "Invalid Mobile Number".tr;
-              //   }
-              // },
-              onChanged: (value) {
-                print(value);
-              },
-              decoration: InputDecoration(
-                hintText: "Phone Number".tr,
-                fillColor: AppColors.blueLight,
-                filled: true,
-                contentPadding:
-                    EdgeInsets.symmetric(horizontal: 4.w, vertical: 14.h),
-                border: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(8))),
-              ),
-              initialCountryCode: "BD",
-              disableLengthCheck: false,
-            ),
-            SizedBox(
-              height: 70.h,
-            ),
-            CustomButton(
-              titleText: "Continue".tr,
-              onTap: () => Get.toNamed(AppRoutes.verifyEmail),
-            ),
-          ],
-        ),
-      ),
+      body: GetBuilder<ForgetPasswordController>(
+          builder: (controller) => SingleChildScrollView(
+                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 105.h,
+                    ),
+                    CustomTextField(
+                      controller: controller.emailController,
+                      prefixIcon: const Icon(Icons.mail),
+                      labelText: "Email".tr,
+                      validator: OtherHelper.emailValidator,
+                    ),
+                    SizedBox(
+                      height: 20.h,
+                    ),
+                    CustomNumberTextFiled(
+                      controller: controller.numberController,
+                    ),
+                    SizedBox(
+                      height: 70.h,
+                    ),
+                    CustomButton(
+                      titleText: "Continue".tr,
+                      onTap: () => Get.toNamed(AppRoutes.verifyEmail),
+                    ),
+                  ],
+                ),
+              )),
     );
   }
 }
