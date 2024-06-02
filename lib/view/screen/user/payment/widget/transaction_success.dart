@@ -51,6 +51,7 @@ class TransactionSuccess extends StatelessWidget {
                 CustomText(
                   text: "Your top up has been successful done".tr,
                   fontSize: 16.sp,
+                  maxLines: 2,
                   fontWeight: FontWeight.w400,
                 ),
                 CustomText(

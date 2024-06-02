@@ -66,8 +66,16 @@ class PatientsHomeScreen extends StatelessWidget {
                         ],
                       ),
                       CustomText(
-                        text: "Let’s find Health Service".tr,
-                        fontSize: 36.sp,
+                        text: "Let’s find".tr,
+                        fontSize: 24.sp,
+                        fontWeight: FontWeight.w800,
+                        maxLines: 2,
+                        textAlign: TextAlign.start,
+                        color: AppColors.white,
+                      ),
+                      CustomText(
+                        text: "Consultant Service!".tr,
+                        fontSize: 32.sp,
                         fontWeight: FontWeight.w800,
                         maxLines: 2,
                         textAlign: TextAlign.start,

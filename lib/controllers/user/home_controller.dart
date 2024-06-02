@@ -11,26 +11,22 @@ class HomeControllerPatients extends GetxController {
     {
       "name": "Economics".tr,
       "image": Icons.payments_rounded,
-      "screen": AppRoutes.labBooking,
       "type": '',
     },
     {
       "name": "Business".tr,
       "image": Icons.medication,
-      "screen": AppRoutes.ambulanceBooking,
       "type": '',
     },
     {
       "name": "Spots".tr,
       "image": Icons.agriculture,
-      "screen": AppRoutes.homeCare,
       "type": '',
     },
     {
       "name": "Beauty".tr,
       "image": AppIcons.beauty,
       "type": 'svg',
-      "screen": AppRoutes.homeCare
     },
   ];
 

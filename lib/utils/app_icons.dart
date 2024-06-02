@@ -9,9 +9,6 @@ class AppIcons {
   static const String file = "$baseurl/file.svg";
   static const String send = "$baseurl/send.svg";
   static const String stethoscope = "$baseurl/stethoscope.svg";
-  static const String lab = "$baseurl/lab.svg";
-  static const String homeCare = "$baseurl/home_care.svg";
-  static const String ambulance = "$baseurl/ambulance.svg";
   static const String marker = "$baseurl/marker.svg";
   static const String clarify = "$baseurl/clarify.svg";
   static const String right = "$baseurl/right.svg";

@@ -18,7 +18,7 @@ class VerifyUser extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: CustomText(
-          text: "Forgot Password".tr,
+          text: "OTP Verify".tr,
           fontWeight: FontWeight.w700,
           fontSize: 24.sp,
         ),

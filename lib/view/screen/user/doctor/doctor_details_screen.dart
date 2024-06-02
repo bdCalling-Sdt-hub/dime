@@ -92,18 +92,19 @@ class DoctorDetailsScreen extends StatelessWidget {
                           CustomText(
                             text: 'Beauty Specialist | Mercy Hospital',
                             color: AppColors.base,
-                            fontSize: 14.sp,
+                            fontSize: 12.sp,
                             maxLines: 1,
                             top: 8.h,
                             textAlign: TextAlign.start,
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.w400,
                           ),
                           CustomText(
                             text: 'Life is beautiful',
                             color: AppColors.base,
                             fontSize: 14.sp,
-                            fontWeight: FontWeight.w400,
-                            top: 8.h,
+                            fontWeight: FontWeight.w600,
+                            top: 4.h,
+                            bottom: 8.h,
                           ),
                           Container(
                             height: 25.h,
@@ -153,7 +154,7 @@ class DoctorDetailsScreen extends StatelessWidget {
                 DetailsItem(
                   icon: Icons.star,
                   number: "5(348)",
-                  title: "rating".tr,
+                  title: "Ratings".tr,
                 ),
                 DetailsItem(
                   icon: Icons.access_time_filled_sharp,
@@ -183,6 +184,21 @@ class DoctorDetailsScreen extends StatelessWidget {
               fontSize: 20.sp,
               top: 20.h,
               bottom: 8.h,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                CustomText(
+                  text: "Reviews".tr,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 20.sp,
+                ),
+                CustomText(
+                  text: "See All".tr,
+                  fontWeight: FontWeight.w400,
+                  textAlign: TextAlign.start,
+                ),
+              ],
             ),
             SizedBox(
               height: 50.h,
@@ -223,21 +239,6 @@ class DoctorDetailsScreen extends StatelessWidget {
                   );
                 },
               ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                CustomText(
-                  text: "Reviews".tr,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 20.sp,
-                ),
-                CustomText(
-                  text: "See All".tr,
-                  fontWeight: FontWeight.w400,
-                  textAlign: TextAlign.start,
-                ),
-              ],
             ),
             SizedBox(
               height: 16.h,

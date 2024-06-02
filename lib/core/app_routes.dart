@@ -28,15 +28,10 @@ import '../view/screen/no_role/auth/sign up/verify_user.dart';
 import '../view/screen/no_role/onboarding_screen/onboarding_screen.dart';
 import '../view/screen/no_role/splash/splash_screen.dart';
 import '../view/screen/test_screen.dart';
-import '../view/screen/user/Booking/ambulance_booking_screen.dart';
 import '../view/screen/user/Booking/book_appointment.dart';
-import '../view/screen/user/Booking/booking_list.dart';
-import '../view/screen/user/Booking/home_care_screen.dart';
-import '../view/screen/user/Booking/lab_book.dart';
 import '../view/screen/user/Booking/my_booking_screen.dart';
 import '../view/screen/user/Booking/schedule_call.dart';
 import '../view/screen/user/Booking/select_date.dart';
-import '../view/screen/user/Booking/select_home_care_data_time.dart';
 import '../view/screen/user/categories/cotegorise_list.dart';
 import '../view/screen/user/doctor/doctor_details_screen.dart';
 import '../view/screen/user/favorite/favorite_screen.dart';
@@ -72,16 +67,11 @@ class AppRoutes {
   static const String message = "/message_screen.dart";
   static const String sendReview = "/send_review.dart";
   static const String favorite = "/favorite_screen.dart";
-  static const String labBooking = "/lab_book.dart";
   static const String selectData = "/select_date.dart";
-  static const String homeCare = "/home_care_screen.dart";
-  static const String selectDataHomeCare = "/select_home_care_data_time.dart";
-  static const String ambulanceBooking = "/ambulance_booking_screen.dart";
   static const String notifications = "/notifications_screen.dart";
   static const String patientsProfile = "/profile_screen.dart";
   static const String editProfile = "/edit_profile.dart";
   static const String healthRecords = "/health_records.dart";
-  static const String bookingList = "/booking_list.dart";
   static const String setting = "/setting_screen.dart";
   static const String changePassword = "/change_password_screen.dart";
   static const String personalInformation = "/personal_information_screen.dart";
@@ -126,16 +116,11 @@ class AppRoutes {
     GetPage(name: message, page: () => MessageScreen()),
     GetPage(name: sendReview, page: () => SendReview()),
     GetPage(name: favorite, page: () => FavoriteScreen()),
-    GetPage(name: labBooking, page: () => LabBookIngScreen()),
     GetPage(name: selectData, page: () => SelectDataScreen()),
-    GetPage(name: homeCare, page: () => HomeCare()),
-    GetPage(name: selectDataHomeCare, page: () => SelectHomeCareDataTime()),
-    GetPage(name: ambulanceBooking, page: () => AmbulanceBookIngScreen()),
     GetPage(name: notifications, page: () => NotificationScreen()),
     GetPage(name: patientsProfile, page: () => ProfileScreen()),
     GetPage(name: editProfile, page: () => EditProfile()),
     GetPage(name: healthRecords, page: () => HealthRecords()),
-    GetPage(name: bookingList, page: () => BookingListScreen()),
     GetPage(name: setting, page: () => SettingScreen()),
     GetPage(name: changePassword, page: () => ChangePasswordScreen()),
     GetPage(name: personalInformation, page: () => PersonalInformationScreen()),

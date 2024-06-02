@@ -81,7 +81,8 @@ class LocalConstants extends Translations {
           "Edit": "Edit",
           "Find an expert": "Find an expert",
           "Inbox": "Inbox",
-
+          "Consultant Service!": "Consultant Service!",
+          "Let’s find": "Let’s find",
 
           ///new string =================================/=/=/=/=/==/=/=/==/
 
