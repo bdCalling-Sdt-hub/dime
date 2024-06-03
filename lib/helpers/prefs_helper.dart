@@ -12,7 +12,7 @@ class PrefsHelper extends GetxController {
   static String myImage = "";
   static String myName = "";
   static String myEmail = "";
-  static String userType = "doctor";
+  static String myRole = "user";
   static String localizationLanguageCode = 'en';
   static String localizationCountryCode = 'US';
 

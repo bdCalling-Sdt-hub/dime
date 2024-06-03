@@ -73,9 +73,10 @@ class CreatePassword extends StatelessWidget {
                   ),
                   CustomButton(
                     titleText: "Continue".tr,
+                    isLoading: controller.isLoadingReset,
                     onTap: () {
                       if (formKey.currentState!.validate()) {
-                        Get.toNamed(AppRoutes.signIn);
+                       controller.resetPasswordRepo();
                       }
                     },
                   ),

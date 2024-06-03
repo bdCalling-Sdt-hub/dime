@@ -8,10 +8,23 @@ import '../../../../common_widgets/button/custom_button.dart';
 import '../../../../common_widgets/text/custom_text.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-class VerifyUser extends StatelessWidget {
+class VerifyUser extends StatefulWidget {
   VerifyUser({super.key});
 
+  @override
+  State<VerifyUser> createState() => _VerifyUserState();
+}
+
+class _VerifyUserState extends State<VerifyUser> {
   final formKey = GlobalKey<FormState>();
+
+  SignUpController controller = Get.put(SignUpController());
+
+  @override
+  void initState() {
+    controller.startTimer();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,15 +46,18 @@ class VerifyUser extends StatelessWidget {
                 children: [
                   Center(
                     child: CustomText(
-                      text: "${"Code has been send to".tr} 01999528645",
+                      text:
+                          "${"Code has been send to".tr} ${controller.emailController.text}",
                       fontSize: 18.sp,
                       top: 100.h,
                       bottom: 60.h,
+                      maxLines: 3,
                     ),
                   ),
                   Flexible(
                     flex: 0,
                     child: PinCodeTextField(
+                      controller: controller.otpController,
                       autoDisposeControllers: false,
                       cursorColor: AppColors.black,
                       appContext: (context),
@@ -72,19 +88,28 @@ class VerifyUser extends StatelessWidget {
                       },
                     ),
                   ),
-                  CustomText(
-                    text: "${"Resend code in".tr}  55",
-                    top: 60.h,
-                    bottom: 100.h,
-                    fontSize: 18.sp,
+                  GestureDetector(
+                    onTap: controller.time == '00:00'
+                        ? () {
+                            controller.startTimer();
+                            controller.signUpUser();
+                          }
+                        : () {},
+                    child: CustomText(
+                      text: controller.time == '00:00'
+                          ? "Resend Code"
+                          : "${"Resend code in".tr}  ${controller.time} minute",
+                      top: 60.h,
+                      bottom: 100.h,
+                      fontSize: 18.sp,
+                    ),
                   ),
                   CustomButton(
                       titleText: "Verify".tr,
+                      isLoading: controller.isLoadingVerify,
                       onTap: () {
                         if (formKey.currentState!.validate()) {
-                          Get.toNamed(controller.selectRole == "User"
-                              ? AppRoutes.signIn
-                              : AppRoutes.personalInformation);
+                          controller.verifyOtpRepo();
                         }
                       })
                 ],

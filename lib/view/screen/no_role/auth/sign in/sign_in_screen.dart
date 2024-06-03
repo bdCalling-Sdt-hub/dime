@@ -22,84 +22,71 @@ class SignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: GetBuilder<SignInController>(builder: (controller) {
-        return  SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
-          child: Form(
-            key: formKey,
-            child: Column(
-              children: [
-                CustomText(
-                  text: "Login to Your Account".tr,
-                  fontSize: 32.sp,
-                  bottom: 20.h,
-                ),
-                SizedBox(
-                  height: 20.h,
-                ),
-                CustomTextField(
-                  controller: controller.emailController,
-                  prefixIcon: const Icon(Icons.mail),
-                  labelText: "Email".tr,
-                  validator: OtherHelper.emailValidator,
-                ),
-                SizedBox(
-                  height: 40.h,
-                ),
-                CustomTextField(
-                  controller: controller.passwordController,
-                  prefixIcon: const Icon(Icons.lock),
-                  isPassword: true,
-                  labelText: "Password".tr,
-                  validator: OtherHelper.passwordValidator,
-                ),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: GestureDetector(
-                    onTap: () => Get.toNamed(AppRoutes.forgotPassword),
-                    child: CustomText(
-                      text: "Forgot the password".tr,
-                      top: 10.h,
-                      bottom: 30.h,
-                      color: AppColors.secondPrimary,
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w600,
+        appBar: AppBar(),
+        body: GetBuilder<SignInController>(
+          builder: (controller) {
+            return SingleChildScrollView(
+              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
+              child: Form(
+                key: formKey,
+                child: Column(
+                  children: [
+                    CustomText(
+                      text: "Login to Your Account".tr,
+                      fontSize: 32.sp,
+                      bottom: 20.h,
                     ),
-                  ),
+                    SizedBox(
+                      height: 20.h,
+                    ),
+                    CustomTextField(
+                      controller: controller.emailController,
+                      prefixIcon: const Icon(Icons.mail),
+                      labelText: "Email".tr,
+                      validator: OtherHelper.emailValidator,
+                    ),
+                    SizedBox(
+                      height: 40.h,
+                    ),
+                    CustomTextField(
+                      controller: controller.passwordController,
+                      prefixIcon: const Icon(Icons.lock),
+                      isPassword: true,
+                      labelText: "Password".tr,
+                      validator: OtherHelper.passwordValidator,
+                    ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: GestureDetector(
+                        onTap: () => Get.toNamed(AppRoutes.forgotPassword),
+                        child: CustomText(
+                          text: "Forgot the password".tr,
+                          top: 10.h,
+                          bottom: 30.h,
+                          color: AppColors.secondPrimary,
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                    CustomButton(
+                      titleText: "Sign in".tr,
+                      isLoading: controller.isLoading,
+                      onTap: () {
+                        if (formKey.currentState!.validate()) {
+                          controller.signInUser();
+                        }
+                      },
+                    ),
+                    SizedBox(
+                      height: 30.h,
+                    ),
+                    const DoNotHaveAccont()
+                  ],
                 ),
-                CustomButton(
-                  titleText: "Sign in".tr,
-                  onTap: () {
-                    if (formKey.currentState!.validate()) {
-                      Get.toNamed(AppRoutes.patientsHome);
-                      PrefsHelper.userType = "patient";
-                    }
-                  },
-                ),
-                SizedBox(
-                  height: 20.h,
-                ),
-                CustomButton(
-                  titleText:
-                  "Sign in with doctor(remove this button development part)"
-                      .tr,
-                  onTap: () {
-                    if (formKey.currentState!.validate()) {
-                      Get.toNamed(AppRoutes.doctorHome);
-                      PrefsHelper.userType = "doctor";
-                    }
-                  },
-                ),
-                SizedBox(
-                  height: 30.h,
-                ),
-                const DoNotHaveAccont()
-              ],
-            ),
-          ),
-        ) ;
-      },)
-    );
+              ),
+            );
+          },
+        ));
   }
 }

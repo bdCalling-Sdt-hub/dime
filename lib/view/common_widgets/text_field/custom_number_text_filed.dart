@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
 import '../../../utils/app_colors.dart';
 
 class CustomNumberTextFiled extends StatelessWidget {
-  const CustomNumberTextFiled({super.key, required this.controller});
+  CustomNumberTextFiled(
+      {super.key, required this.controller, required this.countryChange});
 
   final TextEditingController controller;
+  Function(Country value) countryChange;
 
   @override
   Widget build(BuildContext context) {
     return IntlPhoneField(
       controller: controller,
+      onCountryChanged: countryChange,
       decoration: InputDecoration(
         hintText: "Phone Number".tr,
         fillColor: AppColors.blueLight,

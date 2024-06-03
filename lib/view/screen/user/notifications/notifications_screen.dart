@@ -40,7 +40,7 @@ class NotificationScreen extends StatelessWidget {
           );
         },
       ),
-      bottomNavigationBar: PrefsHelper.userType == "doctor"
+      bottomNavigationBar: PrefsHelper.myRole == "doctor"
           ? const CustomDoctorBottomNavBar(currentIndex: 1)
           : const CustomBottomNavBar(currentIndex: 1),
     );

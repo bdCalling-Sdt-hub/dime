@@ -1,5 +1,6 @@
 import 'package:dime/controllers/consultant/blog/my_blog_controller.dart';
 import 'package:get/get.dart';
+import '../controllers/auth/change_password_controller.dart';
 import '../controllers/auth/forget_password_controller.dart';
 import '../controllers/auth/signIn_controller.dart';
 import '../controllers/auth/sign_up_controller.dart';
@@ -69,5 +70,6 @@ class DependencyInjection extends Bindings {
     Get.lazyPut(() => BookingDetailsController(), fenix: true);
     Get.lazyPut(() => UploadBlogController(), fenix: true);
     Get.lazyPut(() => MyBlogController(), fenix: true);
+    Get.lazyPut(() => ChangePasswordController(), fenix: true);
   }
 }

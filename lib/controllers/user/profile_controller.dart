@@ -16,9 +16,7 @@ class ProfileController extends GetxController {
   TextEditingController genderController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
 
-  TextEditingController currentPasswordController = TextEditingController();
-  TextEditingController newPasswordController = TextEditingController();
-  TextEditingController confirmPasswordController = TextEditingController();
+
 
   selectedGender(int index) {
     genderController.text = gender[index].toString();

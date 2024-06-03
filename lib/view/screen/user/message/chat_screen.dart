@@ -50,7 +50,7 @@ class ChatListScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: PrefsHelper.userType == "doctor"
+      bottomNavigationBar: PrefsHelper.myRole == "doctor"
           ? const CustomDoctorBottomNavBar(currentIndex: 2)
           : const CustomBottomNavBar(currentIndex: 2),
     );

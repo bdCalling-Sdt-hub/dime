@@ -77,9 +77,10 @@ class SignUpScreen extends StatelessWidget {
                   ),
                   CustomButton(
                     titleText: "Sign up".tr,
+                    isLoading: controller.isLoading,
                     onTap: () {
                       if (formKey.currentState!.validate()) {
-                        Get.toNamed(AppRoutes.verifyUser);
+                       controller.signUpUser() ;
                       }
                     },
                   ),

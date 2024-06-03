@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-
+import '../../../../../controllers/auth/change_password_controller.dart';
 import '../../../../../controllers/user/profile_controller.dart';
 import '../../../../../core/app_routes.dart';
 import '../../../../../helpers/other_helper.dart';
@@ -27,7 +27,7 @@ class ChangePasswordScreen extends StatelessWidget {
           fontWeight: FontWeight.w600,
         ),
       ),
-      body: GetBuilder<ProfileController>(
+      body: GetBuilder<ChangePasswordController>(
         builder: (controller) {
           return Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -67,7 +67,7 @@ class ChangePasswordScreen extends StatelessWidget {
                     height: 16.h,
                   ),
                   CustomTextField(
-                    controller: controller.currentPasswordController,
+                    controller: controller.confirmPasswordController,
                     hindText: "Confirm Password".tr,
                     validator: (value) => OtherHelper.confirmPasswordValidator(
                         value, controller.newPasswordController),
@@ -94,8 +94,11 @@ class ChangePasswordScreen extends StatelessWidget {
                   ),
                   CustomButton(
                     titleText: "Confirm".tr,
+                    isLoading: controller.isLoading,
                     onTap: () {
-                      if (formKey.currentState!.validate()) {}
+                      if (formKey.currentState!.validate()) {
+                        controller.changePasswordRepo();
+                      }
                     },
                   )
                 ],
