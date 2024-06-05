@@ -247,7 +247,7 @@ class DoctorDetailsScreen extends StatelessWidget {
               children: [
                 Expanded(
                     child: GestureDetector(
-                  onTap: () => Get.toNamed(AppRoutes.selectDataTime),
+                  onTap: () => Get.toNamed(AppRoutes.scheduleReply),
                   child: Container(
                     height: 60.sp,
                     padding: EdgeInsets.only(left: 20.w),

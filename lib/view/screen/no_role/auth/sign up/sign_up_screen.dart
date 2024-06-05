@@ -1,3 +1,4 @@
+import 'package:dime/helpers/prefs_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -80,7 +81,8 @@ class SignUpScreen extends StatelessWidget {
                     isLoading: controller.isLoading,
                     onTap: () {
                       if (formKey.currentState!.validate()) {
-                       controller.signUpUser() ;
+                        controller.signUpUser();
+                        PrefsHelper.myRole = controller.selectRole;
                       }
                     },
                   ),

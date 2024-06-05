@@ -37,8 +37,6 @@ class SignUpController extends GetxController {
   TextEditingController numberController = TextEditingController();
   TextEditingController governmentIdController = TextEditingController();
   TextEditingController otpController = TextEditingController();
-
-
   @override
   void dispose() {
     _timer?.cancel();
@@ -62,7 +60,6 @@ class SignUpController extends GetxController {
   signUpUser() async {
     isLoading = true;
     update();
-
     Map<String, String> body = {
       "fullName": nameController.text,
       "email": emailController.text,
@@ -84,10 +81,8 @@ class SignUpController extends GetxController {
     } else {
       Utils.snackBarMessage(response.statusCode.toString(), response.message);
     }
-
     isLoading = false;
-    update();
-  }
+    update();  }
 
   void startTimer() {
     _timer?.cancel(); // Cancel any existing timer

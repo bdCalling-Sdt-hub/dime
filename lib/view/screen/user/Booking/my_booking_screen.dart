@@ -22,7 +22,7 @@ class _MyBookingScreenState extends State<MyBookingScreen>
 
   @override
   void initState() {
-    controller.tabController = TabController(length: 3, vsync: this);
+    controller.tabController = TabController(length: 4, vsync: this);
     super.initState();
   }
 
@@ -53,6 +53,7 @@ class _MyBookingScreenState extends State<MyBookingScreen>
                     Tab(text: 'Upcoming'.tr),
                     Tab(text: 'Completed'.tr),
                     Tab(text: 'Canceled'.tr),
+                    Tab(text: 'Pending'.tr),
                   ],
                 ),
                 Expanded(
@@ -87,6 +88,22 @@ class _MyBookingScreenState extends State<MyBookingScreen>
                               rightButtonText: "Re-Schedule".tr,
                               rightOnTap: () =>
                                   Get.toNamed(AppRoutes.sendReview),
+                            );
+                          },
+                        ),
+                      ),
+                      Center(
+                        child: ListView.builder(
+                          itemCount: 10,
+                          itemBuilder: (context, index) {
+                            return DoctorBookItem(
+                              date: "March 12",
+                              time: "11:00 - 12:00 AM",
+                              image: AppImages.doctorSarah,
+                              rightButtonText: "View Details".tr,
+                              rightOnTap: () =>
+                                  Get.toNamed(AppRoutes.bookingDetails),
+                              name: "Dr. Sarah Johnson",
                             );
                           },
                         ),

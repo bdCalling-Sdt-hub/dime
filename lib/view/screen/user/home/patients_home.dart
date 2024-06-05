@@ -17,7 +17,7 @@ import 'widget/category_item.dart';
 import 'widget/list_item.dart';
 
 class PatientsHomeScreen extends StatelessWidget {
-  PatientsHomeScreen({super.key});
+  const PatientsHomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -66,11 +66,11 @@ class _MessageScreenState extends State<MessageScreen> {
                     ],
                   ),
                   const Spacer(),
-                  IconButton(
-                      onPressed: () {
-                        Get.toNamed(AppRoutes.sendReview);
-                      },
-                      icon: const Icon(Icons.videocam_outlined))
+                  // IconButton(
+                  //     onPressed: () {
+                  //       Get.toNamed(AppRoutes.sendReview);
+                  //     },
+                  //     icon: const Icon(Icons.videocam_outlined))
                 ],
               ),
             ),
@@ -108,11 +108,10 @@ class _MessageScreenState extends State<MessageScreen> {
             child: Padding(
               padding: EdgeInsets.only(left: 20.w, right: 20.w, bottom: 24.h),
               child: CustomTextField(
-                keyboardType: TextInputType.none,
                 onTap: controller.getVideo,
                 textAlign: TextAlign.start,
                 hindText: "Upload your video document".tr,
-                prefixIcon: const Icon(Icons.videocam_outlined),
+                // prefixIcon: const Icon(Icons.videocam_outlined),
                 suffixIcon: Padding(
                   padding: EdgeInsets.all(16.sp),
                   child: const CustomImage(

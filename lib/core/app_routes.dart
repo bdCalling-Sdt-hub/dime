@@ -3,6 +3,7 @@ import 'package:dime/view/screen/consultant/blog/upload_blog.dart';
 import 'package:dime/view/screen/consultant/transaction/transaction_details.dart';
 import 'package:dime/view/screen/consultant/transaction/transaction_screen.dart';
 import 'package:dime/view/screen/user/Booking/booking_details.dart';
+import 'package:dime/view/screen/user/Booking/schedule_reply.dart';
 import 'package:dime/view/screen/user/blog/blog_screen.dart';
 import 'package:dime/view/screen/user/blog/read_blog_screen.dart';
 import 'package:get/get.dart';
@@ -95,6 +96,7 @@ class AppRoutes {
   static const String transactionDetails = "/transaction_details.dart";
   static const String uploadBlog = "/upload_blog.dart";
   static const String myBlog = "/my_blog.dart";
+  static const String scheduleReply = "/schedule_reply.dart";
 
   static List<GetPage> routes = [
     GetPage(name: test, page: () => TestScreen()),
@@ -143,5 +145,6 @@ class AppRoutes {
     GetPage(name: transactionDetails, page: () => TransactionDetails()),
     GetPage(name: uploadBlog, page: () => UploadBlog()),
     GetPage(name: myBlog, page: () => MyBlog()),
+    GetPage(name: scheduleReply, page: () => ScheduleReply()),
   ];
 }
