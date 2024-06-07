@@ -52,6 +52,7 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   linear_progress_bar: ^1.1.1
   file_picker: ^8.0.3
+  cached_network_image: ^3.3.1
 
 
 dev_dependencies:

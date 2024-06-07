@@ -1,3 +1,4 @@
+import 'package:dime/models/category_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -6,6 +7,7 @@ import 'package:get/get.dart';
 import '../../../../controllers/user/home_controller.dart';
 import '../../../../controllers/user/profile_controller.dart';
 import '../../../../core/app_routes.dart';
+import '../../../../models/consultantListModel.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_icons.dart';
 import '../../../common_widgets/bottom nav bar/navbar.dart';
@@ -153,16 +155,16 @@ class PatientsHomeScreen extends StatelessWidget {
                           child: GridView.builder(
                             padding: EdgeInsets.zero,
                             physics: const NeverScrollableScrollPhysics(),
-                            itemCount: controller.services.length,
+                            itemCount: controller.categories.length,
                             gridDelegate:
                                 SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 4, crossAxisSpacing: 10.sp),
                             itemBuilder: (context, index) {
-                              var item = controller.services[index];
+                              CategoryModel item = controller.categories[index];
                               return GestureDetector(
                                 onTap: () => Get.toNamed(
                                     AppRoutes.cotegoriseList,
-                                    parameters: {'category': item['name']}),
+                                    parameters: {'category': item.name}),
                                 child: CategoryItem(
                                   item: item,
                                 ),
@@ -198,10 +200,11 @@ class PatientsHomeScreen extends StatelessWidget {
                         shrinkWrap: true,
                         itemCount: controller.doctors.length,
                         itemBuilder: (context, index) {
-                          var item = controller.doctors[index];
+                          ConsultantListModel item = controller.doctors[index];
                           return ListItem(
                             item: item,
-                            onTap: () => Get.toNamed(AppRoutes.doctorDetails),
+                            onTap: () => Get.toNamed(AppRoutes.doctorDetails,
+                                parameters: {"id": item.id}),
                           );
                         },
                       )),

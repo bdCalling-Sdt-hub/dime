@@ -25,6 +25,7 @@ import '../controllers/user/Booking/lab_booking_controller.dart';
 import '../controllers/user/Booking/my_booking_controller.dart';
 import '../controllers/user/Booking/shhedule_reply_controller.dart';
 import '../controllers/user/category_list_controller.dart';
+import '../controllers/user/consultant_details_controller.dart';
 import '../controllers/user/health_rocords_controller.dart';
 import '../controllers/user/home_controller.dart';
 import '../controllers/user/message_controller.dart';
@@ -73,5 +74,6 @@ class DependencyInjection extends Bindings {
     Get.lazyPut(() => MyBlogController(), fenix: true);
     Get.lazyPut(() => ChangePasswordController(), fenix: true);
     Get.lazyPut(() => ScheduleReplyController(), fenix: true);
+    Get.lazyPut(() => ConsultantDetailsController(), fenix: true);
   }
 }

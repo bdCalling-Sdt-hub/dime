@@ -35,7 +35,7 @@ import '../view/screen/user/Booking/my_booking_screen.dart';
 import '../view/screen/user/Booking/schedule_call.dart';
 import '../view/screen/user/Booking/select_date.dart';
 import '../view/screen/user/categories/cotegorise_list.dart';
-import '../view/screen/user/doctor/doctor_details_screen.dart';
+import '../view/screen/user/doctor/consultant_details_screen.dart';
 import '../view/screen/user/favorite/favorite_screen.dart';
 import '../view/screen/user/health/health_records.dart';
 import '../view/screen/user/home/patients_home.dart';
@@ -61,9 +61,9 @@ class AppRoutes {
   static const String patientsHome = "/patients_home.dart";
   static const String verifyUser = "/verify_user.dart";
   static const String cotegoriseList = "/cotegorise_list.dart";
-  static const String doctorDetails = "/doctor_details_screen.dart";
+  static const String doctorDetails = "/consultant_details_screen.dart";
   static const String bookAppointment = "/book_appointment.dart";
-  static const String selectDataTime = "/schedule_call.dart";
+  static const String scheduleVideoCall = "/schedule_call.dart";
   static const String myBooking = "/my_booking_screen.dart";
   static const String chat = "/chat_screen.dart";
   static const String message = "/message_screen.dart";
@@ -112,9 +112,9 @@ class AppRoutes {
     GetPage(name: patientsHome, page: () => PatientsHomeScreen()),
     GetPage(name: verifyUser, page: () => VerifyUser()),
     GetPage(name: cotegoriseList, page: () => CategoriseListScreen()),
-    GetPage(name: doctorDetails, page: () => DoctorDetailsScreen()),
+    GetPage(name: doctorDetails, page: () => ConsultantDetailsScreen()),
     GetPage(name: bookAppointment, page: () => BookingAppointmentScreen()),
-    GetPage(name: selectDataTime, page: () => SelectDataTime()),
+    GetPage(name: scheduleVideoCall, page: () => SelectDataTime()),
     GetPage(name: myBooking, page: () => MyBookingScreen()),
     GetPage(name: chat, page: () => ChatListScreen()),
     GetPage(name: message, page: () => MessageScreen()),

@@ -1,3 +1,4 @@
+import 'package:dime/controllers/user/Booking/Booking_details_controller.dart';
 import 'package:dime/helpers/other_helper.dart';
 import 'package:dime/utils/app_utils.dart';
 import 'package:dime/view/common_widgets/pop%20up/custom_pop_up_menu_button.dart';
@@ -17,6 +18,9 @@ class SelectDataTime extends StatelessWidget {
   SelectDataTime({super.key});
 
   final formKey = GlobalKey<FormState>();
+
+  String id = Get.parameters["id"] ?? '';
+  String amount = Get.parameters["amount"] ?? '';
 
   @override
   Widget build(BuildContext context) {
@@ -187,7 +191,6 @@ class SelectDataTime extends StatelessWidget {
           );
         },
       ),
-
       bottomNavigationBar: const CustomBottomNavBar(
         currentIndex: 9,
       ),

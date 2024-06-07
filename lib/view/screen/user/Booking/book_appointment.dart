@@ -46,7 +46,7 @@ class BookingAppointmentScreen extends StatelessWidget {
                         if (formKey.currentState!.validate()) {
                           Get.toNamed(AppRoutes.bookAppointment);
                         }
-                        Get.toNamed(AppRoutes.selectDataTime);
+                        Get.toNamed(AppRoutes.scheduleVideoCall);
                       }),
                 ],
               ),

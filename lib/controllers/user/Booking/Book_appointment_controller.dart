@@ -25,8 +25,13 @@ class BookAppointmentController extends GetxController {
 
   String selectedData = "";
   String selectedTime = "";
+  String id = "";
+  String amount = "";
 
   String? image;
+
+  static BookAppointmentController instance =
+      Get.put(BookAppointmentController());
 
   List callDurations = [
     '5 min',

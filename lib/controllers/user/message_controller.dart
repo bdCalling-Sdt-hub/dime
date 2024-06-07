@@ -25,6 +25,8 @@ class MessageController extends GetxController {
   TextEditingController messageController = TextEditingController();
 
   getVideo() async {
+
+
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
       allowedExtensions: ['mp4'],

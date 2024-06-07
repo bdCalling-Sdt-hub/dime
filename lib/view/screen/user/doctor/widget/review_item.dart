@@ -32,7 +32,7 @@ class ReviewItem extends StatelessWidget {
                 child: ClipOval(
                   child: CustomImage(
                     imageSrc: image,
-                    imageType: ImageType.png,
+                    imageType: ImageType.network,
                     height: 56.sp,
                     width: 56.sp,
                   ),

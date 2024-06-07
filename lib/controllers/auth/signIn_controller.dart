@@ -18,9 +18,6 @@ class SignInController extends GetxController {
       TextEditingController(text: kDebugMode ? 'hello123' : "");
 
   Future<void> signInUser() async {
-
-    Get.offAllNamed(AppRoutes.doctorHome);
-    return ;
     isLoading = true;
     update();
 

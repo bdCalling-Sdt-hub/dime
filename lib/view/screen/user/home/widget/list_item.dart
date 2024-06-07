@@ -1,9 +1,12 @@
 import 'package:dime/utils/app_icons.dart';
+import 'package:dime/utils/app_images.dart';
+import 'package:dime/utils/app_url.dart';
 import 'package:dime/view/common_widgets/button/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../../../models/consultantListModel.dart';
 import '../../../../../utils/app_colors.dart';
 import '../../../../common_widgets/image/custom_image.dart';
 import '../../../../common_widgets/text/custom_text.dart';
@@ -11,7 +14,7 @@ import '../../../../common_widgets/text/custom_text.dart';
 class ListItem extends StatelessWidget {
   const ListItem({super.key, required this.item, required this.onTap});
 
-  final Map item;
+  final ConsultantListModel item;
   final VoidCallback onTap;
 
   @override
@@ -25,9 +28,11 @@ class ListItem extends StatelessWidget {
       child: Row(
         children: [
           CustomImage(
-            imageSrc: item["image"],
-            imageType: ImageType.png,
+            imageSrc: "${AppUrls.imageUrl}${item.image}",
+            imageType: ImageType.network,
+            defaultImage: AppImages.profile,
             height: 62.sp,
+            width: 62.sp,
           ),
           SizedBox(
             width: 16.w,
@@ -40,23 +45,23 @@ class ListItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     CustomText(
-                      text: item["name"],
+                      text: item.fullName,
                       fontWeight: FontWeight.w700,
                       fontSize: 20.sp,
                     ),
                     CustomText(
-                      text: "\$ ${item["price"].toString()}",
+                      text: "\$ ${item.videoConferenceFee.toString()}",
                     ),
                   ],
                 ),
                 CustomText(
-                  text: item["categories"],
+                  text: item.category.isNotEmpty ? item.category[0].name : "",
                   fontWeight: FontWeight.w400,
                   fontSize: 18.sp,
                 ),
                 Row(
                   children: [
-                    CustomText(text: item["rating"].toString()),
+                    CustomText(text: item.ratings.toString()),
                     const Icon(
                       Icons.star,
                       color: AppColors.orange,
@@ -66,7 +71,7 @@ class ListItem extends StatelessWidget {
                     ),
                     const CustomImage(imageSrc: AppIcons.chat),
                     CustomText(
-                      text: item["chat"].toString(),
+                      text: item.consultationCompleted.toString(),
                       left: 6.w,
                     ),
                     const Spacer(),

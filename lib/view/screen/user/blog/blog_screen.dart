@@ -88,11 +88,11 @@ class _BlogScreenState extends State<BlogScreen> {
                     height: 40.h,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: homeControllerPatients.services.length + 1,
+                      itemCount: homeControllerPatients.categories.length + 1,
                       itemBuilder: (context, index) {
                         var item = index == 0
                             ? {"name": "All"}
-                            : homeControllerPatients.services[index - 1];
+                            : homeControllerPatients.categories[index - 1];
                         return GestureDetector(
                             onTap: () =>
                                 controller.selectCategory(item['name']),

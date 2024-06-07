@@ -1,13 +1,13 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
 
 import '../../../utils/app_images.dart';
 
-enum ImageType { png, svg, network, decorationImage }
+enum ImageType { png, svg, network }
 
 class CustomImage extends StatefulWidget {
   final String imageSrc;
@@ -15,6 +15,7 @@ class CustomImage extends StatefulWidget {
   final Color? imageColor;
   final double height;
   final double? width;
+  final double borderRadius;
   final ImageType imageType;
   final BoxFit fill;
 
@@ -22,6 +23,7 @@ class CustomImage extends StatefulWidget {
     required this.imageSrc,
     this.imageColor,
     this.height = 24,
+    this.borderRadius = 10,
     this.width,
     this.imageType = ImageType.svg,
     this.fill = BoxFit.fill,
@@ -67,67 +69,23 @@ class _CustomImageState extends State<CustomImage> {
     }
 
     if (widget.imageType == ImageType.network) {
-      imageWidget = Image.network(
-        widget.imageSrc,
-        color: widget.imageColor,
-        height: widget.height,
-        width: widget.width,
-        fit: widget.fill,
-        errorBuilder: (context, error, stackTrace) {
-          if (kDebugMode) {
-            print(widget.imageSrc);
-          }
-          return Image.asset(widget.defaultImage);
-        },
-        loadingBuilder: (BuildContext context, Widget child,
-            ImageChunkEvent? loadingProgress) {
-          if (loadingProgress == null) return child;
-          return Center(
-            child: CircularProgressIndicator(
-              value: loadingProgress.expectedTotalBytes != null
-                  ? loadingProgress.cumulativeBytesLoaded /
-                      loadingProgress.expectedTotalBytes!
-                  : null,
+      imageWidget = CachedNetworkImage(
+        imageUrl: widget.imageSrc,
+        imageBuilder: (context, imageProvider) => Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(widget.borderRadius),
+            image: DecorationImage(
+              image: imageProvider,
+              fit: BoxFit.fill,
             ),
-          );
-        },
+          ),
+        ),
+        progressIndicatorBuilder: (context, url, downloadProgress) =>
+            CircularProgressIndicator(value: downloadProgress.progress),
+        errorWidget: (context, url, error) => Image.asset(
+          widget.defaultImage,
+        ),
       );
-    }
-
-    if (widget.imageType == ImageType.decorationImage) {
-      imageWidget = Obx(() => notNetworkError.value
-          ? Container(
-              width: widget.width,
-              height: widget.height,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.r),
-                  image: DecorationImage(
-                    image: NetworkImage(widget.imageSrc),
-                    onError: (exception, stackTrace) {
-                      if (kDebugMode) {
-                        print("before: ${notNetworkError.value}");
-                      }
-
-                      notNetworkError.value = false;
-                      if (kDebugMode) {
-                        print("before: ${notNetworkError.value}");
-                        print(widget.imageSrc);
-                      }
-
-                      setState(() {});
-                    },
-                    fit: widget.fill,
-                  )),
-            )
-          : Container(
-              width: widget.width,
-              height: widget.height,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.r),
-                  image: DecorationImage(
-                      fit: widget.fill,
-                      image: AssetImage(widget.defaultImage))),
-            ));
     }
 
     return SizedBox(

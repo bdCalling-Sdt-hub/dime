@@ -23,10 +23,11 @@ class ApiService {
       'Accept-Language': PrefsHelper.localizationLanguageCode,
     };
 
-    print("==================================================> url $url");
-    print("==================================================> body $body");
-    print(
-        "==================================================> header $mainHeader");
+    if (kDebugMode) {
+      print("==================================================> url $url");
+      print("==================================================> body $body");
+      print("============================================> header $mainHeader");
+    }
 
     try {
       final response = await http
@@ -58,12 +59,17 @@ class ApiService {
       'Accept-Language': PrefsHelper.localizationLanguageCode
     };
 
-    print("==================================================> url $url");
+    if (kDebugMode) {
+      print("==================================================> url $url");
+      print("===========================> header ${header ?? mainHeader}");
+    }
 
     try {
       final response = await http
           .get(Uri.parse(url), headers: header ?? mainHeader)
           .timeout(const Duration(seconds: timeOut));
+
+      print(response.headersSplitValues);
       responseJson = handleResponse(response);
     } on SocketException {
       return ApiResponseModel(503, "No internet connection", '');
@@ -87,6 +93,12 @@ class ApiService {
       'Authorization': "Bearer ${PrefsHelper.token}",
       'Accept-Language': PrefsHelper.localizationLanguageCode
     };
+
+    if (kDebugMode) {
+      print("==================================================> url $url");
+      print("==================================================> body $body");
+      print("===========================> header ${header ?? mainHeader}");
+    }
 
     try {
       final response = await http
@@ -118,6 +130,12 @@ class ApiService {
       'Authorization': "Bearer ${PrefsHelper.token}",
       'Accept-Language': PrefsHelper.localizationLanguageCode
     };
+
+    if (kDebugMode) {
+      print("==================================================> url $url");
+      print("==================================================> body $body");
+      print("===========================> header ${header ?? mainHeader}");
+    }
 
     try {
       if (body != null) {
@@ -154,6 +172,12 @@ class ApiService {
       'Authorization': "Bearer ${PrefsHelper.token}",
       'Accept-Language': PrefsHelper.localizationLanguageCode
     };
+
+    if (kDebugMode) {
+      print("==================================================> url $url");
+      print("==================================================> body $body");
+      print("===========================> header ${header ?? mainHeader}");
+    }
 
     try {
       if (body != null) {
@@ -227,6 +251,11 @@ class ApiService {
   ///<<<================== Api Response Status Code Handle ====================>>>
 
   static dynamic handleResponse(http.Response response) {
+    if (kDebugMode) {
+      print("=========================> statusCode ${response.statusCode}");
+      print("====================================> body ${response.body}");
+      print("===============================> header  ${response.headers}");
+    }
     switch (response.statusCode) {
       case 200:
         return ApiResponseModel(response.statusCode,

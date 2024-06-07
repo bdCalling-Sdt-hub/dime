@@ -1,6 +1,6 @@
 class AppUrls {
   static const baseUrl = "http://192.168.10.61:3000/api/v1";
-  static const imageUrl = "http://192.168.10.61:3000/";
+  static const imageUrl = "http://192.168.10.61:3000";
   static const socketUrl = "http://192.168.10.61:3000";
 
   static const signUp = "$baseUrl/users/sign-up";
@@ -11,4 +11,7 @@ class AppUrls {
   static const resetPassword = "$baseUrl/users/reset-password";
   static const changePassword = "$baseUrl/users/change-password";
   static const user = "$baseUrl/users";
+  static const category = "$baseUrl/categories";
+  static const consultantList = "$baseUrl/users/consultant-list";
+  static const consultantDetails = "$baseUrl/users/consultant-details";
 }
