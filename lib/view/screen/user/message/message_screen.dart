@@ -90,7 +90,7 @@ class _MessageScreenState extends State<MessageScreen> {
                       return ChatBubbleMessage(
                         index: index,
                         image: message.image,
-                        isQuestion: message.isQuestion,
+                        isCall: message.isCall,
                         isNotice: message.isNotice,
                         time: message.time,
                         text: message.text,

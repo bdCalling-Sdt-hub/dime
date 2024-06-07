@@ -87,7 +87,7 @@ class SignUpController extends GetxController {
   void startTimer() {
     _timer?.cancel(); // Cancel any existing timer
     start = 180; // Reset the start value
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (start > 0) {
         start--;
         final minutes = (start ~/ 60).toString().padLeft(2, '0');
@@ -95,7 +95,6 @@ class SignUpController extends GetxController {
 
         time = "$minutes:$seconds";
 
-        print(timer);
 
         update();
       } else {

@@ -3,7 +3,7 @@ class ChatMessageModel {
   final String text;
   final String image;
   final bool isMe;
-  final bool isQuestion;
+  final bool isCall;
   final bool isNotice;
 
   ChatMessageModel({
@@ -11,7 +11,7 @@ class ChatMessageModel {
     required this.text,
     required this.image,
     required this.isMe,
-    this.isQuestion = false,
+    this.isCall = false,
     this.isNotice = false,
   });
 }

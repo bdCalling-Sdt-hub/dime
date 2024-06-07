@@ -1,5 +1,9 @@
+import 'package:dime/core/app_routes.dart';
+import 'package:dime/utils/app_icons.dart';
+import 'package:dime/view/common_widgets/image/custom_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import '../../../../../utils/app_colors.dart';
 import '../../../../common_widgets/text/custom_text.dart';
 
@@ -11,7 +15,7 @@ class ChatBubbleMessage extends StatelessWidget {
   final bool isEmoji;
   final int index;
   final int messageIndex;
-  final bool isQuestion;
+  final bool isCall;
   final bool isNotice;
   final VoidCallback onTap;
 
@@ -25,7 +29,7 @@ class ChatBubbleMessage extends StatelessWidget {
     this.isEmoji = false,
     this.index = 0,
     this.messageIndex = 1,
-    this.isQuestion = false,
+    this.isCall = false,
     this.isNotice = false,
   });
 
@@ -39,7 +43,7 @@ class ChatBubbleMessage extends StatelessWidget {
         children: [
           // //=======-============================Question====================================
 
-          isQuestion
+          isCall
               ? Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -53,25 +57,35 @@ class ChatBubbleMessage extends StatelessWidget {
                           height: 36.sp,
                           fit: BoxFit.fill,
                         ))),
-                    Container(
-                      margin: EdgeInsets.only(left: 10.w),
-                      padding: EdgeInsets.only(left: 10.w),
-                      width: 220,
-                      height: 120.h,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.r),
-                        color: AppColors.blueNormal,
-                      ),
+                    GestureDetector(
+                      onTap: () => Get.toNamed(AppRoutes.videoCall),
                       child: Container(
-                        alignment: Alignment.center,
-                        height: double.maxFinite,
-                        width: double.maxFinite,
+                        margin: EdgeInsets.only(left: 10.w),
+                        padding: EdgeInsets.only(left: 10.w),
+                        width: 220,
+                        height: 120,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(4.r),
-                            color: AppColors.white),
-                        child: CustomText(
-                          maxLines: 5,
-                          text: text,
+                          borderRadius: BorderRadius.circular(8.r),
+                          color: AppColors.white,
+                        ),
+                        child: Column(
+                          children: [
+                            const CustomImage(
+                              imageSrc: AppIcons.logo,
+                              fill: BoxFit.contain,
+                              height: 60,
+                            ),
+                            Container(
+                              color: AppColors.secondPrimary,
+                              width: 220,
+                              child: CustomText(
+                                maxLines: 5,
+                                text: text,
+                                fontSize: 18,
+                                color: AppColors.whiteNormal,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     )
@@ -92,7 +106,7 @@ class ChatBubbleMessage extends StatelessWidget {
                           : MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        if (isMe == false && isQuestion == false)
+                        if (isMe == false && isCall == false)
                           CircleAvatar(
                               backgroundColor: AppColors.white,
                               radius: 20.sp,
@@ -106,7 +120,7 @@ class ChatBubbleMessage extends StatelessWidget {
                         const SizedBox(
                           width: 8,
                         ),
-                        if (isQuestion == false)
+                        if (isCall == false)
                           Expanded(
                             child: Column(
                               crossAxisAlignment: isMe

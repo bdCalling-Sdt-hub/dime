@@ -16,6 +16,8 @@ class MessageController extends GetxController {
     ChatMessageModel(
         image: AppImages.profile, text: "hello", isMe: true, time: "9:30"),
     ChatMessageModel(
+        image: AppImages.profile, text: "Join Video Call \n At 10:30", isMe: true, time: "9:30", isCall: true),
+    ChatMessageModel(
         image: AppImages.doctorSarah, text: "hello", isMe: false, time: "9:30")
   ];
 
@@ -28,7 +30,7 @@ class MessageController extends GetxController {
       allowedExtensions: ['mp4'],
     );
 
-    if (result != null && result.paths.length > 0) {
+    if (result != null && result.paths.isNotEmpty) {
       video = result.paths[0];
       update();
     }
