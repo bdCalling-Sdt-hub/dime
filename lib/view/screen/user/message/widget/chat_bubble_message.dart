@@ -63,6 +63,7 @@ class ChatBubbleMessage extends StatelessWidget {
                         margin: EdgeInsets.only(left: 10.w),
                         padding: EdgeInsets.only(left: 10.w),
                         width: 220,
+
                         height: 120,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8.r),
