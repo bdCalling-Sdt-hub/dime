@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dime/models/api_response_model.dart';
 import 'package:dime/utils/app_icons.dart';
 import 'package:dime/utils/app_url.dart';
@@ -297,7 +299,7 @@ class _ConsultantDetailsScreenState extends State<ConsultantDetailsScreen> {
                               ),
                               CustomText(
                                 text:
-                                    "${"Video Reply".tr} \n \$ ${controller.consultantDetailsModel.consultant.videoReplyFee} min",
+                                    "${"Video Reply".tr} \n \$ ${controller.consultantDetailsModel.consultant.videoReplyFee} /min",
                                 maxLines: 2,
                               )
                             ],
@@ -309,7 +311,19 @@ class _ConsultantDetailsScreenState extends State<ConsultantDetailsScreen> {
                       ),
                       Expanded(
                           child: GestureDetector(
-                        onTap: () => Get.toNamed(AppRoutes.scheduleVideoCall),
+                        onTap: () => Get.toNamed(AppRoutes.scheduleVideoCall,
+                            parameters: {
+                              "id": controller
+                                  .consultantDetailsModel.consultant.id,
+                              "amount": controller.consultantDetailsModel
+                                  .consultant.videoConferenceFee
+                                  .toString(),
+                              "availability": jsonEncode(controller
+                                  .consultantDetailsModel
+                                  .consultant
+                                  .availability
+                                  .day)
+                            }),
                         child: Container(
                           height: 60.sp,
                           padding: EdgeInsets.only(left: 20.w),
@@ -329,7 +343,7 @@ class _ConsultantDetailsScreenState extends State<ConsultantDetailsScreen> {
                               ),
                               CustomText(
                                 text:
-                                    "${"Book a call".tr} \n \$ ${controller.consultantDetailsModel.consultant.videoReplyFee} min",
+                                    "${"Book a call".tr} \n \$ ${controller.consultantDetailsModel.consultant.videoConferenceFee} /min",
                                 maxLines: 2,
                                 color: AppColors.white,
                               )

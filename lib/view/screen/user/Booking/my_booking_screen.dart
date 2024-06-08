@@ -1,8 +1,14 @@
+import 'package:dime/models/api_response_model.dart';
+import 'package:dime/view/common_widgets/custom_loader.dart';
+import 'package:dime/view/common_widgets/error_screen.dart';
+import 'package:dime/view/common_widgets/no_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import '../../../../controllers/user/Booking/my_booking_controller.dart';
 import '../../../../core/app_routes.dart';
+import '../../../../models/my_booking_model.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_images.dart';
 import '../../../common_widgets/bottom nav bar/navbar.dart';
@@ -23,6 +29,7 @@ class _MyBookingScreenState extends State<MyBookingScreen>
   @override
   void initState() {
     controller.tabController = TabController(length: 4, vsync: this);
+
     super.initState();
   }
 
@@ -48,84 +55,59 @@ class _MyBookingScreenState extends State<MyBookingScreen>
                   controller: controller.tabController,
                   labelColor: AppColors.black,
                   unselectedLabelColor: Colors.black,
-                  onTap: controller.selectTab,
+                  isScrollable: true,
+                  onTap: (value) async {
+                    Future.delayed(
+                      Duration.zero,
+                      () => controller.getAppointmentsRepo(),
+                    );
+                  },
                   tabs: [
                     Tab(text: 'Upcoming'.tr),
                     Tab(text: 'Completed'.tr),
-                    Tab(text: 'Canceled'.tr),
+                    Tab(text: 'Confirm'.tr),
                     Tab(text: 'Pending'.tr),
                   ],
                 ),
                 Expanded(
                   child: TabBarView(
                     controller: controller.tabController,
-                    children: [
-                      Center(
-                        child: ListView.builder(
-                          itemCount: 10,
-                          itemBuilder: (context, index) {
-                            return DoctorBookItem(
-                              date: "Monday,March 12",
-                              time: "11:00 - 12:00 AM",
-                              image: AppImages.doctorSarah,
-                              name: "Dr. Sarah Johnson",
-                              rightButtonText: "View Details".tr,
-                              rightOnTap: () =>
-                                  Get.toNamed(AppRoutes.bookingDetails),
+                    children: List.generate(
+                      controller.tabController.length,
+                      (index) {
+                        switch (controller.status) {
+                          case Status.loading:
+                            return const CustomLoader();
+                          case Status.error:
+                            return ErrorScreen(
+                              onTap: () => () => print("object"),
                             );
-                          },
-                        ),
-                      ),
-                      Center(
-                        child: ListView.builder(
-                          itemCount: 10,
-                          itemBuilder: (context, index) {
-                            return DoctorBookItem(
-                              date: "March 12",
-                              time: "11:00 - 12:00 AM",
-                              image: AppImages.doctorSarah,
-                              name: "Dr. Sarah Johnson",
-                              rightButtonText: "Re-Schedule".tr,
-                              rightOnTap: () =>
-                                  Get.toNamed(AppRoutes.sendReview),
-                            );
-                          },
-                        ),
-                      ),
-                      Center(
-                        child: ListView.builder(
-                          itemCount: 10,
-                          itemBuilder: (context, index) {
-                            return DoctorBookItem(
-                              date: "March 12",
-                              time: "11:00 - 12:00 AM",
-                              image: AppImages.doctorSarah,
-                              rightButtonText: "View Details".tr,
-                              rightOnTap: () =>
-                                  Get.toNamed(AppRoutes.bookingDetails),
-                              name: "Dr. Sarah Johnson",
-                            );
-                          },
-                        ),
-                      ),
-                      Center(
-                        child: ListView.builder(
-                          itemCount: 10,
-                          itemBuilder: (context, index) {
-                            return DoctorBookItem(
-                              date: "March 12",
-                              time: "11:00 - 12:00 AM",
-                              image: AppImages.doctorSarah,
-                              rightButtonText: "View Details".tr,
-                              rightOnTap: () =>
-                                  Get.toNamed(AppRoutes.bookingDetails),
-                              name: "Dr. Sarah Johnson",
-                            );
-                          },
-                        ),
-                      ),
-                    ],
-                    // Specify the controller here
+                          case Status.completed:
+                            if (controller.appointmentList.isEmpty) {
+                              return const NoData();
+                            } else {
+                              return ListView.builder(
+                                itemCount: controller.appointmentList.length,
+                                itemBuilder: (context, index) {
+                                  var item = controller.appointmentList[index];
+                                  return DoctorBookItem(
+                                    date: DateFormat('MMMM d')
+                                        .format(item.appointmentTime),
+                                    time:
+                                        "${controller.time(item.appointmentTime)} - ${controller.time(item.appointmentTime, duration: item.duration)}",
+                                    image: AppImages.doctorSarah,
+                                    rightButtonText: "View Details".tr,
+                                    rightOnTap: () =>
+                                        Get.toNamed(AppRoutes.bookingDetails),
+                                    name: item.consultant.fullName,
+                                  );
+                                },
+                              );
+                            }
+                          // Handle other cases if needed
+                        }
+                      },
+                    ),
                   ),
                 ),
               ],
