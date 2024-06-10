@@ -80,6 +80,7 @@ class PatientsHomeScreen extends StatelessWidget {
                         fontSize: 32.sp,
                         fontWeight: FontWeight.w800,
                         maxLines: 2,
+                        bottom: 20.h,
                         textAlign: TextAlign.start,
                         color: AppColors.white,
                       ),
@@ -89,15 +90,22 @@ class PatientsHomeScreen extends StatelessWidget {
                           children: [
                             Expanded(
                               child: CustomTextField(
+                                controller: controller.searchController,
                                 hindText: "Find an expert".tr,
                                 textStyle:
                                     const TextStyle(color: AppColors.greyLight),
                                 cursorColor: AppColors.greyLight,
+                                fieldFocusBorderColor: AppColors.white,
                                 prefixIcon: const Icon(
                                   Icons.search,
                                   color: AppColors.white,
                                 ),
                                 fillColor: AppColors.transparent,
+                                fieldBorderColor: AppColors.white,
+                                onFieldSubmitted: (po) {
+                                  controller.page = 1;
+                                  controller.getTopAdvisorRepo();
+                                },
                               ),
                             ),
                             Container(
@@ -110,9 +118,15 @@ class PatientsHomeScreen extends StatelessWidget {
                                   ),
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(10.r))),
-                              child: const Icon(
-                                Icons.near_me_outlined,
-                                color: AppColors.white,
+                              child: IconButton(
+                                onPressed: () {
+                                  controller.page = 1;
+                                  controller.getTopAdvisorRepo();
+                                },
+                                icon: const Icon(
+                                  Icons.near_me_outlined,
+                                  color: AppColors.white,
+                                ),
                               ),
                             )
                           ],

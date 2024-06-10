@@ -26,6 +26,7 @@ class CategoryListController extends GetxController {
   selectCategory(String category, String id) {
     selectedCategory = category;
     categoryId = id;
+    searchController.clear();
     update();
 
     page = 1;

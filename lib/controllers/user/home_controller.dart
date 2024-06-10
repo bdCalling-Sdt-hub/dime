@@ -6,6 +6,7 @@ import 'package:dime/services/api_service.dart';
 import 'package:dime/utils/app_url.dart';
 import 'package:dime/utils/app_utils.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../models/consultantListModel.dart';
 
@@ -13,11 +14,27 @@ class HomeControllerPatients extends GetxController {
   List categories = [];
 
   List doctors = [];
+  bool isMoreLoading = false;
 
   Status serviceStatus = Status.completed;
   TextEditingController searchController = TextEditingController();
+  ScrollController scrollController = ScrollController();
 
-  static HomeControllerPatients get instance => Get.put(HomeControllerPatients());
+  static HomeControllerPatients get instance =>
+      Get.put(HomeControllerPatients());
+
+  int page = 1;
+
+  Future<void> scrollControllerCall() async {
+    if (scrollController.position.pixels ==
+        scrollController.position.maxScrollExtent) {
+      isMoreLoading = true;
+      update();
+      await getTopAdvisorRepo();
+      isMoreLoading = false;
+      update();
+    }
+  }
 
   getServicesRepo() async {
     serviceStatus = Status.loading;
@@ -26,7 +43,8 @@ class HomeControllerPatients extends GetxController {
     var response = await ApiService.getApi(AppUrls.category);
 
     if (response.statusCode == 200) {
-      List data = jsonDecode(response.body)['data']['attributes']["categoryList"] ?? [];
+      List data =
+          jsonDecode(response.body)['data']['attributes']["categoryList"] ?? [];
 
       if (data.isNotEmpty) {
         for (var item in data) {
@@ -43,10 +61,14 @@ class HomeControllerPatients extends GetxController {
   }
 
   getTopAdvisorRepo() async {
-    serviceStatus = Status.loading;
-    update();
+    if (page == 1) {
+      doctors.clear();
+      serviceStatus = Status.loading;
+      update();
+    }
 
-    var response = await ApiService.getApi(AppUrls.consultantList);
+    var response = await ApiService.getApi(
+        "${AppUrls.consultantList}?search=${searchController.text}");
 
     if (response.statusCode == 200) {
       List data =

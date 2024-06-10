@@ -59,8 +59,10 @@ class _CategoriseListScreenState extends State<CategoriseListScreen> {
                             controller: controller.searchController,
                             hindText: "Find an expert".tr,
                             cursorColor: AppColors.blueNormal,
-                            onFieldSubmitted: (p0) =>
-                                controller.getConsultantsRepo(),
+                            onFieldSubmitted: (p0) {
+                              controller.page = 1;
+                              controller.getConsultantsRepo();
+                            },
                             prefixIcon: const Icon(
                               Icons.search,
                             ),

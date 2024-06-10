@@ -25,7 +25,8 @@ class CustomTextField extends StatefulWidget {
       this.suffixIcon,
       this.suffixIconColor,
       this.fieldBorderRadius,
-      this.fieldBorderColor = const Color(0xffE7F0FD),
+      this.fieldBorderColor = AppColors.black,
+      this.fieldFocusBorderColor = AppColors.secondPrimary,
       this.isPassword = false,
       this.isPrefixIcon = true,
       this.readOnly = false,
@@ -62,6 +63,7 @@ class CustomTextField extends StatefulWidget {
   final VoidCallback? onTap;
 
   final Color fieldBorderColor;
+  final Color fieldFocusBorderColor;
   final bool isPassword;
   final bool isPrefixIcon;
   final bool isEnabled;
@@ -132,6 +134,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
               )
             : widget.suffixIcon,
         suffixIconColor: widget.suffixIconColor,
+
         border: OutlineInputBorder(
             borderRadius:
                 BorderRadius.circular(widget.fieldBorderRadius ?? 16.r),
@@ -141,7 +144,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             borderRadius:
                 BorderRadius.circular(widget.fieldBorderRadius ?? 16.r),
             borderSide:
-                const BorderSide(color: AppColors.secondPrimary, width: 1),
+                BorderSide(color: widget.fieldFocusBorderColor, width: 1),
             gapPadding: 0),
         enabledBorder: OutlineInputBorder(
             borderRadius:
