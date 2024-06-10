@@ -1,7 +1,7 @@
+import 'package:dime/helpers/prefs_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
 
 import '../../../../core/app_routes.dart';
 import '../../../../utils/app_icons.dart';
@@ -20,7 +20,17 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     Future.delayed(
       const Duration(seconds: 3),
-      () => Get.offAllNamed(AppRoutes.onboarding),
+      () {
+        if (PrefsHelper.isLogIn) {
+          if (PrefsHelper.myRole == 'consultant') {
+            Get.offAllNamed(AppRoutes.doctorHome);
+          } else {
+            Get.offAllNamed(AppRoutes.patientsHome);
+          }
+        } else {
+          Get.offAllNamed(AppRoutes.onboarding);
+        }
+      },
     );
     super.initState();
   }

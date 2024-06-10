@@ -5,6 +5,7 @@ import 'package:dime/models/category_model.dart';
 import 'package:dime/services/api_service.dart';
 import 'package:dime/utils/app_url.dart';
 import 'package:dime/utils/app_utils.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import '../../models/consultantListModel.dart';
 
@@ -14,6 +15,9 @@ class HomeControllerPatients extends GetxController {
   List doctors = [];
 
   Status serviceStatus = Status.completed;
+  TextEditingController searchController = TextEditingController();
+
+  static HomeControllerPatients get instance => Get.put(HomeControllerPatients());
 
   getServicesRepo() async {
     serviceStatus = Status.loading;
@@ -22,7 +26,7 @@ class HomeControllerPatients extends GetxController {
     var response = await ApiService.getApi(AppUrls.category);
 
     if (response.statusCode == 200) {
-      List data = jsonDecode(response.body)['data']['attributes'] ?? [];
+      List data = jsonDecode(response.body)['data']['attributes']["categoryList"] ?? [];
 
       if (data.isNotEmpty) {
         for (var item in data) {

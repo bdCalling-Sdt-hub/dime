@@ -203,7 +203,7 @@ class PatientsHomeScreen extends StatelessWidget {
                           ConsultantListModel item = controller.doctors[index];
                           return ListItem(
                             item: item,
-                            onTap: () => Get.toNamed(AppRoutes.doctorDetails,
+                            onTap: () => Get.toNamed(AppRoutes.test,
                                 parameters: {"id": item.id}),
                           );
                         },

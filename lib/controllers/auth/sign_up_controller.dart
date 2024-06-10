@@ -37,6 +37,7 @@ class SignUpController extends GetxController {
   TextEditingController numberController = TextEditingController();
   TextEditingController governmentIdController = TextEditingController();
   TextEditingController otpController = TextEditingController();
+
   @override
   void dispose() {
     _timer?.cancel();
@@ -82,7 +83,8 @@ class SignUpController extends GetxController {
       Utils.snackBarMessage(response.statusCode.toString(), response.message);
     }
     isLoading = false;
-    update();  }
+    update();
+  }
 
   void startTimer() {
     _timer?.cancel(); // Cancel any existing timer
@@ -94,7 +96,6 @@ class SignUpController extends GetxController {
         final seconds = (start % 60).toString().padLeft(2, '0');
 
         time = "$minutes:$seconds";
-
 
         update();
       } else {
@@ -120,7 +121,7 @@ class SignUpController extends GetxController {
       PrefsHelper.myName = data['data']["attributes"]["fullName"];
       PrefsHelper.myRole = data['data']["attributes"]["role"];
       PrefsHelper.myEmail = data['data']["attributes"]["email"];
-      PrefsHelper.isLogIn = false;
+      PrefsHelper.isLogIn = true;
 
       PrefsHelper.setString('token', PrefsHelper.token);
       PrefsHelper.setString("userId", PrefsHelper.token);
@@ -128,7 +129,7 @@ class SignUpController extends GetxController {
       PrefsHelper.setString("myName", PrefsHelper.token);
       PrefsHelper.setString("myEmail", PrefsHelper.token);
       PrefsHelper.setString("myRole", PrefsHelper.myRole);
-      PrefsHelper.setBool("isLogIn", false);
+      PrefsHelper.setBool("isLogIn", PrefsHelper.isLogIn);
 
       if (PrefsHelper.myRole == 'consultant') {
         Get.offAllNamed(AppRoutes.doctorHome);

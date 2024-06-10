@@ -28,13 +28,13 @@ class PrefsHelper extends GetxController {
     myEmail = preferences.getString("myEmail") ?? "";
     isLogIn = preferences.getBool("isLogIn") ?? false;
     isNotifications = preferences.getBool("isNotifications") ?? true;
-    // userType = preferences.getString("userType") ?? "doctor";
+    myRole = preferences.getString("myRole") ?? "user";
     localizationCountryCode =
         preferences.getString("localizationCountryCode") ?? "US";
     localizationLanguageCode =
         preferences.getString("localizationLanguageCode") ?? "en";
 
-    print(userId);
+    print(isLogIn);
   }
 
   ///<<<======================== Get All Data Form Shared Preference ============>

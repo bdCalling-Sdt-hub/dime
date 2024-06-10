@@ -15,4 +15,7 @@ class AppUrls {
   static const consultantList = "$baseUrl/users/consultant-list";
   static const consultantDetails = "$baseUrl/users/consultant-details";
   static const appointments = "$baseUrl/appointments";
+  static const blogs = "$baseUrl/blogs/users";
+  static const avgReviews = "$baseUrl/reviews/details";
+  static const reviews = "$baseUrl/reviews";
 }

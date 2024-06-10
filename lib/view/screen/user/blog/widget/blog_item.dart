@@ -36,7 +36,7 @@ class BlogItem extends StatelessWidget {
         children: [
           CustomImage(
             imageSrc: image,
-            imageType: ImageType.png,
+            imageType: ImageType.network,
             height: 96.sp,
           ),
           SizedBox(
@@ -55,7 +55,7 @@ class BlogItem extends StatelessWidget {
                       fontSize: 20.sp,
                     ),
                     CustomText(
-                      text: "\$ $price",
+                      text: "\$$price",
                       fontWeight: FontWeight.w700,
                     ),
                   ],

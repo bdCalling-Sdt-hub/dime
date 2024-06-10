@@ -31,7 +31,7 @@ class Category {
   String name;
   String key;
   String image;
-  int v;
+  num v;
 
   Category({
     required this.id,
@@ -71,19 +71,19 @@ class ConsultantListModel {
   String image;
   String password;
   String role;
-  int consultationCompleted;
-  int ratings;
-  int averageResponseTime;
+  num consultationCompleted;
+  num ratings;
+  num averageResponseTime;
   String createdAt;
   String updatedAt;
-  int v;
+  num v;
   String aboutMe;
   Availability availability;
   List<Category> category;
   String gender;
   String title;
-  int videoConferenceFee;
-  int videoReplyFee;
+  num videoConferenceFee;
+  num videoReplyFee;
 
   ConsultantListModel({
     required this.id,

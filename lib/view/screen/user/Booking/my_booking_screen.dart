@@ -14,6 +14,7 @@ import '../../../../utils/app_images.dart';
 import '../../../common_widgets/bottom nav bar/navbar.dart';
 import '../../../common_widgets/doctor/doctor_book_item.dart';
 import '../../../common_widgets/text/custom_text.dart';
+import 'widget/booking_list.dart';
 
 class MyBookingScreen extends StatefulWidget {
   const MyBookingScreen({super.key});
@@ -55,6 +56,7 @@ class _MyBookingScreenState extends State<MyBookingScreen>
                   controller: controller.tabController,
                   labelColor: AppColors.black,
                   unselectedLabelColor: Colors.black,
+                  tabAlignment: TabAlignment.start,
                   isScrollable: true,
                   onTap: (value) async {
                     Future.delayed(
@@ -71,44 +73,13 @@ class _MyBookingScreenState extends State<MyBookingScreen>
                 ),
                 Expanded(
                   child: TabBarView(
-                    controller: controller.tabController,
-                    children: List.generate(
-                      controller.tabController.length,
-                      (index) {
-                        switch (controller.status) {
-                          case Status.loading:
-                            return const CustomLoader();
-                          case Status.error:
-                            return ErrorScreen(
-                              onTap: () => () => print("object"),
-                            );
-                          case Status.completed:
-                            if (controller.appointmentList.isEmpty) {
-                              return const NoData();
-                            } else {
-                              return ListView.builder(
-                                itemCount: controller.appointmentList.length,
-                                itemBuilder: (context, index) {
-                                  var item = controller.appointmentList[index];
-                                  return DoctorBookItem(
-                                    date: DateFormat('MMMM d')
-                                        .format(item.appointmentTime),
-                                    time:
-                                        "${controller.time(item.appointmentTime)} - ${controller.time(item.appointmentTime, duration: item.duration)}",
-                                    image: AppImages.doctorSarah,
-                                    rightButtonText: "View Details".tr,
-                                    rightOnTap: () =>
-                                        Get.toNamed(AppRoutes.bookingDetails),
-                                    name: item.consultant.fullName,
-                                  );
-                                },
-                              );
-                            }
-                          // Handle other cases if needed
-                        }
-                      },
-                    ),
-                  ),
+                      controller: controller.tabController,
+                      children: const [
+                        BookingList(),
+                        BookingList(),
+                        BookingList(),
+                        BookingList(),
+                      ]),
                 ),
               ],
             );
@@ -121,3 +92,4 @@ class _MyBookingScreenState extends State<MyBookingScreen>
     );
   }
 }
+

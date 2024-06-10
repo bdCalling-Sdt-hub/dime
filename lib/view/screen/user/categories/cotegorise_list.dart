@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import '../../../../controllers/user/category_list_controller.dart';
 import '../../../../controllers/user/home_controller.dart';
 import '../../../../core/app_routes.dart';
+import '../../../../models/category_model.dart';
+import '../../../../models/consultantListModel.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_images.dart';
 import '../../../common_widgets/bottom nav bar/navbar.dart';
@@ -20,14 +22,14 @@ class CategoriseListScreen extends StatefulWidget {
 }
 
 class _CategoriseListScreenState extends State<CategoriseListScreen> {
-  HomeControllerPatients homeControllerPatients =
-      Get.put(HomeControllerPatients());
-
   CategoryListController controller = Get.put(CategoryListController());
 
   @override
   void initState() {
     controller.selectedCategory = Get.parameters['category'] ?? "";
+    controller.page = 1;
+    controller.getConsultantsRepo();
+
     super.initState();
   }
 
@@ -54,8 +56,11 @@ class _CategoriseListScreenState extends State<CategoriseListScreen> {
                       children: [
                         Expanded(
                           child: CustomTextField(
+                            controller: controller.searchController,
                             hindText: "Find an expert".tr,
                             cursorColor: AppColors.blueNormal,
+                            onFieldSubmitted: (p0) =>
+                                controller.getConsultantsRepo(),
                             prefixIcon: const Icon(
                               Icons.search,
                             ),
@@ -73,8 +78,11 @@ class _CategoriseListScreenState extends State<CategoriseListScreen> {
                               ),
                               borderRadius:
                                   BorderRadius.all(Radius.circular(10.r))),
-                          child: const Icon(
-                            Icons.near_me_outlined,
+                          child: IconButton(
+                            onPressed: controller.getConsultantsRepo,
+                            icon: const Icon(
+                              Icons.near_me_outlined,
+                            ),
                           ),
                         )
                       ],
@@ -87,38 +95,38 @@ class _CategoriseListScreenState extends State<CategoriseListScreen> {
                     height: 40.h,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: homeControllerPatients.categories.length + 1,
+                      itemCount:
+                          HomeControllerPatients.instance.categories.length + 1,
                       itemBuilder: (context, index) {
-                        var item = index == 0
-                            ? {"name": "All"}
-                            : homeControllerPatients.categories[index - 1];
+                        CategoryModel item = HomeControllerPatients
+                            .instance.categories[index == 0 ? 0 : index - 1];
+
+                        String name = index == 0 ? "All" : item.name;
+                        String id = index == 0 ? "" : item.id;
                         return GestureDetector(
-                            onTap: () =>
-                                controller.selectCategory(item['name']),
+                            onTap: () => controller.selectCategory(name, id),
                             child: Container(
                                 padding: EdgeInsets.symmetric(
                                     vertical: 8.sp,
                                     horizontal: index == 0 ? 16.sp : 8.sp),
                                 margin: EdgeInsets.only(left: 8.w),
                                 decoration: BoxDecoration(
-                                    color: controller.selectedCategory !=
-                                            item['name']
+                                    color: controller.selectedCategory != name
                                         ? AppColors.transparent
                                         : AppColors.secondPrimary,
                                     border: Border.all(
-                                        color: controller.selectedCategory !=
-                                                item['name']
-                                            ? AppColors.greyDark
-                                            : AppColors.transparent),
+                                        color:
+                                            controller.selectedCategory != name
+                                                ? AppColors.greyDark
+                                                : AppColors.transparent),
                                     borderRadius: BorderRadius.circular(
                                       8.sp,
                                     )),
                                 child: CustomText(
-                                  text: item['name'],
+                                  text: name,
                                   fontWeight: FontWeight.w400,
                                   fontSize: 16.sp,
-                                  color: controller.selectedCategory !=
-                                          item['name']
+                                  color: controller.selectedCategory != name
                                       ? AppColors.black
                                       : AppColors.secondary,
                                 )));
