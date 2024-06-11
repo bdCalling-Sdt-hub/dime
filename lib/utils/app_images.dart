@@ -64,4 +64,6 @@ class AppImages {
   static const String blog = "$baseurl/blog.png";
 
   static const String card = "$baseurl/card.png";
+  static const String callerImg = "$baseurl/callerImg.png";
+  static const String patient_1 = "$baseurl/patient_1.png";
 }

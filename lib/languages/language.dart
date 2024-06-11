@@ -83,6 +83,11 @@ class LocalConstants extends Translations {
           "Inbox": "Inbox",
           "Consultant Service!": "Consultant Service!",
           "Let’s find": "Let’s find",
+          "Confirm": "Confirm",
+          "Bank Name": "Bank Name",
+          "Account Number": "Account Number",
+          "Account Type": "Account Type",
+          "Cedula Number": "Cedula Number",
 
           ///new string =================================/=/=/=/=/==/=/=/==/
 

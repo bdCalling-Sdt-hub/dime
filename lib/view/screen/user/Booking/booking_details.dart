@@ -1,3 +1,5 @@
+import 'package:dime/core/app_routes.dart';
+import 'package:dime/view/common_widgets/button/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -130,11 +132,16 @@ class BookingDetails extends StatelessWidget {
                   ),
                 ],
               ),
+              SizedBox(height: 36.h),
+              CustomButton(
+                titleText: "Join".tr,
+                titleSize: 24.sp,
+                onTap: () => Get.toNamed(AppRoutes.videoCall),
+              )
             ],
           ),
         ),
       ),
-
       bottomNavigationBar: const CustomBottomNavBar(
         currentIndex: 9,
       ),

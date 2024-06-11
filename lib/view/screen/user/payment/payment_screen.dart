@@ -1,3 +1,5 @@
+import 'package:dime/controllers/user/Booking/my_booking_controller.dart';
+import 'package:dime/core/app_routes.dart';
 import 'package:dime/helpers/other_helper.dart';
 import 'package:dime/utils/app_colors.dart';
 import 'package:dime/view/common_widgets/button/custom_button.dart';
@@ -9,95 +11,84 @@ import 'package:get/get.dart';
 import '../../../../controllers/user/payment/payment_controller.dart';
 import '../../../common_widgets/bottom nav bar/navbar.dart';
 import '../../../common_widgets/text/custom_text.dart';
-import 'widget/transaction_success.dart';
 
 class PaymentScreen extends StatelessWidget {
-  const PaymentScreen({super.key});
+  PaymentScreen({super.key});
+
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: CustomText(
-            text: "Payment".tr,
-            fontWeight: FontWeight.w600,
-            fontSize: 24.sp,
+      appBar: AppBar(
+        centerTitle: true,
+        title: CustomText(
+          text: "Payment".tr,
+          fontWeight: FontWeight.w600,
+          fontSize: 24.sp,
+        ),
+      ),
+      body: GetBuilder<PaymentController>(
+        builder: (controller) => SingleChildScrollView(
+          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
+          child: Column(
+            children: [
+              CustomTextField(
+                controller: controller.nameController,
+                labelText: 'Account holder Name'.tr,
+                validator: OtherHelper.validator,
+                fillColor: AppColors.transparent,
+                fieldBorderColor: AppColors.black,
+                fieldBorderRadius: 4.r,
+              ),
+              SizedBox(
+                height: 16.h,
+              ),
+              CustomTextField(
+                controller: controller.nameController,
+                labelText: 'Transaction ID'.tr,
+                validator: OtherHelper.validator,
+                fillColor: AppColors.transparent,
+                fieldBorderColor: AppColors.black,
+                fieldBorderRadius: 4.r,
+              ),
+              SizedBox(
+                height: 16.h,
+              ),
+              CustomTextField(
+                controller: controller.accountNumberController,
+                labelText: 'Account Number'.tr,
+                validator: OtherHelper.validator,
+                fillColor: AppColors.transparent,
+                keyboardType: TextInputType.number,
+                fieldBorderColor: AppColors.black,
+                fieldBorderRadius: 4.r,
+              ),
+              SizedBox(
+                height: 16.h,
+              ),
+              CustomTextField(
+                controller: controller.accountNumberController,
+                labelText: 'Amount'.tr,
+                validator: OtherHelper.validator,
+                fillColor: AppColors.transparent,
+                keyboardType: TextInputType.number,
+                fieldBorderColor: AppColors.black,
+                fieldBorderRadius: 4.r,
+              ),
+              SizedBox(
+                height: 40.h,
+              ),
+              CustomButton(
+                titleText: 'Payment',
+                onTap: () {
+                  Get.toNamed(AppRoutes.myBooking, parameters: {"index": "2"});
+                },
+              )
+            ],
           ),
         ),
-        body: GetBuilder<PaymentController>(
-          builder: (controller) => SingleChildScrollView(
-            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
-            child: controller.paymentSuccess
-                ? const TransactionSuccess(
-                    amount: 200.00,
-                    cardNumber: 1213456789369852,
-                  )
-                : Column(
-                    children: [
-                      CustomTextField(
-                        controller: controller.nameController,
-                        labelText: 'Account holder Name'.tr,
-                        validator: OtherHelper.validator,
-                        fillColor: AppColors.transparent,
-                        fieldBorderColor: AppColors.black,
-                        fieldBorderRadius: 4.r,
-                      ),
-                      SizedBox(
-                        height: 16.h,
-                      ),
-                      CustomTextField(
-                        controller: controller.cardNumberController,
-                        labelText: 'Card Number'.tr,
-                        validator: OtherHelper.validator,
-                        fillColor: AppColors.transparent,
-                        keyboardType: TextInputType.number,
-                        fieldBorderColor: AppColors.black,
-                        fieldBorderRadius: 4.r,
-                      ),
-                      SizedBox(
-                        height: 16.h,
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: CustomTextField(
-                              controller: controller.expDateController,
-                              labelText: 'Exp Date',
-                              validator: OtherHelper.validator,
-                              fillColor: AppColors.transparent,
-                              fieldBorderColor: AppColors.black,
-                              fieldBorderRadius: 4.r,
-                              keyboardType: TextInputType.number,
-                            ),
-                          ),
-                          SizedBox(
-                            width: 16.h,
-                          ),
-                          Expanded(
-                            child: CustomTextField(
-                              controller: controller.cvvNumberController,
-                              labelText: 'CVV Number',
-                              validator: OtherHelper.validator,
-                              fillColor: AppColors.transparent,
-                              fieldBorderColor: AppColors.black,
-                              keyboardType: TextInputType.number,
-                              fieldBorderRadius: 4.r,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 400.h,
-                      ),
-                      CustomButton(
-                        titleText: 'Payment',
-                        onTap: () => controller.setPayment(true),
-                      )
-                    ],
-                  ),
-          ),
-        ),
+      ),
       bottomNavigationBar: const CustomBottomNavBar(
         currentIndex: 9,
       ),

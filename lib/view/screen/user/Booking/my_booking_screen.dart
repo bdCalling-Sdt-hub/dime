@@ -19,10 +19,12 @@ class MyBookingScreen extends StatefulWidget {
 class _MyBookingScreenState extends State<MyBookingScreen>
     with SingleTickerProviderStateMixin {
   MyBookingController controller = Get.put(MyBookingController());
+  String index = Get.parameters["index"] ?? "3";
 
   @override
   void initState() {
-    controller.tabController = TabController(length: 4, vsync: this);
+    controller.tabController = TabController(length: 5, vsync: this);
+    controller.tabController.index = int.tryParse(index) ?? 3;
     super.initState();
   }
 
@@ -48,12 +50,15 @@ class _MyBookingScreenState extends State<MyBookingScreen>
                   controller: controller.tabController,
                   labelColor: AppColors.black,
                   unselectedLabelColor: Colors.black,
+                  isScrollable: true,
+                  tabAlignment: TabAlignment.start,
                   onTap: controller.selectTab,
                   tabs: [
+                    Tab(text: 'Pending'.tr),
+                    Tab(text: 'Payment'.tr),
+                    Tab(text: 'Payment Status'.tr),
                     Tab(text: 'Upcoming'.tr),
                     Tab(text: 'Completed'.tr),
-                    Tab(text: 'Canceled'.tr),
-                    Tab(text: 'Pending'.tr),
                   ],
                 ),
                 Expanded(
@@ -85,9 +90,25 @@ class _MyBookingScreenState extends State<MyBookingScreen>
                               time: "11:00 - 12:00 AM",
                               image: AppImages.doctorSarah,
                               name: "Dr. Sarah Johnson",
-                              rightButtonText: "Re-Schedule".tr,
+                              rightButtonText: "Payment".tr,
                               rightOnTap: () =>
-                                  Get.toNamed(AppRoutes.sendReview),
+                                  Get.toNamed(AppRoutes.paymentMethod),
+                            );
+                          },
+                        ),
+                      ),
+                      Center(
+                        child: ListView.builder(
+                          itemCount: 10,
+                          itemBuilder: (context, index) {
+                            return DoctorBookItem(
+                              date: "March 12",
+                              time: "11:00 - 12:00 AM",
+                              image: AppImages.doctorSarah,
+                              rightButtonText: "View Details".tr,
+                              rightOnTap: () =>
+                                  Get.toNamed(AppRoutes.bookingDetails),
+                              name: "Dr. Sarah Johnson",
                             );
                           },
                         ),

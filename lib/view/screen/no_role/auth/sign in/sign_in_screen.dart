@@ -31,10 +31,16 @@ class SignInScreen extends StatelessWidget {
                 key: formKey,
                 child: Column(
                   children: [
+                    Center(
+                        child: CustomImage(
+                      imageSrc: AppIcons.logo,
+                      height: 70.h,
+                    )),
                     CustomText(
                       text: "Login to Your Account".tr,
                       fontSize: 32.sp,
                       bottom: 20.h,
+                      top: 36.h,
                     ),
                     SizedBox(
                       height: 20.h,
@@ -74,11 +80,10 @@ class SignInScreen extends StatelessWidget {
                       isLoading: controller.isLoading,
                       onTap: () {
                         if (formKey.currentState!.validate()) {
-                          controller.signInUser();
+                          Get.toNamed(AppRoutes.patientsHome);
                         }
                       },
                     ),
-
                     SizedBox(
                       height: 30.h,
                     ),
@@ -87,7 +92,7 @@ class SignInScreen extends StatelessWidget {
                       isLoading: controller.isLoading,
                       onTap: () {
                         if (formKey.currentState!.validate()) {
-                          controller.signInUser();
+                          Get.toNamed(AppRoutes.doctorHome);
                         }
                       },
                     ),

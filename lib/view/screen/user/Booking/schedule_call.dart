@@ -165,12 +165,13 @@ class SelectDataTime extends StatelessWidget {
                     height: 20.h,
                   ),
                   CustomButton(
-                    titleText: "Pay".tr,
+                    titleText: "Appointment".tr,
                     onTap: () {
                       if (formKey.currentState!.validate()) {
                         if (controller.selectedData != "") {
                           if (controller.selectedTime != '') {
-                            Get.toNamed(AppRoutes.paymentMethod);
+                            Get.toNamed(AppRoutes.myBooking,
+                                parameters: {"index": "0"});
                           } else {
                             Utils.snackBarMessage(
                                 'time', "please, select time");
@@ -187,7 +188,6 @@ class SelectDataTime extends StatelessWidget {
           );
         },
       ),
-
       bottomNavigationBar: const CustomBottomNavBar(
         currentIndex: 9,
       ),
