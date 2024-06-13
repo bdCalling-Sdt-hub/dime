@@ -45,18 +45,19 @@ class ChatBubbleMessage extends StatelessWidget {
 
           isCall
               ? Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CircleAvatar(
-                        backgroundColor: AppColors.white,
-                        radius: 20.sp,
-                        child: ClipOval(
-                            child: Image.asset(
-                          image,
-                          width: 36.sp,
-                          height: 36.sp,
-                          fit: BoxFit.fill,
-                        ))),
+                    // CircleAvatar(
+                    //     backgroundColor: AppColors.white,
+                    //     radius: 20.sp,
+                    //     child: ClipOval(
+                    //         child: Image.asset(
+                    //       image,
+                    //       width: 36.sp,
+                    //       height: 36.sp,
+                    //       fit: BoxFit.fill,
+                    //     ))),
                     GestureDetector(
                       onTap: () => Get.toNamed(AppRoutes.videoCall),
                       child: Container(
@@ -166,17 +167,6 @@ class ChatBubbleMessage extends StatelessWidget {
                         const SizedBox(
                           width: 8,
                         ),
-                        if (isMe)
-                          CircleAvatar(
-                              backgroundColor: AppColors.white,
-                              radius: 20.sp,
-                              child: ClipOval(
-                                  child: Image.asset(
-                                image,
-                                width: 36.sp,
-                                height: 36.sp,
-                                fit: BoxFit.fill,
-                              ))),
                       ],
                     ),
         ],

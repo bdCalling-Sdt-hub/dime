@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dime/helpers/other_helper.dart';
 import 'package:dime/utils/app_utils.dart';
 import 'package:dime/view/common_widgets/pop%20up/custom_pop_up_menu_button.dart';
@@ -192,8 +190,8 @@ class _SelectDataTimeState extends State<SelectDataTime> {
                       if (formKey.currentState!.validate()) {
                         if (controller.selectedData != "") {
                           if (controller.selectedTime != '') {
-                            controller.bookAppointment();
-                            // Get.toNamed(AppRoutes.paymentMethod);
+                            Get.toNamed(AppRoutes.myBooking,
+                                parameters: {"index": "0"});
                           } else {
                             Utils.snackBarMessage(
                                 'time', "please, select time");

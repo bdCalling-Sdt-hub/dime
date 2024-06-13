@@ -1,11 +1,13 @@
 import 'package:get/get.dart';
 
 class SelectPaymentMethodController extends GetxController {
-  List selectedOption = ["Credit Card", "Paypal",];
+  List selectedOption = [
+    "Bank Transfer",
+    "Credit Card",
+    "Paypal",
+  ];
 
-  String selectRole = "Credit Card";
-
-
+  String selectRole = "Bank Transfer";
 
   setSelectedRole(value) {
     selectRole = value;

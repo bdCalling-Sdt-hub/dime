@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:dime/models/api_response_model.dart';
 import 'package:dime/models/my_booking_model.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,6 +16,12 @@ class MyBookingController extends GetxController {
 
   List statusList = ["upcoming", "completed", "Confirm", "pending"];
 
+  static MyBookingController get instance => Get.put(MyBookingController());
+
+  selectTab(value) {
+    if (kDebugMode) {
+      print(value);
+    }
   late MyAppointmentModel myBookingModel;
   List appointmentList = [];
 

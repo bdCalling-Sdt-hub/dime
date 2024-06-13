@@ -1,3 +1,4 @@
+import 'package:dime/controllers/user/Booking/my_booking_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -58,13 +59,14 @@ class ProfileScreen extends StatelessWidget {
                   title: "Edit Profile".tr,
                   onTap: () => Get.toNamed(AppRoutes.editProfile),
                 ),
-
                 Item(
                   icon: Icons.settings,
                   title: "My Booking".tr,
-                  onTap: () => Get.toNamed(AppRoutes.myBooking),
+                  onTap: () {
+                    Get.toNamed(AppRoutes.myBooking,
+                        parameters: {"index": "3"});
+                  },
                 ),
-
                 Item(
                   icon: Icons.broken_image_outlined,
                   title: "Blogs".tr,

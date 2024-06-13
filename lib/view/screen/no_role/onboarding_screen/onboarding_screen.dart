@@ -19,13 +19,16 @@ class OnboardingScreen extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(
-              height: 250.h,
+              height: 180.h,
             ),
-            CustomText(
-              text: "Lets you in",
-              fontSize: 48.sp,
-              top: 57.h,
-              bottom: 57.h,
+            Center(
+                child: CustomImage(
+              imageSrc: AppIcons.logo,
+              height: 70.h,
+            )),
+
+            SizedBox(
+              height: 120.h,
             ),
             CustomButton(
               titleText: "Sign in with password".tr,

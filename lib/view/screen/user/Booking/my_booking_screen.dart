@@ -26,9 +26,12 @@ class MyBookingScreen extends StatefulWidget {
 class _MyBookingScreenState extends State<MyBookingScreen>
     with SingleTickerProviderStateMixin {
   MyBookingController controller = Get.put(MyBookingController());
+  String index = Get.parameters["index"] ?? "3";
 
   @override
   void initState() {
+    controller.tabController = TabController(length: 5, vsync: this);
+    controller.tabController.index = int.tryParse(index) ?? 3;
     controller.tabController = TabController(length: 4, vsync: this);
 
     super.initState();
@@ -56,6 +59,9 @@ class _MyBookingScreenState extends State<MyBookingScreen>
                   controller: controller.tabController,
                   labelColor: AppColors.black,
                   unselectedLabelColor: Colors.black,
+                  isScrollable: true,
+                  tabAlignment: TabAlignment.start,
+                  onTap: controller.selectTab,
                   tabAlignment: TabAlignment.start,
                   isScrollable: true,
                   onTap: (value) async {
@@ -65,10 +71,11 @@ class _MyBookingScreenState extends State<MyBookingScreen>
                     );
                   },
                   tabs: [
+                    Tab(text: 'Pending'.tr),
+                    Tab(text: 'Payment'.tr),
+                    Tab(text: 'Payment Status'.tr),
                     Tab(text: 'Upcoming'.tr),
                     Tab(text: 'Completed'.tr),
-                    Tab(text: 'Confirm'.tr),
-                    Tab(text: 'Pending'.tr),
                   ],
                 ),
                 Expanded(
@@ -92,4 +99,3 @@ class _MyBookingScreenState extends State<MyBookingScreen>
     );
   }
 }
-
