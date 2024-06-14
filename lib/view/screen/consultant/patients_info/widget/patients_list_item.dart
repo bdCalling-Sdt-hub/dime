@@ -1,4 +1,6 @@
+import 'package:dime/extension/my_extension.dart';
 import 'package:dime/utils/app_icons.dart';
+import 'package:dime/utils/app_url.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -11,12 +13,12 @@ class PatientsListItem extends StatelessWidget {
     super.key,
     required this.image,
     required this.name,
-    required this.time,
+    required this.dateTime,
   });
 
   final String image;
   final String name;
-  final String time;
+  final DateTime dateTime;
 
   @override
   Widget build(BuildContext context) {
@@ -29,26 +31,27 @@ class PatientsListItem extends StatelessWidget {
       child: Column(
         children: [
           CustomImage(
-            imageSrc: image,
+            imageSrc: "${AppUrls.imageUrl}$image",
             height: 100.sp,
             width: 100.sp,
-            imageType: ImageType.png,
+            imageType: ImageType.network,
           ),
           Flexible(
             child: CustomText(
               text: name,
               fontWeight: FontWeight.w600,
               fontSize: 14.sp,
+              textAlign: TextAlign.start,
               top: 8.h,
               bottom: 8.h,
-            ),
+            ).start,
           ),
           Row(
             children: [
               const CustomImage(imageSrc: AppIcons.list),
               Flexible(
                 child: CustomText(
-                  text: time,
+                  text: "${dateTime.dayName} ${dateTime.time}",
                   fontSize: 12.sp,
                   left: 4.w,
                   fontWeight: FontWeight.w400,

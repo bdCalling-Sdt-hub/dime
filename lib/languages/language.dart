@@ -88,6 +88,14 @@ class LocalConstants extends Translations {
           "Account Number": "Account Number",
           "Account Type": "Account Type",
           "Cedula Number": "Cedula Number",
+          "Select Days": "Select Days",
+          "Please, select Available days": "Please, select Available days",
+          "Select Hour": "Select Hour",
+          "Enter your Video Reply fee": "Enter your Video Reply fee",
+          "Enter your Video Conference fee": "Enter your Video Conference fee",
+          "Please, select start and end time": "Please, select start and end time",
+          "Identity": "Identity",
+          "please, Upload your identity": "please, Upload your identity",
 
           ///new string =================================/=/=/=/=/==/=/=/==/
 

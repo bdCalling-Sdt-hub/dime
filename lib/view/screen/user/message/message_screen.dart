@@ -92,7 +92,7 @@ class _MessageScreenState extends State<MessageScreen> {
                         image: message.image,
                         isCall: message.isCall,
                         isNotice: message.isNotice,
-                        time: message.time,
+                        time: message.dateTime,
                         text: message.text,
                         isMe: message.isMe,
                         onTap: () {},

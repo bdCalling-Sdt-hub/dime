@@ -86,7 +86,7 @@ class ApiService {
 
   ///<<<======================== Put Api ==============================>>>
 
-  static Future<ApiResponseModel> putApi(String url, Map<String, String> body,
+  static Future<ApiResponseModel> putApi(String url, body,
       {Map<String, String>? header}) async {
     dynamic responseJson;
 
@@ -265,7 +265,7 @@ class ApiService {
         return ApiResponseModel(
             200, jsonDecode(response.body)['message'], response.body);
       case 401:
-         Get.offAllNamed(AppRoutes.signIn);
+        Get.offAllNamed(AppRoutes.signIn);
         return ApiResponseModel(response.statusCode,
             jsonDecode(response.body)['message'], response.body);
       case 400:
@@ -287,9 +287,8 @@ class ApiService {
   static Future<ApiResponseModel> multipartRequest({
     required String url,
     method = "POST",
-    String? imagePath,
-    imageName = 'image',
-    required Map<String, dynamic> body,
+    List files = const [],
+    Map<String, dynamic> body = const {},
     Map<String, String>? header,
   }) async {
     try {
@@ -309,11 +308,16 @@ class ApiService {
         request.fields[key] = value;
       });
 
-      if (imagePath != null) {
-        var mimeType = lookupMimeType(imagePath);
-        var shopImage = await http.MultipartFile.fromPath(imageName, imagePath,
-            contentType: MediaType.parse(mimeType!));
-        request.files.add(shopImage);
+      if (files.isNotEmpty) {
+        for (var item in files) {
+          if (item['file'] != null) {
+            var mimeType = lookupMimeType(item['file']);
+            var shopImage = await http.MultipartFile.fromPath(
+                item["name"], item["file"],
+                contentType: MediaType.parse(mimeType!));
+            request.files.add(shopImage);
+          }
+        }
       }
 
       Map<String, String> headers = header ?? mainHeader;

@@ -155,7 +155,7 @@ class EditProfileAllFiled extends StatelessWidget {
                     suffixIcon: PopUpMenu(
                         items: controller.gender,
                         iconColor: AppColors.white,
-                        selectedItem: controller.genderController.text,
+                        selectedItem: [controller.genderController.text],
                         onTap: controller.selectedGender),
                   ),
                 )

@@ -1,3 +1,4 @@
+import 'package:dime/extension/my_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -6,9 +7,9 @@ import '../../../../common_widgets/text/custom_text.dart';
 
 class AppointmentRequestItem extends StatelessWidget {
   const AppointmentRequestItem(
-      {super.key, required this.time, required this.text});
+      {super.key, required this.dateTime, required this.text});
 
-  final String time;
+  final DateTime dateTime;
   final String text;
 
   @override
@@ -25,14 +26,14 @@ class AppointmentRequestItem extends StatelessWidget {
             color: AppColors.secondPrimary,
           ),
           SizedBox(
-            width: 12.w,
+            width: 8.w,
           ),
           Flexible(
               child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CustomText(
-                text: time,
+                text: "${dateTime.dayName} ${dateTime.time}",
                 fontSize: 18.sp,
                 color: AppColors.secondPrimary,
               ),

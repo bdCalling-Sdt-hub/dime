@@ -1,3 +1,4 @@
+import 'package:dime/utils/app_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -9,9 +10,7 @@ import 'widget/registation_step.dart';
 import 'widget/upload.dart';
 
 class IdentificationScreen extends StatelessWidget {
-  IdentificationScreen({super.key});
-
-  String type = Get.parameters["type"] ?? "";
+  const IdentificationScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,9 +30,7 @@ class IdentificationScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                type == "back"
-                    ? const SizedBox()
-                    : const Center(child: RegistrationStep(indexNumber: 2)),
+                const Center(child: RegistrationStep(indexNumber: 3)),
                 CustomText(
                   text: "Upload your certificate documents".tr,
                   fontSize: 20.sp,
@@ -65,7 +62,16 @@ class IdentificationScreen extends StatelessWidget {
                 ),
                 CustomButton(
                     titleText: "Done".tr,
-                    onTap: () => Get.toNamed(AppRoutes.reviewScreen)),
+                    isLoading: controller.isLoading,
+                    onTap: () {
+                      if (controller.passport != null &&
+                          controller.certification != null) {
+                        controller.updateProfileRepo();
+                      } else {
+                        Utils.snackBarMessage(
+                            "Identity", "please, Upload your identity");
+                      }
+                    }),
               ],
             ),
           );

@@ -80,22 +80,11 @@ class SignInScreen extends StatelessWidget {
                       isLoading: controller.isLoading,
                       onTap: () {
                         if (formKey.currentState!.validate()) {
-                          Get.toNamed(AppRoutes.patientsHome);
+                         controller.signInUser();
                         }
                       },
                     ),
-                    SizedBox(
-                      height: 30.h,
-                    ),
-                    CustomButton(
-                      titleText: "Sign in consultant".tr,
-                      isLoading: controller.isLoading,
-                      onTap: () {
-                        if (formKey.currentState!.validate()) {
-                          Get.toNamed(AppRoutes.doctorHome);
-                        }
-                      },
-                    ),
+
                     SizedBox(
                       height: 30.h,
                     ),

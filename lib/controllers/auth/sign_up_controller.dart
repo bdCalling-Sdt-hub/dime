@@ -121,7 +121,6 @@ class SignUpController extends GetxController {
       PrefsHelper.myName = data['data']["attributes"]["fullName"];
       PrefsHelper.myRole = data['data']["attributes"]["role"];
       PrefsHelper.myEmail = data['data']["attributes"]["email"];
-      PrefsHelper.isLogIn = true;
 
       PrefsHelper.setString('token', PrefsHelper.token);
       PrefsHelper.setString("userId", PrefsHelper.token);
@@ -129,12 +128,13 @@ class SignUpController extends GetxController {
       PrefsHelper.setString("myName", PrefsHelper.token);
       PrefsHelper.setString("myEmail", PrefsHelper.token);
       PrefsHelper.setString("myRole", PrefsHelper.myRole);
-      PrefsHelper.setBool("isLogIn", PrefsHelper.isLogIn);
 
       if (PrefsHelper.myRole == 'consultant') {
-        Get.offAllNamed(AppRoutes.doctorHome);
+        Get.toNamed(AppRoutes.personalInformation);
       } else {
         Get.offAllNamed(AppRoutes.patientsHome);
+        PrefsHelper.isLogIn = true;
+        PrefsHelper.setBool("isLogIn", PrefsHelper.isLogIn);
       }
     } else {
       Get.snackbar(response.statusCode.toString(), response.message);

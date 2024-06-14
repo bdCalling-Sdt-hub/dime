@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../utils/app_colors.dart';
 
-
 class PopUpMenu extends StatelessWidget {
   PopUpMenu(
       {super.key,
@@ -20,7 +19,7 @@ class PopUpMenu extends StatelessWidget {
       this.iconData = Icons.keyboard_arrow_down_outlined});
 
   final List items;
-  final String selectedItem;
+  final List selectedItem;
   final Color selectedColor;
   final Color iconColor;
   final Color unselectedColor;
@@ -56,7 +55,8 @@ class PopUpMenu extends StatelessWidget {
                                 padding: const EdgeInsets.all(10),
                                 decoration: BoxDecoration(
                                   border: Border.all(color: selectedColor),
-                                  color: selectedItem == items[index].toString()
+                                  color: selectedItem
+                                          .contains(items[index].toString())
                                       ? selectedColor
                                       : unselectedColor,
                                   shape: BoxShape.circle,
@@ -88,5 +88,3 @@ class PopUpMenu extends StatelessWidget {
     );
   }
 }
-
-class Controller extends GetxController {}

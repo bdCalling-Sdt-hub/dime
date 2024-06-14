@@ -32,7 +32,6 @@ class _MyBookingScreenState extends State<MyBookingScreen>
   void initState() {
     controller.tabController = TabController(length: 5, vsync: this);
     controller.tabController.index = int.tryParse(index) ?? 3;
-    controller.tabController = TabController(length: 4, vsync: this);
 
     super.initState();
   }
@@ -61,9 +60,6 @@ class _MyBookingScreenState extends State<MyBookingScreen>
                   unselectedLabelColor: Colors.black,
                   isScrollable: true,
                   tabAlignment: TabAlignment.start,
-                  onTap: controller.selectTab,
-                  tabAlignment: TabAlignment.start,
-                  isScrollable: true,
                   onTap: (value) async {
                     Future.delayed(
                       Duration.zero,
@@ -82,6 +78,7 @@ class _MyBookingScreenState extends State<MyBookingScreen>
                   child: TabBarView(
                       controller: controller.tabController,
                       children: const [
+                        BookingList(),
                         BookingList(),
                         BookingList(),
                         BookingList(),

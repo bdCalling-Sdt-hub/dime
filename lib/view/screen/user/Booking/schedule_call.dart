@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dime/helpers/other_helper.dart';
 import 'package:dime/utils/app_utils.dart';
 import 'package:dime/view/common_widgets/pop%20up/custom_pop_up_menu_button.dart';
@@ -6,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../controllers/user/Booking/Book_appointment_controller.dart';
+import '../../../../core/app_routes.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../common_widgets/bottom nav bar/navbar.dart';
 import '../../../common_widgets/button/custom_button.dart';
@@ -97,7 +100,7 @@ class _SelectDataTimeState extends State<SelectDataTime> {
                               items: controller.callDurations,
                               iconColor: AppColors.white,
                               selectedItem:
-                                  controller.callDurationController.text,
+                                  [controller.callDurationController.text],
                               onTap: controller.selectCallDuration),
                         ),
                       )

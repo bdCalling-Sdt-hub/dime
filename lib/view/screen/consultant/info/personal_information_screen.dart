@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -41,15 +40,13 @@ class PersonalInformationScreen extends StatelessWidget {
                       : const RegistrationStep(indexNumber: 1),
                   const PersonalInfoAllFiled(),
                   CustomButton(
+                    isLoading: controller.isLoading,
                     titleText:
                         type == "back" ? "Save Changes".tr : "Continue".tr,
                     onTap: () {
                       if (formKey.currentState!.validate()) {
-                        if (type == "back") {
-                          Get.back();
-                        } else {
-                          Get.toNamed(AppRoutes.availability);
-                        }
+                        controller.updateProfile(type);
+
                       }
                     },
                   ),

@@ -69,7 +69,7 @@ class _CustomImageState extends State<CustomImage> {
     }
 
     if (widget.imageType == ImageType.network) {
-      imageWidget = CachedNetworkImage(
+      imageWidget =  CachedNetworkImage(
         height: widget.height,
         width: widget.width ?? widget.height,
         imageUrl: widget.imageSrc,

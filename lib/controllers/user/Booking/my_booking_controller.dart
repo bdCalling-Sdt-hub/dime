@@ -14,7 +14,13 @@ class MyBookingController extends GetxController {
   late TabController tabController;
   Status status = Status.completed;
 
-  List statusList = ["upcoming", "completed", "Confirm", "pending"];
+  List statusList = [
+    "pending",
+    "payment",
+    "payment-status",
+    "upcoming",
+    "completed"
+  ];
 
   static MyBookingController get instance => Get.put(MyBookingController());
 
@@ -22,6 +28,8 @@ class MyBookingController extends GetxController {
     if (kDebugMode) {
       print(value);
     }
+  }
+
   late MyAppointmentModel myBookingModel;
   List appointmentList = [];
 
@@ -50,8 +58,6 @@ class MyBookingController extends GetxController {
       update();
       Utils.snackBarMessage(response.statusCode.toString(), response.message);
     }
-
-
   }
 
   time(DateTime datetime, {int duration = 0}) {

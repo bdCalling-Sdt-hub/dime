@@ -23,7 +23,6 @@ class PatientsListScreen extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 28.w),
             child: Column(
               children: [
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -42,7 +41,8 @@ class PatientsListScreen extends StatelessWidget {
                         vertical: 2.h,
                         keyboardType: TextInputType.none,
                         fieldBorderColor: AppColors.black,
-                        textStyle: const TextStyle(color: AppColors.secondPrimary),
+                        textStyle:
+                            const TextStyle(color: AppColors.secondPrimary),
                         fieldBorderRadius: 5.r,
                         hindText: "Select Date".tr,
                         suffixIcon: GestureDetector(
@@ -70,10 +70,10 @@ class PatientsListScreen extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () => Get.toNamed(AppRoutes.patientsDetails),
-                        child: const PatientsListItem(
+                        child: PatientsListItem(
                             image: AppImages.annette,
                             name: "Annette Black",
-                            time: "Fri, 12:00 PM"),
+                            dateTime: DateTime.now()),
                       );
                     },
                   ),

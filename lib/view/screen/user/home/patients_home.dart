@@ -61,7 +61,7 @@ class PatientsHomeScreen extends StatelessWidget {
                                   iconData: Icons.g_translate,
                                   iconColor: AppColors.white,
                                   selectedItem:
-                                      profileController.selectedLanguage,
+                                      [profileController.selectedLanguage],
                                   onTap: profileController.selectLanguage);
                             },
                           )

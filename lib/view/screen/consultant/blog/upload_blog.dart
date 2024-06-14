@@ -90,7 +90,7 @@ class UploadBlog extends StatelessWidget {
                 keyboardType: TextInputType.none,
                 suffixIcon: PopUpMenu(
                     items: controller.categories,
-                    selectedItem: controller.categoryController.text,
+                    selectedItem: [controller.categoryController.text],
                     onTap: controller.selectCategory),
               ),
               CustomText(

@@ -93,7 +93,7 @@ class ProfileScreen extends StatelessWidget {
                           const Spacer(),
                           PopUpMenu(
                               items: controller.languages,
-                              selectedItem: controller.selectedLanguage,
+                              selectedItem: [controller.selectedLanguage],
                               onTap: controller.selectLanguage)
                         ],
                       ),

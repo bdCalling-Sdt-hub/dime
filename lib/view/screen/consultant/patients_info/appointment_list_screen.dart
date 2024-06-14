@@ -67,8 +67,8 @@ class AppointmentListScreen extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () => Get.toNamed(AppRoutes.patientsDetails),
-                        child: const AppointmentRequestItem(
-                          time: "Today, 11:30 AM",
+                        child: AppointmentRequestItem(
+                          dateTime: DateTime.now(),
                           text: "Appointment with Mr. Black",
                         ),
                       );
