@@ -70,7 +70,7 @@ class DoctorHomeController extends GetxController {
       pendingList
           .addAll(appointmentsUpcomingModel.data.attributes.appointmentList);
 
-      pendingStatus = Status.loading;
+      pendingStatus = Status.completed;
       update();
     } else {
       pendingStatus = Status.error;

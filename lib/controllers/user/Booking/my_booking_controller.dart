@@ -36,6 +36,7 @@ class MyBookingController extends GetxController {
   int page = 1;
 
   getAppointmentsRepo() async {
+    if (status == Status.loading) return;
     if (page == 1) {
       appointmentList.clear();
       status = Status.loading;

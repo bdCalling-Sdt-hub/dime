@@ -54,7 +54,7 @@ class OtherHelper {
     }
   }
 
-  static Future<void> datePicker(
+  static Future<String> datePicker(
     TextEditingController controller,
   ) async {
     final DateTime? picked = await showDatePicker(
@@ -69,18 +69,13 @@ class OtherHelper {
       initialDate: DateTime.now(),
       firstDate: DateTime(1900),
       lastDate: DateTime(2101),
-      // selectableDayPredicate: (DateTime date) {
-      //   // Disable Saturdays and Sundays
-      //   if (date.weekday == DateTime.saturday ||
-      //       date.weekday == DateTime.sunday) {
-      //     return false;
-      //   }
-      //   return true;
-      // },
     );
     if (picked != null) {
       controller.text = "${picked.year}/${picked.month}/${picked.day}";
+      return picked.toIso8601String();
     }
+
+    return "";
   }
 
   static Future<String?> openGallery() async {

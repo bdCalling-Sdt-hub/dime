@@ -1,5 +1,6 @@
 import 'package:dime/core/app_routes.dart';
 import 'package:dime/utils/app_icons.dart';
+import 'package:dime/utils/app_url.dart';
 import 'package:dime/view/common_widgets/button/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,11 +13,11 @@ import '../../../../common_widgets/text/custom_text.dart';
 class MyBlogItem extends StatelessWidget {
   const MyBlogItem(
       {super.key,
-        required this.image,
-        required this.name,
-        required this.description,
-        required this.price,
-        required this.onTap});
+      required this.image,
+      required this.name,
+      required this.description,
+      required this.price,
+      required this.onTap});
 
   final String image;
   final String name;
@@ -35,8 +36,8 @@ class MyBlogItem extends StatelessWidget {
       child: Row(
         children: [
           CustomImage(
-            imageSrc: image,
-            imageType: ImageType.png,
+            imageSrc: "${AppUrls.imageUrl}$image",
+            imageType: ImageType.network,
             height: 96.sp,
           ),
           SizedBox(

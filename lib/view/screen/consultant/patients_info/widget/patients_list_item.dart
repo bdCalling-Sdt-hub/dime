@@ -1,5 +1,6 @@
 import 'package:dime/extension/my_extension.dart';
 import 'package:dime/utils/app_icons.dart';
+import 'package:dime/utils/app_images.dart';
 import 'package:dime/utils/app_url.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -35,6 +36,7 @@ class PatientsListItem extends StatelessWidget {
             height: 100.sp,
             width: 100.sp,
             imageType: ImageType.network,
+            defaultImage: AppImages.profile,
           ),
           Flexible(
             child: CustomText(

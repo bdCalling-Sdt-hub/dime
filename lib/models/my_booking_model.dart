@@ -67,7 +67,7 @@ class Appointment {
   final int duration;
   final String type;
   final String status;
-  final bool isAdminAccepted;
+  final String isAdminAccepted;
   final String paymentStatus;
   final DateTime createdAt;
   final DateTime updatedAt;
@@ -103,7 +103,7 @@ class Appointment {
       duration: json['duration'] ?? 0,
       type: json['type'] ?? '',
       status: json['status'] ?? '',
-      isAdminAccepted: json['isAdminAccepted'] ?? false,
+      isAdminAccepted: json['isAdminAccepted'] ?? "",
       paymentStatus: json['paymentStatus'] ?? '',
       createdAt: DateTime.parse(json['createdAt'] ?? DateTime.now().toIso8601String()),
       updatedAt: DateTime.parse(json['updatedAt'] ?? DateTime.now().toIso8601String()),

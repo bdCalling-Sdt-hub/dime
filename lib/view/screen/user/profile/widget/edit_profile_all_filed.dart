@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -45,7 +46,9 @@ class EditProfileAllFiled extends StatelessWidget {
             IntlPhoneField(
               controller: controller.numberController,
               onChanged: (value) {
-                print(value);
+                if (kDebugMode) {
+                  print(value);
+                }
               },
               decoration: InputDecoration(
                 hintText: "Phone Number".tr,
