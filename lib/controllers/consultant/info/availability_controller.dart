@@ -20,10 +20,16 @@ class AvailabilityController extends GetxController {
   TextEditingController videoConferenceFeeController = TextEditingController();
   TextEditingController videoReplyFeeController = TextEditingController();
 
+  static AvailabilityController get instance =>
+      Get.put(AvailabilityController());
+
   selectWeek(int index) {
     String selectedWeek = week[index].toString();
     if (!selectedWeekList.contains(selectedWeek)) {
       selectedWeekList.add(selectedWeek);
+      update();
+    } else {
+      selectedWeekList.remove(selectedWeek);
       update();
     }
   }
@@ -36,9 +42,9 @@ class AvailabilityController extends GetxController {
         "day": selectedWeekList,
         "startTime": startController.text,
         "endTime": endController.text,
-        "videoConferenceFee": videoConferenceFeeController.text,
-        "videoReplyFee": videoReplyFeeController.text,
       },
+      "videoConferenceFee": videoConferenceFeeController.text,
+      "videoReplyFee": videoReplyFeeController.text,
     };
 
     var response =

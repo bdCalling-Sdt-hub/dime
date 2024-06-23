@@ -11,6 +11,7 @@ class AppUrls {
   static const resetPassword = "$baseUrl/users/reset-password";
   static const changePassword = "$baseUrl/users/change-password";
   static const user = "$baseUrl/users";
+  static const consultantProfile = "$baseUrl/users/user-details";
   static const category = "$baseUrl/categories";
   static const consultantList = "$baseUrl/users/consultant-list";
   static const consultantDetails = "$baseUrl/users/consultant-details";

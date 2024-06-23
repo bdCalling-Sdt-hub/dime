@@ -85,8 +85,8 @@ class PersonalInformationController extends GetxController {
     update();
     var body = {
       "title": titleController.text,
-      "name": nameController.text,
-      "number": numberController.text,
+      "fullName": nameController.text,
+      "phoneNumber": numberController.text,
       "country": countryController.text,
       "gender": genderController.text,
       "category": selectedCategoryId,

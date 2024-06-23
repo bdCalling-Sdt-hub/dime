@@ -11,11 +11,15 @@ class SocketServices {
 
   ///<<<============ Connect with socket ====================>>>
   static void connectToSocket() {
+    Map<String, String> headers = {
+      'Authorization': "Bearer ${PrefsHelper.token}",
+    };
     socket = io.io(
         AppUrls.socketUrl,
         io.OptionBuilder()
             .setTransports(['websocket'])
             .enableAutoConnect()
+            .setExtraHeaders(headers)
             .build());
 
     socket.onConnect((data) {

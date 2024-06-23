@@ -1,3 +1,4 @@
+import 'package:dime/services/socket_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -13,6 +14,7 @@ Future<void> main() async {
   DependencyInjection dI = DependencyInjection();
   dI.dependencies();
   await PrefsHelper.getAllPrefData();
+  SocketServices.connectToSocket();
 
   runApp(const MyApp());
 }
