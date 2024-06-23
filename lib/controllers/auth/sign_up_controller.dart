@@ -123,11 +123,12 @@ class SignUpController extends GetxController {
       PrefsHelper.myEmail = data['data']["attributes"]["email"];
 
       PrefsHelper.setString('token', PrefsHelper.token);
-      PrefsHelper.setString("userId", PrefsHelper.token);
-      PrefsHelper.setString("myImage", PrefsHelper.token);
-      PrefsHelper.setString("myName", PrefsHelper.token);
-      PrefsHelper.setString("myEmail", PrefsHelper.token);
+      PrefsHelper.setString("userId", PrefsHelper.userId);
+      PrefsHelper.setString("myImage", PrefsHelper.myImage);
+      PrefsHelper.setString("myName", PrefsHelper.myName);
+      PrefsHelper.setString("myEmail", PrefsHelper.myEmail);
       PrefsHelper.setString("myRole", PrefsHelper.myRole);
+      PrefsHelper.setBool("isLogIn", PrefsHelper.isLogIn);
 
       if (PrefsHelper.myRole == 'consultant') {
         Get.toNamed(AppRoutes.personalInformation);
