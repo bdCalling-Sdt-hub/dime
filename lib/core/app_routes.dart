@@ -7,6 +7,8 @@ import 'package:dime/view/screen/user/Booking/schedule_reply.dart';
 import 'package:dime/view/screen/user/blog/blog_screen.dart';
 import 'package:dime/view/screen/user/blog/read_blog_screen.dart';
 import 'package:dime/view/screen/user/message/video_call_screen.dart';
+import 'package:dime/view/screen/user/setting/privacy_policy_screen.dart';
+import 'package:dime/view/screen/user/setting/terms_of_services_screen.dart';
 import 'package:get/get.dart';
 
 import '../view/screen/consultant/history/appointment_history_screen.dart';
@@ -99,6 +101,8 @@ class AppRoutes {
   static const String myBlog = "/my_blog.dart";
   static const String scheduleReply = "/schedule_reply.dart";
   static const String videoCall = "/video_call_screen.dart";
+  static const String privacyPolicy = "/privacy_policy_screen.dart";
+  static const String termsOfServices = "/terms_of_services_screen.dart";
 
   static List<GetPage> routes = [
     GetPage(name: test, page: () => TestScreen()),
@@ -149,5 +153,7 @@ class AppRoutes {
     GetPage(name: myBlog, page: () => MyBlog()),
     GetPage(name: scheduleReply, page: () => ScheduleReply()),
     GetPage(name: videoCall, page: () => VideoCallScreen()),
+    GetPage(name: privacyPolicy, page: () => PrivacyPolicyScreen()),
+    GetPage(name: termsOfServices, page: () => TermsOfServicesScreen()),
   ];
 }

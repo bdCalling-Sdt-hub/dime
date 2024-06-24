@@ -39,14 +39,14 @@ class SettingScreen extends StatelessWidget {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () => Get.toNamed(AppRoutes.changePassword),
+                  onTap: () => Get.toNamed(AppRoutes.termsOfServices),
                   child: SettingItem(
                     title: "Terms of Services".tr,
                     iconDate: Icons.gavel,
                   ),
                 ),
                 GestureDetector(
-                  onTap: () => Get.toNamed(AppRoutes.changePassword),
+                  onTap: () => Get.toNamed(AppRoutes.privacyPolicy),
                   child: SettingItem(
                     title: "Privacy Policy".tr,
                     iconDate: Icons.network_wifi_1_bar,

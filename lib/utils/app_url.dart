@@ -21,4 +21,7 @@ class AppUrls {
   static const avgReviews = "$baseUrl/reviews/details";
   static const reviews = "$baseUrl/reviews";
   static const appointment = "$baseUrl/appointments/consultant";
+  static const notifications = "$baseUrl/notifications";
+  static const privacyPolicies = "$baseUrl/privacy-policies";
+  static const termsOfServices = "$baseUrl/terms-and-conditions";
 }

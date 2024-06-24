@@ -24,4 +24,22 @@ extension View3 on DateTime {
   String get time => DateFormat('h:mm a').format(this);
 
   String get dayName => DateFormat('E').format(this);
+
+  String get checkTime {
+    DateTime currentDateTime = DateTime.now();
+
+    Duration difference = currentDateTime.difference(this);
+    if (difference.inDays == 0) {
+      if (difference.inHours == 0) {
+        return ("${difference.inMinutes} minutes ago");
+      } else {
+        return ("${difference.inHours} hours ago");
+      }
+    } else {
+      var createdAtTime = this.toIso8601String().split(".")[0];
+      var date = createdAtTime.split("T")[0];
+      var time = createdAtTime.split("T")[1];
+      return "$date at $time";
+    }
+  }
 }

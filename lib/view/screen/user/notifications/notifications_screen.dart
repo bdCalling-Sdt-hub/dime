@@ -1,3 +1,4 @@
+import 'package:dime/models/notification_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -29,12 +30,9 @@ class NotificationScreen extends StatelessWidget {
             itemCount: controller.notifications.length,
             physics: const BouncingScrollPhysics(),
             itemBuilder: (context, index) {
-              var item = controller.notifications[index];
+              NotificationModel item = controller.notifications[index];
               return NotificationItem(
-                icon: item["icon"],
-                name: item["title"],
-                subTitle: item["subTitle"],
-                time: item["time"],
+                item: item,
               );
             },
           );

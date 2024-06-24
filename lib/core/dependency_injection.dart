@@ -35,6 +35,8 @@ import '../controllers/user/payment/payment_controller.dart';
 import '../controllers/user/payment/select_payment_method_controller.dart';
 import '../controllers/user/profile_controller.dart';
 import '../controllers/user/send_review_controller.dart';
+import '../controllers/user/setting/privacy_policy_controller.dart';
+import '../controllers/user/setting/terms_of_services_controller.dart';
 import '../controllers/user/setting_controller.dart';
 
 
@@ -77,5 +79,7 @@ class DependencyInjection extends Bindings {
     Get.lazyPut(() => ScheduleReplyController(), fenix: true);
     Get.lazyPut(() => ConsultantDetailsController(), fenix: true);
     Get.lazyPut(() => BlogsController(), fenix: true);
+    Get.lazyPut(() => PrivacyPolicyController(), fenix: true);
+    Get.lazyPut(() => TermsOfServicesController(), fenix: true);
   }
 }
