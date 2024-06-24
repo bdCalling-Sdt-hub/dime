@@ -1,5 +1,7 @@
 import 'package:dime/core/app_routes.dart';
+import 'package:dime/extension/my_extension.dart';
 import 'package:dime/utils/app_icons.dart';
+import 'package:dime/utils/app_url.dart';
 import 'package:dime/view/common_widgets/image/custom_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,7 +10,7 @@ import '../../../../../utils/app_colors.dart';
 import '../../../../common_widgets/text/custom_text.dart';
 
 class ChatBubbleMessage extends StatelessWidget {
-  final String time;
+  final DateTime time;
   final String text;
   final String image;
   final bool isMe;
@@ -64,7 +66,6 @@ class ChatBubbleMessage extends StatelessWidget {
                         margin: EdgeInsets.only(left: 10.w),
                         padding: EdgeInsets.only(left: 10.w),
                         width: 220,
-
                         height: 120,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8.r),
@@ -113,11 +114,11 @@ class ChatBubbleMessage extends StatelessWidget {
                               backgroundColor: AppColors.white,
                               radius: 20.sp,
                               child: ClipOval(
-                                  child: Image.asset(
-                                image,
+                                  child: CustomImage(
+                                imageSrc: "${AppUrls.imageUrl}$image",
                                 width: 36.sp,
                                 height: 36.sp,
-                                fit: BoxFit.fill,
+                                imageType: ImageType.network,
                               ))),
                         const SizedBox(
                           width: 8,
@@ -158,7 +159,7 @@ class ChatBubbleMessage extends StatelessWidget {
                                 CustomText(
                                   fontSize: 8,
                                   fontWeight: FontWeight.w400,
-                                  text: time,
+                                  text: time.time,
                                   color: AppColors.black,
                                 ),
                               ],

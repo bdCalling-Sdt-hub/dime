@@ -1,5 +1,5 @@
 class ChatMessageModel {
-  final String time;
+  final DateTime time;
   final String text;
   final String image;
   final bool isMe;

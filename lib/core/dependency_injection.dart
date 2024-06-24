@@ -26,10 +26,12 @@ import '../controllers/user/Booking/my_booking_controller.dart';
 import '../controllers/user/Booking/shhedule_reply_controller.dart';
 import '../controllers/user/blog/blogs_controller.dart';
 import '../controllers/user/category_list_controller.dart';
+import '../controllers/user/chat/chat_controller.dart';
+import '../controllers/user/chat/video_call_controller.dart';
 import '../controllers/user/consultant_details_controller.dart';
 import '../controllers/user/health_rocords_controller.dart';
 import '../controllers/user/home_controller.dart';
-import '../controllers/user/message_controller.dart';
+import '../controllers/user/chat/message_controller.dart';
 import '../controllers/user/notifications_controller.dart';
 import '../controllers/user/payment/payment_controller.dart';
 import '../controllers/user/payment/select_payment_method_controller.dart';
@@ -81,5 +83,7 @@ class DependencyInjection extends Bindings {
     Get.lazyPut(() => BlogsController(), fenix: true);
     Get.lazyPut(() => PrivacyPolicyController(), fenix: true);
     Get.lazyPut(() => TermsOfServicesController(), fenix: true);
+    Get.lazyPut(() => ChatController(), fenix: true);
+    Get.lazyPut(() => VideoCallController(), fenix: true);
   }
 }

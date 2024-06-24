@@ -1,6 +1,8 @@
+import 'package:dime/utils/app_url.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../models/chat_list_model.dart';
 import '../../../../../utils/app_colors.dart';
 import '../../../../common_widgets/image/custom_image.dart';
 import '../../../../common_widgets/text/custom_text.dart';
@@ -8,16 +10,10 @@ import '../../../../common_widgets/text/custom_text.dart';
 class ChatListItem extends StatelessWidget {
   ChatListItem({
     super.key,
-    required this.image,
-    required this.name,
-    required this.message,
+    required this.item,
   });
 
-  final String image;
-
-  final String name;
-
-  final String message;
+  final Chat item;
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +28,8 @@ class ChatListItem extends StatelessWidget {
                 radius: 35.sp,
                 child: ClipOval(
                   child: CustomImage(
-                    imageSrc: image,
-                    imageType: ImageType.png,
+                    imageSrc: "${AppUrls.imageUrl}${item.participant.image}",
+                    imageType: ImageType.network,
                     height: 70.sp,
                     width: 70.sp,
                   ),
@@ -47,12 +43,12 @@ class ChatListItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CustomText(
-                    text: name,
+                    text: item.participant.fullName,
                     fontWeight: FontWeight.w600,
                     fontSize: 18.sp,
                   ),
                   CustomText(
-                    text: message,
+                    text: item.latestMessage.message,
                     fontWeight: FontWeight.w400,
                     fontSize: 12.sp,
                   ),

@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
             PrefsHelper.localizationCountryCode),
         fallbackLocale: const Locale("en", "US"),
         theme: themeData,
-        initialRoute: AppRoutes.splash,
+        initialRoute: AppRoutes.videoCall,
         getPages: AppRoutes.routes,
       ),
     );

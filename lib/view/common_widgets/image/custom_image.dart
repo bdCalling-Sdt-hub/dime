@@ -84,9 +84,12 @@ class _CustomImageState extends State<CustomImage> {
         ),
         progressIndicatorBuilder: (context, url, downloadProgress) =>
             CircularProgressIndicator(value: downloadProgress.progress),
-        errorWidget: (context, url, error) => Image.asset(
-          widget.defaultImage,
-        ),
+        errorWidget: (context, url, error) {
+          print(error);
+          return Image.asset(
+            widget.defaultImage,
+          ) ;
+        },
       );
     }
 
