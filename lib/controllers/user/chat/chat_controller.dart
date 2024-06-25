@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'package:dime/models/active_user_model.dart';
 import 'package:dime/utils/app_url.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,6 +20,7 @@ class ChatController extends GetxController {
   int page = 1;
 
   List chats = [];
+  List activeUsers = [];
 
   ChatListModel chatModel = ChatListModel.fromJson({});
 
@@ -59,7 +62,7 @@ class ChatController extends GetxController {
     }
   }
 
-  listenMessage() async {
+  listenChat() async {
     SocketServices.socket.on("update-chatlist::${PrefsHelper.userId}", (data) {
       status = Status.loading;
       update();
@@ -78,9 +81,23 @@ class ChatController extends GetxController {
     });
   }
 
+  getActiveUser() async {
+    SocketServices.socket.emitWithAck("get-active-users", {}, ack: (data) {
+      for (var item in data['data']) {
+        activeUsers.add(ActiveUserModel.fromJson(item));
+      }
+      update();
+
+      if (kDebugMode) {
+        print("===========================> Received acknowledgment: $data");
+      }
+    });
+  }
+
   @override
   void onInit() {
     getChatRepo();
+    getActiveUser();
     super.onInit();
   }
 }

@@ -74,7 +74,7 @@ class MessageController extends GetxController {
     }
   }
 
-  addNewMessage(String chatId) async {
+  addNewMessage() async {
     isMessage = true;
     update();
 
@@ -135,17 +135,5 @@ class MessageController extends GetxController {
     currentIndex = index;
     isInputField = isInputField;
     update();
-  }
-
-  getVideo() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles(
-      type: FileType.custom,
-      allowedExtensions: ['mp4'],
-    );
-
-    if (result != null && result.paths.isNotEmpty) {
-      video = result.paths[0];
-      update();
-    }
   }
 }

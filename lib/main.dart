@@ -1,3 +1,4 @@
+import 'package:dime/services/notification_service.dart';
 import 'package:dime/services/socket_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,7 +15,9 @@ Future<void> main() async {
   DependencyInjection dI = DependencyInjection();
   dI.dependencies();
   await PrefsHelper.getAllPrefData();
+  NotificationService.initLocalNotification();
   SocketServices.connectToSocket();
+
 
   runApp(const MyApp());
 }
@@ -38,7 +41,7 @@ class MyApp extends StatelessWidget {
             PrefsHelper.localizationCountryCode),
         fallbackLocale: const Locale("en", "US"),
         theme: themeData,
-        initialRoute: AppRoutes.videoCall,
+        initialRoute: AppRoutes.splash,
         getPages: AppRoutes.routes,
       ),
     );

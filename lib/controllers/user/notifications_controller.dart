@@ -35,6 +35,9 @@ class NotificationsController extends GetxController {
     }
   }
 
+  static NotificationsController get instance =>
+      Get.put(NotificationsController());
+
   @override
   void onInit() {
     getNotificationsRepo();

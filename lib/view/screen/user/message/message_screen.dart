@@ -100,13 +100,15 @@ class _MessageScreenState extends State<MessageScreen> {
             child: Padding(
               padding: EdgeInsets.only(left: 20.w, right: 20.w, bottom: 24.h),
               child: CustomTextField(
-                onTap: controller.getVideo,
                 textAlign: TextAlign.start,
-                hindText: "Upload your video document".tr,
-                suffixIcon: Padding(
-                  padding: EdgeInsets.all(16.sp),
-                  child: const CustomImage(
-                    imageSrc: AppIcons.send,
+                hindText: "message here".tr,
+                suffixIcon: GestureDetector(
+                  onTap: controller.addNewMessage,
+                  child: Padding(
+                    padding: EdgeInsets.all(16.sp),
+                    child: const CustomImage(
+                      imageSrc: AppIcons.send,
+                    ),
                   ),
                 ),
                 textStyle: GoogleFonts.prompt(
@@ -116,6 +118,7 @@ class _MessageScreenState extends State<MessageScreen> {
                 fieldBorderColor: Colors.white,
                 fieldBorderRadius: 8,
                 controller: controller.messageController,
+                onFieldSubmitted: (p0) => controller.addNewMessage(),
               ),
             ),
           ));

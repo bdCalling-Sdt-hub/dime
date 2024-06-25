@@ -34,7 +34,7 @@ class PrefsHelper extends GetxController {
     localizationLanguageCode =
         preferences.getString("localizationLanguageCode") ?? "en";
 
-    print(isLogIn);
+    print(userId);
   }
 
   ///<<<======================== Get All Data Form Shared Preference ============>

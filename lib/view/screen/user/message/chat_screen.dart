@@ -1,9 +1,12 @@
 import 'package:dime/controllers/user/chat/chat_controller.dart';
+import 'package:dime/extension/my_extension.dart';
 import 'package:dime/models/api_response_model.dart';
 import 'package:dime/utils/app_colors.dart';
 import 'package:dime/view/common_widgets/custom_loader.dart';
 import 'package:dime/view/common_widgets/error_screen.dart';
+import 'package:dime/view/common_widgets/image/custom_image.dart';
 import 'package:dime/view/common_widgets/text_field/custom_text_field.dart';
+import 'package:dime/view/screen/user/message/widget/active_user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -42,6 +45,24 @@ class ChatListScreen extends StatelessWidget {
                     prefixIcon: const Icon(Icons.search),
                     hindText: 'search a doctor'.tr,
                     fieldBorderColor: AppColors.transparent,
+                  ),
+                  CustomText(
+                    text: "Active Now",
+                    fontSize: 20.sp,
+                    top: 20.h,
+                    fontWeight: FontWeight.w700,
+                  ).start,
+                  Container(
+                    height: 70.h,
+                    padding: EdgeInsets.only(top: 8.h),
+                    child: ListView.builder(
+                      padding: EdgeInsets.zero,
+                      itemCount: controller.activeUsers.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return activeUser(controller.activeUsers[index]);
+                      },
+                    ),
                   ),
                   Expanded(
                     child: ListView.builder(
