@@ -1,3 +1,4 @@
+import 'package:dime/core/app_routes.dart';
 import 'package:dime/utils/app_url.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -63,6 +64,9 @@ class _MessageScreenState extends State<MessageScreen> {
                     fontSize: 18.sp,
                   ),
                   const Spacer(),
+                  IconButton(
+                      onPressed: () => Get.toNamed(AppRoutes.videoCall),
+                      icon: const Icon(Icons.videocam_outlined))
                 ],
               ),
             ),

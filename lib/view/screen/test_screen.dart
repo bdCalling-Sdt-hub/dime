@@ -1,5 +1,6 @@
 import 'package:dime/controllers/user/home_controller.dart';
 import 'package:dime/core/app_routes.dart';
+import 'package:dime/extension/my_extension.dart';
 import 'package:dime/view/common_widgets/text_field/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,7 +20,7 @@ class TestScreen extends StatelessWidget {
           ElevatedButton(
               onPressed: () =>
                   Get.offNamedUntil(AppRoutes.patientsHome, (route) => true),
-              child: Text("dfjkds")),
+              child: 12.width),
         ],
       ),
     );
