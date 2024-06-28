@@ -23,8 +23,13 @@ class DoctorHomeScreen extends StatefulWidget {
 class _DoctorHomeScreenState extends State<DoctorHomeScreen> {
   @override
   void initState() {
-    DoctorHomeController.instance.getUpcomingAppointmentRepo();
-    DoctorHomeController.instance.getAppointmentRequestRepo();
+    Future.delayed(
+      Duration.zero,
+      () {
+        DoctorHomeController.instance.getUpcomingAppointmentRepo();
+        DoctorHomeController.instance.getAppointmentRequestRepo();
+      },
+    );
     super.initState();
   }
 

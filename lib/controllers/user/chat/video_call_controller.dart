@@ -3,51 +3,30 @@ import 'package:get/get.dart';
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:wakelock/wakelock.dart';
-import '../../../models/api_response_model.dart';
 import '../../../utils/payment_key.dart';
 
 class VideoCallController extends GetxController {
-  int myRemoteUid = 0;
-  dynamic callStatus = "Ringing";
+  int remoteId = 0;
   bool localUserJoined = false;
   bool muted = false;
-  bool isVolume = false;
+  bool isVolume = true;
   bool videoPaused = false;
-  bool isVideo = false;
-  bool switchMainView = false;
-  bool mutedVideo = false;
-  bool reConnectingRemoteView = false;
-  bool isFront = false;
   late RtcEngine engine;
-  Status status = Status.completed;
-  bool isLoading = false;
-  bool isMoreLoading = false;
   double dragHorizontal = 20.0;
   double dragVertical = 80.0;
-
-  DateTime? callingTime;
-
-  List messages = [];
-
-  ScrollController scrollController = ScrollController();
-  TextEditingController messageController = TextEditingController();
 
   static VideoCallController get instance => Get.put(VideoCallController());
 
   clear() {
     engine.leaveChannel();
     engine.release();
-    isFront = false;
-    reConnectingRemoteView = false;
     videoPaused = false;
     muted = false;
-    mutedVideo = false;
-    switchMainView = false;
     localUserJoined = false;
     update();
   }
 
-  Future<void> initilize() async {
+  Future<void> initialize() async {
     Future.delayed(Duration.zero, () async {
       await [Permission.microphone, Permission.camera].request();
       await _initAgoraRtcEngine();
@@ -88,7 +67,7 @@ class VideoCallController extends GetxController {
           },
           onUserJoined: (RtcConnection connection, int remoteUid, int elapsed) {
             localUserJoined = true;
-            myRemoteUid = remoteUid;
+            remoteId = remoteUid;
             update();
           },
           onRemoteVideoStateChanged:
@@ -96,8 +75,6 @@ class VideoCallController extends GetxController {
             if (state == RemoteVideoState.remoteVideoStateStopped) {
               videoPaused = true;
               update();
-              print(
-                  "videoPausedonRemoteVideoStateChanged $videoPaused $connection $remoteUid $state $reason $elapsed");
             } else {
               videoPaused = false;
               update();
@@ -106,7 +83,7 @@ class VideoCallController extends GetxController {
           onUserOffline: (RtcConnection connection, int remoteUid,
               UserOfflineReasonType reason) {
             Wakelock.disable();
-            myRemoteUid = 0;
+            remoteId = 0;
             onCallEnd();
             update();
           },
@@ -119,15 +96,11 @@ class VideoCallController extends GetxController {
               videoPaused = false;
               update();
             }
-
-            callingTime = DateTime.now();
           },
           onTokenPrivilegeWillExpire:
               (RtcConnection connection, String token) {},
           onLeaveChannel: (RtcConnection connection, stats) {
-            clear();
             onCallEnd();
-            update();
           }),
     );
   }
@@ -151,8 +124,8 @@ class VideoCallController extends GetxController {
   }
 
   void setVolume() {
+    engine.adjustPlaybackSignalVolume(isVolume ? 10 : 100);
     isVolume = !isVolume;
-    engine.adjustPlaybackSignalVolume(isVolume ? 25 : 100);
     update();
   }
 
@@ -180,9 +153,6 @@ class VideoCallController extends GetxController {
     } else {
       dragVertical = newDragVertical;
     }
-
-    print("value dx ${details.delta.dx}");
-    print("dy ${details.delta.dy}");
 
     update();
   }

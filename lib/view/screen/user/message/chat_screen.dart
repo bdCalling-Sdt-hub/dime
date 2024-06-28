@@ -46,14 +46,16 @@ class ChatListScreen extends StatelessWidget {
                     hindText: 'search a doctor'.tr,
                     fieldBorderColor: AppColors.transparent,
                   ),
-                  CustomText(
-                    text: "Active Now",
-                    fontSize: 20.sp,
-                    top: 20.h,
-                    fontWeight: FontWeight.w700,
-                  ).start,
+                  controller.activeUsers.isNotEmpty
+                      ? CustomText(
+                          text: "Active Now",
+                          fontSize: 20.sp,
+                          top: 20.h,
+                          fontWeight: FontWeight.w700,
+                        ).start
+                      : 0.height,
                   Container(
-                    height: 70.h,
+                    height: controller.activeUsers.isEmpty ? 0 : 70.h,
                     padding: EdgeInsets.only(top: 8.h),
                     child: ListView.builder(
                       padding: EdgeInsets.zero,

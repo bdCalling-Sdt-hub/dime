@@ -5,8 +5,8 @@ import 'package:flutter/cupertino.dart';
 
 import '../../../../../utils/payment_key.dart';
 
-Widget myVideoStream() {
-  return VideoCallController.instance.localUserJoined
+Widget myVideoStream(bool isLocalUserJoined) {
+  return isLocalUserJoined
       ? AgoraVideoView(
           controller: VideoViewController(
             rtcEngine: VideoCallController.instance.engine,
@@ -18,12 +18,12 @@ Widget myVideoStream() {
       : 0.height;
 }
 
-Widget remoteVideoStream() {
-  return VideoCallController.instance.myRemoteUid != 0
+Widget remoteVideoStream(int remoteId) {
+  return remoteId != 0
       ? AgoraVideoView(
           controller: VideoViewController.remote(
             rtcEngine: VideoCallController.instance.engine,
-            canvas: VideoCanvas(uid: VideoCallController.instance.myRemoteUid),
+            canvas: VideoCanvas(uid: VideoCallController.instance.remoteId),
             connection: const RtcConnection(channelId: channel),
           ),
         )

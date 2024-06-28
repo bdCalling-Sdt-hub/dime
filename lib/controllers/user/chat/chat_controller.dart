@@ -83,6 +83,7 @@ class ChatController extends GetxController {
 
   getActiveUser() async {
     SocketServices.socket.emitWithAck("get-active-users", {}, ack: (data) {
+      activeUsers.clear();
       for (var item in data['data']) {
         activeUsers.add(ActiveUserModel.fromJson(item));
       }

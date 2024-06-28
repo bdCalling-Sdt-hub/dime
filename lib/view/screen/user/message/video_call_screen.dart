@@ -1,5 +1,3 @@
-import 'dart:io';
-import 'package:dime/core/app_routes.dart';
 import 'package:dime/extension/my_extension.dart';
 import 'package:dime/view/common_widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +19,7 @@ class VideoCallScreen extends StatefulWidget {
 class _VideoCallScreenState extends State<VideoCallScreen> {
   @override
   void initState() {
-    VideoCallController.instance.initilize();
+    VideoCallController.instance.initialize();
     super.initState();
   }
 
@@ -42,11 +40,11 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
           height: MediaQuery.of(context).size.height,
           child: Stack(
             children: [
-              !controller.videoPaused && controller.myRemoteUid != 0
-                  ? remoteVideoStream()
+              controller.remoteId != 0
+                  ? remoteVideoStream(controller.remoteId)
                   : Stack(
                       children: [
-                        !controller.videoPaused ? myVideoStream() : 0.height,
+                        myVideoStream(controller.localUserJoined),
                         Column(
                           children: [
                             180.height,
@@ -71,11 +69,11 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
                               top: 12.h,
                               bottom: 12.h,
                             ),
-                            CustomText(
-                              text: controller.callingTime != null ? DateTime.now().difference(controller.callingTime!).toString() : "",
-                              fontSize: 18.sp,
-                              fontWeight: FontWeight.w400,
-                            ),
+                            // CustomText(
+                            //   text: controller.callingTime != null ? DateTime.now().difference(controller.callingTime!).toString() : "",
+                            //   fontSize: 18.sp,
+                            //   fontWeight: FontWeight.w400,
+                            // ),
                           ],
                         ),
                       ],
@@ -92,9 +90,9 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
                       width: 100,
                       height: 135,
                       child: controller.localUserJoined
-                          ? controller.myRemoteUid == 0
+                          ? controller.remoteId == 0
                               ? 0.height
-                              : myVideoStream()
+                              : myVideoStream(controller.localUserJoined)
                           : 0.height),
                 ),
               ),
@@ -115,37 +113,23 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Container(
-                        height: 36,
-                        width: 36,
-                        decoration: const ShapeDecoration(
-                          color: AppColors.black,
-                          shape: CircleBorder(),
-                        ),
-                        child: InkWell(
-                            onTap: controller.setLocalVideo,
-                            child: Icon(
-                              controller.localUserJoined
-                                  ? Icons.videocam_outlined
-                                  : Icons.videocam_off_outlined,
-                              color: AppColors.white,
-                            )),
-                      ),
-                      Container(
-                        height: 36,
-                        width: 36,
-                        decoration: const ShapeDecoration(
-                          color: AppColors.black,
-                          shape: CircleBorder(),
-                        ),
-                        child: Center(
-                          child: CustomText(
-                            text: controller.videoPaused.toString(),
-                            color: AppColors.white,
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ),
+                      ///==================>switch video call to audio
+                      // Container(
+                      //   height: 36,
+                      //   width: 36,
+                      //   decoration: const ShapeDecoration(
+                      //     color: AppColors.black,
+                      //     shape: CircleBorder(),
+                      //   ),
+                      //   child: InkWell(
+                      //       onTap: controller.setLocalVideo,
+                      //       child: Icon(
+                      //         controller.localUserJoined
+                      //             ? Icons.videocam_outlined
+                      //             : Icons.videocam_off_outlined,
+                      //         color: AppColors.white,
+                      //       )),
+                      // ),
                       Container(
                         height: 36,
                         width: 36,
@@ -186,7 +170,7 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
                           shape: CircleBorder(),
                         ),
                         child: InkWell(
-                            onTap: () => Get.back(),
+                            onTap: controller.onCallEnd,
                             child: const Icon(
                               Icons.call_end,
                               color: AppColors.white,
