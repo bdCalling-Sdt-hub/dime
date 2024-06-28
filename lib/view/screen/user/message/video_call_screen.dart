@@ -42,10 +42,11 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
           height: MediaQuery.of(context).size.height,
           child: Stack(
             children: [
-              controller.myRemoteUid == 0
-                  ? Stack(
+              !controller.videoPaused && controller.myRemoteUid != 0
+                  ? remoteVideoStream()
+                  : Stack(
                       children: [
-                        myVideoStream(),
+                        !controller.videoPaused ? myVideoStream() : 0.height,
                         Column(
                           children: [
                             180.height,
@@ -71,28 +72,14 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
                               bottom: 12.h,
                             ),
                             CustomText(
-                              text: "Ringing",
+                              text: controller.callingTime != null ? DateTime.now().difference(controller.callingTime!).toString() : "",
                               fontSize: 18.sp,
                               fontWeight: FontWeight.w400,
                             ),
                           ],
                         ),
                       ],
-                    )
-                  : remoteVideoStream(),
-              Positioned(
-                top: 48.h,
-                left: 20.w,
-                child: IconButton(
-                  onPressed: () {
-                    Get.back();
-                  },
-                  icon: Icon(
-                    Platform.isIOS ? Icons.arrow_back_ios : Icons.arrow_back,
-                    color: Colors.green,
-                  ),
-                ),
-              ),
+                    ),
 
               ///<<<===================Caller Image==============================>
               ///
@@ -128,22 +115,37 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      // Container(
-                      //   height: 36,
-                      //   width: 36,
-                      //   decoration: const ShapeDecoration(
-                      //     color: AppColors.black,
-                      //     shape: CircleBorder(),
-                      //   ),
-                      //   child: InkWell(
-                      //       // onTap:  controller.setLocalVideo,
-                      //       child: Icon(
-                      //      controller.localUserJoined.value
-                      //         ? Icons.videocam_outlined
-                      //         : Icons.videocam_off_outlined,
-                      //     color: AppColors.white,
-                      //   )),
-                      // ),
+                      Container(
+                        height: 36,
+                        width: 36,
+                        decoration: const ShapeDecoration(
+                          color: AppColors.black,
+                          shape: CircleBorder(),
+                        ),
+                        child: InkWell(
+                            onTap: controller.setLocalVideo,
+                            child: Icon(
+                              controller.localUserJoined
+                                  ? Icons.videocam_outlined
+                                  : Icons.videocam_off_outlined,
+                              color: AppColors.white,
+                            )),
+                      ),
+                      Container(
+                        height: 36,
+                        width: 36,
+                        decoration: const ShapeDecoration(
+                          color: AppColors.black,
+                          shape: CircleBorder(),
+                        ),
+                        child: Center(
+                          child: CustomText(
+                            text: controller.videoPaused.toString(),
+                            color: AppColors.white,
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
                       Container(
                         height: 36,
                         width: 36,

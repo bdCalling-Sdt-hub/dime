@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
@@ -9,6 +8,7 @@ import '../../../utils/payment_key.dart';
 
 class VideoCallController extends GetxController {
   int myRemoteUid = 0;
+  dynamic callStatus = "Ringing";
   bool localUserJoined = false;
   bool muted = false;
   bool isVolume = false;
@@ -25,6 +25,8 @@ class VideoCallController extends GetxController {
   double dragHorizontal = 20.0;
   double dragVertical = 80.0;
 
+  DateTime? callingTime;
+
   List messages = [];
 
   ScrollController scrollController = ScrollController();
@@ -34,6 +36,7 @@ class VideoCallController extends GetxController {
 
   clear() {
     engine.leaveChannel();
+    engine.release();
     isFront = false;
     reConnectingRemoteView = false;
     videoPaused = false;
@@ -42,12 +45,6 @@ class VideoCallController extends GetxController {
     switchMainView = false;
     localUserJoined = false;
     update();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-    clear();
   }
 
   Future<void> initilize() async {
@@ -94,6 +91,18 @@ class VideoCallController extends GetxController {
             myRemoteUid = remoteUid;
             update();
           },
+          onRemoteVideoStateChanged:
+              (connection, remoteUid, state, reason, elapsed) {
+            if (state == RemoteVideoState.remoteVideoStateStopped) {
+              videoPaused = true;
+              update();
+              print(
+                  "videoPausedonRemoteVideoStateChanged $videoPaused $connection $remoteUid $state $reason $elapsed");
+            } else {
+              videoPaused = false;
+              update();
+            }
+          },
           onUserOffline: (RtcConnection connection, int remoteUid,
               UserOfflineReasonType reason) {
             Wakelock.disable();
@@ -110,6 +119,8 @@ class VideoCallController extends GetxController {
               videoPaused = false;
               update();
             }
+
+            callingTime = DateTime.now();
           },
           onTokenPrivilegeWillExpire:
               (RtcConnection connection, String token) {},
@@ -123,11 +134,7 @@ class VideoCallController extends GetxController {
 
   void setLocalVideo() {
     localUserJoined = !localUserJoined;
-    if (localUserJoined) {
-      engine.enableVideo();
-    } else {
-      engine.disableVideo();
-    }
+    engine.enableLocalVideo(localUserJoined);
     update();
   }
 
