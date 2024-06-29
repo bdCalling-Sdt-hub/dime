@@ -57,6 +57,7 @@ dependencies:
   agora_rtc_engine: ^6.3.2
   permission_handler: ^10.2.0
   wakelock: ^0.6.1+2
+  crypto: ^3.0.3
 
 
 dev_dependencies:

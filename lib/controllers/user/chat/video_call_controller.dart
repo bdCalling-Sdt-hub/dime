@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
@@ -15,6 +17,7 @@ class VideoCallController extends GetxController {
   double dragHorizontal = 20.0;
   double dragVertical = 80.0;
   int userCount = 0;
+  // String token = '';
 
   static VideoCallController get instance => Get.put(VideoCallController());
 
@@ -29,6 +32,10 @@ class VideoCallController extends GetxController {
 
   Future<void> initialize() async {
     Future.delayed(Duration.zero, () async {
+      // token = AgoraTokenBuilder.generateToken();
+
+      print("AgoraTokenBuilder.generateToken $token");
+
       await [Permission.microphone, Permission.camera].request();
       await _initAgoraRtcEngine();
       _addAgoraEventHandlers();
@@ -37,6 +44,8 @@ class VideoCallController extends GetxController {
           const VideoEncoderConfiguration();
       await engine.setVideoEncoderConfiguration(configuration);
       await engine.leaveChannel();
+
+      print("token $token");
       await engine.joinChannel(
         token: token,
         channelId: channel,
@@ -67,15 +76,13 @@ class VideoCallController extends GetxController {
             update();
           },
           onUserJoined: (RtcConnection connection, int remoteUid, int elapsed) {
-            // userCount++;
-            // if (userCount > 2) {
-            //   engine.leaveChannel();
-            //   // Handle the logic to prevent more users from joining
-            // } else {
-            //   localUserJoined = true;
-            //   remoteId = remoteUid;
-            // }
-            // update();
+            if (remoteId == 0) {
+              localUserJoined = true;
+              remoteId = remoteUid;
+            }
+            update();
+
+            print("connection =======================> ${connection.toJson()}");
           },
           onRemoteVideoStateChanged:
               (connection, remoteUid, state, reason, elapsed) {
@@ -91,7 +98,6 @@ class VideoCallController extends GetxController {
               UserOfflineReasonType reason) {
             Wakelock.disable();
             remoteId = 0;
-            userCount--;
             onCallEnd();
             update();
           },
@@ -165,3 +171,19 @@ class VideoCallController extends GetxController {
     update();
   }
 }
+
+// class AgoraTokenBuilder {
+//   static String generateToken() {
+//     int currentTimeStamp =
+//         (DateTime.now().millisecondsSinceEpoch / 1000).floor();
+//     int privilegeExpiredTs = currentTimeStamp + 216000;
+//
+//     String uidStr = '';
+//     String content = "$appId${appCertificate}Naimul$uidStr$privilegeExpiredTs";
+//
+//     Hmac hmac = Hmac(sha256, utf8.encode(appCertificate));
+//     Digest hash = hmac.convert(utf8.encode(content));
+//
+//     return appId + hash.toString() + privilegeExpiredTs.toString();
+//   }
+// }

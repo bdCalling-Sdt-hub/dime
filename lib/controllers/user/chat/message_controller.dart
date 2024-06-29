@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../core/app_routes.dart';
 import '../../../helpers/prefs_helper.dart';
 import '../../../models/chat_message_model.dart';
 import '../../../models/message_model.dart';
@@ -104,6 +105,25 @@ class MessageController extends GetxController {
     messageController.clear();
 
     SocketServices.socket.emitWithAck("add-new-message", body, ack: (data) {
+      if (kDebugMode) {
+        print(
+            "===============================================================> Received acknowledgment: $data");
+      }
+    });
+  }
+
+  videoCall() async {
+    var body = {
+      "chatId": chatId,
+    };
+
+    SocketServices.socket.emitWithAck("join-room", body, ack: (data) {
+      if (data['status'] == "Success") {
+        Get.toNamed(AppRoutes.videoCall);
+      } else {
+        Utils.snackBarMessage("Video call", data['message']);
+      }
+
       if (kDebugMode) {
         print(
             "===============================================================> Received acknowledgment: $data");
