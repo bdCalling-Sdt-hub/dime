@@ -14,6 +14,7 @@ class VideoCallController extends GetxController {
   late RtcEngine engine;
   double dragHorizontal = 20.0;
   double dragVertical = 80.0;
+  int userCount = 0;
 
   static VideoCallController get instance => Get.put(VideoCallController());
 
@@ -66,9 +67,15 @@ class VideoCallController extends GetxController {
             update();
           },
           onUserJoined: (RtcConnection connection, int remoteUid, int elapsed) {
-            localUserJoined = true;
-            remoteId = remoteUid;
-            update();
+            // userCount++;
+            // if (userCount > 2) {
+            //   engine.leaveChannel();
+            //   // Handle the logic to prevent more users from joining
+            // } else {
+            //   localUserJoined = true;
+            //   remoteId = remoteUid;
+            // }
+            // update();
           },
           onRemoteVideoStateChanged:
               (connection, remoteUid, state, reason, elapsed) {
@@ -84,6 +91,7 @@ class VideoCallController extends GetxController {
               UserOfflineReasonType reason) {
             Wakelock.disable();
             remoteId = 0;
+            userCount--;
             onCallEnd();
             update();
           },
