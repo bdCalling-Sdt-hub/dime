@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../../../../controllers/user/Booking/Book_appointment_controller.dart';
+import '../../../../controllers/user/Booking/book_appointment_controller.dart';
 import '../../../../core/app_routes.dart';
 import '../../../common_widgets/bottom nav bar/navbar.dart';
 import '../../../common_widgets/button/custom_button.dart';

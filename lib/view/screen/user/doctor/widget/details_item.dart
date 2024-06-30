@@ -5,7 +5,7 @@ import '../../../../../utils/app_colors.dart';
 import '../../../../common_widgets/text/custom_text.dart';
 
 class DetailsItem extends StatelessWidget {
-  DetailsItem(
+  const DetailsItem(
       {super.key,
       required this.icon,
       required this.number,

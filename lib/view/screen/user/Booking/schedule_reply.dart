@@ -6,7 +6,6 @@ import '../../../../controllers/user/Booking/shhedule_reply_controller.dart';
 import '../../../../core/app_routes.dart';
 import '../../../../helpers/other_helper.dart';
 import '../../../../utils/app_colors.dart';
-import '../../../../utils/app_utils.dart';
 import '../../../common_widgets/bottom nav bar/navbar.dart';
 import '../../../common_widgets/button/custom_button.dart';
 import '../../../common_widgets/text/custom_text.dart';

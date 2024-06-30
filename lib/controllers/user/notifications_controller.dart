@@ -5,7 +5,6 @@ import 'package:dime/models/notification_model.dart';
 import 'package:dime/services/api_service.dart';
 import 'package:dime/utils/app_url.dart';
 import 'package:dime/utils/app_utils.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class NotificationsController extends GetxController {

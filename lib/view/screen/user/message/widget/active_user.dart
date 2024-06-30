@@ -1,8 +1,6 @@
-import 'package:dime/extension/my_extension.dart';
 import 'package:dime/models/active_user_model.dart';
 import 'package:dime/utils/app_images.dart';
 import 'package:dime/view/common_widgets/image/custom_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';

@@ -45,6 +45,7 @@ class _CustomImageState extends State<CustomImage> {
     if (widget.imageType == ImageType.svg) {
       imageWidget = SvgPicture.asset(
         widget.imageSrc,
+        // ignore: deprecated_member_use
         color: widget.imageColor,
         height: widget.height,
         width: widget.width,
@@ -85,7 +86,9 @@ class _CustomImageState extends State<CustomImage> {
         progressIndicatorBuilder: (context, url, downloadProgress) =>
             CircularProgressIndicator(value: downloadProgress.progress),
         errorWidget: (context, url, error) {
-          print(error);
+          if (kDebugMode) {
+            print(error);
+          }
           return Image.asset(
             widget.defaultImage,
           ) ;

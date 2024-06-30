@@ -1,5 +1,4 @@
-import 'dart:convert';
-import 'package:crypto/crypto.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
@@ -34,8 +33,6 @@ class VideoCallController extends GetxController {
     Future.delayed(Duration.zero, () async {
       // token = AgoraTokenBuilder.generateToken();
 
-      print("AgoraTokenBuilder.generateToken $token");
-
       await [Permission.microphone, Permission.camera].request();
       await _initAgoraRtcEngine();
       _addAgoraEventHandlers();
@@ -45,7 +42,6 @@ class VideoCallController extends GetxController {
       await engine.setVideoEncoderConfiguration(configuration);
       await engine.leaveChannel();
 
-      print("token $token");
       await engine.joinChannel(
         token: token,
         channelId: channel,
@@ -82,7 +78,6 @@ class VideoCallController extends GetxController {
             }
             update();
 
-            print("connection =======================> ${connection.toJson()}");
           },
           onRemoteVideoStateChanged:
               (connection, remoteUid, state, reason, elapsed) {

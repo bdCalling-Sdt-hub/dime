@@ -1,4 +1,3 @@
-import 'package:dime/controllers/user/setting/privacy_policy_controller.dart';
 import 'package:dime/controllers/user/setting/terms_of_services_controller.dart';
 import 'package:dime/models/api_response_model.dart';
 import 'package:dime/view/common_widgets/custom_loader.dart';

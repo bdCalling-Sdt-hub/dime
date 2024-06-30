@@ -14,7 +14,7 @@ import '../../../common_widgets/text/custom_text.dart';
 import '../../../common_widgets/text_field/custom_text_field.dart';
 
 class SendReview extends StatefulWidget {
-  SendReview({super.key});
+  const SendReview({super.key});
 
   @override
   State<SendReview> createState() => _SendReviewState();

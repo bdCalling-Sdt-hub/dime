@@ -22,7 +22,5 @@ class LabBookingController extends GetxController {
     selectedData = dateFormat.toString();
   }
 
-  selectCategories(int index) {
-    print(index);
-  }
+
 }

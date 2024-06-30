@@ -1,12 +1,9 @@
 import 'dart:convert';
-
 import 'package:dime/models/api_response_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-
-import '../../models/consultantListModel.dart';
+import '../../models/consultant_list_model.dart';
 import '../../services/api_service.dart';
-import '../../utils/app_images.dart';
 import '../../utils/app_url.dart';
 import '../../utils/app_utils.dart';
 

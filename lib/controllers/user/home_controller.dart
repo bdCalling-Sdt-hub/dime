@@ -8,7 +8,7 @@ import 'package:dime/utils/app_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../models/consultantListModel.dart';
+import '../../models/consultant_list_model.dart';
 
 class HomeControllerPatients extends GetxController {
   List categories = [];

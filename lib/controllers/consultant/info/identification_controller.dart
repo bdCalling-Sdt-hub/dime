@@ -1,7 +1,5 @@
-import 'dart:convert';
 
 import 'package:get/get.dart';
-
 import '../../../core/app_routes.dart';
 import '../../../helpers/other_helper.dart';
 import '../../../services/api_service.dart';

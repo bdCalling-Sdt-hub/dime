@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
-import '../../../../../controllers/consultant/info/Personal_information_controller.dart';
+import '../../../../../controllers/consultant/info/personal_information_controller.dart';
 import '../../../../../helpers/other_helper.dart';
 import '../../../../../utils/app_colors.dart';
 import '../../../../common_widgets/pop up/custom_pop_up_menu_button.dart';
@@ -77,9 +77,6 @@ class _PersonalInfoAllFiledState extends State<PersonalInfoAllFiled> {
             ),
             IntlPhoneField(
               controller: controller.numberController,
-              onChanged: (value) {
-                print(value);
-              },
               decoration: InputDecoration(
                 hintText: "Phone Number".tr,
                 fillColor: AppColors.transparent,

@@ -85,8 +85,9 @@ class _AppointmentListScreenState extends State<AppointmentListScreen> {
                           itemBuilder: (context, index) {
                             Appointment item = controller.requests[index];
                             return GestureDetector(
-                              onTap: () =>
-                                  Get.toNamed(AppRoutes.patientsDetails),
+                              onTap: () => Get.toNamed(
+                                  AppRoutes.patientsDetails,
+                                  parameters: {"appointmentId": item.id}),
                               child: AppointmentRequestItem(
                                 dateTime: item.appointmentTime,
                                 text: "Appointment with ${item.user.fullName}",

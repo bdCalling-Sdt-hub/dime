@@ -1,10 +1,8 @@
 import 'package:dime/controllers/auth/forget_password_controller.dart';
 import 'package:dime/helpers/other_helper.dart';
-import 'package:dime/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../../../../../core/app_routes.dart';
 import '../../../../../utils/app_images.dart';
 import '../../../../common_widgets/button/custom_button.dart';
 import '../../../../common_widgets/image/custom_image.dart';

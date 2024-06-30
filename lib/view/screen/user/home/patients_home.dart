@@ -1,13 +1,11 @@
 import 'package:dime/models/category_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../controllers/user/home_controller.dart';
 import '../../../../controllers/user/profile_controller.dart';
 import '../../../../core/app_routes.dart';
-import '../../../../models/consultantListModel.dart';
+import '../../../../models/consultant_list_model.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_icons.dart';
 import '../../../common_widgets/bottom nav bar/navbar.dart';

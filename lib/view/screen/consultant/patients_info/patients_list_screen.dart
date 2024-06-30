@@ -5,7 +5,6 @@ import '../../../../controllers/consultant/patients_info/patients_list_controlle
 import '../../../../core/app_routes.dart';
 import '../../../../models/appointment_upcoming_model.dart';
 import '../../../../utils/app_colors.dart';
-import '../../../../utils/app_images.dart';
 import '../../../common_widgets/bottom nav bar/doctor_nav_bar.dart';
 import '../../../common_widgets/text/custom_text.dart';
 import '../../../common_widgets/text_field/custom_text_field.dart';
@@ -85,8 +84,10 @@ class _PatientsListScreenState extends State<PatientsListScreen> {
                         mainAxisExtent: 200.h),
                     itemBuilder: (context, index) {
                       Appointment item = controller.appointments[index];
+                      print("itemfgsd $item");
                       return GestureDetector(
-                        onTap: () => Get.toNamed(AppRoutes.patientsDetails),
+                        onTap: () => Get.toNamed(AppRoutes.patientsDetails,
+                            parameters: {"appointmentId": item.id}),
                         child: PatientsListItem(
                             image: item.user.image,
                             name: item.user.fullName,

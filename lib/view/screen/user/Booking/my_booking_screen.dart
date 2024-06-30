@@ -1,18 +1,10 @@
-import 'package:dime/models/api_response_model.dart';
-import 'package:dime/view/common_widgets/custom_loader.dart';
-import 'package:dime/view/common_widgets/error_screen.dart';
-import 'package:dime/view/common_widgets/no_data.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import '../../../../controllers/user/Booking/my_booking_controller.dart';
-import '../../../../core/app_routes.dart';
-import '../../../../models/my_booking_model.dart';
 import '../../../../utils/app_colors.dart';
-import '../../../../utils/app_images.dart';
 import '../../../common_widgets/bottom nav bar/navbar.dart';
-import '../../../common_widgets/doctor/doctor_book_item.dart';
 import '../../../common_widgets/text/custom_text.dart';
 import 'widget/booking_list.dart';
 

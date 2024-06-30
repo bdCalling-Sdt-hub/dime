@@ -7,7 +7,7 @@ import 'package:dime/view/common_widgets/text_field/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../../../../controllers/user/Booking/Book_appointment_controller.dart';
+import '../../../../controllers/user/Booking/book_appointment_controller.dart';
 import '../../../../core/app_routes.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../common_widgets/bottom nav bar/navbar.dart';
@@ -15,7 +15,7 @@ import '../../../common_widgets/button/custom_button.dart';
 import '../../../common_widgets/text/custom_text.dart';
 
 class SelectDataTime extends StatefulWidget {
-  SelectDataTime({super.key});
+  const SelectDataTime({super.key});
 
   @override
   State<SelectDataTime> createState() => _SelectDataTimeState();

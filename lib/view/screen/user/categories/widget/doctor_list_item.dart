@@ -1,17 +1,16 @@
 import 'package:dime/utils/app_icons.dart';
 import 'package:dime/utils/app_url.dart';
-import 'package:dime/view/common_widgets/button/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../../../models/consultantListModel.dart';
+import '../../../../../models/consultant_list_model.dart';
 import '../../../../../utils/app_colors.dart';
 import '../../../../common_widgets/image/custom_image.dart';
 import '../../../../common_widgets/text/custom_text.dart';
 
 class DoctorListItem extends StatelessWidget {
-  DoctorListItem({super.key, required this.item, required this.onTap});
+  const DoctorListItem({super.key, required this.item, required this.onTap});
 
   final ConsultantListModel item;
   final VoidCallback onTap;

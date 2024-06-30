@@ -1,6 +1,4 @@
 import 'dart:convert';
-import 'dart:ui';
-
 import 'package:dime/core/app_routes.dart';
 import 'package:dime/models/reviews_model.dart';
 import 'package:flutter/cupertino.dart';

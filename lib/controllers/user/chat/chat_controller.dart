@@ -74,8 +74,6 @@ class ChatController extends GetxController {
       chats.clear();
       chats.addAll(chatListModel.data.attributes.chatList);
 
-      print("============================================>$data");
-
       status = Status.completed;
       update();
     });

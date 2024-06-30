@@ -1,3 +1,5 @@
+import 'package:dime/helpers/other_helper.dart';
+import 'package:dime/view/common_widgets/text_field/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -6,7 +8,11 @@ import '../../../../common_widgets/button/custom_button.dart';
 import '../../../../common_widgets/text/custom_text.dart';
 
 class PopUp {
-  static deletePopUp() {
+  static deletePopUp(
+      {required TextEditingController controller,
+      required VoidCallback onTap,
+      bool isLoading = false}) {
+    final formKey = GlobalKey<FormState>();
     showDialog(
       context: Get.context!,
       builder: (context) {
@@ -16,6 +22,7 @@ class PopUp {
           ),
           contentPadding: const EdgeInsets.only(bottom: 12),
           title: Form(
+            key: formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -37,7 +44,13 @@ class PopUp {
                   fontWeight: FontWeight.w500,
                   color: AppColors.black,
                   maxLines: 2,
+                  bottom: 20.h,
                 ),
+                CustomTextField(
+                  controller: controller,
+                  labelText: 'Enter you password',
+                  validator: OtherHelper.validator,
+                )
               ],
             ),
           ),
@@ -66,7 +79,11 @@ class PopUp {
                     buttonColor: AppColors.black,
                     buttonRadius: 4.r,
                     buttonHeight: 40.h,
-                    onTap: () => Get.back(),
+                    onTap: () {
+                      if (formKey.currentState!.validate()) {
+                        onTap();
+                      }
+                    },
                   ),
                 ),
               ],

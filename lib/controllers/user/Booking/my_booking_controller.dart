@@ -1,11 +1,9 @@
 import 'dart:convert';
 import 'package:dime/models/api_response_model.dart';
 import 'package:dime/models/my_booking_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../services/api_service.dart';
 import '../../../utils/app_url.dart';
 import '../../../utils/app_utils.dart';

@@ -7,7 +7,7 @@ import '../../../../common_widgets/button/custom_button.dart';
 import '../../../../common_widgets/text/custom_text.dart';
 
 class CancelPopup {
-  static popUp() {
+  static popUp(VoidCallback? onTap) {
     showDialog(
       context: Get.context!,
       builder: (context) {
@@ -39,7 +39,7 @@ class CancelPopup {
                 Expanded(
                     child: CustomButton(
                   titleText: "Yes".tr,
-                  onTap: () => Get.offAllNamed(AppRoutes.doctorHome),
+                  onTap: onTap,
                 ))
               ],
             ),

@@ -36,7 +36,6 @@ class ApiService {
           .post(Uri.parse(url), body: body, headers: header ?? mainHeader)
           .timeout(const Duration(seconds: timeOut));
       responseJson = handleResponse(response);
-      print(response.body);
     } on SocketException {
       return ApiResponseModel(503, "No internet connection", '');
     } on FormatException {
@@ -193,7 +192,6 @@ class ApiService {
         responseJson = handleResponse(response);
       }
 
-      ;
     } on SocketException {
       return ApiResponseModel(503, "No internet connection", '');
     } on FormatException {
@@ -278,7 +276,6 @@ class ApiService {
         return ApiResponseModel(response.statusCode,
             jsonDecode(response.body)['message'], response.body);
       default:
-        print(response.statusCode);
         return ApiResponseModel(response.statusCode,
             jsonDecode(response.body)['message'], response.body);
     }

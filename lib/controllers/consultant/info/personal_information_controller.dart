@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:dime/models/api_response_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -40,7 +39,6 @@ class PersonalInformationController extends GetxController {
       selectedCategory.remove(dataList[index].id.toString());
       selectedCategoryId.remove(dataList[index].id.toString());
     }
-    print(selectedCategory);
     update();
     Get.back();
   }

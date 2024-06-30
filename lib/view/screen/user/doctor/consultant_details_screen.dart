@@ -19,7 +19,7 @@ import 'widget/details_item.dart';
 import 'widget/review_item.dart';
 
 class ConsultantDetailsScreen extends StatefulWidget {
-  ConsultantDetailsScreen({super.key});
+  const ConsultantDetailsScreen({super.key});
 
   @override
   State<ConsultantDetailsScreen> createState() =>
@@ -91,7 +91,7 @@ class _ConsultantDetailsScreenState extends State<ConsultantDetailsScreen> {
                       children: [
                         CustomImage(
                           imageSrc:
-                              "${AppUrls.imageUrl}${controller.consultantDetailsModel!.consultant.image}",
+                              "${AppUrls.imageUrl}${controller.consultantDetailsModel.consultant.image}",
                           defaultImage: AppImages.profile,
                           borderRadius: 12.r,
                           height: 109.sp,

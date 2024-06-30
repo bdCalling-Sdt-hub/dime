@@ -8,7 +8,7 @@ import '../../../../common_widgets/image/custom_image.dart';
 import '../../../../common_widgets/text/custom_text.dart';
 
 class ChatListItem extends StatelessWidget {
-  ChatListItem({
+  const ChatListItem({
     super.key,
     required this.item,
   });

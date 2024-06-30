@@ -1,13 +1,11 @@
 import 'dart:convert';
 
-import 'package:dime/controllers/consultant/info/Personal_information_controller.dart';
+import 'package:dime/controllers/consultant/info/personal_information_controller.dart';
 import 'package:dime/controllers/consultant/info/availability_controller.dart';
 import 'package:dime/models/consultant_profile_model.dart';
 import 'package:dime/services/api_service.dart';
 import 'package:dime/utils/app_url.dart';
 import 'package:get/get.dart';
-
-import '../../../core/app_routes.dart';
 
 class DoctorProfileController extends GetxController {
   List info = [

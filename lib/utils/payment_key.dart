@@ -1,4 +1,4 @@
 const appId = "8bd57b59e78e480cab86ef429dcf57de";
 const token =
-    "0068bd57b59e78e480cab86ef429dcf57deIAA+75wIynrHJKnJVP06/5S3RUli+qQJ0PC+ULxUtvI4L+cavLgAAAAAIgCiFOmpxfmAZgQAAQBVtn9mAgBVtn9mAwBVtn9mBABVtn9m";
-const channel = "naiboss2";
+    "007eJxTYLC9JzAlMOCYT5jW5LjvKkfsVvycvHnCPQOGli8z/X/d3d6iwGCRlGJqnmRqmWpukWpiYZCcmGRhlppmYmSZkpxmap6SynajIU3sWUNapMA2RkYGRgYWBkYGEGACk8xgkgVMcjJkpObk5CflFxczMAAAqZkjUQ==";
+const channel = "helloboss";

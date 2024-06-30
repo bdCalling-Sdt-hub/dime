@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../../../../controllers/consultant/info/Personal_information_controller.dart';
-import '../../../../core/app_routes.dart';
+import '../../../../controllers/consultant/info/personal_information_controller.dart';
 import '../../../common_widgets/bottom nav bar/doctor_nav_bar.dart';
 import '../../../common_widgets/button/custom_button.dart';
 import '../../../common_widgets/text/custom_text.dart';
-import 'widget/personal_Info_all_Filed.dart';
+import 'widget/personal_info_all_filed.dart';
 import 'widget/registation_step.dart';
 
 class PersonalInformationScreen extends StatelessWidget {

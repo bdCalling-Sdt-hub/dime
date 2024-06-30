@@ -8,18 +8,16 @@ import 'package:dime/view/screen/consultant/blog/widget/my_blog_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
 import '../../../../core/app_routes.dart';
 import '../../../../models/my_blogs_model.dart';
 import '../../../../utils/app_colors.dart';
-import '../../../../utils/app_images.dart';
 import '../../../common_widgets/bottom nav bar/doctor_nav_bar.dart';
 import '../../../common_widgets/custom_loader.dart';
 import '../../../common_widgets/text/custom_text.dart';
 import '../../../common_widgets/text_field/custom_text_field.dart';
 
 class MyBlog extends StatefulWidget {
-  MyBlog({super.key});
+  const MyBlog({super.key});
 
   @override
   State<MyBlog> createState() => _MyBlogState();

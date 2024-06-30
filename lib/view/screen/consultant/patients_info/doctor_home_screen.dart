@@ -6,10 +6,8 @@ import 'package:get/get.dart';
 import '../../../../controllers/consultant/patients_info/doctor_home_controller.dart';
 import '../../../../core/app_routes.dart';
 import '../../../../utils/app_colors.dart';
-import '../../../../utils/app_images.dart';
 import '../../../common_widgets/bottom nav bar/doctor_nav_bar.dart';
 import '../../../common_widgets/text/custom_text.dart';
-import '../../../common_widgets/text_field/custom_text_field.dart';
 import 'widget/appointment_request_item.dart';
 import 'widget/patients_list_item.dart';
 
@@ -78,8 +76,9 @@ class _DoctorHomeScreenState extends State<DoctorHomeScreen> {
                           itemBuilder: (context, index) {
                             Appointment item = controller.upcomingList[index];
                             return GestureDetector(
-                              onTap: () =>
-                                  Get.toNamed(AppRoutes.patientsDetails),
+                              onTap: () => Get.toNamed(
+                                  AppRoutes.patientsDetails,
+                                  parameters: {"appointmentId": item.id}),
                               child: PatientsListItem(
                                   image: item.user.image,
                                   name: item.user.fullName,
@@ -120,8 +119,9 @@ class _DoctorHomeScreenState extends State<DoctorHomeScreen> {
                             Appointment item = controller.pendingList[index];
 
                             return GestureDetector(
-                              onTap: () =>
-                                  Get.toNamed(AppRoutes.patientsDetails),
+                              onTap: () => Get.toNamed(
+                                  AppRoutes.patientsDetails,
+                                  parameters: {"appointmentId": item.id}),
                               child: AppointmentRequestItem(
                                 dateTime: item.appointmentTime,
                                 text: "Appointment with ${item.user.fullName}",

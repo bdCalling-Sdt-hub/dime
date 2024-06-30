@@ -2,12 +2,12 @@ import 'package:dime/controllers/consultant/blog/my_blog_controller.dart';
 import 'package:get/get.dart';
 import '../controllers/auth/change_password_controller.dart';
 import '../controllers/auth/forget_password_controller.dart';
-import '../controllers/auth/signIn_controller.dart';
+import '../controllers/auth/sign_in_controller.dart';
 import '../controllers/auth/sign_up_controller.dart';
 
 import '../controllers/consultant/appointment_history_controller.dart';
 import '../controllers/consultant/blog/upload_blog_controller.dart';
-import '../controllers/consultant/info/Personal_information_controller.dart';
+import '../controllers/consultant/info/personal_information_controller.dart';
 import '../controllers/consultant/info/added_experience_controller.dart';
 import '../controllers/consultant/info/availability_controller.dart';
 import '../controllers/consultant/info/identification_controller.dart';
@@ -17,8 +17,8 @@ import '../controllers/consultant/patients_info/appointment_list_controller.dart
 import '../controllers/consultant/patients_info/doctor_home_controller.dart';
 import '../controllers/consultant/patients_info/patients_list_controller.dart';
 import '../controllers/consultant/profile/doctor_profile.dart';
-import '../controllers/user/Booking/Book_appointment_controller.dart';
-import '../controllers/user/Booking/Booking_details_controller.dart';
+import '../controllers/user/Booking/book_appointment_controller.dart';
+import '../controllers/user/Booking/booking_details_controller.dart';
 import '../controllers/user/Booking/ambulance_booking_controller.dart';
 import '../controllers/user/Booking/home_care_controller.dart';
 import '../controllers/user/Booking/lab_booking_controller.dart';

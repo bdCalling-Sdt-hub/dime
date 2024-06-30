@@ -5,12 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../controllers/consultant/profile/doctor_profile.dart';
 import '../../../../core/app_routes.dart';
-import '../../../../utils/app_colors.dart';
-import '../../../../utils/app_images.dart';
 import '../../../common_widgets/bottom nav bar/doctor_nav_bar.dart';
 import '../../../common_widgets/image/custom_image.dart';
 import '../../../common_widgets/item.dart';
-import '../../../common_widgets/pop up/custom_pop_up_menu_button.dart';
 import '../../../common_widgets/pop up/success_pop_up.dart';
 import '../../../common_widgets/text/custom_text.dart';
 

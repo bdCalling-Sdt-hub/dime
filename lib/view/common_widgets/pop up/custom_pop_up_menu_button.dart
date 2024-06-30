@@ -1,11 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import '../../../utils/app_colors.dart';
 
 class PopUpMenu extends StatelessWidget {
-  PopUpMenu(
+  const PopUpMenu(
       {super.key,
       required this.items,
       required this.selectedItem,
@@ -25,7 +23,7 @@ class PopUpMenu extends StatelessWidget {
   final Color unselectedColor;
   final double height;
   final Function(int index) onTap;
-  TextStyle? style;
+  final TextStyle? style;
   final bool isContainer;
   final IconData iconData;
 

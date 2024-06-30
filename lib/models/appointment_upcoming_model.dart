@@ -13,8 +13,8 @@ class AppointmentsUpcomingModel {
 
   factory AppointmentsUpcomingModel.fromJson(Map<String, dynamic> json) {
     return AppointmentsUpcomingModel(
-      status: json['status'] ?? 'OK',
-      statusCode: json['statusCode'].toString() ?? 200.toString(),
+      status: json['status'] ?? '',
+      statusCode: json['statusCode'] ?? 200.toString(),
       message: json['message'] ?? 'appointments-list',
       data: AppointmentData.fromJson(json['data'] ?? {}),
     );
@@ -98,7 +98,7 @@ class Appointment {
       user: User.fromJson(json['user'] ?? {}),
       consultant: Consultant.fromJson(json['consultant'] ?? {}),
       amount: json['amount'] ?? 0,
-      subject: json['subject'] ?? 'No subject',
+      subject: json['subject'] ?? '',
       description: json['description'] ?? '',
       duration: json['duration'] ?? 0,
       type: json['type'] ?? 'unknown',

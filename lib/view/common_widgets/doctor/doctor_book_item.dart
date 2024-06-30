@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-
 import '../../../utils/app_colors.dart';
 import '../button/custom_button.dart';
 import '../image/custom_image.dart';
 import '../text/custom_text.dart';
 
 class DoctorBookItem extends StatelessWidget {
-  DoctorBookItem({
+  const DoctorBookItem({
     super.key,
     required this.date,
     required this.time,

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -79,7 +80,9 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
   }
 
   void onTap(int index) async {
-    print(widget.currentIndex);
+    if (kDebugMode) {
+      print(widget.currentIndex);
+    }
     if (index == 0) {
       if (!(widget.currentIndex == 0)) {
         Get.toNamed(AppRoutes.patientsHome);

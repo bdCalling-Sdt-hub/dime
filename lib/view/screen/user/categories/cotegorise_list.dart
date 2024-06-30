@@ -6,16 +6,14 @@ import '../../../../controllers/user/category_list_controller.dart';
 import '../../../../controllers/user/home_controller.dart';
 import '../../../../core/app_routes.dart';
 import '../../../../models/category_model.dart';
-import '../../../../models/consultantListModel.dart';
 import '../../../../utils/app_colors.dart';
-import '../../../../utils/app_images.dart';
 import '../../../common_widgets/bottom nav bar/navbar.dart';
 import '../../../common_widgets/text/custom_text.dart';
 import '../../../common_widgets/text_field/custom_text_field.dart';
 import 'widget/doctor_list_item.dart';
 
 class CategoriseListScreen extends StatefulWidget {
-  CategoriseListScreen({super.key});
+  const CategoriseListScreen({super.key});
 
   @override
   State<CategoriseListScreen> createState() => _CategoriseListScreenState();

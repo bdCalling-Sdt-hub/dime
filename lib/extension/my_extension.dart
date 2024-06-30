@@ -22,6 +22,7 @@ extension View2 on Widget {
 
 extension View3 on DateTime {
   String get time => DateFormat('h:mm a').format(this);
+  String get date => DateFormat('dd-MM-yyyy').format(this);
 
   String get dayName => DateFormat('E').format(this);
 

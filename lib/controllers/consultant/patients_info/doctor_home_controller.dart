@@ -44,6 +44,7 @@ class DoctorHomeController extends GetxController {
       appointmentsUpcomingModel =
           AppointmentsUpcomingModel.fromJson(jsonDecode(response.body));
 
+      upcomingList.clear();
       upcomingList
           .addAll(appointmentsUpcomingModel.data.attributes.appointmentList);
 
@@ -67,6 +68,7 @@ class DoctorHomeController extends GetxController {
       appointmentsUpcomingModel =
           AppointmentsUpcomingModel.fromJson(jsonDecode(response.body));
 
+      pendingList.clear();
       pendingList
           .addAll(appointmentsUpcomingModel.data.attributes.appointmentList);
 

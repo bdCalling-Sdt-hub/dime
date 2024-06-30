@@ -169,7 +169,6 @@ class LocalConstants extends Translations {
               "Added additional details(if you want)",
           "Write here": "Write here",
           "Select Date": "Select Date",
-          "Select Hour": "Select Hour",
           "Booking Successfully": "Booking Successfully!",
           "Edit your appointment": "Edit your appointment",
           "done": "Done",
@@ -215,7 +214,6 @@ class LocalConstants extends Translations {
           "New Password": "New  Password",
           "Password must be 8 characters & contain both \nalphabets and numerics":
               "Password must be 8 characters & contain both \nalphabets and numerics",
-          "Confirm": "Confirm",
           "Location": "Location",
           "please, location permission enabled":
               "please, location permission enabled",
@@ -240,7 +238,6 @@ class LocalConstants extends Translations {
           "Currently working here": "Currently working here",
           "Please select the days": "Please select the days",
           "Confirm your Identity": "Confirm your Identity",
-          "Upload": "Upload",
           "Upload your NID/Passport documents":
               "Upload your NID/Passport documents",
           "In Review": "In Review",

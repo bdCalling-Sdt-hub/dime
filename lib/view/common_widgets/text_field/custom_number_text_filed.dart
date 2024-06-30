@@ -6,11 +6,11 @@ import 'package:intl_phone_field/intl_phone_field.dart';
 import '../../../utils/app_colors.dart';
 
 class CustomNumberTextFiled extends StatelessWidget {
-  CustomNumberTextFiled(
+  const CustomNumberTextFiled(
       {super.key, required this.controller, required this.countryChange});
 
   final TextEditingController controller;
-  Function(Country value) countryChange;
+  final Function(Country value) countryChange;
 
   @override
   Widget build(BuildContext context) {

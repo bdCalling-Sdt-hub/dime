@@ -9,7 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../../../../utils/app_colors.dart';
 
 class AlreadyAccountRichText extends StatelessWidget {
-  AlreadyAccountRichText({
+  const AlreadyAccountRichText({
     super.key,
   });
 

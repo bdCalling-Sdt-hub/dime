@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:dime/controllers/consultant/blog/upload_blog_controller.dart';
-import 'package:dime/core/app_routes.dart';
 import 'package:dime/helpers/other_helper.dart';
 import 'package:dime/utils/app_colors.dart';
 import 'package:dime/view/common_widgets/bottom%20nav%20bar/doctor_nav_bar.dart';
@@ -16,7 +15,7 @@ import 'package:get/get.dart';
 import '../../../common_widgets/text/custom_text.dart';
 
 class UploadBlog extends StatefulWidget {
-  UploadBlog({super.key});
+  const UploadBlog({super.key});
 
   @override
   State<UploadBlog> createState() => _UploadBlogState();

@@ -53,7 +53,10 @@ class SettingScreen extends StatelessWidget {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () => PopUp.deletePopUp(),
+                  onTap: () => PopUp.deletePopUp(
+                      controller: controller.passwordController,
+                      onTap: controller.deleteAccountRepo,
+                      isLoading: controller.isLoading),
                   child: Container(
                     height: 52.h,
                     padding: EdgeInsets.symmetric(horizontal: 20.w),

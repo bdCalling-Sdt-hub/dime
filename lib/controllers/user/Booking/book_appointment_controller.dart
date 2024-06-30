@@ -1,5 +1,5 @@
-import 'package:dime/services/api_service.dart';
-import 'package:dime/utils/app_url.dart';
+
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -55,7 +55,6 @@ class BookAppointmentController extends GetxController {
   ];
 
   setAvailability(List data) {
-    print(data);
     if (!data.contains("Sat")) {
       availability.add(DateTime.saturday);
     } else if (!data.contains("Sun")) {
@@ -139,7 +138,6 @@ class BookAppointmentController extends GetxController {
   selectData(value) {
     final dateFormat = DateFormat('yyyy-MM-dd').format(value);
     selectedData = dateFormat.toString();
-    print("selectedTime $selectedData");
   }
 
   String hour(int index) {
@@ -167,19 +165,18 @@ class BookAppointmentController extends GetxController {
     update();
   }
 
-  bookAppointment() async {
-    var body = {
-      "appointmentDate": selectedData,
-      "startTime": selectedTime,
-      "consultant": id,
-      "subject": subjectController.text,
-      "description": descriptionController.text,
-      "duration": callDurationController.text.split("")[0],
-      "amount": amount
-    };
-
-    var response = await ApiService.postApi(AppUrls.appointments, body);
-
-    print(response.statusCode);
-  }
+  // bookAppointment() async {
+  //   var body = {
+  //     "appointmentDate": selectedData,
+  //     "startTime": selectedTime,
+  //     "consultant": id,
+  //     "subject": subjectController.text,
+  //     "description": descriptionController.text,
+  //     "duration": callDurationController.text.split("")[0],
+  //     "amount": amount
+  //   };
+  //
+  //   var response = await ApiService.postApi(AppUrls.appointments, body);
+  //
+  // }
 }

@@ -23,7 +23,7 @@ class FavoriteScreen extends StatelessWidget {
         itemCount: 10,
         padding: EdgeInsets.symmetric(horizontal: 20.w),
         itemBuilder: (context, index) {
-          return FavoriteListItem(
+          return const FavoriteListItem(
             image: AppImages.katryn,
             name: "Katryn Murphy",
             title: "Cardiologist",
