@@ -38,8 +38,8 @@ import '../controllers/user/payment/select_payment_method_controller.dart';
 import '../controllers/user/profile_controller.dart';
 import '../controllers/user/send_review_controller.dart';
 import '../controllers/user/setting/privacy_policy_controller.dart';
+import '../controllers/user/setting/setting_controller.dart';
 import '../controllers/user/setting/terms_of_services_controller.dart';
-import '../controllers/user/setting_controller.dart';
 
 
 class DependencyInjection extends Bindings {

@@ -2,9 +2,11 @@ import 'package:dime/core/app_routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-import '../../services/api_service.dart';
-import '../../utils/app_url.dart';
-import '../../utils/app_utils.dart';
+import '../../../services/api_service.dart';
+import '../../../utils/app_url.dart';
+import '../../../utils/app_utils.dart';
+
+
 
 class SettingController extends GetxController {
   TextEditingController passwordController = TextEditingController();
