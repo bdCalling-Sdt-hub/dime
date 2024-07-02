@@ -1,4 +1,5 @@
 import 'package:dime/models/category_model.dart';
+import 'package:dime/view/common_widgets/no_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -58,8 +59,9 @@ class PatientsHomeScreen extends StatelessWidget {
                                   items: profileController.languages,
                                   iconData: Icons.g_translate,
                                   iconColor: AppColors.white,
-                                  selectedItem:
-                                      [profileController.selectedLanguage],
+                                  selectedItem: [
+                                    profileController.selectedLanguage
+                                  ],
                                   onTap: profileController.selectLanguage);
                             },
                           )
@@ -176,7 +178,10 @@ class PatientsHomeScreen extends StatelessWidget {
                               return GestureDetector(
                                 onTap: () => Get.toNamed(
                                     AppRoutes.cotegoriseList,
-                                    parameters: {'category': item.name}),
+                                    parameters: {
+                                      'category': item.name,
+                                      "categoryId": item.id
+                                    }),
                                 child: CategoryItem(
                                   item: item,
                                 ),
@@ -206,20 +211,24 @@ class PatientsHomeScreen extends StatelessWidget {
                         height: 20.h,
                       ),
                       SizedBox(
-                          child: ListView.builder(
-                        padding: EdgeInsets.zero,
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: controller.doctors.length,
-                        itemBuilder: (context, index) {
-                          ConsultantListModel item = controller.doctors[index];
-                          return ListItem(
-                            item: item,
-                            onTap: () => Get.toNamed(AppRoutes.test,
-                                parameters: {"id": item.id}),
-                          );
-                        },
-                      )),
+                          child: controller.doctors.isEmpty
+                              ? const NoData()
+                              : ListView.builder(
+                                  padding: EdgeInsets.zero,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemCount: controller.doctors.length,
+                                  itemBuilder: (context, index) {
+                                    ConsultantListModel item =
+                                        controller.doctors[index];
+                                    return ListItem(
+                                      item: item,
+                                      onTap: () => Get.toNamed(
+                                          AppRoutes.doctorDetails,
+                                          parameters: {"id": item.id}),
+                                    );
+                                  },
+                                )),
                     ],
                   ),
                 )

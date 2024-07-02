@@ -1,4 +1,5 @@
 import 'package:dime/view/common_widgets/custom_loader.dart';
+import 'package:dime/view/common_widgets/no_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -25,6 +26,7 @@ class _CategoriseListScreenState extends State<CategoriseListScreen> {
   @override
   void initState() {
     controller.selectedCategory = Get.parameters['category'] ?? "";
+    controller.categoryId = Get.parameters['categoryId'] ?? "";
     controller.page = 1;
     controller.getConsultantsRepo();
 
@@ -138,20 +140,25 @@ class _CategoriseListScreenState extends State<CategoriseListScreen> {
                   ),
                   SizedBox(
                     child: controller.isLoading
-                        ? SizedBox(height: 200.h, child: const CustomLoader())
-                        : ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: controller.doctors.length,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemBuilder: (context, index) {
-                              return GestureDetector(
-                                  child: DoctorListItem(
-                                item: controller.doctors[index],
-                                onTap: () =>
-                                    Get.toNamed(AppRoutes.doctorDetails),
-                              ));
-                            },
-                          ),
+                        ? SizedBox(height: 400.h, child: const CustomLoader())
+                        : controller.doctors.isEmpty
+                            ? SizedBox(height:400.h,child: const NoData())
+                            : ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: controller.doctors.length,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemBuilder: (context, index) {
+                                  return GestureDetector(
+                                      child: DoctorListItem(
+                                    item: controller.doctors[index],
+                                    onTap: () => Get.toNamed(
+                                        AppRoutes.doctorDetails,
+                                        parameters: {
+                                          "id": controller.doctors[index].id
+                                        }),
+                                  ));
+                                },
+                              ),
                   )
                 ],
               ));

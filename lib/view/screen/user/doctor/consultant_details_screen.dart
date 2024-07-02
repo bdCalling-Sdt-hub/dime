@@ -191,7 +191,7 @@ class _ConsultantDetailsScreenState extends State<ConsultantDetailsScreen> {
                       DetailsItem(
                         icon: Icons.access_time_filled_sharp,
                         number:
-                            "Average ${controller.calculateTime(controller.consultantDetailsModel.consultant.averageResponseTime)}"
+                            "Average ${controller.calculateTime(controller.consultantDetailsModel.consultant.averageResponseTime.toInt())}"
                                 .tr,
                         title: "Response".tr,
                       ),

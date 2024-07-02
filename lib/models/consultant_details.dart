@@ -56,7 +56,7 @@ class Category {
   String name;
   String key;
   String image;
-  int v;
+  num v;
 
   Category({
     required this.id,
@@ -96,19 +96,19 @@ class Consultant {
   String image;
   String password;
   String role;
-  int consultationCompleted;
-  int ratings;
-  int averageResponseTime;
+  num consultationCompleted;
+  num ratings;
+  num averageResponseTime;
   String createdAt;
   String updatedAt;
-  int v;
+  num v;
   String aboutMe;
   Availability availability;
   List<Category> category;
   String gender;
   String title;
-  int videoConferenceFee;
-  int videoReplyFee;
+  num videoConferenceFee;
+  num videoReplyFee;
 
   Consultant({
     required this.id,
@@ -223,10 +223,10 @@ class TopReview {
   User user;
   String consultant;
   String comment;
-  int rating;
+  num rating;
   String createdAt;
   String updatedAt;
-  int v;
+  num v;
 
   TopReview({
     required this.id,
@@ -268,12 +268,12 @@ class TopReview {
 
 class Ratings {
   String averageRatings;
-  int totalReviews;
-  int fiveStarReviews;
-  int fourStarReviews;
-  int threeStarReviews;
-  int twoStarReviews;
-  int oneStarReviews;
+  num totalReviews;
+  num fiveStarReviews;
+  num fourStarReviews;
+  num threeStarReviews;
+  num twoStarReviews;
+  num oneStarReviews;
 
   Ratings({
     required this.averageRatings,

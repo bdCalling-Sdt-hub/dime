@@ -174,7 +174,7 @@ class _BlogScreenState extends State<BlogScreen> {
                               return BlogItem(
                                 onTap: () =>
                                     Get.toNamed(AppRoutes.paymentMethod),
-                                price: item.price,
+                                price: item.price.toInt(),
                                 name: item.title,
                                 image: "${AppUrls.imageUrl}${item.image}",
                                 description: item.details,

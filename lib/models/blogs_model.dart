@@ -60,12 +60,12 @@ class Blog {
   String image;
   String title;
   String category;
-  int price;
+  num price;
   String details;
   List<User> user;
   String createdAt;
   String updatedAt;
-  int v;
+  num v;
   bool isPaymentDone;
 
   Blog({
@@ -109,18 +109,18 @@ class User {
   String password;
   String role;
   Availability availability;
-  int consultationCompleted;
-  int ratings;
-  int averageResponseTime;
+  num consultationCompleted;
+  num ratings;
+  num averageResponseTime;
   String createdAt;
   String updatedAt;
-  int v;
+  num v;
   String aboutMe;
   List<String> category;
   String gender;
   String title;
-  int videoConferenceFee;
-  int videoReplyFee;
+  num videoConferenceFee;
+  num videoReplyFee;
 
   User({
     required this.id,
@@ -194,10 +194,10 @@ class Availability {
 }
 
 class Pagination {
-  int totalResults;
-  int totalPages;
-  int currentPage;
-  int limit;
+  num totalResults;
+  num totalPages;
+  num currentPage;
+  num limit;
 
   Pagination({
     required this.totalResults,

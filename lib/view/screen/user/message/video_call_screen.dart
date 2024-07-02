@@ -154,22 +154,6 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
                           shape: CircleBorder(),
                         ),
                         child: InkWell(
-                            onTap: controller.setVolume,
-                            child: Center(
-                              child: CustomText(
-                                text: controller.remoteId.toString(),
-                                color: AppColors.white,
-                              ),
-                            )),
-                      ),
-                      Container(
-                        height: 36,
-                        width: 36,
-                        decoration: const ShapeDecoration(
-                          color: AppColors.black,
-                          shape: CircleBorder(),
-                        ),
-                        child: InkWell(
                             onTap: controller.muteMic,
                             child: Icon(
                               controller.muted
