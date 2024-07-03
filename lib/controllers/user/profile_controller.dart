@@ -1,6 +1,12 @@
+import 'dart:convert';
+
 import 'package:dime/helpers/other_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../models/consultant_profile_model.dart';
+import '../../services/api_service.dart';
+import '../../utils/app_url.dart';
 
 class ProfileController extends GetxController {
   List languages = ["English", "French", "Arabic"];
@@ -11,12 +17,10 @@ class ProfileController extends GetxController {
 
   TextEditingController nameController = TextEditingController();
   TextEditingController numberController = TextEditingController();
-  TextEditingController dateOfBirthController = TextEditingController();
-  TextEditingController ageController = TextEditingController();
   TextEditingController genderController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
-
-
+  ConsultantProfileModel userProfile =
+      ConsultantProfileModel.fromJson({});
 
   selectedGender(int index) {
     genderController.text = gender[index].toString();
@@ -33,5 +37,27 @@ class ProfileController extends GetxController {
     selectedLanguage = languages[index];
     update();
     Get.back();
+  }
+
+  getProfileRepo() async {
+    var response = await ApiService.getApi(AppUrls.consultantProfile);
+    if (response.statusCode == 200) {
+      userProfile =
+          ConsultantProfileModel.fromJson(jsonDecode(response.body));
+      setValue();
+    }
+  }
+
+  setValue() {
+    nameController.text = userProfile.data.attributes.fullName;
+    numberController.text = userProfile.data.attributes.phoneNumber;
+    genderController.text = userProfile.data.attributes.gender;
+    descriptionController.text = userProfile.data.attributes.aboutMe;
+  }
+
+  @override
+  void onInit() {
+    getProfileRepo();
+    super.onInit();
   }
 }

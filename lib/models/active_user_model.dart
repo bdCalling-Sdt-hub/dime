@@ -2,6 +2,7 @@ class ActiveUserModel {
   String userFullName;
   String id;
   String email;
+  String image;
   String role;
   int iat;
   int exp;
@@ -11,6 +12,7 @@ class ActiveUserModel {
     required this.id,
     required this.email,
     required this.role,
+    required this.image,
     required this.iat,
     required this.exp,
   });
@@ -20,6 +22,7 @@ class ActiveUserModel {
       userFullName: json['userFullName'] ?? '',
       id: json['_id'] ?? '',
       email: json['email'] ?? '',
+      image: json['image'] ?? '',
       role: json['role'] ?? 'user',
       iat: json['iat'] ?? 0,
       exp: json['exp'] ?? 0,

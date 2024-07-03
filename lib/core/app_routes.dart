@@ -105,7 +105,7 @@ class AppRoutes {
   static const String termsOfServices = "/terms_of_services_screen.dart";
 
   static List<GetPage> routes = [
-    GetPage(name: test, page: () => const TestScreen()),
+    GetPage(name: test, page: () =>  TestScreen()),
     GetPage(name: splash, page: () => const SplashScreen()),
     GetPage(name: onboarding, page: () => const OnboardingScreen()),
     GetPage(name: signUp, page: () => SignUpScreen()),

@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../core/app_routes.dart';
 import '../../../helpers/prefs_helper.dart';
 import '../../../models/api_response_model.dart';
 import '../../../models/chat_list_model.dart';
@@ -81,6 +82,8 @@ class ChatController extends GetxController {
 
   getActiveUser() async {
     SocketServices.socket.emitWithAck("get-active-users", {}, ack: (data) {
+      print("===========================> Received acknowledgment: $data");
+
       activeUsers.clear();
       for (var item in data['data']) {
         activeUsers.add(ActiveUserModel.fromJson(item));
@@ -89,6 +92,22 @@ class ChatController extends GetxController {
 
       if (kDebugMode) {
         print("===========================> Received acknowledgment: $data");
+      }
+    });
+  }
+
+  addChatRoom(ActiveUserModel item) {
+    var body = {"participant": item.id};
+    print(body);
+    SocketServices.socket.emitWithAck("add-new-chat", body, ack: (data) {
+      print(data);
+      if (data['status'] == "Success") {
+        Get.toNamed(AppRoutes.message, parameters: {
+          "chatId": data['chatId'],
+          "name": item.userFullName,
+          "image": item.image,
+          // "image": item.image,
+        });
       }
     });
   }

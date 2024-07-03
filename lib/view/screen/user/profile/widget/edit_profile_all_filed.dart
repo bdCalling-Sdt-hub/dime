@@ -66,60 +66,6 @@ class EditProfileAllFiled extends StatelessWidget {
               initialCountryCode: "BD",
               disableLengthCheck: false,
             ),
-            SizedBox(
-              height: 20.h,
-            ),
-            Row(
-              children: [
-                Expanded(
-                    child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CustomText(
-                      text: "Date of birth".tr,
-                      fontSize: 20.sp,
-                      fontWeight: FontWeight.w700,
-                      bottom: 12.h,
-                    ),
-                    CustomTextField(
-                      controller: controller.dateOfBirthController,
-                      validator: OtherHelper.validator,
-                      keyboardType: TextInputType.none,
-                      fieldBorderColor: AppColors.black,
-                      fillColor: AppColors.transparent,
-                      fieldBorderRadius: 10.r,
-                      onTap: () => OtherHelper.datePicker(
-                          controller.dateOfBirthController),
-                      hindText: "Date of birth".tr,
-                    ),
-                  ],
-                )),
-                SizedBox(
-                  width: 20.sp,
-                ),
-                Expanded(
-                    child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CustomText(
-                      text: "Age".tr,
-                      fontSize: 20.sp,
-                      fontWeight: FontWeight.w700,
-                      bottom: 12.h,
-                    ),
-                    CustomTextField(
-                      controller: controller.ageController,
-                      validator: OtherHelper.validator,
-                      keyboardType: TextInputType.number,
-                      fieldBorderRadius: 10.r,
-                      hindText: "Age".tr,
-                      fieldBorderColor: AppColors.black,
-                      fillColor: AppColors.transparent,
-                    ),
-                  ],
-                )),
-              ],
-            ),
             CustomText(
               text: "About Me".tr,
               fontSize: 20.sp,
