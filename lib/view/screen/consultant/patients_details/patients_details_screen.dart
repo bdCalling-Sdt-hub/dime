@@ -34,7 +34,6 @@ class _PatientsDetailsScreenState extends State<PatientsDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print(appointmentId);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,

@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import '../../../services/api_service.dart';
 import '../../../utils/app_url.dart';
 import '../../../utils/app_utils.dart';
-import '../payment/payment_controller.dart';
 
 class MyBookingController extends GetxController {
   late TabController tabController;

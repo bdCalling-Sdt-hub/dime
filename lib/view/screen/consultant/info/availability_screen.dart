@@ -13,9 +13,9 @@ import 'widget/registation_step.dart';
 import 'widget/week_item.dart';
 
 class AvailabilityScreen extends StatelessWidget {
-  AvailabilityScreen({super.key});
+ AvailabilityScreen({super.key});
 
-  String type = Get.parameters["type"] ?? "";
+  final String type = Get.parameters["type"] ?? "";
 
   final formKey = GlobalKey<FormState>();
 

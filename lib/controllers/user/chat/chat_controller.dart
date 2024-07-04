@@ -99,7 +99,7 @@ class ChatController extends GetxController {
 
   getActiveUser() async {
     SocketServices.socket.emitWithAck("get-active-users", {}, ack: (data) {
-      print("===========================> Received acknowledgment: $data");
+
 
       activeUsers.clear();
       for (var item in data['data']) {
@@ -115,9 +115,7 @@ class ChatController extends GetxController {
 
   addChatRoom(ActiveUserModel item) {
     var body = {"participant": item.id};
-    print(body);
     SocketServices.socket.emitWithAck("add-new-chat", body, ack: (data) {
-      print(data);
       if (data['status'] == "Success") {
         Get.toNamed(AppRoutes.message, parameters: {
           "chatId": data['chatId'],

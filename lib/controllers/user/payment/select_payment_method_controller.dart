@@ -1,8 +1,3 @@
-import 'package:dime/core/app_routes.dart';
-import 'package:dime/helpers/prefs_helper.dart';
-import 'package:dime/services/api_service.dart';
-import 'package:dime/utils/app_url.dart';
-import 'package:dime/utils/app_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -31,7 +26,7 @@ class SelectPaymentMethodController extends GetxController {
   }
 
   paymentPayPal(BuildContext context) async {
-    var paymentInfo = await Navigator.of(context).push(MaterialPageRoute(
+    Navigator.of(context).push(MaterialPageRoute(
         builder: (BuildContext context) =>
             PaymentController.instance.paymentPaypal(amount: {
               "total": amount,
@@ -49,10 +44,5 @@ class SelectPaymentMethodController extends GetxController {
                 "currency": "USD"
               },
             ])));
-
-
-    print('payment data : ${paymentInfo['data']['id']}');
   }
-
-
 }

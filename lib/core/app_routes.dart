@@ -107,7 +107,7 @@ class AppRoutes {
   static const String withdraw = "/withdraw_screen.dart";
 
   static List<GetPage> routes = [
-    GetPage(name: test, page: () =>  TestScreen()),
+    GetPage(name: test, page: () =>  const TestScreen()),
     GetPage(name: splash, page: () => const SplashScreen()),
     GetPage(name: onboarding, page: () => const OnboardingScreen()),
     GetPage(name: signUp, page: () => SignUpScreen()),

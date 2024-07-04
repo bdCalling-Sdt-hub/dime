@@ -1,6 +1,5 @@
 import 'package:dime/helpers/other_helper.dart';
 import 'package:dime/models/api_response_model.dart';
-import 'package:dime/utils/app_url.dart';
 import 'package:dime/view/common_widgets/custom_loader.dart';
 import 'package:dime/view/common_widgets/error_screen.dart';
 import 'package:dime/view/common_widgets/no_data.dart';
@@ -10,7 +9,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../controllers/user/blog/blogs_controller.dart';
 import '../../../../controllers/user/home_controller.dart';
-import '../../../../core/app_routes.dart';
 import '../../../../models/blogs_model.dart';
 import '../../../../models/category_model.dart';
 import '../../../../utils/app_colors.dart';

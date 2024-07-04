@@ -1,34 +1,32 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:payphone/payphone.dart';
 
 class TestScreen extends StatelessWidget {
-   TestScreen({super.key});
+  const TestScreen({super.key});
 
-  int amount = 100 ;
-  int tax = 12 ;
-  String clientTransactionId= "1213456789";
-  String currency = "USD" ;
+  final int amount = 100;
 
+  final int tax = 12;
+
+  final String clientTransactionId = "1213456789";
+  final String currency = "USD";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: Container(
-        child: PayphoneWidget(
+        appBar: AppBar(),
+        body: PayphoneWidget(
             width: Get.width,
             height: Get.height,
             token: "token",
-            success: () => print("success"),
-            cancelled: () => print("cancelled"),
+            success: () {},
+            cancelled: () {},
             amount: amount,
             tax: tax,
-            amountWithTax: amount+ tax,
+            amountWithTax: amount + tax,
             clientTransactionId: clientTransactionId,
             currency: currency,
-            reference: "123456789"))
-      );
-    }
+            reference: "123456789"));
   }
+}

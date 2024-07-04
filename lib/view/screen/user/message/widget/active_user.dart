@@ -1,13 +1,10 @@
 import 'package:dime/controllers/user/chat/chat_controller.dart';
 import 'package:dime/models/active_user_model.dart';
-import 'package:dime/utils/app_images.dart';
 import 'package:dime/utils/app_url.dart';
 import 'package:dime/view/common_widgets/image/custom_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 
-import '../../../../../core/app_routes.dart';
 
 Widget activeUser(ActiveUserModel item) {
   return GestureDetector(

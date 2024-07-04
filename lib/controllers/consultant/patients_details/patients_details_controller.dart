@@ -33,7 +33,6 @@ class PatientsDetailsController extends GetxController {
       appointment =
           Appointment.fromJson(jsonDecode(response.body)['data']['attributes']);
 
-      print("appointment $chatId");
 
       callDurationController.text = appointment.duration.toString();
       bookingDateController.text = appointment.appointmentTime.date;

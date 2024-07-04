@@ -84,7 +84,6 @@ class _PatientsListScreenState extends State<PatientsListScreen> {
                         mainAxisExtent: 200.h),
                     itemBuilder: (context, index) {
                       Appointment item = controller.appointments[index];
-                      print("itemfgsd $item");
                       return GestureDetector(
                         onTap: () => Get.toNamed(AppRoutes.patientsDetails,
                             parameters: {"appointmentId": item.id}),

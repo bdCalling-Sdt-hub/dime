@@ -13,7 +13,7 @@ class PersonalInformationScreen extends StatelessWidget {
 
   final formKey = GlobalKey<FormState>();
 
-  String type = Get.parameters["type"] ?? "";
+  final String type = Get.parameters["type"] ?? "";
 
   @override
   Widget build(BuildContext context) {

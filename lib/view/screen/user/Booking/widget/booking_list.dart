@@ -1,7 +1,6 @@
 import 'package:dime/controllers/user/payment/payment_controller.dart';
 import 'package:dime/controllers/user/payment/select_payment_method_controller.dart';
 import 'package:dime/core/app_routes.dart';
-import 'package:dime/view/screen/user/payment/payment_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../../controllers/user/Booking/my_booking_controller.dart';
@@ -13,7 +12,7 @@ import '../../../../common_widgets/error_screen.dart';
 import '../../../../common_widgets/no_data.dart';
 
 class BookingList extends StatelessWidget {
-  BookingList({
+  const BookingList({
     super.key,
     required this.buttonText,
     this.onTap,
