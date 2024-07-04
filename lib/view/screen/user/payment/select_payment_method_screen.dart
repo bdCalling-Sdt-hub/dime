@@ -1,10 +1,12 @@
-import 'package:dime/core/app_routes.dart';
+
+import 'package:dime/utils/app_utils.dart';
 import 'package:dime/view/common_widgets/button/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../../controllers/user/payment/select_payment_method_controller.dart';
+import '../../../../core/app_routes.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../common_widgets/bottom nav bar/navbar.dart';
 import '../../../common_widgets/text/custom_text.dart';
@@ -74,7 +76,22 @@ class SelectPaymentMethodScreen extends StatelessWidget {
                 const Spacer(),
                 CustomButton(
                   titleText: 'Continue'.tr,
-                  onTap: () => Get.toNamed(AppRoutes.payment),
+                  isLoading: controller.isLoading,
+                  onTap: () {
+                    if (controller.selectRole == 'Paypal') {
+                      if (controller.amount.isNotEmpty &&
+                          controller.productName.isNotEmpty) {
+                        controller.paymentPayPal(context);
+                      } else {
+                        Utils.snackBarMessage(
+                            'Paypal'.tr, 'something is wrong');
+                      }
+                    } else {
+                      Get.toNamed(AppRoutes.payment);
+                    }
+
+                    //
+                  },
                 ),
               ],
             ),

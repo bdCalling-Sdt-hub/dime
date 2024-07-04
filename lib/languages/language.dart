@@ -103,6 +103,7 @@ class LocalConstants extends Translations {
           "Terms of services": "Terms of services",
           "message here": "message here",
           "Active Now": "Active Now",
+          "buy": "buy",
 
           ///new string =================================/=/=/=/=/==/=/=/==/
 

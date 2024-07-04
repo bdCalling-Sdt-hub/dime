@@ -1,11 +1,13 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../core/app_routes.dart';
 import '../../../helpers/other_helper.dart';
 import 'package:intl/intl.dart';
+
+import '../../../services/api_service.dart';
+import '../../../utils/app_url.dart';
 
 class BookAppointmentController extends GetxController {
   List relatives = const ["My Self", "Father", "Mother", "Brother", "Sister"];
@@ -24,6 +26,7 @@ class BookAppointmentController extends GetxController {
     "5:00 PM",
     "5:30 PM"
   ];
+  bool isLoading = false;
 
   String selectedData = "";
   String selectedTime = "";
@@ -165,18 +168,26 @@ class BookAppointmentController extends GetxController {
     update();
   }
 
-  // bookAppointment() async {
-  //   var body = {
-  //     "appointmentDate": selectedData,
-  //     "startTime": selectedTime,
-  //     "consultant": id,
-  //     "subject": subjectController.text,
-  //     "description": descriptionController.text,
-  //     "duration": callDurationController.text.split("")[0],
-  //     "amount": amount
-  //   };
-  //
-  //   var response = await ApiService.postApi(AppUrls.appointments, body);
-  //
-  // }
+  bookAppointment() async {
+    isLoading = true;
+    update();
+
+    var body = {
+      "appointmentDate": selectedData,
+      "startTime": selectedTime,
+      "consultant": id,
+      "subject": subjectController.text,
+      "description": descriptionController.text,
+      "duration": callDurationController.text.split(" ")[0],
+      "amount": amount
+    };
+
+    var response = await ApiService.postApi(AppUrls.appointments, body);
+    isLoading = false;
+    update();
+
+    if (response.statusCode == 200) {
+      Get.toNamed(AppRoutes.myBooking, parameters: {"index": "0"});
+    }
+  }
 }

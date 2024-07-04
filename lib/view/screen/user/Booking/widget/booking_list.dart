@@ -1,18 +1,30 @@
+import 'package:dime/controllers/user/payment/payment_controller.dart';
+import 'package:dime/controllers/user/payment/select_payment_method_controller.dart';
+import 'package:dime/core/app_routes.dart';
+import 'package:dime/view/screen/user/payment/payment_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
-
 import '../../../../../controllers/user/Booking/my_booking_controller.dart';
-import '../../../../../core/app_routes.dart';
 import '../../../../../models/api_response_model.dart';
-import '../../../../../utils/app_images.dart';
+import '../../../../../models/my_booking_model.dart';
 import '../../../../common_widgets/custom_loader.dart';
 import '../../../../common_widgets/doctor/doctor_book_item.dart';
 import '../../../../common_widgets/error_screen.dart';
 import '../../../../common_widgets/no_data.dart';
 
 class BookingList extends StatelessWidget {
-  const BookingList({super.key});
+  BookingList({
+    super.key,
+    required this.buttonText,
+    this.onTap,
+    this.isLoading = false,
+    this.isPayment = false,
+  });
+
+  final String buttonText;
+  final VoidCallback? onTap;
+  final bool isLoading;
+  final bool isPayment;
 
   @override
   Widget build(BuildContext context) {
@@ -27,16 +39,25 @@ class BookingList extends StatelessWidget {
             : ListView.builder(
                 itemCount: controller.appointmentList.length,
                 itemBuilder: (context, index) {
-                  var item = controller.appointmentList[index];
-                  return DoctorBookItem(
-                    date: DateFormat('MMMM d').format(item.appointmentTime),
-                    time:
-                        "${controller.time(item.appointmentTime)} - ${controller.time(item.appointmentTime, duration: item.duration)}",
-                    image: AppImages.doctorSarah,
-                    rightButtonText: "View Details".tr,
-                    rightOnTap: () => Get.toNamed(AppRoutes.bookingDetails),
-                    name: item.consultant.fullName,
-                  );
+                  Appointment item = controller.appointmentList[index];
+                  return doctorBookItem(
+                      item: item,
+                      buttonText: buttonText,
+                      isLoading: isLoading,
+                      onTap: isPayment
+                          ? () {
+                              SelectPaymentMethodController.instance.amount =
+                                  item.amount.toString();
+                              SelectPaymentMethodController
+                                  .instance.productName = 'Appointment';
+                              PaymentController.instance.consultant =
+                                  item.consultant.id;
+                              PaymentController.instance.appointment = item.id;
+                              PaymentController.instance.amountController.text =
+                                  item.amount.toString();
+                              Get.toNamed(AppRoutes.paymentMethod);
+                            }
+                          : onTap);
                 },
               ),
       },

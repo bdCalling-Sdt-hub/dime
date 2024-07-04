@@ -99,8 +99,9 @@ class _SelectDataTimeState extends State<SelectDataTime> {
                           suffixIcon: PopUpMenu(
                               items: controller.callDurations,
                               iconColor: AppColors.white,
-                              selectedItem:
-                                  [controller.callDurationController.text],
+                              selectedItem: [
+                                controller.callDurationController.text
+                              ],
                               onTap: controller.selectCallDuration),
                         ),
                       )
@@ -135,7 +136,8 @@ class _SelectDataTimeState extends State<SelectDataTime> {
                       ],
                     ),
                     child: CalendarDatePicker(
-                      initialDate: controller.getInitialDate(jsonDecode(availability)),
+                      initialDate:
+                          controller.getInitialDate(jsonDecode(availability)),
                       firstDate: DateTime(1900),
                       lastDate: DateTime(2100),
                       onDateChanged: controller.selectData,
@@ -188,13 +190,13 @@ class _SelectDataTimeState extends State<SelectDataTime> {
                     height: 20.h,
                   ),
                   CustomButton(
+                    isLoading: controller.isLoading,
                     titleText: "Appointment".tr,
                     onTap: () {
                       if (formKey.currentState!.validate()) {
                         if (controller.selectedData != "") {
                           if (controller.selectedTime != '') {
-                            Get.toNamed(AppRoutes.myBooking,
-                                parameters: {"index": "0"});
+                            controller.bookAppointment();
                           } else {
                             Utils.snackBarMessage(
                                 'time', "please, select time");

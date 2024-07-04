@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import '../../../services/api_service.dart';
 import '../../../utils/app_url.dart';
 import '../../../utils/app_utils.dart';
+import '../payment/payment_controller.dart';
 
 class MyBookingController extends GetxController {
   late TabController tabController;
@@ -27,6 +28,29 @@ class MyBookingController extends GetxController {
       print(value);
     }
   }
+
+  // paymentInfo(BuildContext context, Appointment item) async {
+  //   var data = await Navigator.of(context).push(MaterialPageRoute(
+  //       builder: (BuildContext context) =>
+  //           PaymentController.instance.paymentPaypal(amount: {
+  //             "total": item.amount,
+  //             "currency": "USD",
+  //             "details": {
+  //               "subtotal": item.amount,
+  //               "shipping": '0',
+  //               "shipping_discount": '0'
+  //             },
+  //           }, items: [
+  //             {
+  //               "name": item.type,
+  //               "quantity": 1,
+  //               "price": item.amount,
+  //               "currency": "USD"
+  //             },
+  //           ])));
+  //
+  //   print('payment data : $data');
+  // }
 
   late MyAppointmentModel myBookingModel;
   List appointmentList = [];

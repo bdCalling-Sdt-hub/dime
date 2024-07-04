@@ -172,12 +172,7 @@ class _BlogScreenState extends State<BlogScreen> {
                             itemBuilder: (context, index) {
                               Blog item = controller.blogs[index];
                               return BlogItem(
-                                onTap: () =>
-                                    Get.toNamed(AppRoutes.paymentMethod),
-                                price: item.price.toInt(),
-                                name: item.title,
-                                image: "${AppUrls.imageUrl}${item.image}",
-                                description: item.details,
+                                item: item,
                               );
                             },
                           ),

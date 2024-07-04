@@ -28,4 +28,6 @@ class AppUrls {
   static const termsOfServices = "$baseUrl/terms-and-conditions";
   static const chats = "$baseUrl/chats";
   static const messages = "$baseUrl/messages";
+  static const paymentData = "$baseUrl/payment-data";
+  static const paymentRequests = "$baseUrl/payment-requests";
 }

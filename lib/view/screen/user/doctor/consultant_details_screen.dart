@@ -34,7 +34,10 @@ class _ConsultantDetailsScreenState extends State<ConsultantDetailsScreen> {
 
   @override
   void initState() {
-    controller.getConsultantDetailsRepo(id);
+    Future.delayed(
+      Duration.zero,
+      () => controller.getConsultantDetailsRepo(id),
+    );
     super.initState();
   }
 
