@@ -2,6 +2,7 @@ import 'package:dime/view/screen/consultant/blog/my_blog.dart';
 import 'package:dime/view/screen/consultant/blog/upload_blog.dart';
 import 'package:dime/view/screen/consultant/transaction/transaction_details.dart';
 import 'package:dime/view/screen/consultant/transaction/transaction_screen.dart';
+import 'package:dime/view/screen/consultant/transaction/withdraw_screen.dart';
 import 'package:dime/view/screen/user/Booking/booking_details.dart';
 import 'package:dime/view/screen/user/Booking/schedule_reply.dart';
 import 'package:dime/view/screen/user/blog/blog_screen.dart';
@@ -103,6 +104,7 @@ class AppRoutes {
   static const String videoCall = "/video_call_screen.dart";
   static const String privacyPolicy = "/privacy_policy_screen.dart";
   static const String termsOfServices = "/terms_of_services_screen.dart";
+  static const String withdraw = "/withdraw_screen.dart";
 
   static List<GetPage> routes = [
     GetPage(name: test, page: () =>  TestScreen()),
@@ -155,5 +157,6 @@ class AppRoutes {
     GetPage(name: videoCall, page: () => const VideoCallScreen()),
     GetPage(name: privacyPolicy, page: () => const PrivacyPolicyScreen()),
     GetPage(name: termsOfServices, page: () => const TermsOfServicesScreen()),
+    GetPage(name: withdraw, page: () =>  WithdrawScreen()),
   ];
 }

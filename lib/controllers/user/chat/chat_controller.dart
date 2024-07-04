@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:dime/models/active_user_model.dart';
 import 'package:dime/utils/app_url.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,13 +22,28 @@ class ChatController extends GetxController {
   int page = 1;
 
   List chats = [];
+  List suggestions = [];
   List activeUsers = [];
 
   ChatListModel chatModel = ChatListModel.fromJson({});
 
   ScrollController scrollController = ScrollController();
 
+  TextEditingController searchController = TextEditingController();
+
   static ChatController get instance => Get.put(ChatController());
+
+  search(value) {
+    suggestions = chats.where(
+      (user) {
+        final result = user.participant.fullName.toLowerCase();
+        final input = value.toLowerCase();
+        return result.contains(input);
+      },
+    ).toList();
+
+    update();
+  }
 
   Future<void> scrollControllerCall() async {
     if (scrollController.position.pixels ==
@@ -52,6 +68,7 @@ class ChatController extends GetxController {
       chatModel = ChatListModel.fromJson(jsonDecode(response.body));
 
       chats.addAll(chatModel.data.attributes.chatList);
+      suggestions.addAll(chatModel.data.attributes.chatList);
 
       page = page + 1;
       status = Status.completed;

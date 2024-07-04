@@ -22,8 +22,6 @@ class ChatListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-
     return Scaffold(
       appBar: AppBar(
           centerTitle: true,
@@ -42,10 +40,10 @@ class ChatListScreen extends StatelessWidget {
               child: Column(
                 children: [
                   CustomTextField(
-                    prefixIcon: const Icon(Icons.search),
-                    hindText: 'search a doctor'.tr,
-                    fieldBorderColor: AppColors.transparent,
-                  ),
+                      prefixIcon: const Icon(Icons.search),
+                      hindText: 'search a doctor'.tr,
+                      fieldBorderColor: AppColors.transparent,
+                      onChanged: controller.search),
                   controller.activeUsers.isNotEmpty
                       ? CustomText(
                           text: "Active Now",
@@ -68,10 +66,10 @@ class ChatListScreen extends StatelessWidget {
                   ),
                   Expanded(
                     child: ListView.builder(
-                      itemCount: controller.chats.length,
+                      itemCount: controller.suggestions.length,
                       padding: EdgeInsets.only(top: 16.h),
                       itemBuilder: (context, index) {
-                        Chat item = controller.chats[index];
+                        Chat item = controller.suggestions[index];
                         return GestureDetector(
                           onTap: () =>
                               Get.toNamed(AppRoutes.message, parameters: {
@@ -80,7 +78,7 @@ class ChatListScreen extends StatelessWidget {
                             "image": item.participant.image,
                           }),
                           child: ChatListItem(
-                            item: controller.chats[index],
+                            item: item,
                           ),
                         );
                       },

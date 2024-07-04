@@ -30,4 +30,5 @@ class AppUrls {
   static const messages = "$baseUrl/messages";
   static const paymentData = "$baseUrl/payment-data";
   static const paymentRequests = "$baseUrl/payment-requests";
+  static const withdrawRequests = "$baseUrl/withdraw-requests";
 }
