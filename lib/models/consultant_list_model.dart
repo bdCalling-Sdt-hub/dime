@@ -78,12 +78,12 @@ class ConsultantListModel {
   String updatedAt;
   num v;
   String aboutMe;
-  Availability availability;
+  List<Availability> availability;
   List<Category> category;
   String gender;
   String title;
-  num videoConferenceFee;
-  num videoReplyFee;
+  num? videoConferenceFee;
+  num? videoReplyFee;
 
   ConsultantListModel({
     required this.id,
@@ -105,8 +105,8 @@ class ConsultantListModel {
     required this.category,
     required this.gender,
     required this.title,
-    required this.videoConferenceFee,
-    required this.videoReplyFee,
+    this.videoConferenceFee,
+    this.videoReplyFee,
   });
 
   factory ConsultantListModel.fromJson(Map<String, dynamic> json) {
@@ -126,15 +126,16 @@ class ConsultantListModel {
       updatedAt: json['updatedAt'] ?? '',
       v: json['__v'] ?? 0,
       aboutMe: json['aboutMe'] ?? '',
-      availability: Availability.fromJson(json['availability'] ?? {}),
+      availability: (json['availability'] as List<dynamic>?)
+          ?.map((item) => Availability.fromJson(item as Map<String, dynamic>))
+          .toList() ?? [],
       category: (json['category'] as List<dynamic>?)
           ?.map((item) => Category.fromJson(item as Map<String, dynamic>))
-          .toList() ??
-          [],
+          .toList() ?? [],
       gender: json['gender'] ?? '',
       title: json['title'] ?? '',
-      videoConferenceFee: json['videoConferenceFee'] ?? 0,
-      videoReplyFee: json['videoReplyFee'] ?? 0,
+      videoConferenceFee: json['videoConferenceFee'],
+      videoReplyFee: json['videoReplyFee'],
     );
   }
 
@@ -155,7 +156,7 @@ class ConsultantListModel {
       'updatedAt': updatedAt,
       '__v': v,
       'aboutMe': aboutMe,
-      'availability': availability.toJson(),
+      'availability': availability.map((item) => item.toJson()).toList(),
       'category': category.map((item) => item.toJson()).toList(),
       'gender': gender,
       'title': title,

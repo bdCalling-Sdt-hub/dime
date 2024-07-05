@@ -20,6 +20,10 @@ class DoctorProfileController extends GetxController {
   ConsultantProfileModel consultantProfile =
       ConsultantProfileModel.fromJson({});
 
+
+
+
+
   getProfileRepo() async {
     var response = await ApiService.getApi(AppUrls.consultantProfile);
     if (response.statusCode == 200) {
@@ -48,13 +52,12 @@ class DoctorProfileController extends GetxController {
     AvailabilityController.instance.videoReplyFeeController.text =
         consultantProfile.data.attributes.videoReplyFee.toString();
 
-    AvailabilityController.instance.startController.text =
-        consultantProfile.data.attributes.startTime;
-    AvailabilityController.instance.endController.text =
-        consultantProfile.data.attributes.endTime;
-
-    for (var day in consultantProfile.data.attributes.availabilityDay) {
-      AvailabilityController.instance.selectedWeekList.add(day);
+    for (var item in consultantProfile.data.attributes.availability) {
+      AvailabilityController.instance.selectedWeekList.add({
+        'day': item.day,
+        'startTime': item.startTime,
+        'endTime': item.endTime
+      });
     }
   }
 

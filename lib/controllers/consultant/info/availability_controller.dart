@@ -9,14 +9,48 @@ import '../../../utils/app_url.dart';
 import '../../../utils/app_utils.dart';
 
 class AvailabilityController extends GetxController {
-  List week = ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"];
+  List<Map> week = [
+    {
+      'day': 'Sat',
+      'startTime': "09:00",
+      'endTime': "17:00",
+    },
+    {
+      'day': 'Sun',
+      'startTime': "09:00",
+      'endTime': "17:00",
+    },
+    {
+      'day': 'Mon',
+      'startTime': "09:00",
+      'endTime': "17:00",
+    },
+    {
+      'day': 'Tue',
+      'startTime': "09:00",
+      'endTime': "17:00",
+    },
+    {
+      'day': 'Wed',
+      'startTime': "09:00",
+      'endTime': "17:00",
+    },
+    {
+      'day': 'Thu',
+      'startTime': "09:00",
+      'endTime': "17:00",
+    },
+    {
+      'day': 'Fri',
+      'startTime': "09:00",
+      'endTime': "17:00",
+    },
+  ];
 
   bool isLoading = false;
 
-  List selectedWeekList = [];
+  List<Map> selectedWeekList = [];
 
-  TextEditingController startController = TextEditingController();
-  TextEditingController endController = TextEditingController();
   TextEditingController videoConferenceFeeController = TextEditingController();
   TextEditingController videoReplyFeeController = TextEditingController();
 
@@ -24,13 +58,38 @@ class AvailabilityController extends GetxController {
       Get.put(AvailabilityController());
 
   selectWeek(int index) {
-    String selectedWeek = week[index].toString();
-    if (!selectedWeekList.contains(selectedWeek)) {
-      selectedWeekList.add(selectedWeek);
+    Map item = week[index];
+
+    if (!selectedWeekList.contains(item)) {
+      selectedWeekList.add(item);
       update();
     } else {
-      selectedWeekList.remove(selectedWeek);
+      selectedWeekList.indexOf(item);
+      selectedWeekList.remove(item);
       update();
+    }
+
+    print(selectedWeekList);
+  }
+
+  updateWeek(Map item, Map newItem) {
+    if (selectedWeekList.contains(item)) {
+      selectedWeekList.remove(item);
+      selectedWeekList.add(newItem);
+      print(newItem);
+    }
+  }
+
+  findItem(item) {
+    try {
+      Map foundItem = selectedWeekList.firstWhere((element) => element['day'] == item['day']);
+
+      print('Item found: $foundItem');
+      return foundItem;
+    } catch (e) {
+      // Handle the case where the item is not found
+      print('Item not found');
+      return {};
     }
   }
 
@@ -38,11 +97,7 @@ class AvailabilityController extends GetxController {
     isLoading = true;
     update();
     var body = {
-      "availability": {
-        "day": selectedWeekList,
-        "startTime": startController.text,
-        "endTime": endController.text,
-      },
+      "availability": selectedWeekList,
       "videoConferenceFee": videoConferenceFeeController.text,
       "videoReplyFee": videoReplyFeeController.text,
     };

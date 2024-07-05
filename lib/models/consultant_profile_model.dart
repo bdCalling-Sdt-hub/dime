@@ -36,9 +36,6 @@ class ConsultantProfileData {
 }
 
 class ConsultantAttributes {
-  List<String> availabilityDay;
-  String startTime;
-  String endTime;
   String id;
   String fullName;
   String email;
@@ -47,25 +44,23 @@ class ConsultantAttributes {
   String image;
   String password;
   String role;
+  List<Category> category;
   int consultationCompleted;
   double ratings;
   int averageResponseTime;
+  String adminApproval;
+  List<Availability> availability;
   String createdAt;
   String updatedAt;
   int v;
   String aboutMe;
-  List<Category> category;
+  String country;
   String gender;
   String title;
   int videoConferenceFee;
   int videoReplyFee;
-  String country;
-  String adminApproval;
 
   ConsultantAttributes({
-    required this.availabilityDay,
-    required this.startTime,
-    required this.endTime,
     required this.id,
     required this.fullName,
     required this.email,
@@ -74,35 +69,31 @@ class ConsultantAttributes {
     required this.image,
     required this.password,
     required this.role,
+    required this.category,
     required this.consultationCompleted,
     required this.ratings,
     required this.averageResponseTime,
+    required this.adminApproval,
+    required this.availability,
     required this.createdAt,
     required this.updatedAt,
     required this.v,
     required this.aboutMe,
-    required this.category,
+    required this.country,
     required this.gender,
     required this.title,
     required this.videoConferenceFee,
     required this.videoReplyFee,
-    required this.country,
-    required this.adminApproval,
   });
 
   factory ConsultantAttributes.fromJson(Map<String, dynamic> json) {
-    var categoryList = json['category'] ?? [];
-    List<Category> categories = [];
+    var categoryList = json['category'] as List<dynamic>? ?? [];
+    List<Category> categories = categoryList.map((category) => Category.fromJson(category)).toList();
 
-    for (var category in categoryList) {
-      categories.add(Category.fromJson(category));
-    }
+    var availabilityList = json['availability'] as List<dynamic>? ?? [];
+    List<Availability> availabilities = availabilityList.map((availability) => Availability.fromJson(availability)).toList();
 
-    var availability = json['availability'] ?? {};
     return ConsultantAttributes(
-      availabilityDay: List<String>.from(availability['day'] ?? []),
-      startTime: availability['startTime'] ?? '',
-      endTime: availability['endTime'] ?? '',
       id: json['_id'] ?? '',
       fullName: json['fullName'] ?? '',
       email: json['email'] ?? '',
@@ -111,20 +102,21 @@ class ConsultantAttributes {
       image: json['image'] ?? '',
       password: json['password'] ?? '',
       role: json['role'] ?? '',
+      category: categories,
       consultationCompleted: json['consultationCompleted'] ?? 0,
-      ratings: json['ratings']?.toDouble() ?? 0.0,
+      ratings: (json['ratings'] ?? 0).toDouble(),
       averageResponseTime: json['averageResponseTime'] ?? 0,
+      adminApproval: json['adminApproval'] ?? 'Pending',
+      availability: availabilities,
       createdAt: json['createdAt'] ?? '',
       updatedAt: json['updatedAt'] ?? '',
       v: json['__v'] ?? 0,
       aboutMe: json['aboutMe'] ?? '',
-      category: categories,
+      country: json['country'] ?? '',
       gender: json['gender'] ?? '',
       title: json['title'] ?? '',
       videoConferenceFee: json['videoConferenceFee'] ?? 0,
       videoReplyFee: json['videoReplyFee'] ?? 0,
-      country: json['country'] ?? '',
-      adminApproval: json['adminApproval'] ?? '',
     );
   }
 }
@@ -151,6 +143,29 @@ class Category {
       key: json['key'] ?? '',
       image: json['image'] ?? '',
       v: json['__v'] ?? 0,
+    );
+  }
+}
+
+class Availability {
+  String day;
+  String startTime;
+  String endTime;
+  String id;
+
+  Availability({
+    required this.day,
+    required this.startTime,
+    required this.endTime,
+    required this.id,
+  });
+
+  factory Availability.fromJson(Map<String, dynamic> json) {
+    return Availability(
+      day: json['day'] ?? '',
+      startTime: json['startTime'] ?? '',
+      endTime: json['endTime'] ?? '',
+      id: json['_id'] ?? '',
     );
   }
 }
