@@ -293,7 +293,13 @@ class _ConsultantDetailsScreenState extends State<ConsultantDetailsScreen> {
                     children: [
                       Expanded(
                           child: GestureDetector(
-                        onTap: () => Get.toNamed(AppRoutes.scheduleReply),
+                        onTap: () =>
+                            Get.toNamed(AppRoutes.scheduleReply, parameters: {
+                          "id": controller.consultantDetailsModel.consultant.id,
+                          "amount": controller
+                              .consultantDetailsModel.consultant.videoReplyFee
+                              .toString(),
+                        }),
                         child: Container(
                           height: 60.sp,
                           padding: EdgeInsets.only(left: 20.w),

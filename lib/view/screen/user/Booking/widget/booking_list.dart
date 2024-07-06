@@ -39,7 +39,9 @@ class BookingList extends StatelessWidget {
                   Appointment item = controller.appointmentList[index];
                   return doctorBookItem(
                       item: item,
-                      buttonText: buttonText,
+                      buttonText: isPayment
+                          ? "$buttonText \$${item.amount}"
+                          : buttonText,
                       isLoading: isLoading,
                       onTap: isPayment
                           ? () {

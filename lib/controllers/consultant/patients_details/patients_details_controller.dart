@@ -33,7 +33,6 @@ class PatientsDetailsController extends GetxController {
       appointment =
           Appointment.fromJson(jsonDecode(response.body)['data']['attributes']);
 
-
       callDurationController.text = appointment.duration.toString();
       bookingDateController.text = appointment.appointmentTime.date;
       bookingTimeController.text = appointment.appointmentTime.time;
@@ -65,6 +64,10 @@ class PatientsDetailsController extends GetxController {
       callDurationController.text = appointment.duration.toString();
       bookingDateController.text = appointment.appointmentTime.date;
       bookingTimeController.text = appointment.appointmentTime.time;
+
+      if (status == 'approved') {
+        Utils.snackBarMessage("Approved Appointment", "Wait for payment");
+      }
 
       isLoading = '';
       update();

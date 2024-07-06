@@ -60,9 +60,18 @@ Widget doctorBookItem(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CustomText(
-                    text: item.consultant.fullName,
-                    bottom: 6.h,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CustomText(
+                        text: item.consultant.fullName,
+                        bottom: 6.h,
+                      ),
+                      CustomText(
+                        text: item.type,
+                        bottom: 6.h,
+                      ),
+                    ],
                   ),
                   Row(
                     children: [
