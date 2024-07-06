@@ -1,3 +1,4 @@
+import 'package:dime/controllers/consultant/transaction/transaction_controller.dart';
 import 'package:dime/controllers/consultant/transaction/withdraw_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -94,7 +95,24 @@ class WithdrawScreen extends StatelessWidget {
                 CustomTextField(
                   controller: controller.amountController,
                   labelText: 'Amount'.tr,
-                  validator: OtherHelper.validator,
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return "This field is required".tr;
+                    } else {
+
+                      int amount = int.tryParse(TransactionController.instance.amount) ?? 0;
+                      int withdrawAmount = int.tryParse(value) ?? 0;
+
+                      if(amount> withdrawAmount) {
+                        return null ;
+                      } else {
+                        return 'insufficient balance'.tr ;
+                      }
+
+
+
+                    }
+                  },
                   fillColor: AppColors.transparent,
                   keyboardType: TextInputType.number,
                   fieldBorderColor: AppColors.black,

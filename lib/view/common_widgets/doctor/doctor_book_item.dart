@@ -76,7 +76,7 @@ Widget doctorBookItem(
                             ),
                             Flexible(
                               child: CustomText(
-                                text: item.appointmentTime.date,
+                                text: item.appointmentTime.toLocal().date,
                                 fontWeight: FontWeight.w400,
                                 fontSize: 12.sp,
                                 left: 4.w,
@@ -95,7 +95,7 @@ Widget doctorBookItem(
                             ),
                             Flexible(
                               child: CustomText(
-                                text: item.appointmentTime.time,
+                                text: item.appointmentTime.toLocal().time,
                                 fontWeight: FontWeight.w400,
                                 fontSize: 12.sp,
                                 left: 4.w,

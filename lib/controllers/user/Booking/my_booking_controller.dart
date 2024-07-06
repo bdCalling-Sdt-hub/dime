@@ -14,10 +14,10 @@ class MyBookingController extends GetxController {
 
   List statusList = [
     "pending",
-    "payment",
-    "payment-status",
+    "payment-request",
     "upcoming",
-    "completed"
+    "completed",
+    "cancelled"
   ];
 
   static MyBookingController get instance => Get.put(MyBookingController());

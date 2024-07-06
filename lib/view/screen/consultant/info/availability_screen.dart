@@ -1,6 +1,4 @@
-import 'package:dime/extension/my_extension.dart';
 import 'package:dime/helpers/other_helper.dart';
-import 'package:dime/utils/app_colors.dart';
 import 'package:dime/utils/app_utils.dart';
 import 'package:dime/view/common_widgets/text_field/custom_text_field.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +20,6 @@ class AvailabilityScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(AvailabilityController.instance.selectedWeekList);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,

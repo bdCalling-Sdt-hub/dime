@@ -1,5 +1,5 @@
 class Availability {
-  List<String> day;
+  String day;
   String startTime;
   String endTime;
 
@@ -11,7 +11,7 @@ class Availability {
 
   factory Availability.fromJson(Map<String, dynamic> json) {
     return Availability(
-      day: List<String>.from(json['day'] ?? []),
+      day: json['day'] ?? '',
       startTime: json['startTime'] ?? '',
       endTime: json['endTime'] ?? '',
     );
@@ -127,11 +127,14 @@ class ConsultantListModel {
       v: json['__v'] ?? 0,
       aboutMe: json['aboutMe'] ?? '',
       availability: (json['availability'] as List<dynamic>?)
-          ?.map((item) => Availability.fromJson(item as Map<String, dynamic>))
-          .toList() ?? [],
+              ?.map(
+                  (item) => Availability.fromJson(item as Map<String, dynamic>))
+              .toList() ??
+          [],
       category: (json['category'] as List<dynamic>?)
-          ?.map((item) => Category.fromJson(item as Map<String, dynamic>))
-          .toList() ?? [],
+              ?.map((item) => Category.fromJson(item as Map<String, dynamic>))
+              .toList() ??
+          [],
       gender: json['gender'] ?? '',
       title: json['title'] ?? '',
       videoConferenceFee: json['videoConferenceFee'],

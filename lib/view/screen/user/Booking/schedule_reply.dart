@@ -22,7 +22,7 @@ class ScheduleReply extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: CustomText(
-          text: "Schedule a call".tr,
+          text: "Video Reply".tr,
           fontSize: 20.sp,
           fontWeight: FontWeight.w600,
         ),

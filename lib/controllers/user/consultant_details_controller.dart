@@ -9,7 +9,8 @@ import '../../utils/app_url.dart';
 import '../../utils/app_utils.dart';
 
 class ConsultantDetailsController extends GetxController {
-  ConsultantDetailsModel consultantDetailsModel = ConsultantDetailsModel();
+  ConsultantDetailsModel consultantDetailsModel =
+      ConsultantDetailsModel.fromJson({});
 
   Status status = Status.completed;
 

@@ -87,13 +87,15 @@ class _CustomImageState extends State<CustomImage> {
             CircularProgressIndicator(value: downloadProgress.progress),
         errorWidget: (context, url, error) {
           if (kDebugMode) {
-            print(error);
+            print("Failed to load image: $url");
+            print("Error: $error");
           }
           return Image.asset(
             widget.defaultImage,
-          ) ;
+          );
         },
       );
+
     }
 
     return SizedBox(

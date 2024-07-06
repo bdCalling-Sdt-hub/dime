@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:dime/extension/my_extension.dart';
 import 'package:dime/models/api_response_model.dart';
 import 'package:dime/utils/app_icons.dart';
 import 'package:dime/utils/app_url.dart';
@@ -221,21 +222,6 @@ class _ConsultantDetailsScreenState extends State<ConsultantDetailsScreen> {
                     top: 20.h,
                     bottom: 8.h,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      CustomText(
-                        text: "Reviews".tr,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 20.sp,
-                      ),
-                      CustomText(
-                        text: "See All".tr,
-                        fontWeight: FontWeight.w400,
-                        textAlign: TextAlign.start,
-                      ),
-                    ],
-                  ),
                   Center(
                     child: SizedBox(
                       height: 50.h,
@@ -266,8 +252,29 @@ class _ConsultantDetailsScreenState extends State<ConsultantDetailsScreen> {
                   SizedBox(
                     height: 20.h,
                   ),
+                  controller
+                          .consultantDetailsModel.review.topReview.id.isNotEmpty
+                      ? Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            CustomText(
+                              text: "Reviews".tr,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 20.sp,
+                            ),
+                            CustomText(
+                              text: "See All".tr,
+                              fontWeight: FontWeight.w400,
+                              textAlign: TextAlign.start,
+                            ),
+                          ],
+                        )
+                      : 100.height,
                   SizedBox(
-                      height: 140.h,
+                      height: controller.consultantDetailsModel.review.topReview
+                              .id.isNotEmpty
+                          ? 140.h
+                          : 0,
                       child: ReviewItem(
                         image:
                             "${AppUrls.imageUrl}${controller.consultantDetailsModel.review.topReview.user.image}",
@@ -324,8 +331,7 @@ class _ConsultantDetailsScreenState extends State<ConsultantDetailsScreen> {
                               "availability": jsonEncode(controller
                                   .consultantDetailsModel
                                   .consultant
-                                  .availability
-                                  .day)
+                                  .availability)
                             }),
                         child: Container(
                           height: 60.sp,

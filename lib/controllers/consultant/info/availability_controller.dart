@@ -69,14 +69,12 @@ class AvailabilityController extends GetxController {
       update();
     }
 
-    print(selectedWeekList);
   }
 
   updateWeek(Map item, Map newItem) {
     if (selectedWeekList.contains(item)) {
       selectedWeekList.remove(item);
       selectedWeekList.add(newItem);
-      print(newItem);
     }
   }
 
@@ -84,11 +82,9 @@ class AvailabilityController extends GetxController {
     try {
       Map foundItem = selectedWeekList.firstWhere((element) => element['day'] == item['day']);
 
-      print('Item found: $foundItem');
       return foundItem;
     } catch (e) {
       // Handle the case where the item is not found
-      print('Item not found');
       return {};
     }
   }

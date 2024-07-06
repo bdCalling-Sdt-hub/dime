@@ -106,6 +106,7 @@ class LocalConstants extends Translations {
           "buy": "buy",
           "cedula Number": "cedula Number",
           "account Type": "account Type",
+          "insufficient balance": "insufficient balance",
 
           ///new string =================================/=/=/=/=/==/=/=/==/
 

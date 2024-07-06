@@ -58,32 +58,49 @@ class BookAppointmentController extends GetxController {
   ];
 
   setAvailability(List data) {
-    if (!data.contains("Sat")) {
+    if (!data.any(
+      (element) => element['day'] == 'Sat',
+    )) {
       availability.add(DateTime.saturday);
-    } else if (!data.contains("Sun")) {
+    } else if (!data.any((element) => element['day'] == "Sun")) {
       availability.add(DateTime.sunday);
-    } else if (!data.contains("Mon")) {
+    } else if (!data.any((element) => element['day'] == "Mon")) {
       availability.add(DateTime.monday);
-    } else if (!data.contains("Tue")) {
-      availability.add(DateTime.thursday);
-    } else if (!data.contains("Wed")) {
+    } else if (!data.any((element) => element['day'] == "Tue")) {
+      availability.add(DateTime.tuesday);
+    } else if (!data.any((element) => element['day'] == "Wed")) {
       availability.add(DateTime.wednesday);
-    } else if (!data.contains("Thu")) {
+    } else if (!data.any((element) => element['day'] == "Thu")) {
       availability.add(DateTime.thursday);
-    } else if (!data.contains("ri")) {
+    } else if (!data.any((element) => element['day'] == "Fri")) {
       availability.add(DateTime.friday);
     }
   }
 
   DateTime? getInitialDate(List data) {
     DateTime initialDate = DateTime.now();
-    var sat = data.contains("Sat") ? DateTime.saturday : DateTime.september;
-    var sun = data.contains("Sun") ? DateTime.sunday : DateTime.september;
-    var mon = data.contains("Mon") ? DateTime.monday : DateTime.september;
-    var tue = data.contains("Tue") ? DateTime.tuesday : DateTime.september;
-    var wed = data.contains("Wed") ? DateTime.wednesday : DateTime.september;
-    var thu = data.contains("Thu") ? DateTime.thursday : DateTime.september;
-    var fri = data.contains("Fri") ? DateTime.friday : DateTime.september;
+    var sat = !data.any((element) => element['day'] == "Sat")
+        ? DateTime.saturday
+        : DateTime.september;
+    var sun = !data.any((element) => element['day'] == "Sun")
+        ? DateTime.sunday
+        : DateTime.september;
+    var mon = !data.any((element) => element['day'] == "Mon")
+        ? DateTime.monday
+        : DateTime.september;
+    var tue = !data.any((element) => element['day'] == "Tue")
+        ? DateTime.tuesday
+        : DateTime.september;
+    var wed = !data.any((element) => element['day'] == "Wed")
+        ? DateTime.wednesday
+        : DateTime.september;
+    var thu = !data.any((element) => element['day'] == "Thu")
+        ? DateTime.thursday
+        : DateTime.september;
+    var fri = !data.any((element) => element['day'] == "Fri")
+        ? DateTime.friday
+        : DateTime.september;
+
     while (initialDate.weekday == sat ||
         initialDate.weekday == sun ||
         initialDate.weekday == mon ||
@@ -113,13 +130,27 @@ class BookAppointmentController extends GetxController {
   }
 
   bool disableDay(DateTime date, List data) {
-    var sat = data.contains("Sat") ? DateTime.saturday : DateTime.september;
-    var sun = data.contains("Sun") ? DateTime.sunday : DateTime.september;
-    var mon = data.contains("Mon") ? DateTime.monday : DateTime.september;
-    var tue = data.contains("Tue") ? DateTime.tuesday : DateTime.september;
-    var wed = data.contains("Wed") ? DateTime.wednesday : DateTime.september;
-    var thu = data.contains("Thu") ? DateTime.thursday : DateTime.september;
-    var fri = data.contains("Fri") ? DateTime.friday : DateTime.september;
+    var sat = !data.any((element) => element['day'] == "Sat")
+        ? DateTime.saturday
+        : DateTime.september;
+    var sun = !data.any((element) => element['day'] == "Sun")
+        ? DateTime.sunday
+        : DateTime.september;
+    var mon = !data.any((element) => element['day'] == "Mon")
+        ? DateTime.monday
+        : DateTime.september;
+    var tue = !data.any((element) => element['day'] == "Tue")
+        ? DateTime.tuesday
+        : DateTime.september;
+    var wed = !data.any((element) => element['day'] == "Wed")
+        ? DateTime.wednesday
+        : DateTime.september;
+    var thu = !data.any((element) => element['day'] == "Thu")
+        ? DateTime.thursday
+        : DateTime.september;
+    var fri = !data.any((element) => element['day'] == "Fri")
+        ? DateTime.friday
+        : DateTime.september;
 
     if (date.weekday == sat ||
         date.weekday == sun ||
@@ -179,7 +210,8 @@ class BookAppointmentController extends GetxController {
       "subject": subjectController.text,
       "description": descriptionController.text,
       "duration": callDurationController.text.split(" ")[0],
-      "amount": amount
+      "amount": amount,
+      "type": 'meeting'
     };
 
     var response = await ApiService.postApi(AppUrls.appointments, body);

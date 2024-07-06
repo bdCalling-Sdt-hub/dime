@@ -17,6 +17,7 @@ import '../controllers/consultant/patients_info/appointment_list_controller.dart
 import '../controllers/consultant/patients_info/doctor_home_controller.dart';
 import '../controllers/consultant/patients_info/patients_list_controller.dart';
 import '../controllers/consultant/profile/doctor_profile.dart';
+import '../controllers/consultant/transaction/transaction_controller.dart';
 import '../controllers/consultant/transaction/withdraw_controller.dart';
 import '../controllers/user/Booking/book_appointment_controller.dart';
 import '../controllers/user/Booking/booking_details_controller.dart';
@@ -87,5 +88,6 @@ class DependencyInjection extends Bindings {
     Get.lazyPut(() => ChatController(), fenix: true);
     Get.lazyPut(() => VideoCallController(), fenix: true);
     Get.lazyPut(() => WithdrawController(), fenix: true);
+    Get.lazyPut(() => TransactionController(), fenix: true);
   }
 }

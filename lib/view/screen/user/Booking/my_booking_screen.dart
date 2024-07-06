@@ -61,9 +61,9 @@ class _MyBookingScreenState extends State<MyBookingScreen>
                   tabs: [
                     Tab(text: 'Pending'.tr),
                     Tab(text: 'Payment'.tr),
-                    Tab(text: 'Payment Status'.tr),
                     Tab(text: 'Upcoming'.tr),
                     Tab(text: 'Completed'.tr),
+                    Tab(text: 'Cancelled'.tr),
                   ],
                 ),
                 Expanded(
@@ -72,7 +72,6 @@ class _MyBookingScreenState extends State<MyBookingScreen>
                       children: [
                         BookingList(
                           buttonText: 'view Details'.tr,
-                          onTap: () => Get.toNamed(AppRoutes.bookingDetails),
                         ),
                         BookingList(
                           buttonText: 'payment'.tr,

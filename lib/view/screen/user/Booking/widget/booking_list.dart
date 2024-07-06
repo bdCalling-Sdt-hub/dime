@@ -15,13 +15,11 @@ class BookingList extends StatelessWidget {
   const BookingList({
     super.key,
     required this.buttonText,
-    this.onTap,
     this.isLoading = false,
     this.isPayment = false,
   });
 
   final String buttonText;
-  final VoidCallback? onTap;
   final bool isLoading;
   final bool isPayment;
 
@@ -56,7 +54,8 @@ class BookingList extends StatelessWidget {
                                   item.amount.toString();
                               Get.toNamed(AppRoutes.paymentMethod);
                             }
-                          : onTap);
+                          : () => Get.toNamed(AppRoutes.bookingDetails,
+                              parameters: {'id': item.id}));
                 },
               ),
       },

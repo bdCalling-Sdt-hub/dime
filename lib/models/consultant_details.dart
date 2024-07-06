@@ -3,10 +3,9 @@ class ConsultantDetailsModel {
   Review review;
 
   ConsultantDetailsModel({
-    Consultant? consultant,
-    Review? review,
-  })  : consultant = consultant ?? Consultant.fromJson({}),
-        review = review ?? Review.fromJson({});
+    required this.consultant,
+    required this.review,
+  });
 
   factory ConsultantDetailsModel.fromJson(Map<String, dynamic> json) {
     return ConsultantDetailsModel(
@@ -14,17 +13,10 @@ class ConsultantDetailsModel {
       review: Review.fromJson(json['review'] ?? {}),
     );
   }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'consultant': consultant.toJson(),
-      'review': review.toJson(),
-    };
-  }
 }
 
 class Availability {
-  List<String> day;
+  String day;
   String startTime;
   String endTime;
 
@@ -36,7 +28,7 @@ class Availability {
 
   factory Availability.fromJson(Map<String, dynamic> json) {
     return Availability(
-      day: List<String>.from(json['day'] ?? []),
+      day: json['day'] ?? '',
       startTime: json['startTime'] ?? '',
       endTime: json['endTime'] ?? '',
     );
@@ -56,7 +48,7 @@ class Category {
   String name;
   String key;
   String image;
-  num v;
+  int v;
 
   Category({
     required this.id,
@@ -89,103 +81,119 @@ class Category {
 
 class Consultant {
   String id;
+  String title;
   String fullName;
   String email;
   String phoneNumber;
   String countryCode;
+  String dateOfBirth;
+  String country;
+  String gender;
+  String aboutMe;
   String image;
+  int videoConferenceFee;
+  int videoReplyFee;
   String password;
   String role;
-  num consultationCompleted;
-  num ratings;
-  num averageResponseTime;
+  List<Availability> availability;
+  List<Category> category;
+  int consultationCompleted;
+  double ratings;
+  int averageResponseTime;
+  String adminApproval;
+  int v;
   String createdAt;
   String updatedAt;
-  num v;
-  String aboutMe;
-  Availability availability;
-  List<Category> category;
-  String gender;
-  String title;
-  num videoConferenceFee;
-  num videoReplyFee;
 
   Consultant({
     required this.id,
+    required this.title,
     required this.fullName,
     required this.email,
     required this.phoneNumber,
     required this.countryCode,
+    required this.dateOfBirth,
+    required this.country,
+    required this.gender,
+    required this.aboutMe,
     required this.image,
+    required this.videoConferenceFee,
+    required this.videoReplyFee,
     required this.password,
     required this.role,
+    required this.availability,
+    required this.category,
     required this.consultationCompleted,
     required this.ratings,
     required this.averageResponseTime,
+    required this.adminApproval,
+    required this.v,
     required this.createdAt,
     required this.updatedAt,
-    required this.v,
-    required this.aboutMe,
-    required this.availability,
-    required this.category,
-    required this.gender,
-    required this.title,
-    required this.videoConferenceFee,
-    required this.videoReplyFee,
   });
 
   factory Consultant.fromJson(Map<String, dynamic> json) {
     return Consultant(
       id: json['_id'] ?? '',
+      title: json['title'] ?? '',
       fullName: json['fullName'] ?? '',
       email: json['email'] ?? '',
       phoneNumber: json['phoneNumber'] ?? '',
       countryCode: json['countryCode'] ?? '',
+      dateOfBirth: json['dateOfBirth'] ?? '',
+      country: json['country'] ?? '',
+      gender: json['gender'] ?? '',
+      aboutMe: json['aboutMe'] ?? '',
       image: json['image'] ?? '',
+      videoConferenceFee: json['videoConferenceFee'] ?? 0,
+      videoReplyFee: json['videoReplyFee'] ?? 0,
       password: json['password'] ?? '',
       role: json['role'] ?? '',
-      consultationCompleted: json['consultationCompleted'] ?? 0,
-      ratings: json['ratings'] ?? 0,
-      averageResponseTime: json['averageResponseTime'] ?? 0,
-      createdAt: json['createdAt'] ?? '',
-      updatedAt: json['updatedAt'] ?? '',
-      v: json['__v'] ?? 0,
-      aboutMe: json['aboutMe'] ?? '',
-      availability: Availability.fromJson(json['availability'] ?? {}),
+      availability: (json['availability'] as List<dynamic>?)
+              ?.map(
+                  (item) => Availability.fromJson(item as Map<String, dynamic>))
+              .toList() ??
+          [],
       category: (json['category'] as List<dynamic>?)
               ?.map((item) => Category.fromJson(item as Map<String, dynamic>))
               .toList() ??
           [],
-      gender: json['gender'] ?? '',
-      title: json['title'] ?? '',
-      videoConferenceFee: json['videoConferenceFee'] ?? 0,
-      videoReplyFee: json['videoReplyFee'] ?? 0,
+      consultationCompleted: json['consultationCompleted'] ?? 0,
+      ratings: (json['ratings'] ?? 0).toDouble(),
+      averageResponseTime: json['averageResponseTime'] ?? 0,
+      adminApproval: json['adminApproval'] ?? '',
+      v: json['__v'] ?? 0,
+      createdAt: json['createdAt'] ?? '',
+      updatedAt: json['updatedAt'] ?? '',
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
       '_id': id,
+      'title': title,
       'fullName': fullName,
       'email': email,
       'phoneNumber': phoneNumber,
       'countryCode': countryCode,
+      'dateOfBirth': dateOfBirth,
+      'country': country,
+      'gender': gender,
+      'aboutMe': aboutMe,
       'image': image,
+      'videoConferenceFee': videoConferenceFee,
+      'videoReplyFee': videoReplyFee,
       'password': password,
       'role': role,
+      'availability': availability.map((item) => item.toJson()).toList(),
+      'category': category.map((item) => item.toJson()).toList(),
       'consultationCompleted': consultationCompleted,
       'ratings': ratings,
       'averageResponseTime': averageResponseTime,
+      'adminApproval': adminApproval,
+      '__v': v,
       'createdAt': createdAt,
       'updatedAt': updatedAt,
-      '__v': v,
-      'aboutMe': aboutMe,
-      'availability': availability.toJson(),
-      'category': category.map((item) => item.toJson()).toList(),
-      'gender': gender,
-      'title': title,
-      'videoConferenceFee': videoConferenceFee,
-      'videoReplyFee': videoReplyFee,
     };
   }
 }
@@ -223,10 +231,10 @@ class TopReview {
   User user;
   String consultant;
   String comment;
-  num rating;
+  int rating;
   String createdAt;
   String updatedAt;
-  num v;
+  int v;
 
   TopReview({
     required this.id,
@@ -268,12 +276,12 @@ class TopReview {
 
 class Ratings {
   String averageRatings;
-  num totalReviews;
-  num fiveStarReviews;
-  num fourStarReviews;
-  num threeStarReviews;
-  num twoStarReviews;
-  num oneStarReviews;
+  int totalReviews;
+  int fiveStarReviews;
+  int fourStarReviews;
+  int threeStarReviews;
+  int twoStarReviews;
+  int oneStarReviews;
 
   Ratings({
     required this.averageRatings,
@@ -287,7 +295,7 @@ class Ratings {
 
   factory Ratings.fromJson(Map<String, dynamic> json) {
     return Ratings(
-      averageRatings: (json['averageRatings'] ?? ''),
+      averageRatings: json['averageRatings'] ?? '',
       totalReviews: json['totalReviews'] ?? 0,
       fiveStarReviews: json['fiveStarReviews'] ?? 0,
       fourStarReviews: json['fourStarReviews'] ?? 0,
@@ -321,15 +329,7 @@ class Review {
 
   factory Review.fromJson(Map<String, dynamic> json) {
     return Review(
-      ratings: Ratings.fromJson(json['ratings'] ?? {}),
-      topReview: TopReview.fromJson(json['topReview'] ?? {}),
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'ratings': ratings.toJson(),
-      'topReview': topReview.toJson(),
-    };
+        ratings: Ratings.fromJson(json['ratings'] ?? {}),
+        topReview: TopReview.fromJson(json['topReview'] ?? {}));
   }
 }
