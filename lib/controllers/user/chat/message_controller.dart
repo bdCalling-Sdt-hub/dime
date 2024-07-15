@@ -128,17 +128,19 @@ class MessageController extends GetxController {
     });
   }
 
-  listenMessage(String chatId) async {
+  listenMessage() async {
     SocketServices.socket.on('new-message::$chatId', (data) {
       status = Status.loading;
       update();
 
-      var time = data['createdAt'].toLocal();
+      print(data);
+
+      DateTime time = DateTime.tryParse(data['createdAt']) ?? DateTime.now();
       messages.insert(
           0,
           ChatMessageModel(
               isNotice: data['messageType'] == "notice" ? true : false,
-              time: time,
+              time: time.toLocal(),
               text: data['message'],
               image: data['sender']['image'],
               isMe: false));

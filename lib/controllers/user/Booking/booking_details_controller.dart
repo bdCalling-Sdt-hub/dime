@@ -5,8 +5,10 @@ import 'package:dime/models/api_response_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
+import '../../../core/app_routes.dart';
 import '../../../models/appintment_model.dart';
 import '../../../services/api_service.dart';
+import '../../../services/socket_service.dart';
 import '../../../utils/app_url.dart';
 import '../../../utils/app_utils.dart';
 
@@ -47,5 +49,22 @@ class BookingDetailsController extends GetxController {
       update();
       Utils.snackBarMessage(response.statusCode.toString(), response.message);
     }
+  }
+
+  addChatRoom(String id) {
+    var body = {"participant": id};
+
+    print(body);
+    SocketServices.socket.emitWithAck("add-new-chat", body, ack: (data) {
+      if (data['status'] == "Success") {
+        var user = data['user'] ?? {};
+        Get.toNamed(AppRoutes.message, parameters: {
+          "chatId": data['chatId'] ?? "",
+          "name": user['fullName'] ?? "",
+          "image": user['image'] ?? "",
+          // "image": item.image,
+        });
+      }
+    });
   }
 }

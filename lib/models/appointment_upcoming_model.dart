@@ -68,6 +68,7 @@ class Appointment {
   final String description;
   final int duration;
   final String type;
+  final String link;
   final String status;
   final String isAdminAccepted;
   final String paymentStatus;
@@ -84,6 +85,7 @@ class Appointment {
     required this.description,
     required this.duration,
     required this.type,
+    required this.link,
     required this.status,
     required this.isAdminAccepted,
     required this.paymentStatus,
@@ -102,6 +104,7 @@ class Appointment {
       description: json['description'] ?? '',
       duration: json['duration'] ?? 0,
       type: json['type'] ?? 'unknown',
+      link: json['link'] ?? '',
       status: json['status'] ?? 'unknown',
       isAdminAccepted: json['isAdminAccepted'] ?? 'unknown',
       paymentStatus: json['paymentStatus'] ?? 'unknown',

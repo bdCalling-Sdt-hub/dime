@@ -91,6 +91,19 @@ class OtherHelper {
     return getImages.path;
   }
 
+  static Future<String?> getVideo() async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? getImages =
+        await picker.pickVideo(source: ImageSource.gallery);
+    if (getImages == null) return null;
+
+    if (kDebugMode) {
+      print(getImages.path);
+    }
+
+    return getImages.path;
+  }
+
   //Pick Image from Camera
 
   static Future<String?> openCamera() async {

@@ -24,7 +24,7 @@ class _SignUpAllFieldState extends State<SignUpAllField> {
           children: [
             CustomTextField(
               prefixIcon: const Icon(
-                Icons.group,
+                Icons.person,
                 color: AppColors.whiteDarkHover,
               ),
               labelText: "Full Name".tr,

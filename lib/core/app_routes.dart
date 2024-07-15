@@ -153,7 +153,7 @@ class AppRoutes {
     GetPage(name: transactionDetails, page: () => const TransactionDetails()),
     GetPage(name: uploadBlog, page: () => const UploadBlog()),
     GetPage(name: myBlog, page: () => const MyBlog()),
-    GetPage(name: scheduleReply, page: () => ScheduleReply()),
+    GetPage(name: scheduleReply, page: () => const ScheduleReply()),
     GetPage(name: videoCall, page: () => const VideoCallScreen()),
     GetPage(name: privacyPolicy, page: () => const PrivacyPolicyScreen()),
     GetPage(name: termsOfServices, page: () => const TermsOfServicesScreen()),

@@ -1,6 +1,6 @@
 const appId = "8bd57b59e78e480cab86ef429dcf57de";
 const token =
-    "007eJxTYGCelfFCxbVc9E/IhmxrxXOufX84OOT0nx8Wu22lziEt/EOBwSIpxdQ8ydQy1dwi1cTCIDkxycIsNc3EyDIlOc3UPCX1yMbmtIZARoaoIGYmRgYIBPG5GHIr45MzEvPyUnMYGAA+Qh9c";
+    "007eJxTYEh1YljW+mhK74t3NxWOm+oZB9w1l8/aO0fqOqN9T/6y8CsKDBZJKabmSaaWqeYWqSYWBsmJSRZmqWkmRpYpyWmm5imp2x5PSWsIZGQo6DZhZGSAQBCfiyG3Mj45IzEvLzWHgQEAK1Aihw==";
 const channel = "my_channel";
 
 const String clientId =

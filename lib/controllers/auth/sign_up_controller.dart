@@ -114,6 +114,7 @@ class SignUpController extends GetxController {
 
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body);
+      _timer?.cancel();
 
       PrefsHelper.token = data['data']["accessToken"];
       PrefsHelper.userId = data['data']["attributes"]["_id"];

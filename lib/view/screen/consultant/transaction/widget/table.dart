@@ -2,7 +2,6 @@ import 'package:dime/core/app_routes.dart';
 import 'package:dime/extension/my_extension.dart';
 import 'package:dime/models/recent_transaction_model.dart';
 import 'package:dime/utils/app_colors.dart';
-import 'package:dime/utils/app_images.dart';
 import 'package:dime/utils/app_url.dart';
 import 'package:dime/view/common_widgets/image/custom_image.dart';
 import 'package:dime/view/common_widgets/text/custom_text.dart';

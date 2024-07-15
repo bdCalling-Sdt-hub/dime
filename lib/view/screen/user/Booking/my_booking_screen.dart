@@ -1,9 +1,10 @@
-import 'package:dime/core/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../controllers/user/Booking/my_booking_controller.dart';
+import '../../../../helpers/prefs_helper.dart';
 import '../../../../utils/app_colors.dart';
+import '../../../common_widgets/bottom nav bar/doctor_nav_bar.dart';
 import '../../../common_widgets/bottom nav bar/navbar.dart';
 import '../../../common_widgets/text/custom_text.dart';
 import 'widget/booking_list.dart';
@@ -76,7 +77,6 @@ class _MyBookingScreenState extends State<MyBookingScreen>
                         BookingList(
                           buttonText: 'payment'.tr,
                           isPayment: true,
-
                         ),
                         BookingList(
                           buttonText: 'view Details'.tr,
@@ -94,9 +94,11 @@ class _MyBookingScreenState extends State<MyBookingScreen>
           },
         ),
       ),
-      bottomNavigationBar: const CustomBottomNavBar(
-        currentIndex: 9,
-      ),
+      bottomNavigationBar: PrefsHelper.myRole == "consultant"
+          ? const CustomDoctorBottomNavBar(currentIndex: 9)
+          : const CustomBottomNavBar(
+              currentIndex: 9,
+            ),
     );
   }
 }

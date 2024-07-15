@@ -9,7 +9,7 @@ import '../../../../common_widgets/text/custom_text.dart';
 import '../../../../common_widgets/text_field/custom_text_field.dart';
 
 class WeekItem extends StatelessWidget {
-  WeekItem({
+   WeekItem({
     super.key,
     required this.item,
     required this.fineItem,
@@ -20,8 +20,8 @@ class WeekItem extends StatelessWidget {
   final Map fineItem;
   final bool isSelected;
 
-  TextEditingController startController = TextEditingController();
-  TextEditingController endController = TextEditingController();
+  final TextEditingController startController = TextEditingController();
+  final TextEditingController endController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

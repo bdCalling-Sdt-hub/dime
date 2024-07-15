@@ -1,6 +1,7 @@
-import 'package:dime/core/app_routes.dart';
-import 'package:dime/extension/my_extension.dart';
+import 'package:dime/helpers/prefs_helper.dart';
 import 'package:dime/view/common_widgets/button/custom_button.dart';
+import 'package:dime/view/common_widgets/video_player/video_player.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -101,82 +102,119 @@ class _BookingDetailsState extends State<BookingDetails> {
               ),
 
               controller.appointmentDetails.data.attributes.type == 'meeting'
-                  ? Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  ? Column(
                       children: [
-                        CustomText(
-                          text: "Call Duration".tr,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 18.sp,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            CustomText(
+                              text: "Call Duration".tr,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 18.sp,
+                            ),
+                            SizedBox(
+                              width: 150.w,
+                              child: CustomTextField(
+                                controller: controller.callDurationController,
+                                fillColor: AppColors.black,
+                                textAlign: TextAlign.center,
+                                hindText: 'Call Duration'.tr,
+                                textStyle:
+                                    const TextStyle(color: AppColors.white),
+                                isEnabled: false,
+                              ),
+                            )
+                          ],
                         ),
-                        SizedBox(
-                          width: 150.w,
-                          child: CustomTextField(
-                            controller: controller.callDurationController,
-                            fillColor: AppColors.black,
-                            textAlign: TextAlign.center,
-                            hindText: 'Call Duration'.tr,
-                            textStyle: const TextStyle(color: AppColors.white),
-                            isEnabled: false,
-                          ),
-                        )
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: Column(
+                                children: [
+                                  CustomText(
+                                    text: "Booking Date".tr,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 18.sp,
+                                    top: 40.h,
+                                    bottom: 12.h,
+                                  ),
+                                  CustomTextField(
+                                    controller:
+                                        controller.bookingDateController,
+                                    fillColor: AppColors.transparent,
+                                    hindText: 'Booking Date'.tr,
+                                    fieldBorderRadius: 6.r,
+                                    isEnabled: false,
+                                    fieldBorderColor: AppColors.secondPrimary,
+                                    suffixIcon: const Icon(Icons.date_range),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              width: 16.w,
+                            ),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  CustomText(
+                                    text: "Booking Time".tr,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 20.sp,
+                                    top: 40.h,
+                                    bottom: 12.h,
+                                  ),
+                                  CustomTextField(
+                                    controller:
+                                        controller.bookingTimeController,
+                                    fillColor: AppColors.transparent,
+                                    hindText: 'Booking Time'.tr,
+                                    fieldBorderRadius: 6.r,
+                                    fieldBorderColor: AppColors.secondPrimary,
+                                    isEnabled: false,
+                                    suffixIcon: const Icon(Icons.access_time),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ],
                     )
-                  : 0.height,
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: Column(
+                  : Column(
                       children: [
-                        CustomText(
-                          text: "Booking Date".tr,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 18.sp,
-                          top: 40.h,
-                          bottom: 12.h,
+                        SizedBox(
+                          height: 20.h,
                         ),
-                        CustomTextField(
-                          controller: controller.bookingDateController,
-                          fillColor: AppColors.transparent,
-                          hindText: 'Booking Date'.tr,
-                          fieldBorderRadius: 6.r,
-                          isEnabled: false,
-                          fieldBorderColor: AppColors.secondPrimary,
-                          suffixIcon: const Icon(Icons.date_range),
-                        ),
+                        const MyVideoPlayer(
+                            videoUrl:
+                                'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'),
                       ],
                     ),
-                  ),
-                  SizedBox(
-                    width: 16.w,
-                  ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+
+              controller.appointmentDetails.data.attributes.paymentStatus ==
+                      "paid"
+                  ? Column(
                       children: [
-                        CustomText(
-                          text: "Booking Time".tr,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 20.sp,
-                          top: 40.h,
-                          bottom: 12.h,
+                        SizedBox(
+                          height: 40.h,
                         ),
-                        CustomTextField(
-                          controller: controller.bookingTimeController,
-                          fillColor: AppColors.transparent,
-                          hindText: 'Booking Time'.tr,
-                          fieldBorderRadius: 6.r,
-                          fieldBorderColor: AppColors.secondPrimary,
-                          isEnabled: false,
-                          suffixIcon: const Icon(Icons.access_time),
-                        ),
+                        CustomButton(
+                            onTap: () => controller.addChatRoom(
+                                PrefsHelper.myRole == "consultant"
+                                    ? controller.appointmentDetails.data
+                                        .attributes.user.id
+                                    : controller.appointmentDetails.data
+                                        .attributes.consultant.id),
+                            titleText: 'Message'.tr),
                       ],
-                    ),
-                  ),
-                ],
-              ),
+                    )
+                  : const SizedBox(),
+
               SizedBox(height: 36.h),
+
               // CustomButton(
               //   titleText: "Join".tr,
               //   titleSize: 24.sp,

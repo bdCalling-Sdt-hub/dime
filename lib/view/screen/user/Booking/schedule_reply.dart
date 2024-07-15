@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../../controllers/user/Booking/shhedule_reply_controller.dart';
-import '../../../../core/app_routes.dart';
 import '../../../../helpers/other_helper.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../common_widgets/bottom nav bar/navbar.dart';
