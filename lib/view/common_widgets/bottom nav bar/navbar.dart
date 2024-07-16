@@ -64,6 +64,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
               onTap: () => onTap(index),
               child: Container(
                 margin: EdgeInsetsDirectional.all(12.sp),
+                padding: EdgeInsets.only(bottom: 12.sp),
                 child: Column(
                   children: [
                     index == bottomNavIndex

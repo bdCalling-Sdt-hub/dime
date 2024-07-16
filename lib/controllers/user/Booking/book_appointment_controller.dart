@@ -203,6 +203,11 @@ class BookAppointmentController extends GetxController {
     isLoading = true;
     update();
 
+    int amountInt = int.tryParse(amount) ?? 1;
+    int callTime = int.tryParse(callDurationController.text.split(" ")[0]) ?? 1;
+
+    int totalAmount = amountInt * callTime;
+
     var body = {
       "appointmentDate": selectedData,
       "startTime": selectedTime,
@@ -210,7 +215,7 @@ class BookAppointmentController extends GetxController {
       "subject": subjectController.text,
       "description": descriptionController.text,
       "duration": callDurationController.text.split(" ")[0],
-      "amount": amount,
+      "amount": totalAmount.toString(),
       "type": 'meeting'
     };
 

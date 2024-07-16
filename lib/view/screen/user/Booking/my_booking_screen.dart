@@ -25,6 +25,7 @@ class _MyBookingScreenState extends State<MyBookingScreen>
   void initState() {
     controller.tabController = TabController(length: 5, vsync: this);
     controller.tabController.index = int.tryParse(index) ?? 3;
+    controller.getAppointmentsRepo();
 
     super.initState();
   }
@@ -56,7 +57,10 @@ class _MyBookingScreenState extends State<MyBookingScreen>
                   onTap: (value) async {
                     Future.delayed(
                       Duration.zero,
-                      () => controller.getAppointmentsRepo(),
+                      () {
+                        controller.page = 1;
+                        controller.getAppointmentsRepo();
+                      },
                     );
                   },
                   tabs: [
