@@ -35,6 +35,7 @@ class MessageModel {
   final DateTime createdAt;
   final DateTime updatedAt;
   final int version;
+  final String agoraToken;
 
   MessageModel({
     required this.id,
@@ -45,6 +46,7 @@ class MessageModel {
     required this.createdAt,
     required this.updatedAt,
     required this.version,
+    required this.agoraToken,
   });
 
   factory MessageModel.fromJson(Map<String, dynamic> json) {
@@ -52,6 +54,7 @@ class MessageModel {
       id: json['_id'] ?? '',
       chat: json['chat'] ?? '',
       message: json['message'] ?? '',
+      agoraToken: json['agoraToken'] ?? '',
       type: json['type'] as String? ?? 'general',
       sender: Sender.fromJson(json['sender'] ?? {}),
       createdAt:
@@ -67,6 +70,7 @@ class MessageModel {
       '_id': id,
       'chat': chat,
       'message': message,
+      'agoraToken': agoraToken,
       'type': type,
       'sender': sender.toJson(),
       'createdAt': createdAt.toIso8601String(),

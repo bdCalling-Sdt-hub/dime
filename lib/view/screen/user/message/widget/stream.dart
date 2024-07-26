@@ -3,8 +3,6 @@ import 'package:dime/controllers/user/chat/video_call_controller.dart';
 import 'package:dime/extension/my_extension.dart';
 import 'package:flutter/cupertino.dart';
 
-import '../../../../../utils/payment_key.dart';
-
 Widget myVideoStream(bool isLocalUserJoined) {
   return isLocalUserJoined
       ? AgoraVideoView(
@@ -18,13 +16,13 @@ Widget myVideoStream(bool isLocalUserJoined) {
       : 0.height;
 }
 
-Widget remoteVideoStream(int remoteId) {
+Widget remoteVideoStream(int remoteId, String channel) {
   return remoteId != 0
       ? AgoraVideoView(
           controller: VideoViewController.remote(
             rtcEngine: VideoCallController.instance.engine,
             canvas: VideoCanvas(uid: VideoCallController.instance.remoteId),
-            connection: const RtcConnection(channelId: channel),
+            connection: RtcConnection(channelId: channel),
           ),
         )
       : 0.height;

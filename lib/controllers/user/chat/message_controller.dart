@@ -22,6 +22,9 @@ class MessageController extends GetxController {
 
   String chatId = "";
   String name = "";
+  String agoraToken = "";
+  String channel = "";
+  DateTime startTime = DateTime.now().add(const Duration(days: 10));
 
   int page = 1;
   int currentIndex = 0;
@@ -58,10 +61,20 @@ class MessageController extends GetxController {
             time: messageModel.createdAt.toLocal(),
             text: messageModel.message,
             image: messageModel.sender.image,
+            isCall: messageModel.type == "special",
             isNotice: messageModel.type == "notice" ? true : false,
             isMe: PrefsHelper.userId == messageModel.sender.id ? true : false));
       }
 
+      agoraToken = jsonDecode(response.body)['data']['attributes']["videoCall"]
+              ['agoraToken'] ??
+          "";
+      channel = jsonDecode(response.body)['data']['attributes']["videoCall"]
+              ['channelName'] ??
+          "";
+      startTime = DateTime.tryParse(jsonDecode(response.body)['data']
+              ['attributes']["videoCall"]['startTime']) ??
+          DateTime.now().add(const Duration(days: 10));
       page = page + 1;
       status = Status.completed;
       update();
@@ -109,30 +122,10 @@ class MessageController extends GetxController {
     });
   }
 
-  videoCall() async {
-    var body = {
-      "chatId": chatId,
-    };
-
-    SocketServices.socket.emitWithAck("join-room", body, ack: (data) {
-      if (data['status'] == "Success") {
-        Get.toNamed(AppRoutes.videoCall);
-      } else {
-        Utils.snackBarMessage("Video call", data['message']);
-      }
-
-      if (kDebugMode) {
-        print(
-            "===============================================================> Received acknowledgment: $data");
-      }
-    });
-  }
-
   listenMessage() async {
     SocketServices.socket.on('new-message::$chatId', (data) {
       status = Status.loading;
       update();
-
 
       DateTime time = DateTime.tryParse(data['createdAt']) ?? DateTime.now();
       messages.insert(

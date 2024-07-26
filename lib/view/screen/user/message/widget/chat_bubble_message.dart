@@ -12,6 +12,8 @@ import '../../../../common_widgets/text/custom_text.dart';
 class ChatBubbleMessage extends StatelessWidget {
   final DateTime time;
   final String text;
+  final String token;
+  final String channel;
   final String image;
   final bool isMe;
   final bool isEmoji;
@@ -19,9 +21,10 @@ class ChatBubbleMessage extends StatelessWidget {
   final int messageIndex;
   final bool isCall;
   final bool isNotice;
+  DateTime? startTime;
   final VoidCallback onTap;
 
-  const ChatBubbleMessage({
+  ChatBubbleMessage({
     super.key,
     required this.time,
     required this.text,
@@ -31,12 +34,16 @@ class ChatBubbleMessage extends StatelessWidget {
     this.isEmoji = false,
     this.index = 0,
     this.messageIndex = 1,
+    this.token = '',
+    this.channel = '',
     this.isCall = false,
     this.isNotice = false,
+    this.startTime,
   });
 
   @override
   Widget build(BuildContext context) {
+    startTime = DateTime.now().add(const Duration(days: 10));
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -61,7 +68,19 @@ class ChatBubbleMessage extends StatelessWidget {
                     //       fit: BoxFit.fill,
                     //     ))),
                     GestureDetector(
-                      onTap: () => Get.toNamed(AppRoutes.videoCall),
+                      onTap: () {
+                        if (token.isEmpty &&
+                            channel.isEmpty &&
+                            startTime == null) {
+                          return;
+                        }
+                        ;
+                        if (startTime!.isAfter(DateTime.now())) {
+                          return;
+                        }
+                        Get.toNamed(AppRoutes.videoCall,
+                            parameters: {"token": token, "channel": channel});
+                      },
                       child: Container(
                         margin: EdgeInsets.only(left: 10.w),
                         padding: EdgeInsets.only(left: 10.w),

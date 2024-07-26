@@ -17,8 +17,20 @@ class VideoCallScreen extends StatefulWidget {
 }
 
 class _VideoCallScreenState extends State<VideoCallScreen> {
+  String token = Get.parameters["token"] ?? "";
+
+  String channel = Get.parameters["channel"] ?? "";
+
   @override
   void initState() {
+    if (token.isEmpty && channel.isEmpty) {
+      Future.delayed(
+        const Duration(seconds: 1),
+        () => Get.back(),
+      );
+    }
+    VideoCallController.instance.token = token;
+    VideoCallController.instance.channel = channel;
     VideoCallController.instance.initialize();
     super.initState();
   }
@@ -41,7 +53,7 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
           child: Stack(
             children: [
               controller.remoteId != 0
-                  ? remoteVideoStream(controller.remoteId)
+                  ? remoteVideoStream(controller.remoteId, channel)
                   : Stack(
                       children: [
                         myVideoStream(controller.localUserJoined),
@@ -180,7 +192,6 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
                   ),
                 ),
               ),
-
             ],
           ),
         ),

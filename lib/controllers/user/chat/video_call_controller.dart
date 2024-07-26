@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
@@ -16,7 +15,8 @@ class VideoCallController extends GetxController {
   double dragHorizontal = 20.0;
   double dragVertical = 80.0;
   int userCount = 0;
-  // String token = '';
+  String token = '';
+  String channel = '';
 
   static VideoCallController get instance => Get.put(VideoCallController());
 
@@ -77,7 +77,6 @@ class VideoCallController extends GetxController {
               remoteId = remoteUid;
             }
             update();
-
           },
           onRemoteVideoStateChanged:
               (connection, remoteUid, state, reason, elapsed) {
@@ -121,6 +120,7 @@ class VideoCallController extends GetxController {
   }
 
   void onCallEnd() {
+    print("call end");
     clear();
     update();
     Get.back();

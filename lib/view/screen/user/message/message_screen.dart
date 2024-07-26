@@ -1,4 +1,5 @@
 import 'package:dime/core/app_routes.dart';
+import 'package:dime/extension/my_extension.dart';
 import 'package:dime/utils/app_url.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -65,9 +66,19 @@ class _MessageScreenState extends State<MessageScreen> {
                     fontSize: 18.sp,
                   ),
                   const Spacer(),
-                  IconButton(
-                      onPressed: () => Get.toNamed(AppRoutes.videoCall),
-                      icon: const Icon(Icons.videocam_outlined))
+                  controller.agoraToken.isNotEmpty
+                      ? IconButton(
+                          onPressed: () {
+                            if (controller.startTime.isAfter(DateTime.now())) {
+                              return;
+                            }
+                            Get.toNamed(AppRoutes.videoCall, parameters: {
+                              "token": controller.agoraToken,
+                              "channel": controller.channel
+                            });
+                          },
+                          icon: const Icon(Icons.videocam_outlined))
+                      : 0.height
                 ],
               ),
             ),
@@ -92,6 +103,8 @@ class _MessageScreenState extends State<MessageScreen> {
                         time: message.time,
                         text: message.text,
                         isMe: message.isMe,
+                        token: controller.agoraToken,
+                        channel: controller.channel,
                         onTap: () {},
                       );
                     } else {
