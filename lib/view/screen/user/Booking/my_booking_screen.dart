@@ -19,12 +19,12 @@ class MyBookingScreen extends StatefulWidget {
 class _MyBookingScreenState extends State<MyBookingScreen>
     with SingleTickerProviderStateMixin {
   MyBookingController controller = Get.put(MyBookingController());
-  String index = Get.parameters["index"] ?? "3";
+  String index = Get.parameters["index"] ?? "2";
 
   @override
   void initState() {
     controller.tabController = TabController(length: 5, vsync: this);
-    controller.tabController.index = int.tryParse(index) ?? 3;
+    controller.tabController.index = int.tryParse(index) ?? 2;
     controller.getAppointmentsRepo();
 
     super.initState();

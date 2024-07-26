@@ -62,8 +62,9 @@ class ProfileScreen extends StatelessWidget {
                   icon: Icons.settings,
                   title: "My Booking".tr,
                   onTap: () {
-                    Get.toNamed(AppRoutes.myBooking,
-                        parameters: {"index": "3"});
+                    Get.toNamed(
+                      AppRoutes.myBooking,
+                    );
                   },
                 ),
                 Item(

@@ -5,7 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../controllers/user/profile_controller.dart';
 import '../../../../core/app_routes.dart';
-import '../../../../utils/app_images.dart';
+import '../../../../helpers/prefs_helper.dart';
+import '../../../../utils/app_url.dart';
 import '../../../common_widgets/bottom nav bar/navbar.dart';
 import '../../../common_widgets/button/custom_button.dart';
 import '../../../common_widgets/image/custom_image.dart';
@@ -51,8 +52,9 @@ class EditProfile extends StatelessWidget {
                                     fit: BoxFit.fill,
                                   )
                                 : CustomImage(
-                                    imageSrc: AppImages.profile,
-                                    imageType: ImageType.png,
+                                    imageSrc:
+                                        "${AppUrls.imageUrl}/${PrefsHelper.myImage}",
+                                    imageType: ImageType.network,
                                     height: 170.sp,
                                     width: 170.sp,
                                   ),

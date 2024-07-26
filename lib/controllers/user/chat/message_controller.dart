@@ -133,7 +133,6 @@ class MessageController extends GetxController {
       status = Status.loading;
       update();
 
-      print(data);
 
       DateTime time = DateTime.tryParse(data['createdAt']) ?? DateTime.now();
       messages.insert(

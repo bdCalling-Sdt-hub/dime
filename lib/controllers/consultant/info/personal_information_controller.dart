@@ -43,11 +43,7 @@ class PersonalInformationController extends GetxController {
     Get.back();
   }
 
-  selectedTitle(int index) {
-    titleController.text = titleList[index].toString();
-    update();
-    Get.back();
-  }
+
 
   selectedGender(int index) {
     genderController.text = gender[index].toString();

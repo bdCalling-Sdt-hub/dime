@@ -42,14 +42,10 @@ class _PersonalInfoAllFiledState extends State<PersonalInfoAllFiled> {
               validator: OtherHelper.validator,
               hindText: "Title".tr,
               fieldBorderRadius: 10.r,
-              keyboardType: TextInputType.none,
+              keyboardType: TextInputType.text,
               fillColor: AppColors.transparent,
               fieldBorderColor: AppColors.secondPrimary,
-              suffixIcon: PopUpMenu(
-                items: controller.titleList,
-                selectedItem: [controller.titleController.text],
-                onTap: controller.selectedTitle,
-              ),
+
             ),
             CustomText(
               text: "Full Name".tr,

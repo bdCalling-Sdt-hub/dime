@@ -54,7 +54,6 @@ class BookingDetailsController extends GetxController {
   addChatRoom(String id) {
     var body = {"participant": id};
 
-    print(body);
     SocketServices.socket.emitWithAck("add-new-chat", body, ack: (data) {
       if (data['status'] == "Success") {
         var user = data['user'] ?? {};
