@@ -8,6 +8,8 @@ import 'package:dime/view/screen/user/Booking/schedule_reply.dart';
 import 'package:dime/view/screen/user/blog/blog_screen.dart';
 import 'package:dime/view/screen/user/blog/read_blog_screen.dart';
 import 'package:dime/view/screen/user/message/video_call_screen.dart';
+import 'package:dime/view/screen/user/payment/peigo_payment_screen.dart';
+import 'package:dime/view/screen/user/payment/widgets/payment_info.dart';
 import 'package:dime/view/screen/user/setting/privacy_policy_screen.dart';
 import 'package:dime/view/screen/user/setting/terms_of_services_screen.dart';
 import 'package:get/get.dart';
@@ -45,7 +47,9 @@ import '../view/screen/user/home/patients_home.dart';
 import '../view/screen/user/message/chat_screen.dart';
 import '../view/screen/user/message/message_screen.dart';
 import '../view/screen/user/notifications/notifications_screen.dart';
+import '../view/screen/user/payment/payment_info_screen.dart';
 import '../view/screen/user/payment/payment_screen.dart';
+import '../view/screen/user/payment/peigo_info_screen.dart';
 import '../view/screen/user/payment/select_payment_method_screen.dart';
 import '../view/screen/user/profile/edit_profile.dart';
 import '../view/screen/user/profile/profile_screen.dart';
@@ -105,6 +109,9 @@ class AppRoutes {
   static const String privacyPolicy = "/privacy_policy_screen.dart";
   static const String termsOfServices = "/terms_of_services_screen.dart";
   static const String withdraw = "/withdraw_screen.dart";
+  static const String peigo = "/peigo_payment_screen.dart";
+  static const String paymentInfo = "/payment_info_screen.dart";
+  static const String peigoPaymentInfo = "/peigo_info_screen.dart";
 
   static List<GetPage> routes = [
     GetPage(name: test, page: () =>  const TestScreen()),
@@ -158,5 +165,8 @@ class AppRoutes {
     GetPage(name: privacyPolicy, page: () => const PrivacyPolicyScreen()),
     GetPage(name: termsOfServices, page: () => const TermsOfServicesScreen()),
     GetPage(name: withdraw, page: () =>  WithdrawScreen()),
+    GetPage(name: peigo, page: () =>  PeigoPaymentScreen()),
+    GetPage(name: paymentInfo, page: () =>  PaymentMethodFinal()),
+    GetPage(name: peigoPaymentInfo, page: () =>  PeigoInfoScreen()),
   ];
 }

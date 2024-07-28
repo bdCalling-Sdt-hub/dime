@@ -1,3 +1,4 @@
+import 'package:dime/controllers/user/payment/peigo_payment_controller.dart';
 import 'package:dime/core/app_routes.dart';
 import 'package:dime/utils/app_url.dart';
 import 'package:flutter/material.dart';
@@ -64,14 +65,16 @@ class BlogItem extends StatelessWidget {
                     if (item.isPaymentDone) {
                       Get.toNamed(AppRoutes.readBlog);
                     } else {
-                      SelectPaymentMethodController.instance.amount =
-                          item.price.toString();
-                      SelectPaymentMethodController.instance.productName =
-                          'Appointment';
+                      SelectPaymentMethodController.instance.amount = item.price.toString();
+                      SelectPaymentMethodController.instance.productName = 'Appointment';
                       PaymentController.instance.consultant = item.id;
                       PaymentController.instance.appointment = item.id;
-                      PaymentController.instance.amountController.text =
-                          item.price.toString();
+                      PaymentController.instance.amountController.text = item.price.toString();
+                       PeigoPaymentController.instance.consultant = item.id;
+                      PeigoPaymentController.instance.appointment = item.id;
+                      PeigoPaymentController.instance.amountController.text = item.price.toString();
+
+
                       Get.toNamed(AppRoutes.paymentMethod);
                     }
                   },

@@ -8,7 +8,7 @@ class SelectPaymentMethodController extends GetxController {
 
   List selectedOption = [
     "Bank Transfer",
-    "Credit Card",
+    "Pei-go",
     "Paypal",
   ];
   String selectRole = "Bank Transfer";

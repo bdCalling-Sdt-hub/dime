@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:wakelock/wakelock.dart';
 import '../../../utils/payment_key.dart';
 
 class VideoCallController extends GetxController {
@@ -90,7 +89,7 @@ class VideoCallController extends GetxController {
           },
           onUserOffline: (RtcConnection connection, int remoteUid,
               UserOfflineReasonType reason) {
-            Wakelock.disable();
+            // Wakelock.disable();
             remoteId = 0;
             onCallEnd();
             update();

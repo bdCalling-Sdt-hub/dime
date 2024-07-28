@@ -3,16 +3,15 @@ import 'package:dime/helpers/other_helper.dart';
 import 'package:dime/utils/app_colors.dart';
 import 'package:dime/view/common_widgets/button/custom_button.dart';
 import 'package:dime/view/common_widgets/text_field/custom_text_field.dart';
-import 'package:dime/view/screen/user/payment/widgets/payment_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../../../../controllers/user/payment/payment_controller.dart';
+import '../../../../controllers/user/payment/peigo_payment_controller.dart';
 import '../../../common_widgets/bottom nav bar/navbar.dart';
 import '../../../common_widgets/text/custom_text.dart';
 
-class PaymentScreen extends StatelessWidget {
-  PaymentScreen({super.key});
+class PeigoPaymentScreen extends StatelessWidget {
+  PeigoPaymentScreen({super.key});
 
   final formKey = GlobalKey<FormState>();
 
@@ -27,17 +26,18 @@ class PaymentScreen extends StatelessWidget {
           fontSize: 24.sp,
         ),
       ),
-      body: GetBuilder<PaymentController>(
+      body: GetBuilder<PeigoPaymentController>(
         builder: (controller) => SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 20.w),
+          padding: EdgeInsets.symmetric(
+            horizontal: 20.w,
+          ),
           child: Form(
             key: formKey,
             child: Column(
               children: [
-                16.height,
                 CustomTextField(
                   controller: controller.nameController,
-                  labelText: 'Account holder Name'.tr,
+                  labelText: 'Pei-gp user Name'.tr,
                   validator: OtherHelper.validator,
                   fillColor: AppColors.transparent,
                   fieldBorderColor: AppColors.black,
@@ -47,8 +47,8 @@ class PaymentScreen extends StatelessWidget {
                   height: 16.h,
                 ),
                 CustomTextField(
-                  controller: controller.accountNumberController,
-                  labelText: 'Account Number'.tr,
+                  controller: controller.numberController,
+                  labelText: 'Pei-gp Phone Number'.tr,
                   validator: OtherHelper.validator,
                   fillColor: AppColors.transparent,
                   keyboardType: TextInputType.number,
@@ -59,54 +59,27 @@ class PaymentScreen extends StatelessWidget {
                   height: 16.h,
                 ),
                 CustomTextField(
-                  controller: controller.transactionIdController,
-                  labelText: 'Transaction ID'.tr,
+                  controller: controller.emailController,
+                  labelText: 'Pei-gp E-mail'.tr,
                   validator: OtherHelper.validator,
                   fillColor: AppColors.transparent,
                   fieldBorderColor: AppColors.black,
                   fieldBorderRadius: 4.r,
                 ),
-                SizedBox(
-                  height: 16.h,
-                ),
-                CustomTextField(
-                  controller: controller.bankNameController,
-                  labelText: 'Bank Name'.tr,
-                  validator: OtherHelper.validator,
-                  fillColor: AppColors.transparent,
-                  keyboardType: TextInputType.number,
-                  fieldBorderColor: AppColors.black,
-                  fieldBorderRadius: 4.r,
-                ),
-                SizedBox(
-                  height: 16.h,
-                ),
-                CustomTextField(
-                  controller: controller.cedulaNumberController,
-                  labelText: 'cedulaNumber'.tr,
-                  validator: OtherHelper.validator,
-                  fillColor: AppColors.transparent,
-                  keyboardType: TextInputType.number,
-                  fieldBorderColor: AppColors.black,
-                  fieldBorderRadius: 4.r,
-                ),
-                SizedBox(
-                  height: 16.h,
-                ),
+                16.height,
                 CustomTextField(
                   controller: controller.amountController,
                   labelText: 'Amount'.tr,
                   validator: OtherHelper.validator,
                   fillColor: AppColors.transparent,
-                  keyboardType: TextInputType.number,
                   fieldBorderColor: AppColors.black,
                   fieldBorderRadius: 4.r,
                 ),
                 SizedBox(
-                  height: 40.h,
+                  height: 80.h,
                 ),
                 CustomButton(
-                  titleText: 'Payment'.tr,
+                  titleText: 'Submit'.tr,
                   isLoading: controller.isLoading,
                   onTap: () {
                     if (formKey.currentState!.validate()) {

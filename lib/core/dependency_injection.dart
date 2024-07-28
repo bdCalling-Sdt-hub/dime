@@ -36,13 +36,13 @@ import '../controllers/user/home_controller.dart';
 import '../controllers/user/chat/message_controller.dart';
 import '../controllers/user/notifications_controller.dart';
 import '../controllers/user/payment/payment_controller.dart';
+import '../controllers/user/payment/peigo_payment_controller.dart';
 import '../controllers/user/payment/select_payment_method_controller.dart';
 import '../controllers/user/profile_controller.dart';
 import '../controllers/user/send_review_controller.dart';
 import '../controllers/user/setting/privacy_policy_controller.dart';
 import '../controllers/user/setting/setting_controller.dart';
 import '../controllers/user/setting/terms_of_services_controller.dart';
-
 
 class DependencyInjection extends Bindings {
   @override
@@ -89,5 +89,6 @@ class DependencyInjection extends Bindings {
     Get.lazyPut(() => VideoCallController(), fenix: true);
     Get.lazyPut(() => WithdrawController(), fenix: true);
     Get.lazyPut(() => TransactionController(), fenix: true);
+    Get.lazyPut(() => PeigoPaymentController(), fenix: true);
   }
 }

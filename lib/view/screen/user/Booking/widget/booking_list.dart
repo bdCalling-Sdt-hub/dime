@@ -1,4 +1,5 @@
 import 'package:dime/controllers/user/payment/payment_controller.dart';
+import 'package:dime/controllers/user/payment/peigo_payment_controller.dart';
 import 'package:dime/controllers/user/payment/select_payment_method_controller.dart';
 import 'package:dime/core/app_routes.dart';
 import 'package:flutter/material.dart';
@@ -45,15 +46,18 @@ class BookingList extends StatelessWidget {
                       isLoading: isLoading,
                       onTap: isPayment
                           ? () {
-                              SelectPaymentMethodController.instance.amount =
-                                  item.amount.toString();
-                              SelectPaymentMethodController
-                                  .instance.productName = 'Appointment';
-                              PaymentController.instance.consultant =
-                                  item.consultant.id;
+                              SelectPaymentMethodController.instance.amount = item.amount.toString();
+                              SelectPaymentMethodController.instance.productName = 'Appointment';
+                              PaymentController.instance.consultant = item.consultant.id;
                               PaymentController.instance.appointment = item.id;
-                              PaymentController.instance.amountController.text =
-                                  item.amount.toString();
+                              PaymentController.instance.amountController.text = item.amount.toString();
+                               PeigoPaymentController.instance.consultant = item.consultant.id;
+                              PeigoPaymentController.instance.appointment = item.id;
+                              PeigoPaymentController.instance.amountController.text = item.amount.toString();
+
+
+
+
                               Get.toNamed(AppRoutes.paymentMethod);
                             }
                           : () => Get.toNamed(AppRoutes.bookingDetails,

@@ -5,7 +5,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../core/app_routes.dart';
 import '../../../helpers/prefs_helper.dart';
 import '../../../models/chat_message_model.dart';
 import '../../../models/message_model.dart';

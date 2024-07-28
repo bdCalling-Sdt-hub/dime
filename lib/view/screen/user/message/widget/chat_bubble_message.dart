@@ -74,7 +74,6 @@ class ChatBubbleMessage extends StatelessWidget {
                             startTime == null) {
                           return;
                         }
-                        ;
                         if (startTime!.isAfter(DateTime.now())) {
                           return;
                         }

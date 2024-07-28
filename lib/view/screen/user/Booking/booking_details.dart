@@ -190,7 +190,7 @@ class _BookingDetailsState extends State<BookingDetails> {
                         ),
                         const MyVideoPlayer(
                             videoUrl:
-                                'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'),
+                                'http://103.145.138.74:3000/uploads/videos/1000001253-1720843986424.mp4'),
                       ],
                     ),
 

@@ -1,4 +1,4 @@
-
+import 'package:dime/controllers/user/payment/peigo_payment_controller.dart';
 import 'package:dime/utils/app_utils.dart';
 import 'package:dime/view/common_widgets/button/custom_button.dart';
 import 'package:flutter/material.dart';
@@ -86,8 +86,16 @@ class SelectPaymentMethodScreen extends StatelessWidget {
                         Utils.snackBarMessage(
                             'Paypal'.tr, 'something is wrong');
                       }
+                    } else if (controller.selectRole == 'Pei-go') {
+                      if (controller.amount.isNotEmpty &&
+                          controller.productName.isNotEmpty) {
+                        Get.toNamed(AppRoutes.peigoPaymentInfo);
+                      } else {
+                        Utils.snackBarMessage(
+                            'Pei-go'.tr, 'something is wrong');
+                      }
                     } else {
-                      Get.toNamed(AppRoutes.payment);
+                      Get.toNamed(AppRoutes.paymentInfo);
                     }
 
                     //

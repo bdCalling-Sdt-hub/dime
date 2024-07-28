@@ -1,4 +1,3 @@
-
 import 'package:dime/services/api_service.dart';
 import 'package:dime/utils/app_url.dart';
 import 'package:flutter/cupertino.dart';
@@ -24,6 +23,7 @@ class PaymentController extends GetxController {
   TextEditingController accountNumberController = TextEditingController();
   TextEditingController amountController = TextEditingController();
   TextEditingController bankNameController = TextEditingController();
+  TextEditingController cedulaNumberController = TextEditingController();
 
   static PaymentController get instance => Get.put(PaymentController());
 
@@ -102,6 +102,7 @@ class PaymentController extends GetxController {
       "accountName": nameController.text,
       "transactionId": transactionIdController.text,
       "bankName": bankNameController.text,
+      "cedulaNumber": cedulaNumberController.text,
       "reverifyAttempts": '1'
     };
 

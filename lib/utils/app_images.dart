@@ -67,4 +67,5 @@ class AppImages {
   static const String callerImg = "$baseurl/callerImg.png";
   static const String patient_1 = "$baseurl/patient_1.png";
   static const String video = "$baseurl/video.png";
+  static const String qrCode = "$baseurl/qr_code.png";
 }
