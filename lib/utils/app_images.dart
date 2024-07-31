@@ -41,7 +41,7 @@ class AppImages {
 
   static const String neurology = "$baseurl/Neurology.png";
 
-  static const String profile = "$baseurl/profile.png";
+  static const String profile = "$baseurl/defualt_profile.png";
 
   static const String pulmono = "$baseurl/Pulmono.png";
 

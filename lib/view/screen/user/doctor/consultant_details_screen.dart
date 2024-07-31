@@ -309,13 +309,13 @@ class _ConsultantDetailsScreenState extends State<ConsultantDetailsScreen> {
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              const Icon(Icons.phone_in_talk_outlined),
+                              const Icon(Icons.ondemand_video),
                               SizedBox(
                                 width: 4.w,
                               ),
                               CustomText(
                                 text:
-                                    "${"Video Reply".tr} \n \$ ${controller.consultantDetailsModel.consultant.videoReplyFee} /min",
+                                    "${"Video Reply".tr} \n \$ ${controller.consultantDetailsModel.consultant.videoReplyFee}",
                                 maxLines: 2,
                               )
                             ],
