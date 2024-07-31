@@ -69,9 +69,9 @@ class _MessageScreenState extends State<MessageScreen> {
                   controller.agoraToken.isNotEmpty
                       ? IconButton(
                           onPressed: () {
-                            if (controller.startTime.isAfter(DateTime.now())) {
-                              return;
-                            }
+                            // if (controller.startTime.isAfter(DateTime.now())) {
+                            //   return;
+                            // }
                             Get.toNamed(AppRoutes.videoCall, parameters: {
                               "token": controller.agoraToken,
                               "channel": controller.channel

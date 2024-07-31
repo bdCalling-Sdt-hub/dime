@@ -74,9 +74,9 @@ class ChatBubbleMessage extends StatelessWidget {
                             startTime == null) {
                           return;
                         }
-                        if (startTime!.isAfter(DateTime.now())) {
-                          return;
-                        }
+                        // if (startTime!.isAfter(DateTime.now())) {
+                        //   return;
+                        // }
                         Get.toNamed(AppRoutes.videoCall,
                             parameters: {"token": token, "channel": channel});
                       },
