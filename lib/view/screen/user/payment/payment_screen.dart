@@ -58,6 +58,7 @@ class PaymentScreen extends StatelessWidget {
                 ),
                 SizedBox(
                   height: 100.h,
+
                 ),
                 CustomButton(
                   titleText: 'Payment'.tr,
