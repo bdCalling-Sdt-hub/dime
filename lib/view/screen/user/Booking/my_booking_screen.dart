@@ -25,7 +25,13 @@ class _MyBookingScreenState extends State<MyBookingScreen>
   void initState() {
     controller.tabController = TabController(length: 5, vsync: this);
     controller.tabController.index = int.tryParse(index) ?? 2;
-    controller.getAppointmentsRepo();
+    Future.delayed(
+      Duration.zero,
+      () => controller.getAppointmentsRepo(),
+    );
+    controller.tabController.addListener(
+      () => controller.getAppointmentsRepo(),
+    );
 
     super.initState();
   }

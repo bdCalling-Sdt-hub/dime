@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../core/app_routes.dart';
 import '../../../helpers/prefs_helper.dart';
 import '../../../models/chat_message_model.dart';
 import '../../../models/message_model.dart';
@@ -23,7 +24,8 @@ class MessageController extends GetxController {
   String name = "";
   String agoraToken = "";
   String channel = "";
-  DateTime startTime = DateTime.now().add(const Duration(days: 10));
+  int duration = 0;
+  DateTime startTime = DateTime.parse("2024-08-01T08:35:00.000Z");
 
   int page = 1;
   int currentIndex = 0;
@@ -38,6 +40,18 @@ class MessageController extends GetxController {
   static MessageController get instance => Get.put(MessageController());
 
   MessageModel messageModel = MessageModel.fromJson({});
+
+  checkVideoCall() {
+    DateTime now = DateTime.now();
+    DateTime fiveMinutesLater = now.add(Duration(minutes: duration));
+    if (startTime.toLocal().add(Duration(minutes: duration)).isBefore(now) ||
+        startTime.toLocal().isAfter(fiveMinutesLater)) {
+      return;
+    } else {
+      Get.toNamed(AppRoutes.videoCall,
+          parameters: {"token": agoraToken, "channel": channel});
+    }
+  }
 
   Future<void> getMessageRepo() async {
     if (page == 1) {
@@ -71,9 +85,12 @@ class MessageController extends GetxController {
       channel = jsonDecode(response.body)['data']['attributes']["videoCall"]
               ['channelName'] ??
           "";
-      startTime = DateTime.tryParse(jsonDecode(response.body)['data']
-              ['attributes']["videoCall"]['startTime']) ??
-          DateTime.now().add(const Duration(days: 10));
+      duration = jsonDecode(response.body)['data']['attributes']["videoCall"]
+              ['duration'] ??
+          0;
+      // startTime = DateTime.tryParse(jsonDecode(response.body)['data']
+      //         ['attributes']["videoCall"]['startTime']) ??
+      //     DateTime.now().add(const Duration(days: 10));
       page = page + 1;
       status = Status.completed;
       update();

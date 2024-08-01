@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:dime/services/api_service.dart';
 import 'package:dime/utils/app_url.dart';
 import 'package:flutter/cupertino.dart';
@@ -18,12 +20,8 @@ class PaymentController extends GetxController {
   String consultant = '';
   String appointment = '';
 
-  TextEditingController nameController = TextEditingController();
-  TextEditingController transactionIdController = TextEditingController();
-  TextEditingController accountNumberController = TextEditingController();
+  TextEditingController referenceCodeController = TextEditingController();
   TextEditingController amountController = TextEditingController();
-  TextEditingController bankNameController = TextEditingController();
-  TextEditingController cedulaNumberController = TextEditingController();
 
   static PaymentController get instance => Get.put(PaymentController());
 
@@ -98,11 +96,7 @@ class PaymentController extends GetxController {
       "appointment": appointment,
       "consultant": consultant,
       "amount": amountController.text,
-      "accountNumber": accountNumberController.text,
-      "accountName": nameController.text,
-      "transactionId": transactionIdController.text,
-      "bankName": bankNameController.text,
-      "cedulaNumber": cedulaNumberController.text,
+      "referenceKey": referenceCodeController.text,
       "reverifyAttempts": '1'
     };
 
@@ -116,6 +110,18 @@ class PaymentController extends GetxController {
     } else {
       Utils.snackBarMessage(response.statusCode.toString(), response.message);
     }
+  }
+
+  String referenceCode() {
+    const String possibleCharacters = 'abcdefghijklmnopqrstuvwxyz1234567890';
+    String output = '';
+    Random random = Random();
+    for (int i = 0; i < 7; i++) {
+      int randomIndex = random.nextInt(possibleCharacters.length);
+      String randomCharacter = possibleCharacters[randomIndex];
+      output += randomCharacter;
+    }
+    return output ;
   }
 
   paymentDataRepo(paymentId) async {

@@ -12,6 +12,8 @@ import '../../../../common_widgets/text/custom_text.dart';
 class PaymentInformation extends StatelessWidget {
   PaymentInformation({super.key});
 
+  String referenceCode = PaymentController.instance.referenceCode();
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -84,7 +86,6 @@ class PaymentInformation extends StatelessWidget {
             ],
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CustomText(
                 text: "021213245356 ",
@@ -94,13 +95,6 @@ class PaymentInformation extends StatelessWidget {
                 textAlign: TextAlign.start,
                 bottom: 12.h,
               ),
-              IconButton(
-                  onPressed: () {
-                    final value = ClipboardData(text: " ");
-                    Clipboard.setData(value);
-                    Get.snackbar("Copy", "Copied to clipboard");
-                  },
-                  icon: const Icon(Icons.copy))
             ],
           ),
           Row(
@@ -170,6 +164,36 @@ class PaymentInformation extends StatelessWidget {
                 color: AppColors.secondPrimary,
                 textAlign: TextAlign.start,
               ),
+            ],
+          ),
+          Row(
+            children: [
+              CustomText(
+                text: "reference Code:".tr,
+                fontSize: 18.sp,
+                fontWeight: FontWeight.w400,
+                color: AppColors.black,
+                textAlign: TextAlign.start,
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              CustomText(
+                text: referenceCode,
+                fontSize: 18.sp,
+                fontWeight: FontWeight.w600,
+                color: AppColors.black,
+                textAlign: TextAlign.start,
+              ),
+              IconButton(
+                  onPressed: () {
+                    final value = ClipboardData(text: referenceCode);
+                    Clipboard.setData(value);
+                    Get.snackbar("Copy", "Copied to clipboard");
+                  },
+                  icon: const Icon(Icons.copy))
             ],
           ),
         ],

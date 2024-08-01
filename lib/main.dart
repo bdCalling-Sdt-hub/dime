@@ -18,6 +18,7 @@ Future<void> main() async {
   NotificationService.initLocalNotification();
   SocketServices.connectToSocket();
 
+
   runApp(const MyApp());
 }
 

@@ -41,7 +41,7 @@ class PeigoPaymentController extends GetxController {
       "email": emailController.text
     };
 
-    var response = await ApiService.postApi(AppUrls.paymentRequests, body);
+    var response = await ApiService.postApi(AppUrls.peigoRequests, body);
     isLoading = false;
     update();
 

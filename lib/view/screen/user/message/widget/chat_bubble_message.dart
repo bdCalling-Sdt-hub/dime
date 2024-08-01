@@ -1,3 +1,4 @@
+import 'package:dime/controllers/user/chat/message_controller.dart';
 import 'package:dime/core/app_routes.dart';
 import 'package:dime/extension/my_extension.dart';
 import 'package:dime/utils/app_icons.dart';
@@ -68,18 +69,7 @@ class ChatBubbleMessage extends StatelessWidget {
                     //       fit: BoxFit.fill,
                     //     ))),
                     GestureDetector(
-                      onTap: () {
-                        if (token.isEmpty &&
-                            channel.isEmpty &&
-                            startTime == null) {
-                          return;
-                        }
-                        // if (startTime!.isAfter(DateTime.now())) {
-                        //   return;
-                        // }
-                        Get.toNamed(AppRoutes.videoCall,
-                            parameters: {"token": token, "channel": channel});
-                      },
+                      onTap: MessageController.instance.checkVideoCall,
                       child: Container(
                         margin: EdgeInsets.only(left: 10.w),
                         padding: EdgeInsets.only(left: 10.w),

@@ -34,68 +34,10 @@ class PaymentScreen extends StatelessWidget {
             key: formKey,
             child: Column(
               children: [
-                16.height,
+                100.height,
                 CustomTextField(
-                  controller: controller.nameController,
-                  labelText: 'Account holder Name'.tr,
-                  validator: OtherHelper.validator,
-                  fillColor: AppColors.transparent,
-                  fieldBorderColor: AppColors.black,
-                  fieldBorderRadius: 4.r,
-                ),
-                SizedBox(
-                  height: 16.h,
-                ),
-                CustomTextField(
-                  controller: controller.accountNumberController,
-                  labelText: 'Account Number'.tr,
-                  validator: OtherHelper.validator,
-                  fillColor: AppColors.transparent,
-                  keyboardType: TextInputType.number,
-                  fieldBorderColor: AppColors.black,
-                  fieldBorderRadius: 4.r,
-                ),
-                SizedBox(
-                  height: 16.h,
-                ),
-                CustomTextField(
-                  controller: controller.transactionIdController,
-                  labelText: 'Transaction ID'.tr,
-                  validator: OtherHelper.validator,
-                  fillColor: AppColors.transparent,
-                  fieldBorderColor: AppColors.black,
-                  fieldBorderRadius: 4.r,
-                ),
-                SizedBox(
-                  height: 16.h,
-                ),
-                CustomTextField(
-                  controller: controller.bankNameController,
-                  labelText: 'Bank Name'.tr,
-                  validator: OtherHelper.validator,
-                  fillColor: AppColors.transparent,
-                  keyboardType: TextInputType.number,
-                  fieldBorderColor: AppColors.black,
-                  fieldBorderRadius: 4.r,
-                ),
-                SizedBox(
-                  height: 16.h,
-                ),
-                CustomTextField(
-                  controller: controller.cedulaNumberController,
-                  labelText: 'cedulaNumber'.tr,
-                  validator: OtherHelper.validator,
-                  fillColor: AppColors.transparent,
-                  keyboardType: TextInputType.number,
-                  fieldBorderColor: AppColors.black,
-                  fieldBorderRadius: 4.r,
-                ),
-                SizedBox(
-                  height: 16.h,
-                ),
-                CustomTextField(
-                  controller: controller.amountController,
-                  labelText: 'Amount'.tr,
+                  controller: controller.referenceCodeController,
+                  labelText: 'Reference Code'.tr,
                   validator: OtherHelper.validator,
                   fillColor: AppColors.transparent,
                   keyboardType: TextInputType.number,
@@ -104,6 +46,18 @@ class PaymentScreen extends StatelessWidget {
                 ),
                 SizedBox(
                   height: 40.h,
+                ),
+                CustomTextField(
+                  controller: controller.amountController,
+                  labelText: 'Reference Code'.tr,
+                  validator: OtherHelper.validator,
+                  fillColor: AppColors.transparent,
+                  keyboardType: TextInputType.number,
+                  fieldBorderColor: AppColors.black,
+                  fieldBorderRadius: 4.r,
+                ),
+                SizedBox(
+                  height: 100.h,
                 ),
                 CustomButton(
                   titleText: 'Payment'.tr,
