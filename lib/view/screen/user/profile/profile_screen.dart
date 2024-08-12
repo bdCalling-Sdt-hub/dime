@@ -1,4 +1,5 @@
 import 'package:dime/helpers/prefs_helper.dart';
+import 'package:dime/utils/app_images.dart';
 import 'package:dime/utils/app_url.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -42,6 +43,7 @@ class ProfileScreen extends StatelessWidget {
                         imageType: ImageType.network,
                         height: 170.sp,
                         width: 170.sp,
+                        defaultImage: AppImages.profile,
                       ),
                     ),
                   ),
