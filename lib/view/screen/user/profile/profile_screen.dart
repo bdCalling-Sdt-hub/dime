@@ -23,7 +23,6 @@ class ProfileScreen extends StatelessWidget {
         centerTitle: true,
         title: CustomText(
           text: "Profile".tr,
-
           fontWeight: FontWeight.w600,
           fontSize: 24.sp,
         ),
@@ -53,7 +52,6 @@ class ProfileScreen extends StatelessWidget {
                   text: PrefsHelper.myName,
                   fontSize: 18.sp,
                   fontWeight: FontWeight.w700,
-
                   top: 20.h,
                   bottom: 24.h,
                 ),
@@ -109,7 +107,6 @@ class ProfileScreen extends StatelessWidget {
                   icon: Icons.logout,
                   title: "Log Out".tr,
                   onTap: () => PopUp.logOutPopUp(),
-
                 ),
               ],
             ),
