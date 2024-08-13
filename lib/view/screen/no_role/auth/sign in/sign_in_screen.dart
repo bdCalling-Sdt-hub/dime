@@ -86,6 +86,7 @@ class SignInScreen extends StatelessWidget {
                       height: 30.h,
                     ),
                     const DoNotHaveAccont()
+
                   ],
                 ),
               ),
