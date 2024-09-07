@@ -35,15 +35,12 @@ class MessageController extends GetxController {
   bool isMessage = false;
   bool isInputField = false;
 
-
-
   ScrollController scrollController = ScrollController();
   TextEditingController messageController = TextEditingController();
 
   static MessageController get instance => Get.put(MessageController());
 
   MessageModel messageModel = MessageModel.fromJson({});
-
 
   checkVideoCall() {
     DateTime currentTime = DateTime.now();
@@ -54,7 +51,8 @@ class MessageController extends GetxController {
 
     if (currentTime.isAfter(startTime) &&
         currentTime.isBefore(startTime.add(Duration(minutes: duration)))) {
-      print("If yes, route to another screen");
+      Get.toNamed(AppRoutes.videoCall,
+          parameters: {"token": agoraToken, "channel": channel});
     }
   }
 
