@@ -3,9 +3,9 @@ class AppUrls {
   // static const imageUrl = "http://103.145.138.74:6000";
   // static const socketUrl = "http://103.145.138.74:6001";
 
-  static const baseUrl = "http://192.168.10.176:3000/api/v1";
-  static const imageUrl = "http://192.168.10.176:3000/";
-  static const socketUrl = "http://192.168.10.176:3001";
+  static const baseUrl = "http://192.168.10.176:3040/api/v1";
+  static const imageUrl = "http://192.168.10.176:3040";
+  static const socketUrl = "http://192.168.10.176:3045";
 
   static const signUp = "$baseUrl/users/sign-up";
   static const verifyEmail = "$baseUrl/users/verify-email";

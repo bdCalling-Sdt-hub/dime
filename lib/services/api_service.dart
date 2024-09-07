@@ -191,7 +191,6 @@ class ApiService {
             .timeout(const Duration(seconds: timeOut));
         responseJson = handleResponse(response);
       }
-
     } on SocketException {
       return ApiResponseModel(503, "No internet connection", '');
     } on FormatException {
@@ -209,17 +208,19 @@ class ApiService {
   static Future<ApiResponseModel> signUpMultipartRequest(
       {required String url,
       String? imagePath,
+      method = "POST",
+      filedName = "image",
       required Map<String, String> body,
       required String otp}) async {
     try {
-      var request = http.MultipartRequest('POST', Uri.parse(url));
+      var request = http.MultipartRequest(method, Uri.parse(url));
       body.forEach((key, value) {
         request.fields[key] = value;
       });
 
       if (imagePath != null) {
         var mimeType = lookupMimeType(imagePath);
-        var img = await http.MultipartFile.fromPath('image', imagePath,
+        var img = await http.MultipartFile.fromPath(filedName, imagePath,
             contentType: MediaType.parse(mimeType!));
         request.files.add(img);
       }

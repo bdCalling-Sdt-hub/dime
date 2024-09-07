@@ -75,7 +75,6 @@ class EditProfileAllFiled extends StatelessWidget {
             CustomTextField(
               controller: controller.descriptionController,
               validator: OtherHelper.validator,
-              keyboardType: TextInputType.number,
               fieldBorderRadius: 10.r,
               maxLines: null,
               fieldBorderColor: AppColors.black,
