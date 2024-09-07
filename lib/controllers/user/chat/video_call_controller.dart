@@ -1,3 +1,7 @@
+import 'dart:async';
+
+import 'package:dime/controllers/user/chat/message_controller.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
@@ -17,7 +21,34 @@ class VideoCallController extends GetxController {
   String token = '';
   String channel = '';
 
+  int start = 0;
+  Timer? _timer;
+
+  String time = "00:00";
+
   static VideoCallController get instance => Get.put(VideoCallController());
+
+  void startTimer() {
+    _timer?.cancel();
+    start = MessageController.instance.duration * 60;
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (start > 0) {
+        start--;
+        final minutes = (start ~/ 60).toString().padLeft(2, '0');
+        final seconds = (start % 60).toString().padLeft(2, '0');
+
+        time = "$minutes:$seconds";
+        if (kDebugMode) {
+          print(time);
+        }
+
+        update();
+      } else {
+        _timer?.cancel();
+        onCallEnd();
+      }
+    });
+  }
 
   clear() {
     engine.leaveChannel();
@@ -74,6 +105,7 @@ class VideoCallController extends GetxController {
             if (remoteId == 0) {
               localUserJoined = true;
               remoteId = remoteUid;
+              startTimer();
             }
             update();
           },

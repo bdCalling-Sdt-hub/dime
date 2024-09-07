@@ -1,9 +1,11 @@
 import 'dart:convert';
 
 import 'package:dime/helpers/other_helper.dart';
+import 'package:dime/helpers/prefs_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../core/app_routes.dart';
 import '../../models/consultant_profile_model.dart';
 import '../../services/api_service.dart';
 import '../../utils/app_url.dart';
@@ -21,9 +23,10 @@ class ProfileController extends GetxController {
   TextEditingController nameController = TextEditingController();
   TextEditingController numberController = TextEditingController();
   TextEditingController genderController = TextEditingController();
-  TextEditingController aboutController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   ConsultantProfileModel userProfile = ConsultantProfileModel.fromJson({});
+
+  static ProfileController get instance => Get.put(ProfileController());
 
   selectedGender(int index) {
     genderController.text = gender[index].toString();
@@ -47,6 +50,8 @@ class ProfileController extends GetxController {
     if (response.statusCode == 200) {
       userProfile = ConsultantProfileModel.fromJson(jsonDecode(response.body));
       setValue();
+
+      print(response.body);
     }
   }
 
@@ -55,39 +60,39 @@ class ProfileController extends GetxController {
     numberController.text = userProfile.data.attributes.phoneNumber;
     genderController.text = userProfile.data.attributes.gender;
     descriptionController.text = userProfile.data.attributes.aboutMe;
+    PrefsHelper.myImage = userProfile.data.attributes.image;
+
+    PrefsHelper.setString("myImage", PrefsHelper.myImage);
+    update();
   }
 
-  updateProfile(type) async {
+  updateProfileRepo() async {
     isLoading = true;
     update();
     var body = {
       "fullName": nameController.text,
       "phoneNumber": numberController.text,
       "gender": genderController.text,
-      "aboutMe": aboutController.text
+      "aboutMe": descriptionController.text
     };
 
     var response = await ApiService.signUpMultipartRequest(
         url: AppUrls.user,
-        body: {
-          "data": jsonEncode(body),
-        },
+        body: {"data": jsonEncode(body)},
         method: "PUT",
         imagePath: image,
+        filedName: "profileImage",
         otp: '');
 
     if (response.statusCode == 200) {
+      Get.toNamed(AppRoutes.patientsProfile);
+
+      print(response.body);
     } else {
       Utils.snackBarMessage(response.statusCode.toString(), response.message);
     }
 
     isLoading = false;
     update();
-  }
-
-  @override
-  void onInit() {
-    getProfileRepo();
-    super.onInit();
   }
 }

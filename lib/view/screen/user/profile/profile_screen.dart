@@ -13,8 +13,19 @@ import '../../../common_widgets/pop up/custom_pop_up_menu_button.dart';
 import '../../../common_widgets/pop up/success_pop_up.dart';
 import '../../../common_widgets/text/custom_text.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  @override
+  void initState() {
+    ProfileController.instance.getProfileRepo();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

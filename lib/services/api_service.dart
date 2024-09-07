@@ -227,9 +227,26 @@ class ApiService {
 
       request.headers["Otp"] = "OTP $otp";
 
+      Map<String, String> mainHeader = {
+        'Authorization': "Bearer ${PrefsHelper.token}",
+        'Accept-Language': PrefsHelper.localizationLanguageCode
+      };
+
+
+      mainHeader.forEach((key, value) {
+        request.headers[key] = value;
+      });
+
       var response = await request.send();
 
       if (response.statusCode == 200) {
+
+        if (kDebugMode) {
+          print("==================================================> url $url");
+          print("==================================================> body $body");
+          print("===========================> header ${mainHeader}");
+        }
+
         String data = await response.stream.bytesToString();
         return ApiResponseModel(200, jsonDecode(data)['message'], data);
       } else {

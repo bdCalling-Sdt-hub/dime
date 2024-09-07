@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:dime/models/api_response_model.dart';
 import 'package:dime/utils/app_url.dart';
@@ -34,6 +35,8 @@ class MessageController extends GetxController {
   bool isMessage = false;
   bool isInputField = false;
 
+
+
   ScrollController scrollController = ScrollController();
   TextEditingController messageController = TextEditingController();
 
@@ -41,15 +44,17 @@ class MessageController extends GetxController {
 
   MessageModel messageModel = MessageModel.fromJson({});
 
+
   checkVideoCall() {
-    DateTime now = DateTime.now();
-    DateTime fiveMinutesLater = now.add(Duration(minutes: duration));
-    if (startTime.toLocal().add(Duration(minutes: duration)).isBefore(now) ||
-        startTime.toLocal().isAfter(fiveMinutesLater)) {
-      return;
-    } else {
-      Get.toNamed(AppRoutes.videoCall,
-          parameters: {"token": agoraToken, "channel": channel});
+    DateTime currentTime = DateTime.now();
+
+    if (kDebugMode) {
+      print(startTime);
+    }
+
+    if (currentTime.isAfter(startTime) &&
+        currentTime.isBefore(startTime.add(Duration(minutes: duration)))) {
+      print("If yes, route to another screen");
     }
   }
 
@@ -88,9 +93,9 @@ class MessageController extends GetxController {
       duration = jsonDecode(response.body)['data']['attributes']["videoCall"]
               ['duration'] ??
           0;
-      // startTime = DateTime.tryParse(jsonDecode(response.body)['data']
-      //         ['attributes']["videoCall"]['startTime']) ??
-      //     DateTime.now().add(const Duration(days: 10));
+      startTime = DateTime.tryParse(jsonDecode(response.body)['data']
+              ['attributes']["videoCall"]['startTime']) ??
+          DateTime.now().add(const Duration(days: 10));
       page = page + 1;
       status = Status.completed;
       update();
