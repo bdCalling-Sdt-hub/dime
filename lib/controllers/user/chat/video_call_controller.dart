@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:dime/controllers/user/chat/message_controller.dart';
+import 'package:dime/services/socket_service.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -48,6 +49,12 @@ class VideoCallController extends GetxController {
         onCallEnd();
       }
     });
+  }
+
+  consultationDone() {
+    var body = {"appointmentId": ""};
+
+    SocketServices.socket.emit("consultation-done", body);
   }
 
   clear() {
@@ -156,6 +163,7 @@ class VideoCallController extends GetxController {
     }
     clear();
     update();
+    consultationDone();
     Get.back();
   }
 

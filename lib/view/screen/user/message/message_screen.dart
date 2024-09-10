@@ -29,6 +29,7 @@ class _MessageScreenState extends State<MessageScreen> {
   void initState() {
     MessageController.instance.name = name;
     MessageController.instance.chatId = chatId;
+    MessageController.instance.image = image;
     MessageController.instance.getMessageRepo();
     MessageController.instance.listenMessage();
     super.initState();

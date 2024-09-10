@@ -23,6 +23,7 @@ class MessageController extends GetxController {
 
   String chatId = "";
   String name = "";
+  String image = "";
   String agoraToken = "";
   String channel = "";
   int duration = 0;
@@ -51,8 +52,12 @@ class MessageController extends GetxController {
 
     if (currentTime.isAfter(startTime) &&
         currentTime.isBefore(startTime.add(Duration(minutes: duration)))) {
-      Get.toNamed(AppRoutes.videoCall,
-          parameters: {"token": agoraToken, "channel": channel});
+      Get.toNamed(AppRoutes.videoCall, parameters: {
+        "token": agoraToken,
+        "channel": channel,
+        "name": name,
+        "image": image
+      });
     }
   }
 

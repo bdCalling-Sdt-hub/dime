@@ -18,8 +18,9 @@ class VideoCallScreen extends StatefulWidget {
 
 class _VideoCallScreenState extends State<VideoCallScreen> {
   String token = Get.parameters["token"] ?? "";
-
   String channel = Get.parameters["channel"] ?? "";
+  String name = Get.parameters["name"] ?? "";
+  String image = Get.parameters["image"] ?? "";
 
   @override
   void initState() {
@@ -66,8 +67,8 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
                                 backgroundColor: Colors.transparent,
                                 child: ClipOval(
                                   child: CustomImage(
-                                    imageSrc: AppImages.profile,
-                                    imageType: ImageType.png,
+                                    imageSrc: image,
+                                    imageType: ImageType.network,
                                     height: 120.sp,
                                     width: 120.sp,
                                   ),
@@ -75,7 +76,7 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
                               ),
                             ),
                             CustomText(
-                              text: "Dr. Upul",
+                              text: name,
                               fontSize: 32.sp,
                               fontWeight: FontWeight.w700,
                               top: 12.h,
