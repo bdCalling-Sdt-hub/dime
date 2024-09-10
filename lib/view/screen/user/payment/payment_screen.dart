@@ -3,7 +3,6 @@ import 'package:dime/helpers/other_helper.dart';
 import 'package:dime/utils/app_colors.dart';
 import 'package:dime/view/common_widgets/button/custom_button.dart';
 import 'package:dime/view/common_widgets/text_field/custom_text_field.dart';
-import 'package:dime/view/screen/user/payment/widgets/payment_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';

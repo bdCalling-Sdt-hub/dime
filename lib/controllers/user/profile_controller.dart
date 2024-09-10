@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dime/helpers/other_helper.dart';
 import 'package:dime/helpers/prefs_helper.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -51,7 +52,9 @@ class ProfileController extends GetxController {
       userProfile = ConsultantProfileModel.fromJson(jsonDecode(response.body));
       setValue();
 
-      print(response.body);
+      if (kDebugMode) {
+        print(response.body);
+      }
     }
   }
 
@@ -87,7 +90,9 @@ class ProfileController extends GetxController {
     if (response.statusCode == 200) {
       Get.toNamed(AppRoutes.patientsProfile);
 
-      print(response.body);
+      if (kDebugMode) {
+        print(response.body);
+      }
     } else {
       Utils.snackBarMessage(response.statusCode.toString(), response.message);
     }

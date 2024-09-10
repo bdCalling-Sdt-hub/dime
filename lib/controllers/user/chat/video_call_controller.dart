@@ -30,16 +30,16 @@ class VideoCallController extends GetxController {
 
   void startTimer() {
     _timer?.cancel();
-    start = MessageController.instance.duration * 60;
+    start = 0;
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      if (start > 0) {
-        start--;
+      if (start < MessageController.instance.duration * 60) {
+        start++;
         final minutes = (start ~/ 60).toString().padLeft(2, '0');
         final seconds = (start % 60).toString().padLeft(2, '0');
 
         time = "$minutes:$seconds";
         if (kDebugMode) {
-          print(time);
+          print("time $time");
         }
 
         update();
@@ -151,7 +151,9 @@ class VideoCallController extends GetxController {
   }
 
   void onCallEnd() {
-    print("call end");
+    if (kDebugMode) {
+      print("call end");
+    }
     clear();
     update();
     Get.back();

@@ -1,4 +1,3 @@
-import 'package:dime/controllers/user/payment/peigo_payment_controller.dart';
 import 'package:dime/utils/app_utils.dart';
 import 'package:dime/view/common_widgets/button/custom_button.dart';
 import 'package:flutter/material.dart';

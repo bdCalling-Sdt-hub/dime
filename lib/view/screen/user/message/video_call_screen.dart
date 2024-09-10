@@ -192,6 +192,10 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
                   ),
                 ),
               ),
+              Positioned(
+                top: 100,
+                child: Center(child: CustomText(text: controller.time)),
+              ),
             ],
           ),
         ),

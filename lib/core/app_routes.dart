@@ -9,7 +9,6 @@ import 'package:dime/view/screen/user/blog/blog_screen.dart';
 import 'package:dime/view/screen/user/blog/read_blog_screen.dart';
 import 'package:dime/view/screen/user/message/video_call_screen.dart';
 import 'package:dime/view/screen/user/payment/peigo_payment_screen.dart';
-import 'package:dime/view/screen/user/payment/widgets/payment_info.dart';
 import 'package:dime/view/screen/user/setting/privacy_policy_screen.dart';
 import 'package:dime/view/screen/user/setting/terms_of_services_screen.dart';
 import 'package:get/get.dart';

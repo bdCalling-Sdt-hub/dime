@@ -3,7 +3,6 @@ import 'package:dime/extension/my_extension.dart';
 import 'package:dime/utils/app_images.dart';
 import 'package:dime/view/common_widgets/image/custom_image.dart';
 import 'package:dime/view/common_widgets/text/custom_text.dart';
-import 'package:dime/view/screen/user/payment/widgets/payment_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

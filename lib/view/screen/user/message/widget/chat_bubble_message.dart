@@ -1,12 +1,10 @@
 import 'package:dime/controllers/user/chat/message_controller.dart';
-import 'package:dime/core/app_routes.dart';
 import 'package:dime/extension/my_extension.dart';
 import 'package:dime/utils/app_icons.dart';
 import 'package:dime/utils/app_url.dart';
 import 'package:dime/view/common_widgets/image/custom_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import '../../../../../utils/app_colors.dart';
 import '../../../../common_widgets/text/custom_text.dart';
 
