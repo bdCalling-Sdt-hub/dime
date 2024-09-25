@@ -1,11 +1,11 @@
 class AppUrls {
-  // static const baseUrl = "http://103.145.138.74:6000/api/v1";
-  // static const imageUrl = "http://103.145.138.74:6000";
-  // static const socketUrl = "http://103.145.138.74:6001";
+  static const baseUrl = "http://134.209.145.168:3040/api/v1";
+  static const imageUrl = "http://134.209.145.168:3040";
+  static const socketUrl = "http://134.209.145.168:3045";
 
-  static const baseUrl = "http://192.168.10.176:3040/api/v1";
-  static const imageUrl = "http://192.168.10.176:3040";
-  static const socketUrl = "http://192.168.10.176:3045";
+  // static const baseUrl = "http://192.168.10.176:3040/api/v1";
+  // static const imageUrl = "http://192.168.10.176:3040";
+  // static const socketUrl = "http://192.168.10.176:3045";
 
   static const signUp = "$baseUrl/users/sign-up";
   static const verifyEmail = "$baseUrl/users/verify-email";

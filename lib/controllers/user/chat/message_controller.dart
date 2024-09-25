@@ -50,15 +50,22 @@ class MessageController extends GetxController {
       print(startTime);
     }
 
-    if (currentTime.isAfter(startTime) &&
-        currentTime.isBefore(startTime.add(Duration(minutes: duration)))) {
-      Get.toNamed(AppRoutes.videoCall, parameters: {
-        "token": agoraToken,
-        "channel": channel,
-        "name": name,
-        "image": image
-      });
-    }
+    Get.toNamed(AppRoutes.videoCall, parameters: {
+      "token": agoraToken,
+      "channel": channel,
+      "name": name,
+      "image": image
+    });
+
+    // if (currentTime.isAfter(startTime) &&
+    //     currentTime.isBefore(startTime.add(Duration(minutes: duration)))) {
+    //   Get.toNamed(AppRoutes.videoCall, parameters: {
+    //     "token": agoraToken,
+    //     "channel": channel,
+    //     "name": name,
+    //     "image": image
+    //   });
+    // }
   }
 
   Future<void> getMessageRepo() async {
