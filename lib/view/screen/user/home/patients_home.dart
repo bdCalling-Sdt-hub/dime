@@ -1,11 +1,12 @@
-import 'package:flutter/cupertino.dart';
+import 'package:dime/models/category_model.dart';
+import 'package:dime/view/common_widgets/no_data.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../controllers/user/home_controller.dart';
 import '../../../../controllers/user/profile_controller.dart';
 import '../../../../core/app_routes.dart';
+import '../../../../models/consultant_list_model.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_icons.dart';
 import '../../../common_widgets/bottom nav bar/navbar.dart';
@@ -58,8 +59,9 @@ class PatientsHomeScreen extends StatelessWidget {
                                   items: profileController.languages,
                                   iconData: Icons.g_translate,
                                   iconColor: AppColors.white,
-                                  selectedItem:
-                                      profileController.selectedLanguage,
+                                  selectedItem: [
+                                    profileController.selectedLanguage
+                                  ],
                                   onTap: profileController.selectLanguage);
                             },
                           )
@@ -78,6 +80,7 @@ class PatientsHomeScreen extends StatelessWidget {
                         fontSize: 32.sp,
                         fontWeight: FontWeight.w800,
                         maxLines: 2,
+                        bottom: 20.h,
                         textAlign: TextAlign.start,
                         color: AppColors.white,
                       ),
@@ -87,15 +90,22 @@ class PatientsHomeScreen extends StatelessWidget {
                           children: [
                             Expanded(
                               child: CustomTextField(
+                                controller: controller.searchController,
                                 hindText: "Find an expert".tr,
                                 textStyle:
                                     const TextStyle(color: AppColors.greyLight),
                                 cursorColor: AppColors.greyLight,
+                                fieldFocusBorderColor: AppColors.white,
                                 prefixIcon: const Icon(
                                   Icons.search,
                                   color: AppColors.white,
                                 ),
                                 fillColor: AppColors.transparent,
+                                fieldBorderColor: AppColors.white,
+                                onFieldSubmitted: (po) {
+                                  controller.page = 1;
+                                  controller.getTopAdvisorRepo();
+                                },
                               ),
                             ),
                             Container(
@@ -108,9 +118,15 @@ class PatientsHomeScreen extends StatelessWidget {
                                   ),
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(10.r))),
-                              child: const Icon(
-                                Icons.near_me_outlined,
-                                color: AppColors.white,
+                              child: IconButton(
+                                onPressed: () {
+                                  controller.page = 1;
+                                  controller.getTopAdvisorRepo();
+                                },
+                                icon: const Icon(
+                                  Icons.near_me_outlined,
+                                  color: AppColors.white,
+                                ),
                               ),
                             )
                           ],
@@ -153,16 +169,19 @@ class PatientsHomeScreen extends StatelessWidget {
                           child: GridView.builder(
                             padding: EdgeInsets.zero,
                             physics: const NeverScrollableScrollPhysics(),
-                            itemCount: controller.services.length,
+                            itemCount: controller.categories.length,
                             gridDelegate:
                                 SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 4, crossAxisSpacing: 10.sp),
                             itemBuilder: (context, index) {
-                              var item = controller.services[index];
+                              CategoryModel item = controller.categories[index];
                               return GestureDetector(
                                 onTap: () => Get.toNamed(
                                     AppRoutes.cotegoriseList,
-                                    parameters: {'category': item['name']}),
+                                    parameters: {
+                                      'category': item.name,
+                                      "categoryId": item.id
+                                    }),
                                 child: CategoryItem(
                                   item: item,
                                 ),
@@ -192,19 +211,24 @@ class PatientsHomeScreen extends StatelessWidget {
                         height: 20.h,
                       ),
                       SizedBox(
-                          child: ListView.builder(
-                        padding: EdgeInsets.zero,
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: controller.doctors.length,
-                        itemBuilder: (context, index) {
-                          var item = controller.doctors[index];
-                          return ListItem(
-                            item: item,
-                            onTap: () => Get.toNamed(AppRoutes.doctorDetails),
-                          );
-                        },
-                      )),
+                          child: controller.doctors.isEmpty
+                              ? const NoData()
+                              : ListView.builder(
+                                  padding: EdgeInsets.zero,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemCount: controller.doctors.length,
+                                  itemBuilder: (context, index) {
+                                    ConsultantListModel item =
+                                        controller.doctors[index];
+                                    return ListItem(
+                                      item: item,
+                                      onTap: () => Get.toNamed(
+                                          AppRoutes.doctorDetails,
+                                          parameters: {"id": item.id}),
+                                    );
+                                  },
+                                )),
                     ],
                   ),
                 )

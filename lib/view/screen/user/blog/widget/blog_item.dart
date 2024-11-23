@@ -1,28 +1,21 @@
+import 'package:dime/controllers/user/payment/peigo_payment_controller.dart';
 import 'package:dime/core/app_routes.dart';
-import 'package:dime/utils/app_icons.dart';
-import 'package:dime/view/common_widgets/button/custom_button.dart';
+import 'package:dime/utils/app_url.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../../../controllers/user/payment/payment_controller.dart';
+import '../../../../../controllers/user/payment/select_payment_method_controller.dart';
+import '../../../../../models/blogs_model.dart';
 import '../../../../../utils/app_colors.dart';
 import '../../../../common_widgets/image/custom_image.dart';
 import '../../../../common_widgets/text/custom_text.dart';
 
 class BlogItem extends StatelessWidget {
-  const BlogItem(
-      {super.key,
-      required this.image,
-      required this.name,
-      required this.description,
-      required this.price,
-      required this.onTap});
+  const BlogItem({super.key, required this.item});
 
-  final String image;
-  final String name;
-  final String description;
-  final int price;
-  final VoidCallback onTap;
+  final Blog item;
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +28,8 @@ class BlogItem extends StatelessWidget {
       child: Row(
         children: [
           CustomImage(
-            imageSrc: image,
-            imageType: ImageType.png,
+            imageSrc: "${AppUrls.imageUrl}/${item.image}",
+            imageType: ImageType.network,
             height: 96.sp,
           ),
           SizedBox(
@@ -50,25 +43,41 @@ class BlogItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     CustomText(
-                      text: name,
+                      text: item.title,
                       fontWeight: FontWeight.w700,
                       fontSize: 20.sp,
                     ),
                     CustomText(
-                      text: "\$ $price",
+                      text: "\$${item.price}",
                       fontWeight: FontWeight.w700,
                     ),
                   ],
                 ),
                 CustomText(
-                  text: description,
+                  text: item.details,
                   fontWeight: FontWeight.w400,
                   fontSize: 18.sp,
                   top: 6.h,
                   bottom: 8.h,
                 ),
                 GestureDetector(
-                  onTap: onTap,
+                  onTap: () {
+                    if (item.isPaymentDone) {
+                      Get.toNamed(AppRoutes.readBlog);
+                    } else {
+                      SelectPaymentMethodController.instance.amount = item.price.toString();
+                      SelectPaymentMethodController.instance.productName = 'Appointment';
+                      PaymentController.instance.consultant = item.id;
+                      PaymentController.instance.appointment = item.id;
+                      PaymentController.instance.amountController.text = item.price.toString();
+                       PeigoPaymentController.instance.consultant = item.id;
+                      PeigoPaymentController.instance.appointment = item.id;
+                      PeigoPaymentController.instance.amountController.text = item.price.toString();
+
+
+                      Get.toNamed(AppRoutes.paymentMethod);
+                    }
+                  },
                   child: Container(
                       width: 80.w,
                       height: 24.h,
@@ -77,7 +86,7 @@ class BlogItem extends StatelessWidget {
                           borderRadius: BorderRadius.circular(4.r)),
                       child: Center(
                         child: CustomText(
-                          text: 'Read'.tr,
+                          text: item.isPaymentDone ? 'Read'.tr : 'buy'.tr,
                           color: AppColors.white,
                         ),
                       )),

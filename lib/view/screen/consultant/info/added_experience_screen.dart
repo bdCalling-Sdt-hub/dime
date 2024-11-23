@@ -11,10 +11,10 @@ import 'widget/added_experience_all_filed.dart';
 import 'widget/registation_step.dart';
 
 class AddedExperienceScreen extends StatelessWidget {
-  AddedExperienceScreen({super.key});
+   AddedExperienceScreen({super.key});
 
   final formKey = GlobalKey<FormState>();
-  String type = Get.parameters["type"] ?? "";
+  final String type = Get.parameters["type"] ?? "";
 
   @override
   Widget build(BuildContext context) {

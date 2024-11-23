@@ -1,11 +1,11 @@
-import 'package:dime/controllers/user/Booking/my_booking_controller.dart';
+import 'package:dime/helpers/prefs_helper.dart';
+import 'package:dime/utils/app_images.dart';
+import 'package:dime/utils/app_url.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../controllers/user/profile_controller.dart';
 import '../../../../core/app_routes.dart';
-import '../../../../utils/app_colors.dart';
-import '../../../../utils/app_images.dart';
 import '../../../common_widgets/bottom nav bar/navbar.dart';
 import '../../../common_widgets/image/custom_image.dart';
 import '../../../common_widgets/item.dart';
@@ -13,8 +13,19 @@ import '../../../common_widgets/pop up/custom_pop_up_menu_button.dart';
 import '../../../common_widgets/pop up/success_pop_up.dart';
 import '../../../common_widgets/text/custom_text.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  @override
+  void initState() {
+    ProfileController.instance.getProfileRepo();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,16 +50,17 @@ class ProfileScreen extends StatelessWidget {
                     backgroundColor: Colors.transparent,
                     child: ClipOval(
                       child: CustomImage(
-                        imageSrc: AppImages.profile,
-                        imageType: ImageType.png,
+                        imageSrc: "${AppUrls.imageUrl}/${PrefsHelper.myImage}",
+                        imageType: ImageType.network,
                         height: 170.sp,
                         width: 170.sp,
+                        defaultImage: AppImages.profile,
                       ),
                     ),
                   ),
                 ),
                 CustomText(
-                  text: "Daniel Martinez",
+                  text: PrefsHelper.myName,
                   fontSize: 18.sp,
                   fontWeight: FontWeight.w700,
                   top: 20.h,
@@ -63,8 +75,9 @@ class ProfileScreen extends StatelessWidget {
                   icon: Icons.settings,
                   title: "My Booking".tr,
                   onTap: () {
-                    Get.toNamed(AppRoutes.myBooking,
-                        parameters: {"index": "3"});
+                    Get.toNamed(
+                      AppRoutes.myBooking,
+                    );
                   },
                 ),
                 Item(
@@ -93,7 +106,7 @@ class ProfileScreen extends StatelessWidget {
                           const Spacer(),
                           PopUpMenu(
                               items: controller.languages,
-                              selectedItem: controller.selectedLanguage,
+                              selectedItem: [controller.selectedLanguage],
                               onTap: controller.selectLanguage)
                         ],
                       ),

@@ -41,7 +41,7 @@ class AppImages {
 
   static const String neurology = "$baseurl/Neurology.png";
 
-  static const String profile = "$baseurl/profile.png";
+  static const String profile = "$baseurl/defualt_profile.png";
 
   static const String pulmono = "$baseurl/Pulmono.png";
 
@@ -49,7 +49,7 @@ class AppImages {
 
   static const String marker = "$baseurl/marker.png";
 
-  static const String alan = "$baseurl/img.png";
+  static const String alan = "$baseurl/video.png";
 
   static const String review = "$baseurl/review_image.png";
 
@@ -66,4 +66,6 @@ class AppImages {
   static const String card = "$baseurl/card.png";
   static const String callerImg = "$baseurl/callerImg.png";
   static const String patient_1 = "$baseurl/patient_1.png";
+  static const String video = "$baseurl/video.png";
+  static const String qrCode = "$baseurl/qr_code.png";
 }

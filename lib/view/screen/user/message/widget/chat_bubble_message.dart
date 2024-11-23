@@ -1,15 +1,18 @@
-import 'package:dime/core/app_routes.dart';
+import 'package:dime/controllers/user/chat/message_controller.dart';
+import 'package:dime/extension/my_extension.dart';
 import 'package:dime/utils/app_icons.dart';
+import 'package:dime/utils/app_url.dart';
 import 'package:dime/view/common_widgets/image/custom_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import '../../../../../utils/app_colors.dart';
 import '../../../../common_widgets/text/custom_text.dart';
 
 class ChatBubbleMessage extends StatelessWidget {
-  final String time;
+  final DateTime time;
   final String text;
+  final String token;
+  final String channel;
   final String image;
   final bool isMe;
   final bool isEmoji;
@@ -17,9 +20,10 @@ class ChatBubbleMessage extends StatelessWidget {
   final int messageIndex;
   final bool isCall;
   final bool isNotice;
+  DateTime? startTime;
   final VoidCallback onTap;
 
-  const ChatBubbleMessage({
+  ChatBubbleMessage({
     super.key,
     required this.time,
     required this.text,
@@ -29,12 +33,16 @@ class ChatBubbleMessage extends StatelessWidget {
     this.isEmoji = false,
     this.index = 0,
     this.messageIndex = 1,
+    this.token = '',
+    this.channel = '',
     this.isCall = false,
     this.isNotice = false,
+    this.startTime,
   });
 
   @override
   Widget build(BuildContext context) {
+    startTime = DateTime.now().add(const Duration(days: 10));
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -59,7 +67,7 @@ class ChatBubbleMessage extends StatelessWidget {
                     //       fit: BoxFit.fill,
                     //     ))),
                     GestureDetector(
-                      onTap: () => Get.toNamed(AppRoutes.videoCall),
+                      onTap: MessageController.instance.checkVideoCall,
                       child: Container(
                         margin: EdgeInsets.only(left: 10.w),
                         padding: EdgeInsets.only(left: 10.w),
@@ -112,11 +120,11 @@ class ChatBubbleMessage extends StatelessWidget {
                               backgroundColor: AppColors.white,
                               radius: 20.sp,
                               child: ClipOval(
-                                  child: Image.asset(
-                                image,
+                                  child: CustomImage(
+                                imageSrc: "${AppUrls.imageUrl}$image",
                                 width: 36.sp,
                                 height: 36.sp,
-                                fit: BoxFit.fill,
+                                imageType: ImageType.network,
                               ))),
                         const SizedBox(
                           width: 8,
@@ -157,7 +165,7 @@ class ChatBubbleMessage extends StatelessWidget {
                                 CustomText(
                                   fontSize: 8,
                                   fontWeight: FontWeight.w400,
-                                  text: time,
+                                  text: time.time,
                                   color: AppColors.black,
                                 ),
                               ],

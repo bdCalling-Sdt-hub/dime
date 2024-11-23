@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../../../../controllers/user/setting_controller.dart';
+import '../../../../controllers/user/setting/setting_controller.dart';
 import '../../../../core/app_routes.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../common_widgets/text/custom_text.dart';
@@ -39,21 +39,24 @@ class SettingScreen extends StatelessWidget {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () => Get.toNamed(AppRoutes.changePassword),
+                  onTap: () => Get.toNamed(AppRoutes.termsOfServices),
                   child: SettingItem(
                     title: "Terms of Services".tr,
                     iconDate: Icons.gavel,
                   ),
                 ),
                 GestureDetector(
-                  onTap: () => Get.toNamed(AppRoutes.changePassword),
+                  onTap: () => Get.toNamed(AppRoutes.privacyPolicy),
                   child: SettingItem(
                     title: "Privacy Policy".tr,
                     iconDate: Icons.network_wifi_1_bar,
                   ),
                 ),
                 GestureDetector(
-                  onTap: () => PopUp.deletePopUp(),
+                  onTap: () => PopUp.deletePopUp(
+                      controller: controller.passwordController,
+                      onTap: controller.deleteAccountRepo,
+                      isLoading: controller.isLoading),
                   child: Container(
                     height: 52.h,
                     padding: EdgeInsets.symmetric(horizontal: 20.w),

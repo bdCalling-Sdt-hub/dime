@@ -54,7 +54,7 @@ class OtherHelper {
     }
   }
 
-  static Future<void> datePicker(
+  static Future<String> datePicker(
     TextEditingController controller,
   ) async {
     final DateTime? picked = await showDatePicker(
@@ -69,24 +69,32 @@ class OtherHelper {
       initialDate: DateTime.now(),
       firstDate: DateTime(1900),
       lastDate: DateTime(2101),
-      // selectableDayPredicate: (DateTime date) {
-      //   // Disable Saturdays and Sundays
-      //   if (date.weekday == DateTime.saturday ||
-      //       date.weekday == DateTime.sunday) {
-      //     return false;
-      //   }
-      //   return true;
-      // },
     );
     if (picked != null) {
       controller.text = "${picked.year}/${picked.month}/${picked.day}";
+      return picked.toIso8601String();
     }
+
+    return "";
   }
 
   static Future<String?> openGallery() async {
     final ImagePicker picker = ImagePicker();
     final XFile? getImages =
         await picker.pickImage(source: ImageSource.gallery, imageQuality: 50);
+    if (getImages == null) return null;
+
+    if (kDebugMode) {
+      print(getImages.path);
+    }
+
+    return getImages.path;
+  }
+
+  static Future<String?> getVideo() async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? getImages =
+        await picker.pickVideo(source: ImageSource.gallery);
     if (getImages == null) return null;
 
     if (kDebugMode) {
@@ -111,7 +119,7 @@ class OtherHelper {
     return getImages.path;
   }
 
-  static Future openTimePicker(TextEditingController controller) async {
+  static Future<String> openTimePicker(TextEditingController controller) async {
     final TimeOfDay? picked = await showTimePicker(
       context: Get.context!,
       initialTime: TimeOfDay.now(),
@@ -120,6 +128,8 @@ class OtherHelper {
     if (picked != null) {
       controller.text =
           "${picked.hour} : ${picked.minute < 10 ? "0${picked.minute}" : picked.minute}";
+      return "${picked.hour}:${picked.minute < 10 ? "0${picked.minute}" : picked.minute}";
     }
+    return '';
   }
 }

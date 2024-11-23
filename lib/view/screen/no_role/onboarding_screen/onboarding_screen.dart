@@ -6,7 +6,6 @@ import '../../../../core/app_routes.dart';
 import '../../../../utils/app_icons.dart';
 import '../../../common_widgets/button/custom_button.dart';
 import '../../../common_widgets/image/custom_image.dart';
-import '../../../common_widgets/text/custom_text.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});

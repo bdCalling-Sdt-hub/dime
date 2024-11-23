@@ -1,25 +1,15 @@
-import 'package:flutter/cupertino.dart';
+import 'package:dime/extension/my_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../models/notification_model.dart';
 import '../../../../../utils/app_colors.dart';
 import '../../../../common_widgets/text/custom_text.dart';
 
-
 class NotificationItem extends StatelessWidget {
-  const NotificationItem(
-      {super.key,
-      required this.icon,
-      required this.name,
-      required this.subTitle,
-      required this.time,
-      this.onTap});
+  const NotificationItem({super.key, required this.item});
 
-  final IconData icon;
-  final String name;
-  final String subTitle;
-  final String time;
-  final VoidCallback? onTap;
+  final NotificationModel item;
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +24,9 @@ class NotificationItem extends StatelessWidget {
           CircleAvatar(
             backgroundColor: AppColors.blueLightHover,
             radius: 35.r,
-            child: ClipOval(
+            child: const ClipOval(
               child: Icon(
-                icon,
+                Icons.date_range,
                 color: AppColors.secondPrimary,
               ),
             ),
@@ -53,16 +43,16 @@ class NotificationItem extends StatelessWidget {
                   children: [
                     Flexible(
                       child: CustomText(
-                        text: name,
-                        fontSize: 20.sp,
+                        text: item.type,
+                        fontSize: 16.sp,
                         fontWeight: FontWeight.w700,
                         textAlign: TextAlign.start,
                         maxLines: 1,
                       ),
                     ),
                     CustomText(
-                      text: time,
-                      fontSize: 20.sp,
+                      text: item.createdAt.checkTime,
+                      fontSize: 14.sp,
                       fontWeight: FontWeight.w700,
                       textAlign: TextAlign.start,
                       color: AppColors.greyLightActive,
@@ -71,9 +61,9 @@ class NotificationItem extends StatelessWidget {
                   ],
                 ),
                 CustomText(
-                  text: subTitle,
+                  text: item.message,
                   fontSize: 14.sp,
-                  fontWeight: FontWeight.w700,
+                  fontWeight: FontWeight.w400,
                   maxLines: 2,
                   color: AppColors.greyLightActive,
                   textAlign: TextAlign.start,

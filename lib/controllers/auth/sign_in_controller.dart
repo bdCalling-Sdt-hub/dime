@@ -13,14 +13,11 @@ class SignInController extends GetxController {
   bool isLoading = false;
 
   TextEditingController emailController =
-      TextEditingController(text: kDebugMode ? 'dijogil285@avastu.com' : '');
+      TextEditingController(text: kDebugMode ? 'user@gmail.com' : '');
   TextEditingController passwordController =
       TextEditingController(text: kDebugMode ? 'hello123' : "");
 
   Future<void> signInUser() async {
-
-    Get.offAllNamed(AppRoutes.doctorHome);
-    return ;
     isLoading = true;
     update();
 
@@ -43,15 +40,15 @@ class SignInController extends GetxController {
       PrefsHelper.myName = data['data']["attributes"]["fullName"];
       PrefsHelper.myRole = data['data']["attributes"]["role"];
       PrefsHelper.myEmail = data['data']["attributes"]["email"];
-      PrefsHelper.isLogIn = false;
+      PrefsHelper.isLogIn = true;
 
       PrefsHelper.setString('token', PrefsHelper.token);
-      PrefsHelper.setString("userId", PrefsHelper.token);
-      PrefsHelper.setString("myImage", PrefsHelper.token);
-      PrefsHelper.setString("myName", PrefsHelper.token);
-      PrefsHelper.setString("myEmail", PrefsHelper.token);
+      PrefsHelper.setString("userId", PrefsHelper.userId);
+      PrefsHelper.setString("myImage", PrefsHelper.myImage);
+      PrefsHelper.setString("myName", PrefsHelper.myName);
+      PrefsHelper.setString("myEmail", PrefsHelper.myEmail);
       PrefsHelper.setString("myRole", PrefsHelper.myRole);
-      PrefsHelper.setBool("isLogIn", false);
+      PrefsHelper.setBool("isLogIn", PrefsHelper.isLogIn);
 
       if (PrefsHelper.myRole == 'consultant') {
         Get.offAllNamed(AppRoutes.doctorHome);

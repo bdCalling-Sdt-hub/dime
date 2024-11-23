@@ -1,11 +1,9 @@
-import 'package:dime/controllers/auth/signIn_controller.dart';
+import 'package:dime/controllers/auth/sign_in_controller.dart';
 import 'package:dime/helpers/other_helper.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../../core/app_routes.dart';
-import '../../../../../helpers/prefs_helper.dart';
 import '../../../../../utils/app_colors.dart';
 import '../../../../../utils/app_icons.dart';
 import '../../../../common_widgets/button/custom_button.dart';
@@ -80,19 +78,7 @@ class SignInScreen extends StatelessWidget {
                       isLoading: controller.isLoading,
                       onTap: () {
                         if (formKey.currentState!.validate()) {
-                          Get.toNamed(AppRoutes.patientsHome);
-                        }
-                      },
-                    ),
-                    SizedBox(
-                      height: 30.h,
-                    ),
-                    CustomButton(
-                      titleText: "Sign in consultant".tr,
-                      isLoading: controller.isLoading,
-                      onTap: () {
-                        if (formKey.currentState!.validate()) {
-                          Get.toNamed(AppRoutes.doctorHome);
+                          controller.signInUser();
                         }
                       },
                     ),
@@ -100,6 +86,7 @@ class SignInScreen extends StatelessWidget {
                       height: 30.h,
                     ),
                     const DoNotHaveAccont()
+
                   ],
                 ),
               ),

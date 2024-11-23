@@ -38,7 +38,7 @@ class ProfessionalQualificationsAllFiled extends StatelessWidget {
               keyboardType: TextInputType.none,
               suffixIcon: PopUpMenu(
                 items: controller.expertises,
-                selectedItem: controller.expertiseController.text,
+                selectedItem: [controller.expertiseController.text],
                 onTap: controller.selectedExpertises,
               ),
             ),
@@ -89,7 +89,7 @@ class ProfessionalQualificationsAllFiled extends StatelessWidget {
               hindText: "Category".tr,
               suffixIcon: PopUpMenu(
                   items: controller.category,
-                  selectedItem: controller.categoryController.text,
+                  selectedItem: [controller.categoryController.text],
                   onTap: controller.selectedCategory),
               fieldBorderRadius: 10.r,
               keyboardType: TextInputType.none,
@@ -107,7 +107,7 @@ class ProfessionalQualificationsAllFiled extends StatelessWidget {
               hindText: "Degree Name".tr,
               suffixIcon: PopUpMenu(
                   items: controller.degrees,
-                  selectedItem: controller.degreeController.text,
+                  selectedItem: [controller.degreeController.text],
                   onTap: controller.selectedDegree),
               fieldBorderRadius: 10.r,
               keyboardType: TextInputType.none,
@@ -194,7 +194,7 @@ class ProfessionalQualificationsAllFiled extends StatelessWidget {
                       fieldBorderRadius: 10.r,
                       suffixIcon: PopUpMenu(
                         items: controller.years,
-                        selectedItem: controller.durationController.text,
+                        selectedItem: [controller.durationController.text],
                         onTap: controller.selectedYear,
                       ),
                       hindText: "Duration".tr,

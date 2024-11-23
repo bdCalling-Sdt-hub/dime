@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:socket_io_client/socket_io_client.dart' as io;
 
 import '../helpers/prefs_helper.dart';
@@ -11,24 +11,34 @@ class SocketServices {
 
   ///<<<============ Connect with socket ====================>>>
   static void connectToSocket() {
+    Map<String, String> headers = {
+      'Authorization': "Bearer ${PrefsHelper.token}",
+    };
     socket = io.io(
         AppUrls.socketUrl,
         io.OptionBuilder()
             .setTransports(['websocket'])
             .enableAutoConnect()
+            .setExtraHeaders(headers)
             .build());
 
     socket.onConnect((data) {
-      debugPrint("=============================> Connection $data");
+      if (kDebugMode) {
+        print("=============================> Connection $data");
+      }
     });
     socket.onConnectError((data) {
-      print("============================>Connection Error $data");
+      if (kDebugMode) {
+        print("============================>Connection Error $data");
+      }
     });
 
     socket.connect();
 
     socket.on("user-notification::${PrefsHelper.userId}", (data) {
-      print("================> get Data on socket: $data");
+      if (kDebugMode) {
+        print("================> get Data on socket: $data");
+      }
       NotificationService.showNotification(data);
     });
   }

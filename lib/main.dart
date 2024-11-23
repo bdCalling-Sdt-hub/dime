@@ -1,3 +1,5 @@
+import 'package:dime/services/notification_service.dart';
+import 'package:dime/services/socket_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -13,6 +15,9 @@ Future<void> main() async {
   DependencyInjection dI = DependencyInjection();
   dI.dependencies();
   await PrefsHelper.getAllPrefData();
+  NotificationService.initLocalNotification();
+  SocketServices.connectToSocket();
+
 
   runApp(const MyApp());
 }

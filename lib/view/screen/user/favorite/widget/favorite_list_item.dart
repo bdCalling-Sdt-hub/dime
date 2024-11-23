@@ -6,7 +6,7 @@ import '../../../../common_widgets/image/custom_image.dart';
 import '../../../../common_widgets/text/custom_text.dart';
 
 class FavoriteListItem extends StatelessWidget {
-  FavoriteListItem({
+  const FavoriteListItem({
     super.key,
     required this.image,
     required this.name,

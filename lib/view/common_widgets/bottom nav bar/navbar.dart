@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -63,6 +64,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
               onTap: () => onTap(index),
               child: Container(
                 margin: EdgeInsetsDirectional.all(12.sp),
+                padding: EdgeInsets.only(bottom: 12.sp),
                 child: Column(
                   children: [
                     index == bottomNavIndex
@@ -79,7 +81,9 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
   }
 
   void onTap(int index) async {
-    print(widget.currentIndex);
+    if (kDebugMode) {
+      print(widget.currentIndex);
+    }
     if (index == 0) {
       if (!(widget.currentIndex == 0)) {
         Get.toNamed(AppRoutes.patientsHome);

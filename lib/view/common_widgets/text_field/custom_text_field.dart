@@ -25,7 +25,8 @@ class CustomTextField extends StatefulWidget {
       this.suffixIcon,
       this.suffixIconColor,
       this.fieldBorderRadius,
-      this.fieldBorderColor = const Color(0xffE7F0FD),
+      this.fieldBorderColor = AppColors.black,
+      this.fieldFocusBorderColor = AppColors.secondPrimary,
       this.isPassword = false,
       this.isPrefixIcon = true,
       this.readOnly = false,
@@ -62,6 +63,7 @@ class CustomTextField extends StatefulWidget {
   final VoidCallback? onTap;
 
   final Color fieldBorderColor;
+  final Color fieldFocusBorderColor;
   final bool isPassword;
   final bool isPrefixIcon;
   final bool isEnabled;
@@ -87,9 +89,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       focusNode: widget.focusNode,
       maxLength: widget.maxLength,
       keyboardType: widget.keyboardType,
-      textInputAction: widget.keyboardType == TextInputType.none
-          ? TextInputAction.none
-          : widget.textInputAction,
+      textInputAction: widget.textInputAction,
       cursorColor: widget.cursorColor,
       style: widget.textStyle,
       textAlign: widget.textAlign,
@@ -109,14 +109,12 @@ class _CustomTextFieldState extends State<CustomTextField> {
         hintStyle: widget.textStyle,
         fillColor: widget.fillColor,
         filled: true,
-
         prefixIcon: widget.prefixIcon,
         suffixIcon: widget.isPassword
             ? GestureDetector(
                 onTap: toggle,
                 child: Padding(
-                  padding: const EdgeInsets.only(
-                      left: 16, right: 16, top: 16, bottom: 16),
+                  padding: const EdgeInsets.all(16),
                   child: obscureText
                       ? Icon(
                           Icons.visibility_off_outlined,
@@ -141,7 +139,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             borderRadius:
                 BorderRadius.circular(widget.fieldBorderRadius ?? 16.r),
             borderSide:
-                const BorderSide(color: AppColors.secondPrimary, width: 1),
+                BorderSide(color: widget.fieldFocusBorderColor, width: 1),
             gapPadding: 0),
         enabledBorder: OutlineInputBorder(
             borderRadius:

@@ -1,22 +1,34 @@
 import 'package:dime/controllers/consultant/blog/my_blog_controller.dart';
 import 'package:dime/controllers/consultant/blog/upload_blog_controller.dart';
+import 'package:dime/models/api_response_model.dart';
+import 'package:dime/utils/app_url.dart';
+import 'package:dime/view/common_widgets/error_screen.dart';
+import 'package:dime/view/common_widgets/no_data.dart';
 import 'package:dime/view/screen/consultant/blog/widget/my_blog_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
 import '../../../../core/app_routes.dart';
+import '../../../../models/my_blogs_model.dart';
 import '../../../../utils/app_colors.dart';
-import '../../../../utils/app_images.dart';
 import '../../../common_widgets/bottom nav bar/doctor_nav_bar.dart';
 import '../../../common_widgets/custom_loader.dart';
 import '../../../common_widgets/text/custom_text.dart';
 import '../../../common_widgets/text_field/custom_text_field.dart';
 
-class MyBlog extends StatelessWidget {
-  MyBlog({super.key});
+class MyBlog extends StatefulWidget {
+  const MyBlog({super.key});
 
-  UploadBlogController uploadBlogController = Get.put(UploadBlogController());
+  @override
+  State<MyBlog> createState() => _MyBlogState();
+}
+
+class _MyBlogState extends State<MyBlog> {
+  @override
+  void initState() {
+    MyBlogController.instance.getBlogsRepo();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,36 +83,46 @@ class MyBlog extends StatelessWidget {
                   height: 20.h,
                 ),
                 SizedBox(
-                  child: controller.isLoading
-                      ? SizedBox(height: 200.h, child: const CustomLoader())
+                    child: switch (controller.status) {
+                  Status.loading =>
+                    SizedBox(height: 200.h, child: const CustomLoader()),
+                  Status.error => ErrorScreen(
+                      onTap: () => controller.getBlogsRepo(),
+                    ),
+                  Status.completed => controller.blogs.isEmpty
+                      ? SizedBox(height: 400.h, child: const NoData())
                       : ListView.builder(
                           shrinkWrap: true,
-                          itemCount: 10,
+                          itemCount: controller.blogs.length,
                           physics: const NeverScrollableScrollPhysics(),
                           itemBuilder: (context, index) {
+                            Blog item = controller.blogs[index];
                             return MyBlogItem(
                               onTap: () {
-                                uploadBlogController.titleController.text =
-                                    "Big Data";
-                                uploadBlogController.detailsController.text =
-                                    "Why Big Data Needs Thick Data";
-                                uploadBlogController.priceController.text =
-                                    '50';
+                                UploadBlogController
+                                    .instance.titleController.text = item.title;
+                                UploadBlogController.instance.detailsController
+                                    .text = item.details;
+                                UploadBlogController.instance.priceController
+                                    .text = item.price.toString();
+
+                                UploadBlogController.instance.imageNetwork =
+                                    "${AppUrls.imageUrl}${item.image}";
+
                                 Get.toNamed(AppRoutes.uploadBlog);
                               },
-                              price: 50,
-                              name: 'Big Data',
-                              image: AppImages.blog,
-                              description: 'Why Big Data Needs Thick Data',
+                              price: item.price,
+                              name: item.title,
+                              image: item.image,
+                              description: item.details,
                             );
                           },
                         ),
-                )
+                })
               ],
             )),
       ),
       bottomNavigationBar: const CustomDoctorBottomNavBar(currentIndex: 9),
-
     );
   }
 }

@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../../../../../core/app_routes.dart';
 import '../../../../../utils/app_colors.dart';
 import '../../../../common_widgets/button/custom_button.dart';
 import '../../../../common_widgets/text/custom_text.dart';
 
 class CancelPopup {
-  static popUp() {
+  static popUp(VoidCallback? onTap) {
     showDialog(
       context: Get.context!,
       builder: (context) {
@@ -39,7 +38,7 @@ class CancelPopup {
                 Expanded(
                     child: CustomButton(
                   titleText: "Yes".tr,
-                  onTap: () => Get.offAllNamed(AppRoutes.doctorHome),
+                  onTap: onTap,
                 ))
               ],
             ),

@@ -2,12 +2,12 @@ import 'package:dime/controllers/consultant/blog/my_blog_controller.dart';
 import 'package:get/get.dart';
 import '../controllers/auth/change_password_controller.dart';
 import '../controllers/auth/forget_password_controller.dart';
-import '../controllers/auth/signIn_controller.dart';
+import '../controllers/auth/sign_in_controller.dart';
 import '../controllers/auth/sign_up_controller.dart';
 
 import '../controllers/consultant/appointment_history_controller.dart';
 import '../controllers/consultant/blog/upload_blog_controller.dart';
-import '../controllers/consultant/info/Personal_information_controller.dart';
+import '../controllers/consultant/info/personal_information_controller.dart';
 import '../controllers/consultant/info/added_experience_controller.dart';
 import '../controllers/consultant/info/availability_controller.dart';
 import '../controllers/consultant/info/identification_controller.dart';
@@ -17,24 +17,32 @@ import '../controllers/consultant/patients_info/appointment_list_controller.dart
 import '../controllers/consultant/patients_info/doctor_home_controller.dart';
 import '../controllers/consultant/patients_info/patients_list_controller.dart';
 import '../controllers/consultant/profile/doctor_profile.dart';
-import '../controllers/user/Booking/Book_appointment_controller.dart';
-import '../controllers/user/Booking/Booking_details_controller.dart';
+import '../controllers/consultant/transaction/transaction_controller.dart';
+import '../controllers/consultant/transaction/withdraw_controller.dart';
+import '../controllers/user/Booking/book_appointment_controller.dart';
+import '../controllers/user/Booking/booking_details_controller.dart';
 import '../controllers/user/Booking/ambulance_booking_controller.dart';
 import '../controllers/user/Booking/home_care_controller.dart';
 import '../controllers/user/Booking/lab_booking_controller.dart';
 import '../controllers/user/Booking/my_booking_controller.dart';
 import '../controllers/user/Booking/shhedule_reply_controller.dart';
+import '../controllers/user/blog/blogs_controller.dart';
 import '../controllers/user/category_list_controller.dart';
+import '../controllers/user/chat/chat_controller.dart';
+import '../controllers/user/chat/video_call_controller.dart';
+import '../controllers/user/consultant_details_controller.dart';
 import '../controllers/user/health_rocords_controller.dart';
 import '../controllers/user/home_controller.dart';
-import '../controllers/user/message_controller.dart';
+import '../controllers/user/chat/message_controller.dart';
 import '../controllers/user/notifications_controller.dart';
 import '../controllers/user/payment/payment_controller.dart';
+import '../controllers/user/payment/peigo_payment_controller.dart';
 import '../controllers/user/payment/select_payment_method_controller.dart';
 import '../controllers/user/profile_controller.dart';
 import '../controllers/user/send_review_controller.dart';
-import '../controllers/user/setting_controller.dart';
-
+import '../controllers/user/setting/privacy_policy_controller.dart';
+import '../controllers/user/setting/setting_controller.dart';
+import '../controllers/user/setting/terms_of_services_controller.dart';
 
 class DependencyInjection extends Bindings {
   @override
@@ -73,5 +81,14 @@ class DependencyInjection extends Bindings {
     Get.lazyPut(() => MyBlogController(), fenix: true);
     Get.lazyPut(() => ChangePasswordController(), fenix: true);
     Get.lazyPut(() => ScheduleReplyController(), fenix: true);
+    Get.lazyPut(() => ConsultantDetailsController(), fenix: true);
+    Get.lazyPut(() => BlogsController(), fenix: true);
+    Get.lazyPut(() => PrivacyPolicyController(), fenix: true);
+    Get.lazyPut(() => TermsOfServicesController(), fenix: true);
+    Get.lazyPut(() => ChatController(), fenix: true);
+    Get.lazyPut(() => VideoCallController(), fenix: true);
+    Get.lazyPut(() => WithdrawController(), fenix: true);
+    Get.lazyPut(() => TransactionController(), fenix: true);
+    Get.lazyPut(() => PeigoPaymentController(), fenix: true);
   }
 }

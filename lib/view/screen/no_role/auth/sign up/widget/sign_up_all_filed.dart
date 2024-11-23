@@ -1,16 +1,10 @@
-import 'dart:io';
-
 import 'package:dime/helpers/other_helper.dart';
-import 'package:dime/utils/app_icons.dart';
-import 'package:dime/view/common_widgets/image/custom_image.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
 import '../../../../../../controllers/auth/sign_up_controller.dart';
 import '../../../../../../utils/app_colors.dart';
-import '../../../../../common_widgets/text/custom_text.dart';
 import '../../../../../common_widgets/text_field/custom_number_text_filed.dart';
 import '../../../../../common_widgets/text_field/custom_text_field.dart';
 
@@ -30,7 +24,7 @@ class _SignUpAllFieldState extends State<SignUpAllField> {
           children: [
             CustomTextField(
               prefixIcon: const Icon(
-                Icons.group,
+                Icons.person,
                 color: AppColors.whiteDarkHover,
               ),
               labelText: "Full Name".tr,

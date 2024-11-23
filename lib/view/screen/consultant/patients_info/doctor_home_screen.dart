@@ -1,18 +1,35 @@
+import 'package:dime/models/appointment_upcoming_model.dart';
+import 'package:dime/view/common_widgets/no_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../controllers/consultant/patients_info/doctor_home_controller.dart';
 import '../../../../core/app_routes.dart';
 import '../../../../utils/app_colors.dart';
-import '../../../../utils/app_images.dart';
 import '../../../common_widgets/bottom nav bar/doctor_nav_bar.dart';
 import '../../../common_widgets/text/custom_text.dart';
-import '../../../common_widgets/text_field/custom_text_field.dart';
 import 'widget/appointment_request_item.dart';
 import 'widget/patients_list_item.dart';
 
-class DoctorHomeScreen extends StatelessWidget {
+class DoctorHomeScreen extends StatefulWidget {
   const DoctorHomeScreen({super.key});
+
+  @override
+  State<DoctorHomeScreen> createState() => _DoctorHomeScreenState();
+}
+
+class _DoctorHomeScreenState extends State<DoctorHomeScreen> {
+  @override
+  void initState() {
+    Future.delayed(
+      Duration.zero,
+      () {
+        DoctorHomeController.instance.getUpcomingAppointmentRepo();
+        DoctorHomeController.instance.getAppointmentRequestRepo();
+      },
+    );
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,33 +62,37 @@ class DoctorHomeScreen extends StatelessWidget {
                 ),
                 SizedBox(
                   height: 400.h,
-                  child: GridView.builder(
-                    itemCount: 6,
-                    physics: const NeverScrollableScrollPhysics(),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
-                        mainAxisSpacing: 12.sp,
-                        crossAxisSpacing: 12.sp,
-                        mainAxisExtent: 200.h),
-                    itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () => Get.toNamed(AppRoutes.patientsDetails),
-                        child: const PatientsListItem(
-                            image: AppImages.annette,
-                            name: "Annette Black",
-                            time: "Fri, 12:00 PM"),
-                      );
-                    },
-                  ),
-                ),
-                SizedBox(
-                  height: 26.h,
+                  child: controller.upcomingList.isEmpty
+                      ? const NoData()
+                      : GridView.builder(
+                          itemCount: controller.upcomingList.length,
+                          physics: const NeverScrollableScrollPhysics(),
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 3,
+                                  mainAxisSpacing: 12.sp,
+                                  crossAxisSpacing: 12.sp,
+                                  mainAxisExtent: 200.h),
+                          itemBuilder: (context, index) {
+                            Appointment item = controller.upcomingList[index];
+                            return GestureDetector(
+                              onTap: () => Get.toNamed(
+                                  AppRoutes.patientsDetails,
+                                  parameters: {"appointmentId": item.id}),
+                              child: PatientsListItem(
+                                  image: item.user.image,
+                                  name: item.user.fullName,
+                                  dateTime: item.appointmentTime),
+                            );
+                          },
+                        ),
                 ),
                 CustomText(
                   text: "Appointment Request".tr,
                   fontWeight: FontWeight.w700,
                   fontSize: 20.sp,
                   maxLines: 1,
+                  top: 26.h,
                 ),
                 Align(
                   alignment: Alignment.centerRight,
@@ -88,20 +109,26 @@ class DoctorHomeScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  child: ListView.builder(
-                    itemCount: 10,
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () => Get.toNamed(AppRoutes.patientsDetails),
-                        child: const AppointmentRequestItem(
-                          time: "Today, 11:30 AM",
-                          text: "Appointment with Mr. Black",
+                  child: controller.pendingList.isEmpty
+                      ? const NoData()
+                      : ListView.builder(
+                          itemCount: controller.pendingList.length,
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            Appointment item = controller.pendingList[index];
+
+                            return GestureDetector(
+                              onTap: () => Get.toNamed(
+                                  AppRoutes.patientsDetails,
+                                  parameters: {"appointmentId": item.id}),
+                              child: AppointmentRequestItem(
+                                dateTime: item.appointmentTime,
+                                text: "Appointment with ${item.user.fullName}",
+                              ),
+                            );
+                          },
                         ),
-                      );
-                    },
-                  ),
                 )
               ],
             ),

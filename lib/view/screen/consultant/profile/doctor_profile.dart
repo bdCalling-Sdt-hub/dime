@@ -1,14 +1,13 @@
+import 'package:dime/helpers/prefs_helper.dart';
+import 'package:dime/utils/app_url.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../controllers/consultant/profile/doctor_profile.dart';
 import '../../../../core/app_routes.dart';
-import '../../../../utils/app_colors.dart';
-import '../../../../utils/app_images.dart';
 import '../../../common_widgets/bottom nav bar/doctor_nav_bar.dart';
 import '../../../common_widgets/image/custom_image.dart';
 import '../../../common_widgets/item.dart';
-import '../../../common_widgets/pop up/custom_pop_up_menu_button.dart';
 import '../../../common_widgets/pop up/success_pop_up.dart';
 import '../../../common_widgets/text/custom_text.dart';
 
@@ -41,8 +40,8 @@ class DoctorProfile extends StatelessWidget {
                     backgroundColor: Colors.transparent,
                     child: ClipOval(
                       child: CustomImage(
-                        imageSrc: AppImages.profile,
-                        imageType: ImageType.png,
+                        imageSrc: "${AppUrls.imageUrl}${PrefsHelper.myImage}",
+                        imageType: ImageType.network,
                         height: 80.sp,
                         width: 80.sp,
                       ),
@@ -50,7 +49,7 @@ class DoctorProfile extends StatelessWidget {
                   ),
                 ),
                 CustomText(
-                  text: "Daniel Martinez",
+                  text: PrefsHelper.myName,
                   fontSize: 18.sp,
                   fontWeight: FontWeight.w700,
                   top: 20.h,

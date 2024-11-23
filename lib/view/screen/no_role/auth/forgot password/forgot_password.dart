@@ -3,10 +3,8 @@ import 'package:dime/helpers/other_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../../../../../core/app_routes.dart';
 import '../../../../common_widgets/button/custom_button.dart';
 import '../../../../common_widgets/text/custom_text.dart';
-import '../../../../common_widgets/text_field/custom_number_text_filed.dart';
 import '../../../../common_widgets/text_field/custom_text_field.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {

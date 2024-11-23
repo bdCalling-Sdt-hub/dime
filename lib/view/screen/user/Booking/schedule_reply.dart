@@ -3,19 +3,25 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../../controllers/user/Booking/shhedule_reply_controller.dart';
-import '../../../../core/app_routes.dart';
 import '../../../../helpers/other_helper.dart';
 import '../../../../utils/app_colors.dart';
-import '../../../../utils/app_utils.dart';
 import '../../../common_widgets/bottom nav bar/navbar.dart';
 import '../../../common_widgets/button/custom_button.dart';
 import '../../../common_widgets/text/custom_text.dart';
 import '../../../common_widgets/text_field/custom_text_field.dart';
 
-class ScheduleReply extends StatelessWidget {
-  ScheduleReply({super.key});
+class ScheduleReply extends StatefulWidget {
+  const ScheduleReply({super.key});
 
+  @override
+  State<ScheduleReply> createState() => _ScheduleReplyState();
+}
+
+class _ScheduleReplyState extends State<ScheduleReply> {
   final formKey = GlobalKey<FormState>();
+
+  String id = Get.parameters['id'] ?? '';
+  String amount = Get.parameters['amount'] ?? '';
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +29,7 @@ class ScheduleReply extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: CustomText(
-          text: "Schedule a call".tr,
+          text: "Video Reply".tr,
           fontSize: 20.sp,
           fontWeight: FontWeight.w600,
         ),
@@ -59,10 +65,12 @@ class ScheduleReply extends StatelessWidget {
                     height: 350.h,
                   ),
                   CustomButton(
-                    titleText: "Pay".tr,
+                    titleText: "Book".tr,
                     onTap: () {
                       if (formKey.currentState!.validate()) {
-                        Get.toNamed(AppRoutes.paymentMethod);
+                        controller.bookVideoReplyAppointment(id, amount);
+
+                        // Get.toNamed(AppRoutes.paymentMethod);
                       }
                     },
                   )

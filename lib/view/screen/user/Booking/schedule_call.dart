@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dime/helpers/other_helper.dart';
 import 'package:dime/utils/app_utils.dart';
 import 'package:dime/view/common_widgets/pop%20up/custom_pop_up_menu_button.dart';
@@ -5,18 +7,36 @@ import 'package:dime/view/common_widgets/text_field/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../../../../controllers/user/Booking/Book_appointment_controller.dart';
-import '../../../../core/app_routes.dart';
+import '../../../../controllers/user/Booking/book_appointment_controller.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../common_widgets/bottom nav bar/navbar.dart';
 import '../../../common_widgets/button/custom_button.dart';
-import '../../../common_widgets/pop up/success_pop_up.dart';
 import '../../../common_widgets/text/custom_text.dart';
 
-class SelectDataTime extends StatelessWidget {
-  SelectDataTime({super.key});
+class SelectDataTime extends StatefulWidget {
+  const SelectDataTime({super.key});
 
+  @override
+  State<SelectDataTime> createState() => _SelectDataTimeState();
+}
+
+class _SelectDataTimeState extends State<SelectDataTime> {
   final formKey = GlobalKey<FormState>();
+
+  String id = Get.parameters["id"] ?? '';
+
+  String amount = Get.parameters["amount"] ?? '';
+
+  String availability = Get.parameters["availability"] ?? "";
+
+  @override
+  void initState() {
+    BookAppointmentController.instance.id = id;
+    BookAppointmentController.instance.amount = amount;
+    BookAppointmentController.instance
+        .setAvailability(jsonDecode(availability));
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,12 +93,14 @@ class SelectDataTime extends StatelessWidget {
                           controller: controller.callDurationController,
                           fillColor: AppColors.black,
                           hindText: 'Call Duration'.tr,
+                          validator: OtherHelper.validator,
                           textStyle: const TextStyle(color: AppColors.white),
                           suffixIcon: PopUpMenu(
                               items: controller.callDurations,
                               iconColor: AppColors.white,
-                              selectedItem:
-                                  controller.callDurationController.text,
+                              selectedItem: [
+                                controller.callDurationController.text
+                              ],
                               onTap: controller.selectCallDuration),
                         ),
                       )
@@ -113,11 +135,13 @@ class SelectDataTime extends StatelessWidget {
                       ],
                     ),
                     child: CalendarDatePicker(
-                      initialDate: controller.getInitialDate(),
+                      initialDate:
+                          controller.getInitialDate(jsonDecode(availability)),
                       firstDate: DateTime(1900),
                       lastDate: DateTime(2100),
                       onDateChanged: controller.selectData,
-                      selectableDayPredicate: controller.disableDay,
+                      selectableDayPredicate: (day) =>
+                          controller.disableDay(day, jsonDecode(availability)),
                     ),
                   ),
                   CustomText(
@@ -165,13 +189,13 @@ class SelectDataTime extends StatelessWidget {
                     height: 20.h,
                   ),
                   CustomButton(
+                    isLoading: controller.isLoading,
                     titleText: "Appointment".tr,
                     onTap: () {
                       if (formKey.currentState!.validate()) {
                         if (controller.selectedData != "") {
                           if (controller.selectedTime != '') {
-                            Get.toNamed(AppRoutes.myBooking,
-                                parameters: {"index": "0"});
+                            controller.bookAppointment();
                           } else {
                             Utils.snackBarMessage(
                                 'time', "please, select time");

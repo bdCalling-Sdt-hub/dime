@@ -1,3 +1,5 @@
+import 'package:dime/models/category_model.dart';
+import 'package:dime/utils/app_url.dart';
 import 'package:dime/view/common_widgets/image/custom_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,7 +10,7 @@ import '../../../../common_widgets/text/custom_text.dart';
 class CategoryItem extends StatelessWidget {
   const CategoryItem({super.key, required this.item});
 
-  final Map item;
+  final CategoryModel item;
 
   @override
   Widget build(BuildContext context) {
@@ -24,16 +26,15 @@ class CategoryItem extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          item['type'] == 'svg'
-              ? CustomImage(
-                  imageSrc: item["image"],
-                )
-              : Icon(
-                  item["image"],
-                  color: AppColors.white,
-                ),
+          CustomImage(
+            imageSrc: "${AppUrls.imageUrl}${item.image}",
+            imageType: ImageType.network,
+            height: 30,
+            width: 30,
+            borderRadius: 4,
+          ),
           CustomText(
-            text: item["name"],
+            text: item.name,
             color: AppColors.white,
           )
         ],

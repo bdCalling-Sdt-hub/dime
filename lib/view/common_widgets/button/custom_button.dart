@@ -51,8 +51,8 @@ class CustomButton extends StatelessWidget {
           : ElevatedButton(
               onPressed: onTap,
               style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(buttonColor),
-                  shape: MaterialStateProperty.all(
+                  backgroundColor: WidgetStateProperty.all(buttonColor),
+                  shape: WidgetStateProperty.all(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(buttonRadius ?? 50.r),
                       side: BorderSide(
@@ -60,7 +60,7 @@ class CustomButton extends StatelessWidget {
                           width: borderWidth ?? 1.w),
                     ),
                   ),
-                  elevation: MaterialStateProperty.all(0)),
+                  elevation: WidgetStateProperty.all(0)),
               child: Text(
                 titleText,
                 maxLines: 1,

@@ -1,12 +1,13 @@
-import 'package:dime/core/app_routes.dart';
+import 'package:dime/extension/my_extension.dart';
+import 'package:dime/utils/app_url.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../../controllers/user/message_controller.dart';
+import '../../../../controllers/user/chat/message_controller.dart';
+import '../../../../models/chat_message_model.dart';
 import '../../../../utils/app_colors.dart';
 import '../../../../utils/app_icons.dart';
-import '../../../../utils/app_images.dart';
 import '../../../common_widgets/image/custom_image.dart';
 import '../../../common_widgets/text/custom_text.dart';
 import '../../../common_widgets/text_field/custom_text_field.dart';
@@ -20,9 +21,19 @@ class MessageScreen extends StatefulWidget {
 }
 
 class _MessageScreenState extends State<MessageScreen> {
-  // String chatId = Get.parameters["chatId"] ?? "";
-  // String name = Get.parameters["name"] ?? "";
-  // String type = Get.parameters["type"] ?? "";
+  String chatId = Get.parameters["chatId"] ?? "";
+  String name = Get.parameters["name"] ?? "";
+  String image = Get.parameters["image"] ?? "";
+
+  @override
+  void initState() {
+    MessageController.instance.name = name;
+    MessageController.instance.chatId = chatId;
+    MessageController.instance.image = image;
+    MessageController.instance.getMessageRepo();
+    MessageController.instance.listenMessage();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,8 +50,8 @@ class _MessageScreenState extends State<MessageScreen> {
                     backgroundColor: Colors.transparent,
                     child: ClipOval(
                       child: CustomImage(
-                        imageSrc: AppImages.doctorSarah,
-                        imageType: ImageType.png,
+                        imageSrc: "${AppUrls.imageUrl}$image",
+                        imageType: ImageType.network,
                         height: 60.sp,
                         width: 60.sp,
                       ),
@@ -49,28 +60,17 @@ class _MessageScreenState extends State<MessageScreen> {
                   SizedBox(
                     width: 12.w,
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CustomText(
-                        text: "Katryn Murphy",
-                        fontWeight: FontWeight.w700,
-                        fontSize: 18.sp,
-                      ),
-                      CustomText(
-                        text: "Therapist",
-                        fontWeight: FontWeight.w400,
-                        fontSize: 16.sp,
-                      ),
-                    ],
+                  CustomText(
+                    text: name,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 18.sp,
                   ),
                   const Spacer(),
-                  // IconButton(
-                  //     onPressed: () {
-                  //       Get.toNamed(AppRoutes.sendReview);
-                  //     },
-                  //     icon: const Icon(Icons.videocam_outlined))
+                  controller.agoraToken.isNotEmpty
+                      ? IconButton(
+                          onPressed: controller.checkVideoCall,
+                          icon: const Icon(Icons.videocam_outlined))
+                      : 0.height
                 ],
               ),
             ),
@@ -86,7 +86,7 @@ class _MessageScreenState extends State<MessageScreen> {
                       : controller.messages.length,
                   itemBuilder: (BuildContext context, int index) {
                     if (index < controller.messages.length) {
-                      final message = controller.messages[index];
+                      ChatMessageModel message = controller.messages[index];
                       return ChatBubbleMessage(
                         index: index,
                         image: message.image,
@@ -95,6 +95,8 @@ class _MessageScreenState extends State<MessageScreen> {
                         time: message.time,
                         text: message.text,
                         isMe: message.isMe,
+                        token: controller.agoraToken,
+                        channel: controller.channel,
                         onTap: () {},
                       );
                     } else {
@@ -108,14 +110,15 @@ class _MessageScreenState extends State<MessageScreen> {
             child: Padding(
               padding: EdgeInsets.only(left: 20.w, right: 20.w, bottom: 24.h),
               child: CustomTextField(
-                onTap: controller.getVideo,
                 textAlign: TextAlign.start,
-                hindText: "Upload your video document".tr,
-                // prefixIcon: const Icon(Icons.videocam_outlined),
-                suffixIcon: Padding(
-                  padding: EdgeInsets.all(16.sp),
-                  child: const CustomImage(
-                    imageSrc: AppIcons.send,
+                hindText: "message here".tr,
+                suffixIcon: GestureDetector(
+                  onTap: controller.addNewMessage,
+                  child: Padding(
+                    padding: EdgeInsets.all(16.sp),
+                    child: const CustomImage(
+                      imageSrc: AppIcons.send,
+                    ),
                   ),
                 ),
                 textStyle: GoogleFonts.prompt(
@@ -125,6 +128,7 @@ class _MessageScreenState extends State<MessageScreen> {
                 fieldBorderColor: Colors.white,
                 fieldBorderRadius: 8,
                 controller: controller.messageController,
+                onFieldSubmitted: (p0) => controller.addNewMessage(),
               ),
             ),
           ));

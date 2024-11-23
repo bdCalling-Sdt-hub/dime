@@ -81,7 +81,6 @@ class ProfessionalQualificationsController extends GetxController {
       lastDate: DateTime(2101),
       keyboardType: TextInputType.visiblePassword,
       onDatePickerModeChange: (value) {
-        print(value);
       },
       initialDatePickerMode: DatePickerMode.year,
     );

@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../../controllers/auth/sign_up_controller.dart';
-import '../../../../../core/app_routes.dart';
 import '../../../../../utils/app_colors.dart';
 import '../../../../common_widgets/button/custom_button.dart';
 import '../../../../common_widgets/text/custom_text.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class VerifyUser extends StatefulWidget {
-  VerifyUser({super.key});
+  const VerifyUser({super.key});
 
   @override
   State<VerifyUser> createState() => _VerifyUserState();

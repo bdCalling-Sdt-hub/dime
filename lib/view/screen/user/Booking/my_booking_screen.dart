@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../controllers/user/Booking/my_booking_controller.dart';
-import '../../../../core/app_routes.dart';
+import '../../../../helpers/prefs_helper.dart';
 import '../../../../utils/app_colors.dart';
-import '../../../../utils/app_images.dart';
+import '../../../common_widgets/bottom nav bar/doctor_nav_bar.dart';
 import '../../../common_widgets/bottom nav bar/navbar.dart';
-import '../../../common_widgets/doctor/doctor_book_item.dart';
 import '../../../common_widgets/text/custom_text.dart';
+import 'widget/booking_list.dart';
 
 class MyBookingScreen extends StatefulWidget {
   const MyBookingScreen({super.key});
@@ -19,12 +19,20 @@ class MyBookingScreen extends StatefulWidget {
 class _MyBookingScreenState extends State<MyBookingScreen>
     with SingleTickerProviderStateMixin {
   MyBookingController controller = Get.put(MyBookingController());
-  String index = Get.parameters["index"] ?? "3";
+  String index = Get.parameters["index"] ?? "2";
 
   @override
   void initState() {
     controller.tabController = TabController(length: 5, vsync: this);
-    controller.tabController.index = int.tryParse(index) ?? 3;
+    controller.tabController.index = int.tryParse(index) ?? 2;
+    Future.delayed(
+      Duration.zero,
+      () => controller.getAppointmentsRepo(),
+    );
+    controller.tabController.addListener(
+      () => controller.getAppointmentsRepo(),
+    );
+
     super.initState();
   }
 
@@ -52,111 +60,55 @@ class _MyBookingScreenState extends State<MyBookingScreen>
                   unselectedLabelColor: Colors.black,
                   isScrollable: true,
                   tabAlignment: TabAlignment.start,
-                  onTap: controller.selectTab,
+                  onTap: (value) async {
+                    Future.delayed(
+                      Duration.zero,
+                      () {
+                        controller.page = 1;
+                        controller.getAppointmentsRepo();
+                      },
+                    );
+                  },
                   tabs: [
                     Tab(text: 'Pending'.tr),
                     Tab(text: 'Payment'.tr),
-                    Tab(text: 'Payment Status'.tr),
                     Tab(text: 'Upcoming'.tr),
                     Tab(text: 'Completed'.tr),
+                    Tab(text: 'Cancelled'.tr),
                   ],
                 ),
                 Expanded(
                   child: TabBarView(
-                    controller: controller.tabController,
-                    children: [
-                      Center(
-                        child: ListView.builder(
-                          itemCount: 10,
-                          itemBuilder: (context, index) {
-                            return DoctorBookItem(
-                              date: "Monday,March 12",
-                              time: "11:00 - 12:00 AM",
-                              image: AppImages.doctorSarah,
-                              name: "Dr. Sarah Johnson",
-                              rightButtonText: "View Details".tr,
-                              rightOnTap: () =>
-                                  Get.toNamed(AppRoutes.bookingDetails),
-                            );
-                          },
+                      controller: controller.tabController,
+                      children: [
+                        BookingList(
+                          buttonText: 'view Details'.tr,
                         ),
-                      ),
-                      Center(
-                        child: ListView.builder(
-                          itemCount: 10,
-                          itemBuilder: (context, index) {
-                            return DoctorBookItem(
-                              date: "March 12",
-                              time: "11:00 - 12:00 AM",
-                              image: AppImages.doctorSarah,
-                              name: "Dr. Sarah Johnson",
-                              rightButtonText: "Payment".tr,
-                              rightOnTap: () =>
-                                  Get.toNamed(AppRoutes.paymentMethod),
-                            );
-                          },
+                        BookingList(
+                          buttonText: 'payment'.tr,
+                          isPayment: true,
                         ),
-                      ),
-                      Center(
-                        child: ListView.builder(
-                          itemCount: 10,
-                          itemBuilder: (context, index) {
-                            return DoctorBookItem(
-                              date: "March 12",
-                              time: "11:00 - 12:00 AM",
-                              image: AppImages.doctorSarah,
-                              rightButtonText: "View Details".tr,
-                              rightOnTap: () =>
-                                  Get.toNamed(AppRoutes.bookingDetails),
-                              name: "Dr. Sarah Johnson",
-                            );
-                          },
+                        BookingList(
+                          buttonText: 'view Details'.tr,
                         ),
-                      ),
-                      Center(
-                        child: ListView.builder(
-                          itemCount: 10,
-                          itemBuilder: (context, index) {
-                            return DoctorBookItem(
-                              date: "March 12",
-                              time: "11:00 - 12:00 AM",
-                              image: AppImages.doctorSarah,
-                              rightButtonText: "View Details".tr,
-                              rightOnTap: () =>
-                                  Get.toNamed(AppRoutes.bookingDetails),
-                              name: "Dr. Sarah Johnson",
-                            );
-                          },
+                        BookingList(
+                          buttonText: 'view Details'.tr,
                         ),
-                      ),
-                      Center(
-                        child: ListView.builder(
-                          itemCount: 10,
-                          itemBuilder: (context, index) {
-                            return DoctorBookItem(
-                              date: "March 12",
-                              time: "11:00 - 12:00 AM",
-                              image: AppImages.doctorSarah,
-                              rightButtonText: "View Details".tr,
-                              rightOnTap: () =>
-                                  Get.toNamed(AppRoutes.bookingDetails),
-                              name: "Dr. Sarah Johnson",
-                            );
-                          },
+                        BookingList(
+                          buttonText: 'view Details'.tr,
                         ),
-                      ),
-                    ],
-                    // Specify the controller here
-                  ),
+                      ]),
                 ),
               ],
             );
           },
         ),
       ),
-      bottomNavigationBar: const CustomBottomNavBar(
-        currentIndex: 9,
-      ),
+      bottomNavigationBar: PrefsHelper.myRole == "consultant"
+          ? const CustomDoctorBottomNavBar(currentIndex: 9)
+          : const CustomBottomNavBar(
+              currentIndex: 9,
+            ),
     );
   }
 }

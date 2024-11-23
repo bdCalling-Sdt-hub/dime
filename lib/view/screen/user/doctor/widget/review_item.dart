@@ -5,7 +5,7 @@ import '../../../../common_widgets/image/custom_image.dart';
 import '../../../../common_widgets/text/custom_text.dart';
 
 class ReviewItem extends StatelessWidget {
-  ReviewItem({
+  const ReviewItem({
     super.key,
     required this.image,
     required this.name,
@@ -32,7 +32,7 @@ class ReviewItem extends StatelessWidget {
                 child: ClipOval(
                   child: CustomImage(
                     imageSrc: image,
-                    imageType: ImageType.png,
+                    imageType: ImageType.network,
                     height: 56.sp,
                     width: 56.sp,
                   ),

@@ -3,15 +3,26 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
-import '../../../../../controllers/consultant/info/Personal_information_controller.dart';
+import '../../../../../controllers/consultant/info/personal_information_controller.dart';
 import '../../../../../helpers/other_helper.dart';
 import '../../../../../utils/app_colors.dart';
 import '../../../../common_widgets/pop up/custom_pop_up_menu_button.dart';
 import '../../../../common_widgets/text/custom_text.dart';
 import '../../../../common_widgets/text_field/custom_text_field.dart';
 
-class PersonalInfoAllFiled extends StatelessWidget {
+class PersonalInfoAllFiled extends StatefulWidget {
   const PersonalInfoAllFiled({super.key});
+
+  @override
+  State<PersonalInfoAllFiled> createState() => _PersonalInfoAllFiledState();
+}
+
+class _PersonalInfoAllFiledState extends State<PersonalInfoAllFiled> {
+  @override
+  void initState() {
+    PersonalInformationController.instance.getCategoryRepo();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,14 +42,10 @@ class PersonalInfoAllFiled extends StatelessWidget {
               validator: OtherHelper.validator,
               hindText: "Title".tr,
               fieldBorderRadius: 10.r,
-              keyboardType: TextInputType.none,
+              keyboardType: TextInputType.text,
               fillColor: AppColors.transparent,
               fieldBorderColor: AppColors.secondPrimary,
-              suffixIcon: PopUpMenu(
-                items: controller.titleList,
-                selectedItem: controller.titleController.text,
-                onTap: controller.selectedTitle,
-              ),
+
             ),
             CustomText(
               text: "Full Name".tr,
@@ -66,9 +73,6 @@ class PersonalInfoAllFiled extends StatelessWidget {
             ),
             IntlPhoneField(
               controller: controller.numberController,
-              onChanged: (value) {
-                print(value);
-              },
               decoration: InputDecoration(
                 hintText: "Phone Number".tr,
                 fillColor: AppColors.transparent,
@@ -86,32 +90,10 @@ class PersonalInfoAllFiled extends StatelessWidget {
               disableLengthCheck: false,
             ),
             CustomText(
-              text: "Date of birth".tr,
-              fontWeight: FontWeight.w700,
-              fontSize: 20.sp,
-              bottom: 12.h,
-            ),
-            CustomTextField(
-              controller: controller.dateOfBrithController,
-              validator: OtherHelper.validator,
-              hindText: "Date of birth".tr,
-              fillColor: AppColors.transparent,
-              fieldBorderColor: AppColors.secondPrimary,
-              suffixIcon: GestureDetector(
-                  onTap: () =>
-                      OtherHelper.datePicker(controller.dateOfBrithController),
-                  child: const Icon(Icons.date_range)),
-              onTap: () =>
-                  OtherHelper.datePicker(controller.dateOfBrithController),
-              fieldBorderRadius: 10.r,
-              keyboardType: TextInputType.none,
-            ),
-            CustomText(
               text: "Country".tr,
               fontWeight: FontWeight.w700,
               fontSize: 20.sp,
               bottom: 12.h,
-              top: 20.h,
             ),
             CustomTextField(
               controller: controller.countryController,
@@ -121,22 +103,6 @@ class PersonalInfoAllFiled extends StatelessWidget {
               fillColor: AppColors.transparent,
               fieldBorderColor: AppColors.secondPrimary,
               keyboardType: TextInputType.text,
-            ),
-            CustomText(
-              text: "NID/Passport Number".tr,
-              fontWeight: FontWeight.w700,
-              fontSize: 20.sp,
-              bottom: 12.h,
-              top: 20.h,
-            ),
-            CustomTextField(
-              controller: controller.identifierNumberController,
-              validator: OtherHelper.validator,
-              hindText: "NID/Passport Number".tr,
-              fieldBorderRadius: 10.r,
-              fillColor: AppColors.transparent,
-              fieldBorderColor: AppColors.secondPrimary,
-              keyboardType: TextInputType.number,
             ),
             SizedBox(
               height: 20.h,
@@ -162,7 +128,7 @@ class PersonalInfoAllFiled extends StatelessWidget {
                       fieldBorderColor: AppColors.secondPrimary,
                       suffixIcon: PopUpMenu(
                         items: controller.gender,
-                        selectedItem: controller.genderController.text,
+                        selectedItem: [controller.genderController.text],
                         onTap: controller.selectedGender,
                       ),
                       hindText: "Gender".tr,
@@ -177,21 +143,26 @@ class PersonalInfoAllFiled extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CustomText(
-                      text: "Consultant Type".tr,
+                      text: "Category".tr,
                       fontSize: 20.sp,
                       fontWeight: FontWeight.w700,
                       bottom: 12.h,
                     ),
                     CustomTextField(
-                      controller: controller.consultantTypeController,
-                      validator: OtherHelper.validator,
+                      validator: (value) {
+                        if (controller.selectedCategory.isEmpty) {
+                          return "This filed is required";
+                        } else {
+                          return null;
+                        }
+                      },
                       keyboardType: TextInputType.none,
                       fieldBorderRadius: 10.r,
                       fillColor: AppColors.transparent,
                       fieldBorderColor: AppColors.secondPrimary,
                       suffixIcon: PopUpMenu(
                         items: controller.doctorType,
-                        selectedItem: controller.consultantTypeController.text,
+                        selectedItem: controller.selectedCategory,
                         onTap: controller.selectedDoctorType,
                       ),
                       hindText: "Medical".tr,
@@ -212,6 +183,7 @@ class PersonalInfoAllFiled extends StatelessWidget {
               validator: OtherHelper.validator,
               hindText: "Text here".tr,
               fieldBorderRadius: 10.r,
+              maxLines: null,
               keyboardType: TextInputType.text,
               fillColor: AppColors.transparent,
               fieldBorderColor: AppColors.secondPrimary,
